@@ -3,7 +3,7 @@
         "search_url": "https://www.linkedin.com/search/results/people/?geoUrn=%5B%22105450643%22%5D&keywords=advocate&origin=FACETED_SEARCH"
     },
     {
-        "scrape_pages": 100
+        "scrape_pages": 7
     },
     {
         "send_max_connection": 1
