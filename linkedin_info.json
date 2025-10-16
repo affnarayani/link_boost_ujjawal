@@ -1,0 +1,34 @@
+{
+  "timestamp": "2025-10-16T07:42:56.875069Z",
+  "mynetwork": {
+    "invites_sent": "0",
+    "connections": "0",
+    "following": "0",
+    "groups": null,
+    "events": null,
+    "pages": null,
+    "newsletters": null
+  },
+  "invitations": {
+    "received_invitations": "2",
+    "sent_invitations": "0"
+  },
+  "dashboard": {
+    "post_impressions": "0",
+    "followers": "0",
+    "profile_viewers": "0",
+    "search_appearances": "0",
+    "posts": "0",
+    "comments": "0"
+  },
+  "growth": {
+    "post_impression_growth_value": "0%",
+    "post_impression_growth_direction": null,
+    "post_impression_growth_signed": "0%",
+    "post_impression_growth": "0%",
+    "followers_growth_value": "0%",
+    "followers_growth_direction": null,
+    "followers_growth_signed": "0%",
+    "followers_growth": "0%"
+  }
+}
