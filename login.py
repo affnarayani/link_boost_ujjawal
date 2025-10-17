@@ -277,38 +277,19 @@ def _try_cookie_login(driver: webdriver.Chrome, wait: WebDriverWait) -> bool:
         driver.get(HOME_URL)
         _handle_challenge_if_present(driver, wait)
 
-        print(f"[Cookie] Current URL after attempting cookie login: {driver.current_url}")
-
-        # Check between these 3 xpaths one by one and pass if "Ujjawal" is found in any
-        xpaths_to_check = [
-            '/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div/div/div[1]/div/div/div/div/a/div/div/p',
-            '/html/body/div/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div/div/div[1]/div/div/div/div/a/div/div/p',
-            '/html/body/div/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div/div/div[1]/div/div/div/div/a/div/div'
-        ]
-        
-        login_successful_via_xpath = False
-        for i, xpath in enumerate(xpaths_to_check):
-            try:
-                xpath_element = WebDriverWait(driver, 5).until(
-                    EC.presence_of_element_located((By.XPATH, xpath))
-                )
-                if "Ujjawal" in xpath_element.text:
-                    print(f"[Cookie] Successfully found 'Ujjawal' in the feed page using XPath {i+1}. Login with encrypted session cookie was successful.")
-                    login_successful_via_xpath = True
-                    break
-                else:
-                    print(f"[Cookie] XPath {i+1} found, but 'Ujjawal' not in text: '{xpath_element.text}'. Trying next XPath.")
-            except Exception:
-                print(f"[Cookie] Failed to locate XPath {i+1}. Trying next XPath.")
-        
-        if login_successful_via_xpath:
+        try:
+            WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.ID, "global-nav")) or
+                EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div[2]/div[2]/div[1]/header/div/div/div"))
+            )
+            print("[Cookie] Session cookie login succeeded.")
             return True
-        else:
-            print("[Cookie] None of the specified XPaths contained 'Ujjawal'. Session login failed.")
+        except Exception:
+            print("[Cookie] Session cookie login failed.")
             return False
 
-    except Exception as e:
-        print(f"[Cookie] Error applying session cookie: {e}.")
+    except Exception:
+        print("[Cookie] Error applying session cookie.")
         return False
 
 
@@ -322,9 +303,6 @@ def _save_current_session_cookie(driver: webdriver.Chrome) -> None:
                 "value": session.get("value"),
                 "domain": session.get("domain", ".linkedin.com"),
                 "path": session.get("path", "/"),
-                "secure": session.get("secure", False),
-                "httpOnly": session.get("httpOnly", False),
-                "sameSite": session.get("sameSite", "Lax"), # Default to Lax if not present
             }
             if isinstance(session.get("expiry"), (int, float)):
                 to_store["expiry"] = int(session["expiry"])  # seconds since epoch
@@ -397,7 +375,10 @@ def login_and_get_driver() -> webdriver.Chrome:
 
         # Wait until global nav appears or we're redirected post-login
         try:
-            wait.until(EC.presence_of_element_located((By.ID, "global-nav")))
+            wait.until(
+                EC.presence_of_element_located((By.ID, "global-nav")) or
+                EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div[2]/div[2]/div[1]/header/div/div"))
+            )
         except Exception:
             time.sleep(3)
 

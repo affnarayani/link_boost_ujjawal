@@ -12,13 +12,10 @@ import random
 import html as _html
 import logging
 import shutil
-import functools
 from typing import List, Optional, Any
 from google import genai
-from google.api_core import exceptions as google_exceptions # For API errors
 
 from selenium.webdriver.common.by import By
-from transformers import AutoTokenizer # For tokenizing text
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
@@ -81,40 +78,6 @@ def clean_model_comment(text: str) -> str:
     # Collapse whitespace
     s = re.sub(r"\s+", " ", s).strip()
     return s
-
-
-# Global tokenizer for efficient token counting
-_tokenizer = None
-def get_tokenizer():
-    global _tokenizer
-    if _tokenizer is None:
-        try:
-            _tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
-        except Exception:
-            warn("Failed to load tokenizer for token counting. Using character count fallback.")
-            _tokenizer = None
-    return _tokenizer
-
-def count_tokens(text: str) -> int:
-    tokenizer = get_tokenizer()
-    if tokenizer:
-        return len(tokenizer.encode(text))
-    # Fallback to character count if tokenizer not available
-    return len(text) // 4 # Rough estimate: 1 token ~ 4 characters
-
-def truncate_text_to_tokens(text: str, max_tokens: int) -> str:
-    if not text:
-        return ""
-    tokenizer = get_tokenizer()
-    if tokenizer:
-        encoded = tokenizer.encode(text, truncation=False, add_special_tokens=False)
-        if len(encoded) > max_tokens:
-            truncated_encoded = encoded[:max_tokens]
-            return tokenizer.decode(truncated_encoded, clean_up_tokenization_spaces=True)
-    # Fallback to character-based truncation if tokenizer not available or text is already short
-    if len(text) > max_tokens * 4: # Rough estimate
-        return text[:max_tokens * 4] + "..."
-    return text
 
 
 def setup_logging():
@@ -263,30 +226,6 @@ def _prepend_post_link(path: str, link: str) -> bool:
     try:
         if not link:
             return False
-
-        # Clean the link: remove trailing backslashes and other problematic characters
-        link = link.rstrip('\\').strip()
-
-        # Validate post link format
-        # Expected formats:
-        # - https://www.linkedin.com/feed/update/urn:li:activity:{some number}
-        # - https://www.linkedin.com/posts/{profile_id}_{post_title}-{post_id}-{another_id}
-        # - https://www.linkedin.com/pulse/{article_slug}-{article_id}
-        # The regex is made more flexible to accommodate various valid LinkedIn post link structures.
-        # It now explicitly handles the trailing backslash by removing it before validation.
-        linkedin_post_pattern = re.compile(
-            r"^https://www\.linkedin\.com/"
-            r"(?:feed/update/urn:li:activity:\d+"
-            r"|posts/[a-zA-Z0-9_-]+(?:-\d+){1,2}" # More flexible for post IDs
-            r"|pulse/[a-zA-Z0-9_-]+(?:-\d+){1,2}" # More flexible for pulse IDs
-            r"|in/[a-zA-Z0-9_-]+(?:/detail)?/[a-zA-Z0-9_-]+)" # Added for /in/user/detail/ links
-            r"/?$" # Optional trailing slash
-        )
-
-        if not linkedin_post_pattern.match(link):
-            warn(f"Skipping invalid post link format: {link}")
-            return False
-
         arr = _load_liked_commented(path)
         # Skip if already present
         for item in arr:
@@ -298,29 +237,6 @@ def _prepend_post_link(path: str, link: str) -> bool:
         return True
     except Exception:
         return False
-
-
-# Decorator for retrying API calls with exponential backoff
-def retry_with_backoff(
-    max_retries: int = 5,
-    initial_delay: float = 1.0,
-    backoff_factor: float = 2.0,
-    exceptions=(google_exceptions.ResourceExhausted, google_exceptions.ServiceUnavailable),
-):
-    def decorator(func):
-        @functools.wraps(func)
-        def wrapper(*args, **kwargs):
-            delay = initial_delay
-            for i in range(max_retries):
-                try:
-                    return func(*args, **kwargs)
-                except exceptions as e:
-                    warn(f"API call failed (attempt {i + 1}/{max_retries}): {e}. Retrying in {delay:.1f} seconds...")
-                    time.sleep(delay)
-                    delay *= backoff_factor
-            raise # Re-raise the last exception if all retries fail
-        return wrapper
-    return decorator
 
 
 def main() -> int:
@@ -387,28 +303,18 @@ def main() -> int:
             def norm_text(s: str) -> str:
                 return re.sub(r"\s+", " ", (s or "").strip())
 
-            # Scroll to top first to ensure consistent starting point
-            try:
-                driver.execute_script("window.scrollTo(0, 0);")
-            except Exception:
-                pass
-            time.sleep(1) # Give it a moment to settle
-
             # Attempt a few scrolls to load posts
-            for _ in range(5): # Increased scroll attempts
+            for _ in range(3):
                 try:
-                    driver.execute_script("window.scrollBy(0, window.innerHeight * 0.8);") # Scroll by 80% of viewport height
+                    driver.execute_script("window.scrollBy(0, document.body.scrollHeight/3);")
                 except Exception:
                     pass
-                time.sleep(2.5) # Increased delay for content to load
+                time.sleep(1.2)
 
-            # Find likely post containers by data-urn (activity or ugcPost), role=article, or common class names
+            # Find likely post containers by data-urn (activity or ugcPost) or role=article
             post_candidates = driver.find_elements(
                 By.XPATH,
-                "//div[starts-with(@data-urn,'urn:li:activity:') or starts-with(@data-urn,'urn:li:ugcPost:')] | "
-                "//div[@role='article'] | "
-                "//div[contains(@class, 'feed-shared-update-v2')] | "
-                "//div[contains(@class, 'update-components-container')]"
+                "//div[starts-with(@data-urn,'urn:li:activity:') or starts-with(@data-urn,'urn:li:ugcPost:')] | //div[@role='article']"
             )
 
             for post in post_candidates:
@@ -418,7 +324,7 @@ def main() -> int:
                     if re.search(r"(?i)\b(Promoted|Sponsored)\b", seg_text):
                         continue
 
-                    # Verify required actions are available: Comment
+                    # Verify required actions are available: Comment, Repost, and Send
                     def has_action(xpath: str) -> bool:
                         try:
                             elems = post.find_elements(By.XPATH, xpath)
@@ -427,10 +333,20 @@ def main() -> int:
                             return False
 
                     has_comment = has_action(
-                        ".//button[contains(translate(., 'COMMENT', 'comment'),'comment') or contains(translate(@aria-label, 'COMMENT','comment'),'comment') or contains(@data-control-name,'comment_button')] | "
-                        ".//a[contains(translate(., 'COMMENT', 'comment'),'comment') or contains(@data-control-name,'comment_button')]"
+                        ".//button[contains(translate(., 'COMMENT', 'comment'),'comment') or contains(translate(@aria-label, 'COMMENT','comment'),'comment')] | .//a[contains(translate(., 'COMMENT', 'comment'),'comment')]"
                     )
                     if not has_comment:
+                        continue
+
+                    has_repost = has_action(
+                        ".//button[contains(translate(., 'REPOST', 'repost'),'repost') or contains(translate(@aria-label, 'REPOST','repost'),'repost')] | .//a[contains(translate(., 'REPOST', 'repost'),'repost')]"
+                    )
+                    has_send = has_action(
+                        ".//button[contains(translate(., 'SEND', 'send'),'send') or contains(translate(@aria-label, 'SEND','send'),'send')] | .//a[contains(translate(., 'SEND', 'send'),'send')]"
+                    )
+
+                    # Exclude achievement-style posts that typically only have Like and Comment
+                    if not (has_repost and has_send):
                         continue
 
                     # Expand truncated content within this post (See more/Show more) before extracting
@@ -515,17 +431,11 @@ def main() -> int:
                         # Look for anchor tags with URNs or post routes
                         link_candidates = post.find_elements(
                             By.XPATH,
-                            ".//a[contains(@href,'/feed/update/') or contains(@href,'posts/') or contains(@href,'/detail/') or contains(@href,'urn:li:activity:') or contains(@href,'urn:li:ugcPost:') or contains(@href,'/pulse/')]"
+                            ".//a[contains(@href,'/feed/update/') or contains(@href,'posts/') or contains(@href,'/detail/') or contains(@href,'urn:li:activity:') or contains(@href,'urn:li:ugcPost:')]"
                         )
                         for a in link_candidates:
                             href = a.get_attribute("href") or ""
-                            if href and href.startswith("http") and "linkedin.com" in href and "/feed/update/urn:li:activity:" in href:
-                                link_val = href
-                                break
-                            elif href and href.startswith("http") and "linkedin.com" in href and "/posts/" in href:
-                                link_val = href
-                                break
-                            elif href and href.startswith("http") and "linkedin.com" in href and "/pulse/" in href:
+                            if href and href.startswith("http") and "linkedin.com" in href:
                                 link_val = href
                                 break
 
@@ -657,26 +567,18 @@ def main() -> int:
                 comment_text = None
                 if comment:
                     try:
-                        # Truncate post_text to fit within Gemini's token limits (e.g., 3000 tokens for prompt)
-                        # The actual limit depends on the model, but 3000 is a safe general upper bound for input.
-                        truncated_post_text = truncate_text_to_tokens(post_text, 3000)
                         prompt = (
                             "Write a concise, professional, production-ready LinkedIn comment (1-2 sentences) responding to the post below.\n"
                             "Do not include any headings, labels, or prefaces. Output only the comment text.\n\n"
-                            f"Post:\n{truncated_post_text}\n"
+                            f"Post:\n{post_text}\n"
                         )
-                        @retry_with_backoff(max_retries=5, initial_delay=2.0, backoff_factor=2.0)
-                        def generate_content_with_retry(model_name, contents):
-                            return client.models.generate_content(model=model_name, contents=contents)
-
-                        resp = generate_content_with_retry(
-                            model_name="gemini-2.5-flash",
+                        resp = client.models.generate_content(
+                            model="gemini-2.5-flash",
                             contents=prompt,
                         )
                         raw_comment = (resp.text or "").strip()
                         comment_text = clean_model_comment(raw_comment)
-                    except Exception as e:
-                        err(f"Failed to generate comment after retries: {e}")
+                    except Exception:
                         comment_text = None
 
                 # Print post and comment
