@@ -226,6 +226,13 @@ def _prepend_post_link(path: str, link: str) -> bool:
     try:
         if not link:
             return False
+
+        # Validate post link format
+        # Expected format: https://www.linkedin.com/feed/update/urn:li:activity:{some number}
+        if not re.match(r"^https://www\.linkedin\.com/feed/update/urn:li:activity:\d+$", link):
+            warn(f"Skipping invalid post link format: {link}")
+            return False
+
         arr = _load_liked_commented(path)
         # Skip if already present
         for item in arr:
