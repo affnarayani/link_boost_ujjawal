@@ -44,7 +44,8 @@
     "verified": false,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/dr-shiv-ratna-bihari-4b0074100?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAABmjVMQBLl0iAL_n4xYBwyIEcqghsc4Iumg",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-10-17T17:38:34"
   },
   {
     "page": 1,
@@ -55,7 +56,8 @@
     "verified": true,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/rajeev-kumar-645643380?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF4RI9UBMSAIMMlrqrxTzFG0dE9W_MOhq2o",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-10-17T17:38:42"
   },
   {
     "page": 1,
