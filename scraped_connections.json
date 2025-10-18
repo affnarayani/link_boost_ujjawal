@@ -68,7 +68,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/nitin-shankar-484410bb?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAABmC86QBPAUZnz0nh0roAg5_VbYfbpwElp0",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-10-18T15:22:38"
   },
   {
     "page": 1,
