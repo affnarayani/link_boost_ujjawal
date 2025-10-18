@@ -278,10 +278,7 @@ def _try_cookie_login(driver: webdriver.Chrome, wait: WebDriverWait) -> bool:
         _handle_challenge_if_present(driver, wait)
 
         try:
-            WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.ID, "global-nav")) or
-                EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div[2]/div[2]/div[1]/header/div/div/div"))
-            )
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "global-nav")))
             print("[Cookie] Session cookie login succeeded.")
             return True
         except Exception:
@@ -375,10 +372,7 @@ def login_and_get_driver() -> webdriver.Chrome:
 
         # Wait until global nav appears or we're redirected post-login
         try:
-            wait.until(
-                EC.presence_of_element_located((By.ID, "global-nav")) or
-                EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div[2]/div[2]/div[1]/header/div/div"))
-            )
+            wait.until(EC.presence_of_element_located((By.ID, "global-nav")))
         except Exception:
             time.sleep(3)
 
