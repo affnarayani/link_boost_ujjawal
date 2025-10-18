@@ -518,7 +518,7 @@ def scrape_growth(driver) -> Dict[str, Any]:
         "followers": "/html/body/div[6]/div[3]/div[2]/div/div/main/div/section[1]/div/a[2]/section",
     }
 
-    max_retries = 15  # Retry up to 10 times if growth is N/A
+    max_retries = 3  # Retry up to 3 times if growth is N/A
     for attempt in range(max_retries):
         if attempt > 0:
             info(f"Retrying growth scrape (attempt {attempt + 1}/{max_retries})")
