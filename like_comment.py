@@ -45,9 +45,9 @@ like = True      # Toggle to enable/disable liking
 comment = True   # Toggle to enable/disable commenting
 
 # Browser mode toggle (default: headful)
-HEADLESS = True
+HEADLESS = False
 
-FEED_URL = "https://www.linkedin.com/feed/"
+FEED_URL = "https://www.linkedin.com/in/drvenkatreddydonthi/recent-activity/all/"
 
 
 def load_config(path: str) -> dict:
