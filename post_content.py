@@ -45,7 +45,7 @@ from login import login_and_get_driver
 # -----------------------------
 # Toggle: True = headless, False = headful
 # -----------------------------
-headless: bool = False
+headless: bool = True
 os.environ["HEADLESS"] = "true" if headless else "false"
 
 REPO_ROOT = Path(__file__).resolve().parent
