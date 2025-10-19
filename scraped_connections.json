@@ -92,7 +92,8 @@
     "verified": false,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/satyam-kumar-a6815221a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADcx1HAB4uBC2qB72Cg-GJwNkQWTZVv8QrY",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-10-19T00:50:52"
   },
   {
     "page": 1,
