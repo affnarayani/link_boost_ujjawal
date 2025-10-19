@@ -1,7 +1,7 @@
 # post_comments.py
-# Logs into LinkedIn using login.py, opens the feed page, saves the HTML to temp,
+# Logs into LinkedIn using login.py, opens the feed page,
 # parses posts that have a Comment button, prints them in the same style as get_info.py,
-# keeps the saved HTML file, and leaves the browser open (testing).
+# and leaves the browser open (testing).
 
 import os
 import sys
@@ -9,8 +9,6 @@ import time
 import re
 import json
 import random
-import html as _html
-import logging
 import shutil
 from typing import List, Optional, Any
 from google import genai
@@ -25,17 +23,10 @@ try:
     from colorama import init as colorama_init, Fore, Style
     colorama_init(autoreset=True)
 except Exception:
-    # Fallback if colorama is not installed
-    class _Fore:
-        CYAN = ""
-        GREEN = ""
-        YELLOW = ""
-        MAGENTA = ""
-    class _Style:
-        BRIGHT = ""
-        RESET_ALL = ""
-    Fore = _Fore()
-    Style = _Style()
+    class Fore:
+        GREEN = ""; YELLOW = ""; RED = ""; CYAN = ""; MAGENTA = ""; BLUE = ""
+    class Style:
+        BRIGHT = ""; RESET_ALL = ""
 
 # Reuse login from login.py
 from login import login_and_get_driver
@@ -47,8 +38,25 @@ comment = True   # Toggle to enable/disable commenting
 # Browser mode toggle (default: headful)
 HEADLESS = False
 
-FEED_URL = "https://www.linkedin.com/in/drvenkatreddydonthi/recent-activity/all/"
+FEED_URL = "https://www.linkedin.com/feed/"
 
+def banner(msg: str) -> None:
+    print(f"{Style.BRIGHT}{Fore.CYAN}=== {msg} ==={Style.RESET_ALL}")
+
+def step(n: int, msg: str) -> None:
+    print(f"{Fore.BLUE}{Style.BRIGHT}[STEP {n}] {msg}{Style.RESET_ALL}")
+
+def info(msg: str) -> None:
+    print(f"{Fore.CYAN}ℹ {msg}{Style.RESET_ALL}")
+
+def success(msg: str) -> None:
+    print(f"{Fore.GREEN}✔ {msg}{Style.RESET_ALL}")
+
+def warn(msg: str) -> None:
+    print(f"{Fore.YELLOW}⚠ {msg}{Style.RESET_ALL}")
+
+def error(msg: str) -> None:
+    print(f"{Fore.RED}✖ {msg}{Style.RESET_ALL}")
 
 def load_config(path: str) -> dict:
     try:
@@ -80,113 +88,6 @@ def clean_model_comment(text: str) -> str:
     return s
 
 
-def setup_logging():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s %(levelname)s - %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
-    )
-
-
-def info(msg: str):
-    logging.info(msg)
-
-
-def warn(msg: str):
-    logging.warning(msg)
-
-
-def err(msg: str):
-    logging.error(msg)
-
-
-def ensure_temp_dir(temp_dir: str) -> None:
-    if not os.path.isdir(temp_dir):
-        os.makedirs(temp_dir, exist_ok=True)
-
-
-def strip_tags(html: str) -> str:
-    # Remove script/style then tags, unescape, and normalize whitespace
-    no_script = re.sub(r"(?is)<(script|style)[^>]*>.*?</\\1>", " ", html)
-    no_tags = re.sub(r"(?s)<[^>]+>", " ", no_script)
-    text = _html.unescape(no_tags)
-    # Collapse whitespace
-    text = re.sub(r"\s+", " ", text).strip()
-    return text
-
-
-def extract_post_text_from_segment(seg_html: str) -> Optional[str]:
-    # Try common LinkedIn feed content containers first
-    patterns = [
-        r'(?is)<div[^>]+class="[^"]*(?:update-components-text|feed-shared-update-v2__description-wrapper)[^"]*"[^>]*>(.*?)</div>',
-        r'(?is)<span[^>]+dir="ltr"[^>]*>(.*?)</span>',
-    ]
-    for pat in patterns:
-        m = re.search(pat, seg_html)
-        if m:
-            txt = strip_tags(m.group(1))
-            if txt:
-                return txt
-    # Fallback: strip the whole segment and take a reasonable slice
-    txt = strip_tags(seg_html)
-    # Heuristic: ignore extremely short or boilerplate-only segments
-    if txt and len(txt) > 20:
-        return txt
-    return None
-
-
-def extract_posts_with_comment(html_text: str, max_posts: int = 10) -> List[dict]:
-    # Split by <article> blocks which commonly wrap feed posts
-    segments = re.split(r'(?i)(?=<article[^>]*>)', html_text)
-    results: List[dict] = []
-
-    # A post is considered valid if it has a recognizable Comment button
-    comment_markers = [
-        r'aria-label="\s*comment\s*"',
-        r'data-control-name="\s*comment\s*"',
-        r'>\s*comment\s*<',
-    ]
-    comment_re = re.compile("|".join(comment_markers), re.IGNORECASE)
-
-    # Exclude promoted/sponsored posts (commonly labeled "Promoted" on LinkedIn)
-    promoted_markers = [
-        r'aria-label\s*=\s*"\s*Promoted\s*"',
-        r'>\s*Promoted\s*<',
-        r'aria-label\s*=\s*"\s*Sponsored\s*"',
-        r'>\s*Sponsored\s*<'
-    ]
-    promoted_re = re.compile("|".join(promoted_markers), re.IGNORECASE)
-
-    # Helper to find a plausible permalink from the segment
-    permalink_re = re.compile(r'(https?://www\.linkedin\.com/(?:feed/update|posts|pulse|in/.+?/detail|feed/update/urn:li:activity:[0-9]+)[^"\s<>]*)')
-
-    for seg in segments:
-        if not seg:
-            continue
-        if promoted_re.search(seg):
-            # Skip ads/promoted content
-            continue
-        if not comment_re.search(seg):
-            continue
-        text = extract_post_text_from_segment(seg)
-        if not text:
-            continue
-
-        link: Optional[str] = None
-        m = permalink_re.search(seg)
-        if m:
-            link = _html.unescape(m.group(1))
-
-        # Deduplicate only (do not truncate)
-        text_norm = re.sub(r"\s+", " ", text).strip()
-        if text_norm and all(text_norm != r.get("text") for r in results):
-            results.append({"text": text_norm, "link": link})
-        if len(results) >= max_posts:
-            break
-
-    return results
-
-
 def pretty_print_posts_with_comments(posts: List[tuple[str, Optional[str], Optional[str]]], start_index: int = 1, show_link: bool = True):
     # Production-friendly structured logging for post/comment output
     if not posts:
@@ -200,7 +101,6 @@ def pretty_print_posts_with_comments(posts: List[tuple[str, Optional[str], Optio
         if show_link:
             info(f"Link: {link or ''}")
         info("------------------------------------------------------------------------")
-
 
 
 # Processed posts tracking helpers
@@ -226,6 +126,10 @@ def _prepend_post_link(path: str, link: str) -> bool:
     try:
         if not link:
             return False
+        # Validate post_link format
+        if not re.match(r"^https://www\.linkedin\.com/feed/update/urn:li:activity:\d+$", link):
+            warn(f"Skipping invalid post link format: {link}")
+            return False
         arr = _load_liked_commented(path)
         # Skip if already present
         for item in arr:
@@ -240,20 +144,19 @@ def _prepend_post_link(path: str, link: str) -> bool:
 
 
 def main() -> int:
+    banner("LinkedIn Like and Comment Bot")
+
     # Honor HEADLESS variable by setting the env var used by login.py
     os.environ["HEADLESS"] = "1" if HEADLESS else "0"
 
-    # Setup logging
-    setup_logging()
-
     driver = None
-    html_path = None
 
     # Resolve repo root and temp directory early
     repo_root = os.path.dirname(__file__)
     temp_dir = os.path.join(repo_root, "temp")
 
-    # Clear temp folder at start
+    # 1) Clear temp folder at start
+    step(1, "Clearing temp folder")
     try:
         if os.path.isdir(temp_dir):
             for name in os.listdir(temp_dir):
@@ -267,36 +170,34 @@ def main() -> int:
                     pass
         else:
             os.makedirs(temp_dir, exist_ok=True)
-        info("Temp folder cleared.")
+        success("Temp folder cleared.")
     except Exception as e:
-        warn(f"Failed to clear temp folder: {e}")
+        error(f"Failed to clear temp folder: {e}")
+        return 1 # Exit on critical error
 
     try:
-        info("Logging in and launching browser…")
+        # 2) Login and launch browser
+        step(2, "Logging in and launching browser")
         driver = login_and_get_driver()
+        success("Driver ready")
 
-        info("Opening LinkedIn feed…")
+        # 3) Open LinkedIn feed
+        step(3, "Opening LinkedIn feed")
         driver.get(FEED_URL)
 
         # Wait for <main> to be present as a generic ready signal
         wait = WebDriverWait(driver, 25)
         try:
             wait.until(EC.presence_of_element_located((By.TAG_NAME, "main")))
+            success("Feed loaded")
         except Exception:
             time.sleep(2)
+            warn("Main element not found quickly, proceeding after small delay.")
 
         # Optional: small delay to allow first posts to render
         time.sleep(2)
 
-        # Save page HTML to temp folder (path prepared earlier)
-        ensure_temp_dir(temp_dir)
-        html_path = os.path.join(temp_dir, f"feed_{int(time.time())}.html")
-
-        info(f"Saving feed HTML to: {html_path}")
-        with open(html_path, "w", encoding="utf-8") as f:
-            f.write(driver.page_source)
-
-        # Prefer analyzing live DOM (more reliable than static HTML), then fall back to saved HTML
+        # Prefer analyzing live DOM (more reliable than static HTML)
         def collect_posts_via_dom(max_posts: int = 25) -> list[dict[str, Any]]:
             results: list[dict[str, Any]] = []
 
@@ -471,57 +372,51 @@ def main() -> int:
 
             return results
 
-        # Load config for limits and delays
+        # 5) Load config for limits and delays
+        step(5, "Loading configuration for limits and delays")
         cfg = load_config(os.path.join(repo_root, "config.json"))
         max_like_comment = int(cfg.get("max_like_comment", 5))
         like_comment_min_delay = float(cfg.get("like_comment_minimum_delay", 60))
         like_comment_max_delay = float(cfg.get("like_comment_maximum_delay", 180))
+        success("Configuration loaded.")
 
         # Load already processed post links (do not clear/overwrite)
         liked_file_path = os.path.join(repo_root, "liked_commented.json")
         existing_items = _load_liked_commented(liked_file_path)
         existing_links_set = {str(item.get("post_link")) for item in existing_items if isinstance(item, dict) and item.get("post_link")}
 
-        info("Analyzing live DOM for posts with Comment button…")
+        # 6) Analyze live DOM for posts with Comment button
+        step(6, "Analyzing live DOM for posts with Comment button")
         posts = collect_posts_via_dom(max_posts=max_like_comment)
-
-        # Fallback: static HTML parsing if DOM-based extraction found nothing
         if not posts:
-            info("DOM scan found no posts. Falling back to saved HTML analysis…")
-            with open(html_path, "r", encoding="utf-8") as f:
-                html_text = f.read()
-            posts = extract_posts_with_comment(
-                html_text,
-                max_posts=max_like_comment,
-            )
-            # Normalize into dicts with link for static HTML path
-            if posts and isinstance(posts, list) and posts and not isinstance(posts[0], dict):
-                posts = [{"text": p, "element": None, "link": None} for p in posts]
+            warn("DOM scan found no posts. Exiting.")
+            return 0
 
-        # Analyze and interact sequentially per post with randomized wait
-        from dotenv import load_dotenv
-        load_dotenv()
-        api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("GENAI_API_KEY")
+        success(f"Found {len(posts)} posts with comment buttons via DOM scan.")
 
-        # Normalize posts list to a unified structure with text and optional element
-        normalized_posts: list[dict[str, Any]] = []
-        if posts and isinstance(posts[0], dict):
-            normalized_posts = posts  # from DOM path
-        else:
-            # from HTML path (no elements available)
-            normalized_posts = [{"text": p, "element": None} for p in posts]
+        # 7) Filter out posts whose links were already processed
+        step(7, "Filtering out already processed posts")
+        normalized_posts: list[dict[str, Any]] = posts
 
-        # Filter out posts whose links were already processed
         processed_posts: list[dict[str, Any]] = []
         for it in normalized_posts:
             lk = it.get("link")
             if lk and lk in existing_links_set:
+                info(f"Skipping already processed post: {lk}")
                 continue
             processed_posts.append(it)
+        success(f"Found {len(processed_posts)} new posts to process.")
+
+        # 8) Process posts
+        step(8, "Processing posts")
+        from dotenv import load_dotenv
+        load_dotenv()
+        api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("GENAI_API_KEY")
 
         if not api_key:
-            info("Gemini API key not found in .env (GEMINI_API_KEY/GOOGLE_API_KEY/GENAI_API_KEY). Skipping AI comments.")
+            warn("Gemini API key not found in .env (GEMINI_API_KEY/GOOGLE_API_KEY/GENAI_API_KEY). Skipping AI comments.")
             for idx, item in enumerate(processed_posts, 1):
+                info(f"Processing post {idx}/{len(processed_posts)}")
                 # No AI comment when API key missing
                 ai_comment = None
                 pretty_print_posts_with_comments([(item["text"], ai_comment, item.get("link"))], start_index=idx, show_link=True)
@@ -531,10 +426,14 @@ def main() -> int:
                 if link_val:
                     if _prepend_post_link(liked_file_path, link_val):
                         existing_links_set.add(link_val)
+                        success(f"Recorded post link: {link_val}")
+                    else:
+                        warn(f"Failed to record post link: {link_val}")
 
                 # Interact with live post if available (skip actions if already processed)
                 post_el = item.get("element")
                 if post_el is not None and like and link_val and (link_val not in existing_links_set):
+                    info("Liking post (no AI comment available)")
                     # Like only (since no AI comment available)
                     try:
                         like_btn = post_el.find_element(
@@ -547,25 +446,30 @@ def main() -> int:
                             pass
                         try:
                             like_btn.click()
+                            success("Post liked.")
                         except Exception:
                             driver.execute_script("arguments[0].click();", like_btn)
+                            success("Post liked (via JS).")
                         time.sleep(0.3)
-                    except Exception:
-                        pass
+                    except Exception as e:
+                        warn(f"Failed to like post: {e}")
 
                 # Wait random delay between posts
-                if idx < len(normalized_posts):
+                if idx < len(processed_posts):
                     delay = random.uniform(like_comment_min_delay, like_comment_max_delay)
                     info(f"Waiting {delay:.1f} seconds before next post…")
                     time.sleep(delay)
+            success("All new posts processed (without AI comments).")
         else:
             client = genai.Client(api_key=api_key)
             for idx, item in enumerate(processed_posts, 1):
+                info(f"Processing post {idx}/{len(processed_posts)}")
                 post_text = item["text"]
                 post_el = item.get("element")
                 # Generate comment only if commenting is enabled
                 comment_text = None
                 if comment:
+                    info("Generating AI comment…")
                     try:
                         prompt = (
                             "Write a concise, professional, production-ready LinkedIn comment (1-2 sentences) responding to the post below.\n"
@@ -578,7 +482,9 @@ def main() -> int:
                         )
                         raw_comment = (resp.text or "").strip()
                         comment_text = clean_model_comment(raw_comment)
-                    except Exception:
+                        success("AI comment generated.")
+                    except Exception as e:
+                        warn(f"Failed to generate AI comment: {e}")
                         comment_text = None
 
                 # Print post and comment
@@ -589,34 +495,41 @@ def main() -> int:
                 if link_val:
                     if _prepend_post_link(liked_file_path, link_val):
                         existing_links_set.add(link_val)
+                        success(f"Recorded post link: {link_val}")
+                    else:
+                        warn(f"Failed to record post link: {link_val}")
 
                 # Try to comment and like on the live post element if available (only when link exists)
                 if post_el is not None and link_val:
-                    try:
-                        # 1) Open comment box (only when commenting enabled and we have text)
-                        if comment and comment_text:
+                    # 1) Open comment box (only when commenting enabled and we have text)
+                    if comment and comment_text:
+                        info("Opening comment box…")
+                        try:
+                            comment_btn = post_el.find_element(
+                                By.XPATH,
+                                ".//button[contains(translate(., 'COMMENT', 'comment'),'comment') or contains(translate(@aria-label, 'COMMENT','comment'),'comment')] | .//a[contains(translate(., 'COMMENT', 'comment'),'comment')]",
+                            )
+                        except Exception:
+                            comment_btn = None
+                        if comment_btn:
                             try:
-                                comment_btn = post_el.find_element(
-                                    By.XPATH,
-                                    ".//button[contains(translate(., 'COMMENT', 'comment'),'comment') or contains(translate(@aria-label, 'COMMENT','comment'),'comment')] | .//a[contains(translate(., 'COMMENT', 'comment'),'comment')]",
-                                )
+                                driver.execute_script("arguments[0].scrollIntoView({block:'center'});", comment_btn)
                             except Exception:
-                                comment_btn = None
-                            if comment_btn:
+                                pass
+                            try:
+                                comment_btn.click()
+                                success("Comment box opened.")
+                            except Exception:
                                 try:
-                                    driver.execute_script("arguments[0].scrollIntoView({block:'center'});", comment_btn)
-                                except Exception:
-                                    pass
-                                try:
-                                    comment_btn.click()
-                                except Exception:
-                                    try:
-                                        driver.execute_script("arguments[0].click();", comment_btn)
-                                    except Exception:
-                                        pass
-                                time.sleep(0.3)
+                                    driver.execute_script("arguments[0].click();", comment_btn)
+                                    success("Comment box opened (via JS).")
+                                except Exception as e:
+                                    warn(f"Failed to open comment box: {e}")
+                            time.sleep(0.3)
 
-                            # 2) Type the comment and submit (more robust headless handling)
+                        # 2) Type the comment and submit (more robust headless handling)
+                        if comment_text:
+                            info("Typing and submitting comment…")
                             try:
                                 # Wait for the inline comment editor to render after clicking the button
                                 editor = None
@@ -704,6 +617,7 @@ def main() -> int:
                                     try:
                                         ActionChains(driver).send_keys(Keys.TAB).pause(0.2).send_keys(Keys.TAB).pause(0.2).send_keys(Keys.TAB).pause(0.2).send_keys(Keys.ENTER).perform()
                                         time.sleep(0.8 if is_headless else 0.6)
+                                        success("Comment submitted (via keyboard).")
                                     except Exception:
                                         pass
 
@@ -761,47 +675,55 @@ def main() -> int:
                                                 pass
                                             try:
                                                 submit_btn.click()
+                                                success("Comment submitted (via click).")
                                             except Exception:
                                                 driver.execute_script("arguments[0].click();", submit_btn)
+                                                success("Comment submitted (via JS click).")
                                             time.sleep(0.8 if is_headless else 0.6)
                                         else:
                                             # Last resort: Ctrl+Enter (often works for LinkedIn comment box)
                                             try:
                                                 editor.send_keys(Keys.CONTROL, Keys.ENTER)
                                                 time.sleep(0.5 if is_headless else 0.4)
+                                                success("Comment submitted (via Ctrl+Enter).")
                                             except Exception:
+                                                warn("Failed to submit comment.")
                                                 pass
-                                    except Exception:
-                                        pass
-                            except Exception:
-                                pass
+                                    except Exception as e:
+                                        warn(f"Failed to submit comment: {e}")
+                            except Exception as e:
+                                warn(f"Failed to type comment: {e}")
 
-                        # 3) Like the post (only if enabled)
-                        if like:
+                    # 3) Like the post (only if enabled)
+                    if like:
+                        info("Liking post…")
+                        try:
+                            like_btn = post_el.find_element(
+                                By.XPATH,
+                                ".//button[contains(translate(., 'LIKE', 'like'),'like') or contains(translate(@aria-label, 'LIKE','like'),'like')] | .//span[contains(translate(., 'LIKE', 'like'),'like')]/ancestor::button[1]",
+                            )
                             try:
-                                like_btn = post_el.find_element(
-                                    By.XPATH,
-                                    ".//button[contains(translate(., 'LIKE', 'like'),'like') or contains(translate(@aria-label, 'LIKE','like'),'like')] | .//span[contains(translate(., 'LIKE', 'like'),'like')]/ancestor::button[1]",
-                                )
-                                try:
-                                    driver.execute_script("arguments[0].scrollIntoView({block:'center'});", like_btn)
-                                except Exception:
-                                    pass
-                                try:
-                                    like_btn.click()
-                                except Exception:
-                                    driver.execute_script("arguments[0].click();", like_btn)
-                                time.sleep(0.3)
+                                driver.execute_script("arguments[0].scrollIntoView({block:'center'});", like_btn)
                             except Exception:
                                 pass
-                    except Exception:
-                        pass
+                            try:
+                                like_btn.click()
+                                success("Post liked.")
+                            except Exception:
+                                driver.execute_script("arguments[0].click();", like_btn)
+                                success("Post liked (via JS).")
+                            time.sleep(0.3)
+                        except Exception as e:
+                            warn(f"Failed to like post: {e}")
+                else:
+                    info("Skipping interaction for this post (element not found or link missing).")
 
                 # Wait random delay between posts
-                if idx < len(normalized_posts):
+                if idx < len(processed_posts):
                     delay = random.uniform(like_comment_min_delay, like_comment_max_delay)
                     info(f"Waiting {delay:.1f} seconds before next post…")
                     time.sleep(delay)
+            success("All new posts processed.")
 
         return 0
 
@@ -809,23 +731,16 @@ def main() -> int:
         info("Interrupted by user. Exiting gracefully…")
         return 0
     except Exception as exc:
-        err(f"Unhandled error: {exc}")
+        error(f"Unhandled error: {exc}")
         return 1
 
     finally:
-        # Delete the saved HTML before closing the browser
-        try:
-            if html_path and os.path.exists(html_path):
-                os.remove(html_path)
-                info(f"Deleted temp HTML: {html_path}")
-        except Exception as e:
-            warn(f"Failed to delete temp HTML: {e}")
-
         # Close the browser after program completion
         try:
             if driver:
                 info("Closing browser…")
                 driver.quit()
+                success("Browser closed.")
         except Exception as e:
             warn(f"Failed to close browser: {e}")
 
