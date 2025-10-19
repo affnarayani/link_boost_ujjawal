@@ -438,6 +438,7 @@ def main() -> int:
                             "- Match the tone and sentiment of the post (e.g., inspiring, reflective, proud, grateful, etc.).\n"
                             "- Add a genuine personal insight, appreciation, or perspective that feels relevant to the post.\n"
                             "- Avoid generic praise or repetition of the post’s content.\n"
+                            "- Do not use any special characters like asterisks (*) or Markdown-style formatting.\n"
                             "Output only the comment text — no labels, explanations, or formatting.\n\n"
                             f"Post:\n{post_text}\n"
                         )
