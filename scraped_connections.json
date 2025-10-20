@@ -152,7 +152,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/mrinalni-tarun-b202622b3?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEtSgcgB_p9Qay9PXGRl6SNWstqkvdD2nF8",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-10-20T16:12:42"
   },
   {
     "page": 2,
