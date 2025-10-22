@@ -472,8 +472,15 @@ def main() -> int:
                     info("Generating AI comment…")
                     try:
                         prompt = (
-                            "Write a concise, professional, production-ready LinkedIn comment (1-2 sentences) responding to the post below.\n"
-                            "Do not include any headings, labels, or prefaces. Output only the comment text.\n\n"
+                            "You are writing a short, thoughtful LinkedIn comment (1–2 sentences) in response to the post below.\n"
+                            "Read the post carefully and understand its message, mood, and context before responding.\n"
+                            "Your comment should:\n"
+                            "- Sound natural, human, and emotionally intelligent.\n"
+                            "- Match the tone and sentiment of the post (e.g., inspiring, reflective, proud, grateful, etc.).\n"
+                            "- Add a genuine personal insight, appreciation, or perspective that feels relevant to the post.\n"
+                            "- Avoid generic praise or repetition of the post’s content.\n"
+                            "- Do not use any special characters like asterisks (*) or Markdown-style formatting.\n"
+                            "Output only the comment text — no labels, explanations, or formatting.\n\n"
                             f"Post:\n{post_text}\n"
                         )
                         resp = client.models.generate_content(
