@@ -68,6 +68,9 @@ GITHUB_BLOB_URL = (
 )
 GITHUB_TARGET_XPATH = '//*[@id="read-only-cursor-text-area"]'
 
+# Maximum characters allowed for a LinkedIn post (including spaces)
+MAX_POST_CHARS = 2950
+
 
 def build_driver(is_headless: bool) -> webdriver.Chrome:
     """Create and return a configured Chrome WebDriver instance (for GitHub fetch)."""
@@ -498,14 +501,28 @@ def main() -> int:
     items, _first_unused = load_and_sanitize_content(CONTENT_JSON)
     success(f"Loaded {len(items)} items")
 
-    # Choose first item that is not already posted
+    # Choose first item that is not already posted and is within character limit
     posted_list = load_posted()
-    sel = select_first_unposted(items, posted_list)
-    if not sel:
-        warn("All items in content.json appear to be already posted. Exiting.")
+    first_index = -1
+    first = None
+    for idx, item_candidate in enumerate(items):
+        if not is_already_posted(item_candidate, posted_list):
+            desc_html = item_candidate.get("description") or ""
+            plain_text_paragraphs = html_to_plain_paragraphs(desc_html)
+            char_count = len("\n\n".join(plain_text_paragraphs)) # Count characters including spaces and newlines
+
+            if char_count > MAX_POST_CHARS:
+                warn(f"Item '{item_candidate.get('title','').strip()[:80]}' (index {idx}) skipped due to exceeding {MAX_POST_CHARS} characters ({char_count} chars).")
+                continue # Try next item
+            else:
+                first_index = idx
+                first = item_candidate
+                info(f"Selected item index {first_index} → '{first.get('title','').strip()[:80]}' ({char_count} chars)")
+                break # Found a suitable item
+
+    if not first:
+        warn("No unposted items found within the character limit. Exiting.")
         return 0
-    first_index, first = sel
-    info(f"Selected item index {first_index} → '{first.get('title','').strip()[:80]}'")
 
     # 2) Clear temp folder
     step(2, "Clearing temp folder")
