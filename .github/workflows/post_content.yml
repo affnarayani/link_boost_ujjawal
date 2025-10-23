@@ -4,7 +4,7 @@ on:
   schedule:
     # 8 AM, 8 PM IST everyday excluding 1st of every month
     - cron: '30 2 * * *'
-    # - cron: '30 14 * * *'
+    - cron: '30 14 * * *'
   workflow_dispatch: {}
 
 concurrency:
