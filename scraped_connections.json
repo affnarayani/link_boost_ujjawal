@@ -370,7 +370,8 @@
     "verified": false,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/uks1508?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAAtcdf4BUZXGBa3RBxfnt8Nt-_6oBlvhUwE",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-10-23T19:19:19"
   },
   {
     "page": 4,
