@@ -248,7 +248,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/anand-gaurab-54126525?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAAUy8sEBKKiDiRcjFNqn_2cK0MWcqzNFUyY",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-10-23T08:14:32"
   },
   {
     "page": 3,
