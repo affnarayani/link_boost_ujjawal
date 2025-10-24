@@ -539,7 +539,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/juli-thakur-b22538351?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFfSe0oBaKiLdGkDwj-FIgaqjptOfh8EqQ4",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-10-24T09:25:54"
   },
   {
     "page": 5,
