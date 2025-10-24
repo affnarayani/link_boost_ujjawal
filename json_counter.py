@@ -19,5 +19,5 @@ for item in data:
 
 print(f"Total number of connections: {total_count}")
 print(f"Sent Request True: {sent_request_true_count}")
-print(f"Sent Rrequest False: {sent_request_false_count}")
+print(f"Sent Request False: {sent_request_false_count}")
 print(f"Total Withdrawals (True or False): {withdraw_total_count}")
