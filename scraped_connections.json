@@ -763,7 +763,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/rishav-garg-88206071?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAA8iuuIB8OEqY4fAGZsl9AimX4u3M16B0Ik",
     "sent_request": true,
-    "sent_request_timestamp": "2025-10-24T21:20:27"
+    "sent_request_timestamp": "2025-10-24T21:20:27",
+    "withdraw": false
   },
   {
     "page": 6,
@@ -775,7 +776,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/md-nashir-hussain-1753a4146?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAACNMCekBpZaJVc3YeWqlOxc-3MSUx2vIRS8",
     "sent_request": true,
-    "sent_request_timestamp": "2025-10-24T21:20:31"
+    "sent_request_timestamp": "2025-10-24T21:20:31",
+    "withdraw": false
   },
   {
     "page": 7,
@@ -787,7 +789,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/vikky-singh-a691802a7?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEniyfEBPUsVDrtXjNQQZa29niScsZ5fthg",
     "sent_request": true,
-    "sent_request_timestamp": "2025-10-24T21:20:35"
+    "sent_request_timestamp": "2025-10-24T21:20:35",
+    "withdraw": true
   },
   {
     "page": 7,
