@@ -1,8 +1,8 @@
 {
-  "timestamp": "2025-10-30T21:41:38.329377Z",
+  "timestamp": "2025-10-31T21:39:47.227407Z",
   "mynetwork": {
     "invites_sent": "0",
-    "connections": "13",
+    "connections": "14",
     "following": "0",
     "groups": "0",
     "events": "0",
@@ -11,24 +11,24 @@
   },
   "invitations": {
     "received_invitations": "0",
-    "sent_invitations": "21"
+    "sent_invitations": "2"
   },
   "dashboard": {
-    "post_impressions": "1,625",
-    "followers": "16",
-    "profile_viewers": "41",
+    "post_impressions": "1,442",
+    "followers": "18",
+    "profile_viewers": "47",
     "search_appearances": "2",
-    "posts": "7",
-    "comments": "22"
+    "posts": "9",
+    "comments": "27"
   },
   "growth": {
-    "post_impression_growth": null,
-    "post_impression_growth_value": null,
-    "post_impression_growth_direction": null,
-    "post_impression_growth_signed": null,
-    "followers_growth": null,
-    "followers_growth_value": null,
-    "followers_growth_direction": null,
-    "followers_growth_signed": null
+    "post_impression_growth_value": "120.9%",
+    "post_impression_growth_direction": "up",
+    "post_impression_growth_signed": "+120.9%",
+    "post_impression_growth": "+120.9%",
+    "followers_growth_value": "500%",
+    "followers_growth_direction": "up",
+    "followers_growth_signed": "+500%",
+    "followers_growth": "+500%"
   }
 }
