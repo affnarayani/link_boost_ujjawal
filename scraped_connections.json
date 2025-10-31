@@ -594,7 +594,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/adv-salauddin-0825a320a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADUf2qIBO6gej_gNHJdPLKv7yrHofRRgtZM",
     "sent_request": true,
-    "sent_request_timestamp": "2025-10-24T10:27:02"
+    "sent_request_timestamp": "2025-10-24T10:27:02",
+    "withdraw": false
   },
   {
     "page": 5,
@@ -606,7 +607,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/vishal-raj-b3373a237?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADsFANcBkWKAa_fmEs_ha_eHUlm96soe1ag",
     "sent_request": true,
-    "sent_request_timestamp": "2025-10-24T10:27:06"
+    "sent_request_timestamp": "2025-10-24T10:27:06",
+    "withdraw": true
   },
   {
     "page": 5,
