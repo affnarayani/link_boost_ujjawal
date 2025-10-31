@@ -646,7 +646,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/ritu-singh-996657240?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADvlkcIBQi-IFDUZ8NSe9Jju9Jytc42GKtQ",
     "sent_request": true,
-    "sent_request_timestamp": "2025-10-24T13:34:03"
+    "sent_request_timestamp": "2025-10-24T13:34:03",
+    "withdraw": false
   },
   {
     "page": 6,
@@ -658,7 +659,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/priya-kumari-05a987238?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADs7o4YBZLhlU9qMtsj0kbTNOB2xV9Fiiy4",
     "sent_request": true,
-    "sent_request_timestamp": "2025-10-24T13:34:08"
+    "sent_request_timestamp": "2025-10-24T13:34:08",
+    "withdraw": true
   },
   {
     "page": 6,
