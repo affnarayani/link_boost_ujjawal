@@ -68,7 +68,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/yuvraj-prabhu-0421a1140?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAACIy_PIBk-S23mDn3ttn6LMSu5NQ6vVpwrw",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-01T19:16:30"
   },
   {
     "page": 1,
