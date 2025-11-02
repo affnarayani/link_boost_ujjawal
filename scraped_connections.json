@@ -284,7 +284,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/bhartendu-suman-a0590a82?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAABGTlSUBGm7qPmjJsdizFgGDh5x7OlQcQnk",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-02T14:19:33"
   },
   {
     "page": 3,
