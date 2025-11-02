@@ -260,7 +260,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/aaryan-kumar-a62752237?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADsFbGoBBmN_0y5yMVW3hej6RrfeFfTDL78",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-02T12:42:21"
   },
   {
     "page": 3,
