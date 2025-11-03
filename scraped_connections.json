@@ -668,7 +668,8 @@
     "verified": true,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/itanand?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAACgvKS4BSz3HUpmImGAemct4CruFU74Vg4E",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-03T23:21:53"
   },
   {
     "page": 6,
@@ -679,7 +680,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/sanjeeva-srivastwa-baa70a11a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAB2mPjIBsxMYAwh7eXhJqvO7f1uNzPZcK4w",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-03T23:21:57"
   },
   {
     "page": 6,
