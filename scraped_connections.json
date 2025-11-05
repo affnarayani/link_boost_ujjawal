@@ -1148,7 +1148,8 @@
     "verified": true,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/amit-kushwaha-2a89322b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAAZd3iAB2p582VeX9rNwXo5yLOx1A6XZrpQ",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-05T17:22:50"
   },
   {
     "page": 10,
@@ -1159,7 +1160,8 @@
     "verified": true,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/avinash-kumar-thakur-aa256b266?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEE5EloBR3piYq-H_eFMkFlcUpkOE8dBFo8",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-05T17:22:56"
   },
   {
     "page": 10,
