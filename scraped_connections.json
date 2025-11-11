@@ -724,7 +724,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/itanand?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAACgvKS4BSz3HUpmImGAemct4CruFU74Vg4E",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-03T23:21:53"
+    "sent_request_timestamp": "2025-11-03T23:21:53",
+    "withdraw": false
   },
   {
     "page": 6,
@@ -736,7 +737,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/sanjeeva-srivastwa-baa70a11a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAB2mPjIBsxMYAwh7eXhJqvO7f1uNzPZcK4w",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-03T23:21:57"
+    "sent_request_timestamp": "2025-11-03T23:21:57",
+    "withdraw": true
   },
   {
     "page": 6,
