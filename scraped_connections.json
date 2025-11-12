@@ -1023,7 +1023,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/zainab-nabi-02aa43280?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAER_UGIBi8nWRev6SzLYPezB8rcxa6AzXoA",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-04T23:22:10"
+    "sent_request_timestamp": "2025-11-04T23:22:10",
+    "withdraw": false
   },
   {
     "page": 8,
@@ -1035,7 +1036,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/rajeev-pandey-943a7635b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFmuTMMBcjsk1aXBAGS5oZaisNz2OYJXzzs",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-04T23:22:14"
+    "sent_request_timestamp": "2025-11-04T23:22:14",
+    "withdraw": true
   },
   {
     "page": 9,
