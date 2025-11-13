@@ -1556,7 +1556,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/saurav-raj-46507b189?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAACxTk80BxGZH-UOFbiM3T2RuRjie1stoWUM",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-06T17:22:53"
+    "sent_request_timestamp": "2025-11-06T17:22:53",
+    "withdraw": false
   },
   {
     "page": 13,
@@ -1568,7 +1569,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/bittu-jha-05765323?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAATmoYMBQtFFRfx26Log3SFxhywjbGAFatQ",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-06T17:22:58"
+    "sent_request_timestamp": "2025-11-06T17:22:58",
+    "withdraw": true
   },
   {
     "page": 13,
