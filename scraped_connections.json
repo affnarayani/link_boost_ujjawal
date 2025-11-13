@@ -1400,7 +1400,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/rajnish-kumar-9aa8a110b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAABu3xlIB8rp_NYzFkKB9CqcGrR0URbL1wWA",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-06T05:24:54"
+    "sent_request_timestamp": "2025-11-06T05:24:54",
+    "withdraw": false
   },
   {
     "page": 11,
