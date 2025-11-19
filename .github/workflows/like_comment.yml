@@ -12,7 +12,7 @@ on:
   workflow_dispatch: {}
 
 concurrency:
-  group: ci
+  group: ci-${{ github.workflow }}
   cancel-in-progress: false
 
 permissions:
