@@ -20,7 +20,7 @@ jobs:
           echo "Current run ID: $CURRENT_RUN_ID"
           
           # Get all completed workflow runs
-          COMPLETED_RUNS=$(gh api repos/$REPO/actions/runs --jq '.workflow_runs[] | select(.status == "completed") | {id: .id, name: .name}')
+          COMPLETED_RUNS=$(gh api repos/$REPO/actions/runs --paginate --jq '.workflow_runs[] | select(.status == "completed") | {id: .id, name: .name}')
           
           if [ -n "$COMPLETED_RUNS" ]; then
             echo "Found completed workflow runs. Deleting them..."
