@@ -1,9 +1,6 @@
 name: Scrape Connections
 
 on:
-  schedule:
-    # 1st of every month at 9 AM IST (3:30 UTC)
-    - cron: '30 3 1 * *'
   workflow_dispatch: {}
 
 concurrency:
