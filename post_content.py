@@ -55,7 +55,7 @@ FEED_URL = "https://www.linkedin.com/feed/"
 SAVED_FEED_HTML = TEMP_DIR / "feed.html"
 
 # Provided XPaths (primary attempts)
-XPATH_START_POST_A = "/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[1]/div/div/div[1]/div/a/div/div/div/p[1]"
+XPATH_START_POST_A = "/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[2]/div/div/div[1]/div/div/div"
 XPATH_START_POST_B = "/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[1]/div/div/div[1]/div/a/div"
 # Provided composer input CSS Selector (for shadow DOM)
 CSS_COMPOSER_INPUT = '.ql-editor.ql-blank'
