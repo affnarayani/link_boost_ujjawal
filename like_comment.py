@@ -565,7 +565,7 @@ def main() -> int:
 
                                     # Press TAB 2 times with 2-second interval, then ENTER
                                     try:
-                                        ActionChains(driver).send_keys(Keys.TAB).pause(2).send_keys(Keys.TAB).pause(2).send_keys(Keys.ENTER).perform()
+                                        ActionChains(driver).send_keys(Keys.TAB).pause(2).send_keys(Keys.TAB).pause(2).send_keys(Keys.TAB).pause(2).send_keys(Keys.ENTER).perform()
                                         time.sleep(5) # Wait for 5 seconds after pressing ENTER.
                                         success("Comment submitted (via keyboard sequence).")
                                         comment_succeeded = True
@@ -621,6 +621,7 @@ def main() -> int:
                     info(f"Waiting {delay:.1f} seconds before next post…")
                     time.sleep(delay)
             success("All new posts processed.")
+            time.sleep(15)
 
         return 0
 
