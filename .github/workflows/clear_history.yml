@@ -2,8 +2,7 @@ name: Clear Workflow History
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '*/30 * * * *' # Run every half an hour daily
+
 permissions:
   actions: write  # Needed to delete workflow runs
 
