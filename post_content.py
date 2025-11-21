@@ -56,7 +56,7 @@ SAVED_FEED_HTML = TEMP_DIR / "feed.html"
 
 # Provided XPaths (primary attempts)
 XPATH_START_POST_A = "/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[2]/div/div/div[1]/div/div/div"
-XPATH_START_POST_B = "/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[1]/div/div/div[1]/div/a/div"
+XPATH_START_POST_B = "div[aria-label='Start a post']"
 # Provided composer input CSS Selector (for shadow DOM)
 CSS_COMPOSER_INPUT = '.ql-editor.ql-blank'
 # Provided Post button XPath (updated per request)
@@ -258,7 +258,7 @@ def try_click_start_post(driver, wait: WebDriverWait) -> None:
     """Try multiple strategies to click the 'Start a post' entry point."""
     candidates = [
         (By.XPATH, XPATH_START_POST_A),
-        (By.XPATH, XPATH_START_POST_B),
+        (By.CSS_SELECTOR, XPATH_START_POST_B), # Changed to CSS_SELECTOR
         # Fallback: text-based button/span
         (By.XPATH, "//button[.//span[normalize-space(text())='Start a post']]"),
         (By.XPATH, "//span[normalize-space(.)='Start a post']/ancestor::button"),
