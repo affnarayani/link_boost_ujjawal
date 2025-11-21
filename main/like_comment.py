@@ -194,39 +194,12 @@ def main() -> int:
             time.sleep(2)
             warn("Main element not found quickly, proceeding after small delay.")
 
-        # Wait for 15 seconds for dynamic content to load
-        step(4, "Waiting 15 seconds for dynamic content to load")
-        time.sleep(15)
-        success("Dynamic content wait complete.")
-
         # Optional: small delay to allow first posts to render
         time.sleep(2)
 
-        # Refocus the website by pressing TAB 13 times with a 3-second interval
-        step(5, "Refocusing website with TAB key presses")
-        actions = ActionChains(driver)
-        for i in range(13):
-            actions.send_keys(Keys.TAB).pause(3)
-            info(f"Pressed TAB {i+1}/13 times.")
-        actions.perform()
-        success("Website refocused.")
-
-        # Perform scrolling using Page Down action keys
-        step(6, "Performing scrolling with Page Down key")
-        actions = ActionChains(driver)
-        # Scroll down a few times to load more content
-        for _ in range(5): # Scroll down 5 times as an example
-            actions.send_keys(Keys.PAGE_DOWN).pause(1)
-        actions.perform()
-        success("Scrolling with Page Down complete.")
-
         # Prefer analyzing live DOM (more reliable than static HTML)
-        def collect_posts_via_dom(max_posts: int = 25, existing_links: set = None) -> list[dict[str, Any]]:
+        def collect_posts_via_dom(max_posts: int = 25) -> list[dict[str, Any]]:
             results: list[dict[str, Any]] = []
-            if existing_links is None:
-                existing_links = set()
-            if existing_links is None:
-                existing_links = set()
 
             def norm_text(s: str) -> str:
                 return re.sub(r"\s+", " ", (s or "").strip())
@@ -239,83 +212,151 @@ def main() -> int:
                     pass
                 time.sleep(1.2)
 
-            # Iterate through potential post indices (1 to 15)
-            for i in range(1, 16):
+            # Find likely post containers by data-urn (activity or ugcPost) or role=article
+            post_candidates = driver.find_elements(
+                By.XPATH,
+                "//div[starts-with(@data-urn,'urn:li:activity:') or starts-with(@data-urn,'urn:li:ugcPost:')] | //div[@role='article']"
+            )
+
+            for post in post_candidates:
                 try:
-                    # Base XPath for the post container
-                    post_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{i}]"
-                    post = driver.find_element(By.XPATH, post_xpath)
-
-                    # Check for sponsored/promoted content
-                    sponsored_promoted_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{i}]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
-                    try:
-                        sponsored_promoted_text_el = driver.find_element(By.XPATH, sponsored_promoted_xpath)
-                        if re.search(r"(?i)\b(Promoted|Sponsored)\b", sponsored_promoted_text_el.text):
-                            warn(f"Skipping sponsored/promoted post at index {i}.")
-                            continue
-                    except Exception:
-                        pass # Not sponsored/promoted, continue
-
-                    # Check for comment button
-                    comment_btn_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{i}]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/button[1]/span[1]"
-                    try:
-                        comment_btn = driver.find_element(By.XPATH, comment_btn_xpath)
-                        if not comment_btn.is_displayed() or not comment_btn.is_enabled():
-                            warn(f"Skipping post at index {i} due to unavailable comment button.")
-                            continue
-                    except Exception:
-                        warn(f"Skipping post at index {i} as comment button not found.")
+                    seg_text = post.get_attribute("innerHTML") or ""
+                    # Exclude promoted/sponsored markers inside the post container
+                    if re.search(r"(?i)\b(Promoted|Sponsored)\b", seg_text):
                         continue
 
-                    # Extract post content
-                    text_val: Optional[str] = None
-                    try:
-                        # First try the initial span for content
-                        initial_content_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{i}]/div[1]/div[1]/div[1]/div[1]/div[1]/p[1]/span[1]"
-                        initial_content_el = driver.find_element(By.XPATH, initial_content_xpath)
-                        text_val = norm_text(initial_content_el.text)
-
-                        # Check for "more" button and click if present
-                        more_button_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{i}]/div[1]/div[1]/div[1]/div[1]/div[1]/p[1]/span[1]/button[1]/span[1]"
+                    # Verify required actions are available: Comment, Repost, and Send
+                    def has_action(xpath: str) -> bool:
                         try:
-                            more_button = driver.find_element(By.XPATH, more_button_xpath)
-                            if more_button.is_displayed() and more_button.is_enabled():
-                                driver.execute_script("arguments[0].scrollIntoView({block:'center'});", more_button)
-                                more_button.click()
-                                time.sleep(0.5) # Give time for content to expand
-                                # Re-read content after expansion
-                                expanded_content_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{i}]/div[1]/div[1]/div[1]/div[1]/div[1]/p[1]/span[1]/span[2]"
-                                expanded_content_el = driver.find_element(By.XPATH, expanded_content_xpath)
-                                text_val = norm_text(expanded_content_el.text)
+                            elems = post.find_elements(By.XPATH, xpath)
+                            return len(elems) > 0
                         except Exception:
-                            pass # No "more" button or failed to click
+                            return False
 
-                    except Exception as e:
-                        warn(f"Could not extract post content for post at index {i}: {e}")
+                    has_comment = has_action(
+                        ".//button[contains(translate(., 'COMMENT', 'comment'),'comment') or contains(translate(@aria-label, 'COMMENT','comment'),'comment')] | .//a[contains(translate(., 'COMMENT', 'comment'),'comment')]"
+                    )
+                    if not has_comment:
                         continue
 
-                    if not text_val or len(text_val) < 20:
-                        warn(f"Post content too short or empty for post at index {i}.")
+                    has_repost = has_action(
+                        ".//button[contains(translate(., 'REPOST', 'repost'),'repost') or contains(translate(@aria-label, 'REPOST','repost'),'repost')] | .//a[contains(translate(., 'REPOST', 'repost'),'repost')]"
+                    )
+                    has_send = has_action(
+                        ".//button[contains(translate(., 'SEND', 'send'),'send') or contains(translate(@aria-label, 'SEND','send'),'send')] | .//a[contains(translate(., 'SEND', 'send'),'send')]"
+                    )
+
+                    # Exclude achievement-style posts that typically only have Like and Comment
+                    if not (has_repost and has_send):
                         continue
 
-                    # Try to extract a permalink from the post element (using data-urn as before)
-                    link_val: Optional[str] = None
+                    # Expand truncated content within this post (See more/Show more) before extracting
                     try:
-                        # Use the new XPath provided by the user to find the element with componentkey
-                        component_key_xpath = f"/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[{i}]/div/div/div/div[1]/div"
-                        component_el = driver.find_element(By.XPATH, component_key_xpath)
-                        urn_val = component_el.get_attribute("componentkey") or ""
-
-                        if urn_val and ("urn:li:activity:" in urn_val or "urn:li:ugcPost:" in urn_val):
-                            link_val = f"https://www.linkedin.com/feed/update/{urn_val}"
-                    except Exception as e:
-                        warn(f"Failed to extract link_val for post at index {i} using new XPath: {e}")
+                        expand_xpath = (
+                            ".//button[contains(translate(., 'SEE MORE','see more'),'see more') or "
+                            "contains(translate(., 'SHOW MORE','show more'),'show more') or "
+                            "contains(translate(@aria-label,'SEE MORE','see more'),'see more') or "
+                            "contains(@data-control-name,'text_truncation_show_more') or "
+                            "contains(@class,'see-more') or contains(@class,'lt-line-clamp__more')] | "
+                            ".//a[contains(translate(., 'SEE MORE','see more'),'see more') or "
+                            "contains(translate(., 'SHOW MORE','show more'),'show more') or "
+                            "contains(translate(@aria-label,'SEE MORE','see more'),'see more')]")
+                        more_elems = post.find_elements(By.XPATH, expand_xpath)
+                        for m in more_elems[:3]:  # click up to 3 expanders within a post
+                            try:
+                                driver.execute_script("arguments[0].scrollIntoView({block:'center'});", m)
+                            except Exception:
+                                pass
+                            try:
+                                m.click()
+                            except Exception:
+                                try:
+                                    driver.execute_script("arguments[0].click();", m)
+                                except Exception:
+                                    pass
+                            time.sleep(0.2)
+                    except Exception:
                         pass
 
-                    # Check if post link already exists in processed links
-                    if link_val and link_val in existing_links:
-                        info(f"Skipping already processed post at index {i}: {link_val}")
+                    # Extract the post content from commentary/description containers, avoiding actor header
+                    text_val: Optional[str] = None
+
+                    # Priority 1: commentary container (single block)
+                    commentary_xpath = (
+                        ".//div[(contains(@class,'feed-shared-update-v2__commentary') or "
+                        "contains(@data-test-id,'feed-shared-update-v2__commentary')) and "
+                        "not(ancestor::*[contains(@class,'feed-shared-actor') or contains(@class,'update-components-actor')])]"
+                    )
+                    # Priority 2: general update text/description container
+                    general_text_xpath = (
+                        ".//div[(contains(@class,'update-components-text') or "
+                        "contains(@class,'feed-shared-update-v2__description-wrapper')) and "
+                        "not(ancestor::*[contains(@class,'feed-shared-actor') or contains(@class,'update-components-actor')])]"
+                    )
+
+                    def try_collect(xpath: str) -> Optional[str]:
+                        try:
+                            els = post.find_elements(By.XPATH, xpath)
+                        except Exception:
+                            els = []
+                        for el in els:
+                            try:
+                                raw = el.get_attribute("innerText") or el.text or ""
+                                candidate = norm_text(raw)
+                                if candidate and len(candidate) > 20:
+                                    return candidate
+                            except Exception:
+                                continue
+                        return None
+
+                    text_val = try_collect(commentary_xpath)
+                    if not text_val:
+                        text_val = try_collect(general_text_xpath)
+
+                    # Fallback: try other generic text locations (less reliable)
+                    if not text_val:
+                        try:
+                            raw = post.get_attribute("innerText") or post.text or ""
+                            candidate = norm_text(raw)
+                            if candidate and len(candidate) > 20:
+                                text_val = candidate
+                        except Exception:
+                            pass
+
+                    if not text_val:
                         continue
+
+                    # Try to extract a permalink from the post element
+                    link_val: Optional[str] = None
+                    try:
+                        # Look for anchor tags with URNs or post routes
+                        link_candidates = post.find_elements(
+                            By.XPATH,
+                            ".//a[contains(@href,'/feed/update/') or contains(@href,'posts/') or contains(@href,'/detail/') or contains(@href,'urn:li:activity:') or contains(@href,'urn:li:ugcPost:')]"
+                        )
+                        for a in link_candidates:
+                            href = a.get_attribute("href") or ""
+                            if href and href.startswith("http") and "linkedin.com" in href:
+                                link_val = href
+                                break
+
+                        # Fallback: construct from data-urn if present (immediate, no clipboard needed)
+                        if not link_val:
+                            try:
+                                urn_val = post.get_attribute("data-urn") or ""
+                                if not urn_val:
+                                    # try to find nearest descendant/ancestor with data-urn
+                                    try:
+                                        urn_el = post.find_element(By.XPATH, ".//*[@data-urn]")
+                                        urn_val = urn_el.get_attribute("data-urn") or ""
+                                    except Exception:
+                                        urn_val = ""
+                                if urn_val and ("urn:li:activity:" in urn_val or "urn:li:ugcPost:" in urn_val):
+                                    link_val = f"https://www.linkedin.com/feed/update/{urn_val}"
+                            except Exception:
+                                pass
+                    except Exception:
+                        pass
 
                     # Deduplicate and keep element for actions
                     if text_val not in [r.get("text") for r in results]:
@@ -323,12 +364,10 @@ def main() -> int:
                             "text": text_val,
                             "element": post,
                             "link": link_val,
-                            "index": i # Store the index for later XPath construction
                         })
                     if len(results) >= max_posts:
                         break
-                except Exception as e:
-                    warn(f"Failed to process post at index {i}: {e}")
+                except Exception:
                     continue
 
             return results
@@ -348,19 +387,28 @@ def main() -> int:
 
         # 6) Analyze live DOM for posts with Comment button
         step(6, "Analyzing live DOM for posts with Comment button")
-        posts = collect_posts_via_dom(max_posts=max_like_comment, existing_links=existing_links_set)
+        posts = collect_posts_via_dom(max_posts=max_like_comment)
         if not posts:
             warn("DOM scan found no posts. Exiting.")
             return 0
 
         success(f"Found {len(posts)} posts with comment buttons via DOM scan.")
 
-        # Filtering is now done inside collect_posts_via_dom, so step 7 is removed.
-        processed_posts: list[dict[str, Any]] = posts
+        # 7) Filter out posts whose links were already processed
+        step(7, "Filtering out already processed posts")
+        normalized_posts: list[dict[str, Any]] = posts
+
+        processed_posts: list[dict[str, Any]] = []
+        for it in normalized_posts:
+            lk = it.get("link")
+            if lk and lk in existing_links_set:
+                info(f"Skipping already processed post: {lk}")
+                continue
+            processed_posts.append(it)
         success(f"Found {len(processed_posts)} new posts to process.")
 
         # 8) Process posts
-        step(7, "Processing posts") # Renumbered to step 7
+        step(8, "Processing posts")
         from dotenv import load_dotenv
         load_dotenv()
         api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("GENAI_API_KEY")
@@ -375,18 +423,23 @@ def main() -> int:
 
                 # Append printed link to liked_commented.json (at top) if available
                 link_val = item.get("link")
-
-                like_succeeded = False
+                if link_val:
+                    if _prepend_post_link(liked_file_path, link_val):
+                        existing_links_set.add(link_val)
+                        success(f"Recorded post link: {link_val}")
+                    else:
+                        warn(f"Failed to record post link: {link_val}")
 
                 # Interact with live post if available (skip actions if already processed)
                 post_el = item.get("element")
-                post_index = item.get("index") # Get the stored index
-                if post_el is not None and like and link_val and (link_val not in existing_links_set) and post_index is not None:
+                if post_el is not None and like and link_val and (link_val not in existing_links_set):
                     info("Liking post (no AI comment available)")
                     # Like only (since no AI comment available)
                     try:
-                        like_btn_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{post_index}]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div[1]/button[1]/span[1]"
-                        like_btn = driver.find_element(By.XPATH, like_btn_xpath)
+                        like_btn = post_el.find_element(
+                            By.XPATH,
+                            ".//button[contains(translate(., 'LIKE', 'like'),'like') or contains(translate(@aria-label, 'LIKE','like'),'like')] | .//span[contains(translate(., 'LIKE', 'like'),'like')]/ancestor::button[1]",
+                        )
                         try:
                             driver.execute_script("arguments[0].scrollIntoView({block:'center'});", like_btn)
                         except Exception:
@@ -394,23 +447,12 @@ def main() -> int:
                         try:
                             like_btn.click()
                             success("Post liked.")
-                            like_succeeded = True
                         except Exception:
                             driver.execute_script("arguments[0].click();", like_btn)
                             success("Post liked (via JS).")
-                            like_succeeded = True
-                        time.sleep(5) # Wait for 5 seconds after clicking "Like" button.
+                        time.sleep(0.3)
                     except Exception as e:
                         warn(f"Failed to like post: {e}")
-
-                    if like_succeeded and link_val:
-                        if _prepend_post_link(liked_file_path, link_val):
-                            existing_links_set.add(link_val)
-                            success(f"Recorded post link: {link_val}")
-                        else:
-                            warn(f"Failed to record post link: {link_val}")
-                else:
-                    info("Skipping interaction for this post (element not found or link missing).")
 
                 # Wait random delay between posts
                 if idx < len(processed_posts):
@@ -424,7 +466,6 @@ def main() -> int:
                 info(f"Processing post {idx}/{len(processed_posts)}")
                 post_text = item["text"]
                 post_el = item.get("element")
-                post_index = item.get("index") # Get the stored index
                 # Generate comment only if commenting is enabled
                 comment_text = None
                 if comment:
@@ -458,29 +499,23 @@ def main() -> int:
 
                 # Append printed link to liked_commented.json (at top) if available
                 link_val = item.get("link")
-
-                comment_succeeded = False
-                like_succeeded = False
+                if link_val:
+                    if _prepend_post_link(liked_file_path, link_val):
+                        existing_links_set.add(link_val)
+                        success(f"Recorded post link: {link_val}")
+                    else:
+                        warn(f"Failed to record post link: {link_val}")
 
                 # Try to comment and like on the live post element if available (only when link exists)
-                # Ensure post_index is available for XPath construction
-                # Re-find the post element to ensure it's still valid in the DOM
-                current_post_el = None
-                if post_index is not None:
-                    try:
-                        re_find_post_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{post_index}]"
-                        current_post_el = driver.find_element(By.XPATH, re_find_post_xpath)
-                        info(f"Re-found post element for index {post_index}.")
-                    except Exception as e:
-                        warn(f"Failed to re-find post element for index {post_index}: {e}")
-
-                if current_post_el is not None and link_val and post_index is not None:
+                if post_el is not None and link_val:
                     # 1) Open comment box (only when commenting enabled and we have text)
                     if comment and comment_text:
                         info("Opening comment box…")
                         try:
-                            comment_btn_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{post_index}]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/button[1]/span[1]"
-                            comment_btn = driver.find_element(By.XPATH, comment_btn_xpath)
+                            comment_btn = post_el.find_element(
+                                By.XPATH,
+                                ".//button[contains(translate(., 'COMMENT', 'comment'),'comment') or contains(translate(@aria-label, 'COMMENT','comment'),'comment')] | .//a[contains(translate(., 'COMMENT', 'comment'),'comment')]",
+                            )
                         except Exception:
                             comment_btn = None
                         if comment_btn:
@@ -497,7 +532,7 @@ def main() -> int:
                                     success("Comment box opened (via JS).")
                                 except Exception as e:
                                     warn(f"Failed to open comment box: {e}")
-                            time.sleep(5) # Wait for 5 seconds after opening comment box before typing.
+                            time.sleep(0.3)
 
                         # 2) Type the comment and submit (more robust headless handling)
                         if comment_text:
@@ -508,18 +543,25 @@ def main() -> int:
                                 is_headless = os.getenv("HEADLESS", "").strip().lower() in {"1", "true", "yes", "y"}
                                 deadline = time.time() + (6.0 if is_headless else 3.0)
 
-                                # Use the provided XPath for the comment box input
-                                editor_xpath = f"/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[{post_index}]/div/div/div/div[3]/div/div/div/div[1]/div[1]/div/div/div[1]/div/p"
+                                # Common editor patterns in LinkedIn feed
+                                editor_xpaths = [
+                                    ".//div[contains(@role,'textbox') and contains(@class,'comments-comment-box__editor')]",
+                                    ".//div[contains(@role,'textbox') and contains(@class,'ql-editor')]",
+                                    ".//div[@contenteditable='true']",
+                                    ".//textarea",
+                                ]
 
                                 while editor is None and time.time() < deadline:
-                                    try:
-                                        cand = driver.find_element(By.XPATH, editor_xpath)
-                                        if cand and cand.is_displayed():
-                                            editor = cand
-                                            break
-                                    except Exception:
-                                        pass
-                                    time.sleep(0.15)
+                                    for xp in editor_xpaths:
+                                        try:
+                                            cand = post_el.find_element(By.XPATH, xp)
+                                            if cand and cand.is_displayed():
+                                                editor = cand
+                                                break
+                                        except Exception:
+                                            continue
+                                    if editor is None:
+                                        time.sleep(0.15)
 
                                 if editor:
                                     try:
@@ -555,22 +597,107 @@ def main() -> int:
                                         editor.clear()
                                     except Exception:
                                         pass
-                                    # Simulate human typing
-                                    for char in comment_text:
-                                        editor.send_keys(char)
-                                        time.sleep(random.uniform(0.05, 0.15)) # Small random delay between characters
-                                    typed = True
-                                    
-                                    time.sleep(2) # Wait 2 seconds after typing.
-
-                                    # Press TAB 2 times with 2-second interval, then ENTER
                                     try:
-                                        ActionChains(driver).send_keys(Keys.TAB).pause(2).send_keys(Keys.TAB).pause(2).send_keys(Keys.ENTER).perform()
-                                        time.sleep(5) # Wait for 5 seconds after pressing ENTER.
-                                        success("Comment submitted (via keyboard sequence).")
-                                        comment_succeeded = True
+                                        editor.send_keys(comment_text)
+                                        typed = True
+                                    except Exception:
+                                        pass
+                                    if not typed:
+                                        try:
+                                            # For Quill-like editors, update textContent and dispatch input/keyup
+                                            driver.execute_script(
+                                                "if(arguments[0]){arguments[0].textContent = arguments[1]; arguments[0].dispatchEvent(new Event('input', {bubbles:true})); arguments[0].dispatchEvent(new KeyboardEvent('keyup', {bubbles:true, key:'a'}));}",
+                                                editor,
+                                                comment_text,
+                                            )
+                                            typed = True
+                                        except Exception:
+                                            pass
+                                    if not typed:
+                                        try:
+                                            ActionChains(driver).send_keys(comment_text).perform()
+                                            typed = True
+                                        except Exception:
+                                            pass
+
+                                    # Try keyboard submit first: TAB → TAB → TAB → ENTER (as required)
+                                    try:
+                                        ActionChains(driver).send_keys(Keys.TAB).pause(0.2).send_keys(Keys.TAB).pause(0.2).send_keys(Keys.TAB).pause(0.2).send_keys(Keys.ENTER).perform()
+                                        time.sleep(0.8 if is_headless else 0.6)
+                                        success("Comment submitted (via keyboard).")
+                                    except Exception:
+                                        pass
+
+                                    # Fallback: click an enabled Post/Comment/Send button with a short wait
+                                    try:
+                                        submit_xpaths = [
+                                            ".//div[contains(@class,'comments-comment-box') or contains(@class,'comments-comment-box__form') or contains(@class,'comments-comments-list') or contains(@class,'comments-comment-box__container')]/descendant::button[not(@disabled) and (contains(translate(., 'POST','post'),'post') or contains(translate(., 'COMMENT','comment'),'comment') or contains(translate(., 'SEND','send'),'send') or contains(@data-control-name,'comment_post'))]",
+                                            ".//button[not(@disabled) and (contains(translate(., 'POST','post'),'post') or contains(translate(., 'SEND','send'),'send') or contains(translate(., 'COMMENT','comment'),'comment'))]",
+                                        ]
+                                        submit_btn = None
+                                        for sx in submit_xpaths:
+                                            try:
+                                                submit_btn = post_el.find_element(By.XPATH, sx)
+                                                if submit_btn:
+                                                    break
+                                            except Exception:
+                                                continue
+                                        if not submit_btn:
+                                            try:
+                                                container = editor.find_element(
+                                                    By.XPATH,
+                                                    "./ancestor::*[contains(@class,'comments-comment-box') or contains(@class,'comments-container') or contains(@class,'comments-comment-box__container')][1]"
+                                                )
+                                                for sx in submit_xpaths:
+                                                    try:
+                                                        submit_btn = container.find_element(By.XPATH, sx)
+                                                        if submit_btn:
+                                                            break
+                                                    except Exception:
+                                                        continue
+                                            except Exception:
+                                                pass
+
+                                        # Wait briefly for button to become clickable/displayed
+                                        end_time = time.time() + (4.0 if is_headless else 2.0)
+                                        while (submit_btn is None or (not submit_btn.is_displayed() or not submit_btn.is_enabled())) and time.time() < end_time:
+                                            try:
+                                                for sx in submit_xpaths:
+                                                    try:
+                                                        scope = container if 'container' in locals() and container is not None else post_el
+                                                        candidate = scope.find_element(By.XPATH, sx)
+                                                        if candidate and candidate.is_displayed() and candidate.is_enabled():
+                                                            submit_btn = candidate
+                                                            break
+                                                    except Exception:
+                                                        continue
+                                            except Exception:
+                                                pass
+                                            time.sleep(0.12)
+
+                                        if submit_btn and submit_btn.is_displayed():
+                                            try:
+                                                driver.execute_script("arguments[0].scrollIntoView({block:'center'});", submit_btn)
+                                            except Exception:
+                                                pass
+                                            try:
+                                                submit_btn.click()
+                                                success("Comment submitted (via click).")
+                                            except Exception:
+                                                driver.execute_script("arguments[0].click();", submit_btn)
+                                                success("Comment submitted (via JS click).")
+                                            time.sleep(0.8 if is_headless else 0.6)
+                                        else:
+                                            # Last resort: Ctrl+Enter (often works for LinkedIn comment box)
+                                            try:
+                                                editor.send_keys(Keys.CONTROL, Keys.ENTER)
+                                                time.sleep(0.5 if is_headless else 0.4)
+                                                success("Comment submitted (via Ctrl+Enter).")
+                                            except Exception:
+                                                warn("Failed to submit comment.")
+                                                pass
                                     except Exception as e:
-                                        warn(f"Failed to submit comment via keyboard sequence: {e}")
+                                        warn(f"Failed to submit comment: {e}")
                             except Exception as e:
                                 warn(f"Failed to type comment: {e}")
 
@@ -578,8 +705,10 @@ def main() -> int:
                     if like:
                         info("Liking post…")
                         try:
-                            like_btn_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{post_index}]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div[1]/button[1]/span[1]"
-                            like_btn = driver.find_element(By.XPATH, like_btn_xpath)
+                            like_btn = post_el.find_element(
+                                By.XPATH,
+                                ".//button[contains(translate(., 'LIKE', 'like'),'like') or contains(translate(@aria-label, 'LIKE','like'),'like')] | .//span[contains(translate(., 'LIKE', 'like'),'like')]/ancestor::button[1]",
+                            )
                             try:
                                 driver.execute_script("arguments[0].scrollIntoView({block:'center'});", like_btn)
                             except Exception:
@@ -587,33 +716,14 @@ def main() -> int:
                             try:
                                 like_btn.click()
                                 success("Post liked.")
-                                like_succeeded = True
                             except Exception:
                                 driver.execute_script("arguments[0].click();", like_btn)
                                 success("Post liked (via JS).")
-                                like_succeeded = True
-                            time.sleep(5) # Wait for 5 seconds after clicking "Like" button.
+                            time.sleep(0.3)
                         except Exception as e:
                             warn(f"Failed to like post: {e}")
                 else:
                     info("Skipping interaction for this post (element not found or link missing).")
-
-                # Record link only if both comment and like were successful (or only like if comment was not attempted/enabled)
-                should_record_link = False
-                if comment and like:
-                    should_record_link = comment_succeeded and like_succeeded
-                elif comment and not like: # Only commenting enabled
-                    should_record_link = comment_succeeded
-                elif not comment and like: # Only liking enabled
-                    should_record_link = like_succeeded
-                # If neither is enabled, should_record_link remains False, which is correct.
-
-                if should_record_link and link_val:
-                    if _prepend_post_link(liked_file_path, link_val):
-                        existing_links_set.add(link_val)
-                        success(f"Recorded post link: {link_val}")
-                    else:
-                        warn(f"Failed to record post link: {link_val}")
 
                 # Wait random delay between posts
                 if idx < len(processed_posts):
