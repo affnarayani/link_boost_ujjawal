@@ -176,7 +176,8 @@
     "verified": false,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/aditi-singh-0b429320a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADUUJcgByMrFf5Gy7pdjGgo14o0SBHA11J0",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-22T10:17:38"
   },
   {
     "page": 2,
@@ -187,7 +188,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/adv-pragati-singh-3b5614384?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF7GdjkBX84Jb8hupb3vr4d5JZJfnMsu0gw",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-22T10:17:43"
   },
   {
     "page": 2,
