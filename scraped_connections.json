@@ -152,7 +152,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/pratima-mehta-6b69a8385?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF8CX-oBd0zhib2DoKs2fOdU9ve1kYuek_0",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-22T09:17:41"
   },
   {
     "page": 2,
@@ -163,7 +164,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/golu-kumar-pandey-63079822a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADlsxoQBx3BaZ69HvZIm1waGGP24ry3gk-4",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-22T09:17:45"
   },
   {
     "page": 2,
