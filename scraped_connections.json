@@ -212,7 +212,8 @@
     "verified": true,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/gaurav-kumar-1926b12a7?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEn2ur4ByhTBtIPD7Z_OOhzFOwOlDuZ6kW0",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-22T12:31:50"
   },
   {
     "page": 2,
