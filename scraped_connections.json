@@ -260,7 +260,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/jagriti-choubey-a07809367?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFsREmcB7-qNPGefKuqtvMkn6cNfKFYAmyo",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-22T16:20:19"
   },
   {
     "page": 3,
