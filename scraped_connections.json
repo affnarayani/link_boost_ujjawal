@@ -860,7 +860,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/sachina-singh-5ba4a7256?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD8TrJ4Bi0CxEioZ75dv8-vzdC24uR9i1AQ",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-24T19:13:02"
   },
   {
     "page": 8,
