@@ -1460,7 +1460,8 @@
     "verified": true,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/saumya-kaushik-712401288?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEXTur4Boj7ACZZxQMVILxk1YBRbGbUmopE",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-26T18:22:31"
   },
   {
     "page": 13,
@@ -1471,7 +1472,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/nisha-singh-658b171a4?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC_dB-QBYu4toIjzvL1lyOXTLaTU8xM8lww",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-26T18:22:36"
   },
   {
     "page": 13,
