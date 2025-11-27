@@ -1988,7 +1988,8 @@
     "verified": false,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/ankit-amartya-8393831b1?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADFa1O0B15pAky7RJcuW_km_VueIT6Q5Egg",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-27T22:17:01"
   },
   {
     "page": 17,
@@ -1999,7 +2000,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/hashmat-zameel-96b688395?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGEZG2MBCAf0nBu6pE18ETzecWmLaeRO6xY",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-27T22:17:06"
   },
   {
     "page": 17,
