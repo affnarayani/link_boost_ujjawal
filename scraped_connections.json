@@ -2840,7 +2840,8 @@
     "verified": true,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/sristy-patel-8138771b9?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADLaGs8BAD0iaBlojHvHZRyvcPZoWJf4BU4",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-28T13:29:36"
   },
   {
     "page": 24,
@@ -2851,7 +2852,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/vijay-kumar-singh-157222230?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADmyiFMBS3tCNnepFuCWwaIGP8LIqB_jUgw",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-28T13:29:40"
   },
   {
     "page": 24,
