@@ -2240,7 +2240,8 @@
     "verified": true,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/pulkit-thakur-b3097924a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD25RhQBiWaZ1dKQGTS7x75Q-KgHCky9_So",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-28T04:21:59"
   },
   {
     "page": 19,
