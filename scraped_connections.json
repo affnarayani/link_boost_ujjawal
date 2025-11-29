@@ -3489,7 +3489,8 @@
     "verified": false,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/vinay-kriti-09350b257?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD9B9q8BnIGBAx1p3Sc6d4sSOfyz2LxLohI",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-29T20:19:41"
   },
   {
     "page": 29,
@@ -3500,7 +3501,8 @@
     "verified": false,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/rishi-raj-raman-b3a100221?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADe44l4B4DYSVQEtBFyAzY_Bhf_r3kelPFs",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-29T20:19:45"
   },
   {
     "page": 30,
@@ -3511,7 +3513,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/vikash-kumar-jha-77b444311?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE9D408B5KyCMhIApjchIkOyIp7zeZpoaUE",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-29T20:19:50"
   },
   {
     "page": 30,
