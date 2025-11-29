@@ -217,7 +217,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/kaustubh-prakash-7ab67b216?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADaPbbMBYe-e47GDePQ2Pw4en0KZgJxpLFc",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-22T11:13:22"
+    "sent_request_timestamp": "2025-11-22T11:13:22",
+    "withdraw": false
   },
   {
     "page": 2,
