@@ -126,7 +126,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/navin-mehta-56a607277?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEOLKmIBNu1kAAQt03I43IkLbj6TVsDyw_o",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-22T07:16:12"
+    "sent_request_timestamp": "2025-11-22T07:16:12",
+    "withdraw": false
   },
   {
     "page": 2,
