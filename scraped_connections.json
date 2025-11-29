@@ -308,7 +308,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/kundan-kumar-7aa4b41b2?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADGNKnIBPvsBskGg00G82DMwHDaqsa1rg6U",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-22T18:23:35"
+    "sent_request_timestamp": "2025-11-22T18:23:35",
+    "withdraw": false
   },
   {
     "page": 3,
