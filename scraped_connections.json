@@ -321,7 +321,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/ravi-nandan-062072303?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE1t9MoBhsyjrMVH-EgBD4nEDqOKokEX1hk",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-22T19:13:52"
+    "sent_request_timestamp": "2025-11-22T19:13:52",
+    "withdraw": false
   },
   {
     "page": 3,
