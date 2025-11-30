@@ -399,7 +399,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/aman-vijay-36bbaa219?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADcsA4MBhNk_fFRwB7U3XJRcK3S6CQirqS0",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-23T03:26:08"
+    "sent_request_timestamp": "2025-11-23T03:26:08",
+    "withdraw": false
   },
   {
     "page": 4,
