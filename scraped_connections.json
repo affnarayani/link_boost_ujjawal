@@ -607,7 +607,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/rahul-raj-9708a42a3?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAElH2mQBolM6g7UnFAurvzUtJlZqjD0oAB8",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-23T18:23:51"
+    "sent_request_timestamp": "2025-11-23T18:23:51",
+    "withdraw": false
   },
   {
     "page": 5,
