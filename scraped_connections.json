@@ -3795,7 +3795,8 @@
     "verified": false,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/partha-sarthy-25437723?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAATb-6ABEuMxWOtXNpodyB5i75IGxT3dQ8o",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-30T04:32:53"
   },
   {
     "page": 32,
@@ -3806,7 +3807,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/amisha-kashyap-38a657366?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFrdbloBzGE61TrxIZFFSrWLPI0yRmu3aCg",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-11-30T04:32:58"
   },
   {
     "page": 32,
