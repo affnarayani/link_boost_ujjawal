@@ -945,7 +945,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/utkarsh-raj-49b1441bb?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADMZnbcBehPXzpjYNt0hFaxy53Ervu2y1Kw",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-24T20:21:24"
+    "sent_request_timestamp": "2025-11-24T20:21:24",
+    "withdraw": false
   },
   {
     "page": 8,
@@ -957,7 +958,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/vanshika-pandey-601253215?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADZR1KEBbHTeGBc6rJpuEOjkhdQOz2XstcI",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-24T20:21:30"
+    "sent_request_timestamp": "2025-11-24T20:21:30",
+    "withdraw": true
   },
   {
     "page": 8,
