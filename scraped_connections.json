@@ -971,7 +971,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/abha-rani-3b5a0a20a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADUv3bkBPCcbNhRzWRiXS1nmpd9PzMw5WCg",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-24T21:17:51"
+    "sent_request_timestamp": "2025-11-24T21:17:51",
+    "withdraw": false
   },
   {
     "page": 8,
@@ -983,7 +984,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/vijay-kumar-verma-9ba338265?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEEC4p4B_W63Jsh-RjpIcdd8VsCXWZfZwK0",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-24T21:17:55"
+    "sent_request_timestamp": "2025-11-24T21:17:55",
+    "withdraw": false
   },
   {
     "page": 8,
