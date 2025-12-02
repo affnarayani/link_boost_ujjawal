@@ -1153,7 +1153,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/mevishalanand?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADbg_ScBIv5O_rKHGYJ0yL50fNiPYH1V9as",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-25T11:16:38"
+    "sent_request_timestamp": "2025-11-25T11:16:38",
+    "withdraw": false
   },
   {
     "page": 9,
