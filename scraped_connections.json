@@ -1062,7 +1062,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/raveena-nidhi-karn-46944b1bb?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADMlMNEBHDRsM7jK5yJ0DNSwohcRMOp2llY",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-25T05:18:49"
+    "sent_request_timestamp": "2025-11-25T05:18:49",
+    "withdraw": false
   },
   {
     "page": 9,
@@ -1074,7 +1075,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/sona-kaushiki-b88b13208?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADTYr9gB31n6xZTQWvlBXDZ443XNwP_4DXM",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-25T05:18:54"
+    "sent_request_timestamp": "2025-11-25T05:18:54",
+    "withdraw": false
   },
   {
     "page": 9,
