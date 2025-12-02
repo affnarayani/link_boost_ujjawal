@@ -4977,7 +4977,8 @@
     "verified": false,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/shashank-shekhar-21b307331?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFOEZHcBiIrzLVvJH--2Bgv1O7WgYuGVwHk",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-12-02T20:22:28"
   },
   {
     "page": 41,
@@ -4988,7 +4989,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/shweta-singh-799525350?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFekhCUBbLbpBmduy-hv1LIwBXCWw9MNMB4",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-12-02T20:22:33"
   },
   {
     "page": 41,
