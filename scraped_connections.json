@@ -1465,7 +1465,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/shivam-pathak-b084641ba?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADL4FzgB-h2wcH1uCQGnsAyx-BeV9k_yqdk",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-26T12:38:56"
+    "sent_request_timestamp": "2025-11-26T12:38:56",
+    "withdraw": false
   },
   {
     "page": 12,
