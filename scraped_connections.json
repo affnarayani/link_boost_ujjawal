@@ -1621,7 +1621,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/abhishek-kumar-a185211b7?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADJx2nQBM3N5QOxiL5l3sQtqJhFqCcrJQRA",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-26T20:20:10"
+    "sent_request_timestamp": "2025-11-26T20:20:10",
+    "withdraw": false
   },
   {
     "page": 13,
