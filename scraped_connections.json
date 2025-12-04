@@ -6135,7 +6135,8 @@
     "verified": false,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/amrita-barnwal-98a298214?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADYlrHoB0X7TMsJGhJRdIPnb0ftYiTTCdKE",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-12-04T15:21:43"
   },
   {
     "page": 50,
@@ -6146,7 +6147,8 @@
     "verified": false,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/jyoti-kumari-858535391?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGBdZYQBlB1H3ek5aNlim4ChQBwguNGlUVU",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-12-04T15:21:47"
   },
   {
     "page": 51,
@@ -6157,7 +6159,8 @@
     "verified": false,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/khushboo-kumari-93835b310?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE8TCHwBpmEKttM8hu4GjhwLd47waUJILTI",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-12-04T15:21:51"
   },
   {
     "page": 51,
@@ -6168,7 +6171,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/samridhi-suman-4875551ab?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADEGZWcB1ieTYCpBLhVw4MLhxkdETno1kuM",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-12-04T15:21:56"
   },
   {
     "page": 51,
