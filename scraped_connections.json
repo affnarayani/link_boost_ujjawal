@@ -2089,7 +2089,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/anant-gautam-835261168?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAACfniWkBq3-sBGB_yALHnvs7OiFx7sRYbv4",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-27T19:15:07"
+    "sent_request_timestamp": "2025-11-27T19:15:07",
+    "withdraw": false
   },
   {
     "page": 17,
@@ -2101,7 +2102,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/yashwant-sagar-6a2b52303?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE2XGloBRLku6IRZnLqDRCokCTRQ8f06Jwc",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-27T19:15:12"
+    "sent_request_timestamp": "2025-11-27T19:15:12",
+    "withdraw": true
   },
   {
     "page": 17,
