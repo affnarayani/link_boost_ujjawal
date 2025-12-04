@@ -2128,7 +2128,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/advabhishekchoudhary?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADFPUoABdga6jiFT9wWxI8X2ieO3f3R5w78",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-27T21:16:29"
+    "sent_request_timestamp": "2025-11-27T21:16:29",
+    "withdraw": false
   },
   {
     "page": 17,
@@ -2140,7 +2141,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/ansh-prasad-9259231a7?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADBeV20BhrVaqVjFuVaC5FS1u1nXtqICKmo",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-27T21:16:33"
+    "sent_request_timestamp": "2025-11-27T21:16:33",
+    "withdraw": true
   },
   {
     "page": 17,
