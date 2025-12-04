@@ -1933,7 +1933,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/arpanaa-singhh-b86a6b24b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD3qXtYBCYBT7mPGtvbkkGxeqVao8a1WMWs",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-27T13:30:59"
+    "sent_request_timestamp": "2025-11-27T13:30:59",
+    "withdraw": false
   },
   {
     "page": 15,
@@ -1945,7 +1946,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/kriti-roy-529b1031b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFElB_EBo4G_PB5Q2ajsNVdxGWcytzUXwbs",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-27T13:31:03"
+    "sent_request_timestamp": "2025-11-27T13:31:03",
+    "withdraw": false
   },
   {
     "page": 16,
