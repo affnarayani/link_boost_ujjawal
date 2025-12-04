@@ -6004,7 +6004,8 @@
     "verified": false,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/rashi-singh-206639224?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADhVuOYBhPOdjsNHZPiiNdEYqb94bHl58wg",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-12-04T09:23:00"
   },
   {
     "page": 49,
