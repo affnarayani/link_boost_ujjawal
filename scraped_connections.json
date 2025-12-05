@@ -3038,7 +3038,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/bindu-kumari-142774353?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFg2VsIBWDAgE0s52woY26ND1iKCeGYT5n4",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-28T11:17:19"
+    "sent_request_timestamp": "2025-11-28T11:17:19",
+    "withdraw": false
   },
   {
     "page": 24,
@@ -3050,7 +3051,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/kunwar-ajit-singh-a7b4b0286?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEV8EP8B_BLliaBAAtlSJ2OwH7zkvBPwgBk",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-28T11:17:23"
+    "sent_request_timestamp": "2025-11-28T11:17:23",
+    "withdraw": true
   },
   {
     "page": 24,
