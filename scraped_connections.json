@@ -6733,7 +6733,8 @@
     "verified": true,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/s%C3%B9m%C3%AEt-kr-g%C3%BBpt%C3%A0-b6320a219?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADcGsfsBW7a_bH4z419mcKN-jhY6GzD92Sk",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-12-05T17:17:38"
   },
   {
     "page": 55,
