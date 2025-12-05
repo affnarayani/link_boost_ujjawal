@@ -6463,7 +6463,8 @@
     "verified": false,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/guriya-kashyap-635939380?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF4cX0kBdwKAZd9ynePqrf1lQrf4DUZOXCA",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-12-05T06:29:00"
   },
   {
     "page": 53,
@@ -6474,7 +6475,8 @@
     "verified": false,
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/janvi-mehta-34744a25a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD_IGWcB1lCWLvzmwDOmkz_D0mJqG9QS77s",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-12-05T06:29:05"
   },
   {
     "page": 53,
@@ -6485,7 +6487,8 @@
     "verified": true,
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/dnalegally?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADhnqb8B5TgZQwqe-9hj760bCDH1nyihNxY",
-    "sent_request": false
+    "sent_request": true,
+    "sent_request_timestamp": "2025-12-05T06:29:09"
   },
   {
     "page": 53,
