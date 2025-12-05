@@ -2492,7 +2492,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/adv-kuldeep-kumar-8b4b91203?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADP3WMgBWKvH0YGiMcKRC1fM7ks_18-EjWU",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-28T06:29:03"
+    "sent_request_timestamp": "2025-11-28T06:29:03",
+    "withdraw": false
   },
   {
     "page": 20,
@@ -2504,7 +2505,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/vidhu-garg-480b97192?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC1hruABPSY61Dyba6giz1VlC9AyFX23Jms",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-28T06:29:08"
+    "sent_request_timestamp": "2025-11-28T06:29:08",
+    "withdraw": false
   },
   {
     "page": 20,
