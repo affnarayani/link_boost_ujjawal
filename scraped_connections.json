@@ -2440,7 +2440,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/aman-vijay-36bbaa219?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADcsA4MBhNk_fFRwB7U3XJRcK3S6CQirqS0",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-28T05:19:22"
+    "sent_request_timestamp": "2025-11-28T05:19:22",
+    "withdraw": false
   },
   {
     "page": 19,
@@ -2452,7 +2453,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/rohit-singh-7983b0342?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFXYA2QBsRB2whMxQSIG50-mqaYTqU1HQmg",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-28T05:19:40"
+    "sent_request_timestamp": "2025-11-28T05:19:40",
+    "withdraw": false
   },
   {
     "page": 19,
@@ -2464,7 +2466,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/saroj-kumar-upadhyay-69792b282?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAETWPBMBfMIyCie8B-8ISbknEHkSQi6LnPw",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-28T05:19:43"
+    "sent_request_timestamp": "2025-11-28T05:19:43",
+    "withdraw": false
   },
   {
     "page": 20,
@@ -2476,7 +2479,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/manish-kumar-0a4100252?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD5OrHwBI72fDZU_UNwAgojBYM-Ad6Z_vK0",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-28T05:19:48"
+    "sent_request_timestamp": "2025-11-28T05:19:48",
+    "withdraw": true
   },
   {
     "page": 20,
