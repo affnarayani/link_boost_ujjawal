@@ -3324,7 +3324,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/sweta-ranjan-919723228?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADkPT2UBK84xGAXQKe2I7x0eAKyfDww1VKI",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-29T03:10:26"
+    "sent_request_timestamp": "2025-11-29T03:10:26",
+    "withdraw": false
   },
   {
     "page": 26,
@@ -3336,7 +3337,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/kumari-anpam-361a34256?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD8oJ_kBcDDYYT5Ct5E0XXzeA8aGnlDu2No",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-29T04:21:21"
+    "sent_request_timestamp": "2025-11-29T04:21:21",
+    "withdraw": true
   },
   {
     "page": 26,
