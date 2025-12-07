@@ -23,7 +23,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
 LOGIN_URL = "https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin"
-HOME_URL = "https://www.linkedin.com/feed/"
+HOME_URL = "https://www.linkedin.com/in/adv-ujjawal-kumar/"
 BASE_URL = "https://www.linkedin.com/"
 CHALLENGE_PREFIX = "https://www.linkedin.com/checkpoint/challenge"
 CHALLENGE_V2_PREFIX = "https://www.linkedin.com/checkpoint/challengesV2/"
