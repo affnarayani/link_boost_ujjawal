@@ -64,9 +64,9 @@ except Exception as e:
 # Absolute XPaths provided in spec
 X_PENDING_SPAN = '/html/body/div[7]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
 # Secondary Pending span XPath fallback
-X_PENDING_SPAN_ALT = '/html/body/div[6]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
-X_WITHDRAW_DIALOG = '//*[@id="dialog-label-st8"]'
-X_WITHDRAW_CONFIRM_SPAN = '/html/body/div[4]/div/div/div[3]/button[2]/span'
+X_PENDING_SPAN_ALT = '/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div[2]/div/section/div/div/div[2]/div[3]/div/div/div/div/div/button/span'
+X_WITHDRAW_DIALOG = '//*[@id="root"]/dialog/div'
+X_WITHDRAW_CONFIRM_SPAN = '//*[@id="root"]/dialog/div/div/div/div/div/div/button'
 
 # Paths (resolve relative to this script's directory)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

@@ -3285,7 +3285,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/rajiv-kumar-835a841b5?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADIrr6kBE_-4yu5dzh2IIaLVtdgw8VI-HIQ",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-28T23:16:40"
+    "sent_request_timestamp": "2025-11-28T23:16:40",
+    "withdraw": false
   },
   {
     "page": 26,
@@ -3297,7 +3298,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/advocate-shashi-priya-pathak-2195521b1?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADFhb7UBN-BcFyYvre6T_7EfslR8GPN98JQ",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-28T23:16:44"
+    "sent_request_timestamp": "2025-11-28T23:16:44",
+    "withdraw": true
   },
   {
     "page": 26,
@@ -3309,7 +3311,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/ravish-varma-498009235?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADqOT3QBvukwAPVrfj8ytxxpFLyM3iDcuHM",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-29T01:19:07"
+    "sent_request_timestamp": "2025-11-29T01:19:07",
+    "withdraw": true
   },
   {
     "page": 26,
