@@ -9,7 +9,7 @@ from __future__ import annotations
 # Headless mode toggle: set True to run Chrome headless; False for visible (headful)
 # You can also override via environment variable before running the script.
 # Accepted env: HEADLESS=1/true/yes (headless), HEADLESS=0/false/no (headful)
-headless = True
+headless = False
 
 # Verified filter toggle: set to one of 'Any', 'Yes', 'No'.
 # Accepted values: Yes/Y/True/T/1, No/N/False/F/0, Any/A/* (case-insensitive)
@@ -71,9 +71,9 @@ except Exception as e:
     raise
 
 # Absolute XPaths provided
-X_PROFILE_CONNECT_SPAN = '/html/body/div[6]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
-X_SEND_INVITE_MODAL = '//*[@id="send-invite-modal"]'
-X_SEND_INVITE_CONFIRM_SPAN = '/html/body/div[4]/div/div/div[3]/button[2]/span'
+X_PROFILE_CONNECT_SPAN = '/html/body/div/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div[2]/div/section/div/div/div[2]/div[3]/div/div/div/div/div/a/span'
+X_SEND_INVITE_MODAL = '/html/body/div[1]/div[4]//div/div[1]/div/div'
+X_SEND_INVITE_CONFIRM_SPAN = '/html/body/div[1]/div[4]//div/div[1]/div/div/div[3]/button[2]'
 
 # Paths (resolve relative to this script's directory)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -294,26 +294,34 @@ def main() -> int:
 
             status, message = process_profile(driver, profile)
 
-            # Decide sent_request based on specific confirm-invite missing-element error
-            # - sent/pending/already -> sent_request = True
-            # - specific error "Failed to confirm invite" with missing confirm button -> sent_request = False
-            # - any other error -> sent_request = True
             timestamp_now = datetime.now().isoformat(timespec='seconds')
-            if (
+
+            # Identify network-related errors that should NOT mark sent_request as true
+            is_network_error = (
+                status == 'skipped_error'
+                and isinstance(message, str)
+                and ('Connection aborted' in message or 'ConnectionResetError' in message)
+            )
+
+            # Identify specific 'Failed to confirm invite' error
+            is_specific_confirm_error = (
                 status == 'skipped_error'
                 and isinstance(message, str)
                 and 'Failed to confirm invite' in message
                 and 'Unable to locate element' in message
                 and ('/html/body/div[4]/div/div/div[3]/button[2]/span' in message or X_SEND_INVITE_CONFIRM_SPAN in message)
-            ):
+            )
+
+            if is_network_error or is_specific_confirm_error:
+                # For network errors or specific confirmation failures, do not mark as sent
                 profile['sent_request'] = False
-                # Always record the timestamp in sent_request_timestamp
                 profile['sent_request_timestamp'] = timestamp_now
-                # Sanitize the message for logging
-                message = 'Failed to confirm invite'
+                if is_specific_confirm_error:
+                    # Sanitize the message for logging if it's the specific confirm error
+                    message = 'Failed to confirm invite'
             else:
+                # For successful sends, already connected, pending, and other errors, mark as sent
                 profile['sent_request'] = True
-                # Always record the timestamp in sent_request_timestamp
                 profile['sent_request_timestamp'] = timestamp_now
 
             # Persist after each profile to save progress
