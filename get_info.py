@@ -126,7 +126,7 @@ def open_and_wait(driver, url: str, ready_xpath: Optional[str] = None, timeout: 
 
 def scrape_mynetwork(driver) -> Dict[str, Any]:
     info("Scraping: My Network")
-    url = "https://www.linkedin.com/mynetwork/"
+    url = "https://www.linkedin.com/mynetwork/grow/"
     wait = open_and_wait(driver, url)
 
     # Click the expand button to reveal additional My Network stats (if present)
@@ -145,13 +145,7 @@ def scrape_mynetwork(driver) -> Dict[str, Any]:
         pass
 
     xpaths = {
-        "invites_sent": '/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div/section[1]/div/div/section/div/div[1]/div/div/p[1]',
-        "connections": '/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div/section[1]/div/div/section/div/div[1]/div/a[1]/div/p[1]',
-        "following": '/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div/section[1]/div/div/section/div/div[1]/div/a[2]/div/p[1]',
-        "groups": '/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div/section[1]/div/div/section/div/div[2]/div/a[1]/div/p[2]',
-        "events": '/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div/section[1]/div/div/section/div/div[2]/div/a[2]/div/p[2]',
-        "pages": '/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div/section[1]/div/div/section/div/div[2]/div/a[3]/div/p[2]',
-        "newsletters": '/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div/section[1]/div/div/section/div/div[2]/div/a[4]/div/p[2]',
+        "connections": '//*[@id="workspace"]/div/div/div[1]/div/div/div/section[1]/div/nav/ul/li[1]/button/span[3]/span',
     }
 
     data = {}
@@ -584,7 +578,7 @@ def pretty_print(data: Dict[str, Any]):
         print(f"{Fore.GREEN}{label}: {Fore.YELLOW}{v}{Style.RESET_ALL}")
 
     section("My Network")
-    for k in ["invites_sent", "connections", "following", "groups", "events", "pages", "newsletters"]:
+    for k in ["connections"]:
         kv(k.replace("_", " ").title(), data.get("mynetwork", {}).get(k))
 
     section("Invitations")
