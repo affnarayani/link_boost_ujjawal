@@ -3493,7 +3493,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/narendra-kumar-8a01a4140?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAACIzFfgBW1NRP4KTA04JMt53tvK1zVY8pmo",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-29T13:25:06"
+    "sent_request_timestamp": "2025-11-29T13:25:06",
+    "withdraw": false
   },
   {
     "page": 27,
@@ -3505,7 +3506,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/shiv-pratap-b0651b252?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD5efXYBWaYDqIrBcpvNYApJlF9iikj7nK0",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-29T13:25:11"
+    "sent_request_timestamp": "2025-11-29T13:25:11",
+    "withdraw": true
   },
   {
     "page": 28,
