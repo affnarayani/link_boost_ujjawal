@@ -3610,7 +3610,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/anamika-kumari-52b995332?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFPLibMBoJB7Z-iHg9gHEuT8moJDZxjXH8M",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-29T15:16:51"
+    "sent_request_timestamp": "2025-11-29T15:16:51",
+    "withdraw": false
   },
   {
     "page": 28,
@@ -3622,7 +3623,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/ravina-mandal-141ba52b8?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAExZ0IEBxPXEgF3-8UN4SS6jdLYKmkSxBdI",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-29T15:16:55"
+    "sent_request_timestamp": "2025-11-29T15:16:55",
+    "withdraw": true
   },
   {
     "page": 28,
