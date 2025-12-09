@@ -3636,7 +3636,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/rajeev-nayan-25012b291?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEatCZwBrOPn8_RMxIB0JqDEfiNjvV62gM8",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-29T16:21:12"
+    "sent_request_timestamp": "2025-11-29T16:21:12",
+    "withdraw": false
   },
   {
     "page": 29,
@@ -3648,7 +3649,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/shabina-talat-b97027311?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE80J-MBTZXCNLSv9xvyvPxkimSPZ2ocLPk",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-29T16:21:17"
+    "sent_request_timestamp": "2025-11-29T16:21:17",
+    "withdraw": true
   },
   {
     "page": 29,
