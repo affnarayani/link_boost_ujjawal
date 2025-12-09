@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-12-09T08:37:01.622765Z",
+  "timestamp": "2025-12-09T08:51:15.638534Z",
   "mynetwork": {
     "connections": "178"
   },
@@ -8,7 +8,7 @@
     "sent_invitations": "132"
   },
   "dashboard": {
-    "post_impressions": "676",
+    "post_impressions": "677",
     "followers": "188",
     "profile_viewers": "210",
     "search_appearances": "0",
@@ -16,13 +16,13 @@
     "comments": "0"
   },
   "growth": {
-    "post_impression_growth_value": "27%",
-    "post_impression_growth_direction": "down",
-    "post_impression_growth_signed": "-27%",
-    "post_impression_growth": "-27%",
-    "followers_growth_value": "25.4%",
-    "followers_growth_direction": "up",
-    "followers_growth_signed": "+25.4%",
-    "followers_growth": "+25.4%"
+    "post_impression_growth": null,
+    "post_impression_growth_value": null,
+    "post_impression_growth_direction": null,
+    "post_impression_growth_signed": null,
+    "followers_growth": null,
+    "followers_growth_value": null,
+    "followers_growth_direction": null,
+    "followers_growth_signed": null
   }
 }
