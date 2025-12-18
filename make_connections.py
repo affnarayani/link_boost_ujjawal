@@ -60,7 +60,6 @@ def main():
             # Find connect button by checking XPath with i from 1 to 9
             print("Finding connect button...", flush=True)
             connect_button_element = None
-            follow_found = False
             for i in range(1, 10):
                 print(f"Checking for i={i}...", flush=True)
                 xpath = f'/html/body/div[{i}]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
@@ -71,25 +70,20 @@ def main():
                         connect_button_element = element
                         print(f"Connect button found at div[{i}] with text 'Connect'.", flush=True)
                         break
-                    elif text == "Follow":
-                        print(f"Follow button found at div[{i}], marking as sent_request.", flush=True)
-                        follow_found = True
+                    else:
+                        # Any text other than "Connect"
+                        print(f"Found text '{text}' at div[{i}], marking as sent_request.", flush=True)
+                        profile['sent_request'] = True
+                        profile['sent_request_timestamp'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+
+                        # Save back to file
+                        with open('scraped_connections.json', 'w', encoding='utf-8') as f:
+                            json.dump(connections, f, indent=4)
+
+                        print("Successfully marked as sent_request.", flush=True)
                         break
                 except Exception as e:
                     continue
-
-            if follow_found:
-                # Update the JSON for follow case
-                print("Updating JSON file for Follow case...", flush=True)
-                profile['sent_request'] = True
-                profile['sent_request_timestamp'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
-
-                # Save back to file
-                with open('scraped_connections.json', 'w', encoding='utf-8') as f:
-                    json.dump(connections, f, indent=4)
-
-                print("Successfully marked as sent_request due to Follow.", flush=True)
-                continue
 
             if connect_button_element:
                 # Click the connect button
