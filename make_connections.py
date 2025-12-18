@@ -21,108 +21,117 @@ def main():
     with open('scraped_connections.json', 'r', encoding='utf-8') as f:
         connections = json.load(f)
 
-    # Find the first connection where sent_request is False
-    profile = None
-    for conn in connections:
-        if not conn.get('sent_request', False):
-            profile = conn
-            break
-
-    if not profile:
-        print("No pending connections to process.", flush=True)
-        return
-
-    profile_url = profile['profile_url']
-    print(f"Processing profile: {profile_url}", flush=True)
-
     # Get logged-in driver from login.py
     print("Logging in and getting driver...", flush=True)
     driver = login_and_get_driver()
     wait = WebDriverWait(driver, 30)
 
     try:
-        # Open the profile URL
-        print(f"Opening profile URL: {profile_url}", flush=True)
-        driver.get(profile_url)
-
-        # Wait for page to load (basic wait)
-        print("Waiting for page to load...", flush=True)
-        time.sleep(5)  # Adjust if needed
-
-        # Find connect button by checking XPath with i from 1 to 9
-        print("Finding connect button...", flush=True)
-        connect_button_element = None
-        follow_found = False
-        for i in range(1, 10):
-            print(f"Checking for i={i}...", flush=True)
-            xpath = f'/html/body/div[{i}]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
-            try:
-                element = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
-                text = element.text.strip()
-                if text == "Connect":
-                    connect_button_element = element
-                    print(f"Connect button found at div[{i}] with text 'Connect'.", flush=True)
-                    break
-                elif text == "Follow":
-                    print(f"Follow button found at div[{i}], marking as sent_request.", flush=True)
-                    follow_found = True
-                    break
-            except Exception as e:
+        # Loop through connections where sent_request is False and connect is True
+        for profile in connections:
+            if profile.get('sent_request', False) or not profile.get('connect', False):
                 continue
 
-        if follow_found:
-            # Update the JSON for follow case
-            print("Updating JSON file for Follow case...", flush=True)
-            profile['sent_request'] = True
-            profile['sent_request_timestamp'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+            profile_url = profile['profile_url']
+            print(f"Processing profile: {profile_url}", flush=True)
 
-            # Save back to file
-            with open('scraped_connections.json', 'w', encoding='utf-8') as f:
-                json.dump(connections, f, indent=4)
+            # Open the profile URL
+            print(f"Opening profile URL: {profile_url}", flush=True)
+            driver.get(profile_url)
 
-            print("Successfully marked as sent_request due to Follow.", flush=True)
-            return
+            # Wait for page to load (basic wait)
+            print("Waiting for page to load...", flush=True)
+            time.sleep(5)  # Adjust if needed
 
-        if not connect_button_element:
-            print("Connect button not found or does not contain text 'Connect'. Exiting.", flush=True)
-            exit(1)
+            # Check if redirected to 404
+            current_url = driver.current_url
+            if "linkedin.com/404" in current_url:
+                print("Profile redirected to 404, marking as sent_request.", flush=True)
+                profile['sent_request'] = True
+                profile['sent_request_timestamp'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 
-        # Click the connect button
-        print("Clicking the connect button...", flush=True)
-        connect_button_element.click()
-        print("Connect button clicked successfully.", flush=True)
+                # Save back to file
+                with open('scraped_connections.json', 'w', encoding='utf-8') as f:
+                    json.dump(connections, f, indent=4)
 
-        # Wait 15 seconds
-        print("Waiting 15 seconds after first click...", flush=True)
-        time.sleep(15)
+                print("Successfully marked as sent_request due to 404 redirect.", flush=True)
+                continue
 
-        # Press TAB 3 times with 5s intervals, then ENTER
-        print("Sending TAB keys...", flush=True)
-        for i in range(3):
-            webdriver.ActionChains(driver).send_keys(Keys.TAB).perform()
-            print(f"Pressed TAB {i+1}", flush=True)
-            time.sleep(5)
+            # Find connect button by checking XPath with i from 1 to 9
+            print("Finding connect button...", flush=True)
+            connect_button_element = None
+            follow_found = False
+            for i in range(1, 10):
+                print(f"Checking for i={i}...", flush=True)
+                xpath = f'/html/body/div[{i}]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
+                try:
+                    element = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
+                    text = element.text.strip()
+                    if text == "Connect":
+                        connect_button_element = element
+                        print(f"Connect button found at div[{i}] with text 'Connect'.", flush=True)
+                        break
+                    elif text == "Follow":
+                        print(f"Follow button found at div[{i}], marking as sent_request.", flush=True)
+                        follow_found = True
+                        break
+                except Exception as e:
+                    continue
 
-        print("Waiting 5 seconds before pressing ENTER...", flush=True)
-        time.sleep(5)
+            if follow_found:
+                # Update the JSON for follow case
+                print("Updating JSON file for Follow case...", flush=True)
+                profile['sent_request'] = True
+                profile['sent_request_timestamp'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 
-        print("Pressing ENTER...", flush=True)
-        webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
+                # Save back to file
+                with open('scraped_connections.json', 'w', encoding='utf-8') as f:
+                    json.dump(connections, f, indent=4)
 
-        # Wait 15 seconds
-        print("Waiting 15 seconds after sending keys...", flush=True)
-        time.sleep(15)
+                print("Successfully marked as sent_request due to Follow.", flush=True)
+                continue
 
-        # Update the JSON
-        print("Updating JSON file...", flush=True)
-        profile['sent_request'] = True
-        profile['sent_request_timestamp'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+            if connect_button_element:
+                # Click the connect button
+                print("Clicking the connect button...", flush=True)
+                connect_button_element.click()
+                print("Connect button clicked successfully.", flush=True)
 
-        # Save back to file
-        with open('scraped_connections.json', 'w', encoding='utf-8') as f:
-            json.dump(connections, f, indent=4)
+                # Wait 15 seconds
+                print("Waiting 15 seconds after first click...", flush=True)
+                time.sleep(15)
 
-        print("Successfully processed connection.", flush=True)
+                # Press TAB 3 times with 5s intervals, then ENTER
+                print("Sending TAB keys...", flush=True)
+                for i in range(3):
+                    webdriver.ActionChains(driver).send_keys(Keys.TAB).perform()
+                    print(f"Pressed TAB {i+1}", flush=True)
+                    time.sleep(5)
+
+                print("Waiting 5 seconds before pressing ENTER...", flush=True)
+                time.sleep(5)
+
+                print("Pressing ENTER...", flush=True)
+                webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
+
+                # Wait 15 seconds
+                print("Waiting 15 seconds after sending keys...", flush=True)
+                time.sleep(15)
+
+                # Update the JSON
+                print("Updating JSON file...", flush=True)
+                profile['sent_request'] = True
+                profile['sent_request_timestamp'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+
+                # Save back to file
+                with open('scraped_connections.json', 'w', encoding='utf-8') as f:
+                    json.dump(connections, f, indent=4)
+
+                print("Successfully processed connection.", flush=True)
+                break  # Exit after successful connect
+
+        else:
+            print("No more pending connections to process.", flush=True)
 
     finally:
         # Quit the browser
