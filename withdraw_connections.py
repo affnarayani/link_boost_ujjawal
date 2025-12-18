@@ -62,9 +62,6 @@ except Exception as e:
     raise
 
 # Absolute XPaths provided in spec
-X_PENDING_SPAN = '/html/body/div[6]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
-# Secondary Pending span XPath fallback
-X_PENDING_SPAN_ALT = '/html/body/div[6]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
 X_WITHDRAW_DIALOG = '//*[@id="dialog-label-st8"]'
 X_WITHDRAW_CONFIRM_SPAN = '/html/body/div[4]/div/div/div[3]/button[2]/span'
 
@@ -183,19 +180,16 @@ def get_withdraw_settings_from_scraped(scraped: Any) -> Tuple[float, float, int]
 
 
 def find_pending_span_exact(driver, timeout: int = 10):
-    """Find the exact Pending span using the primary XPath; if not found, try fallback.
+    """Find the exact Pending span using XPaths with div[i] where i from 1 to 9.
     Returns the element or None if not found within timeout.
     """
     end_time = time.time() + max(0, timeout)
     while time.time() < end_time:
-        # Try primary
-        elems = driver.find_elements(By.XPATH, X_PENDING_SPAN)
-        if elems:
-            return elems[0]
-        # Try secondary fallback
-        elems_alt = driver.find_elements(By.XPATH, X_PENDING_SPAN_ALT)
-        if elems_alt:
-            return elems_alt[0]
+        for i in range(1, 10):
+            xpath = f'/html/body/div[{i}]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
+            elems = driver.find_elements(By.XPATH, xpath)
+            if elems:
+                return elems[0]
         time.sleep(0.3)
     return None
 
@@ -218,14 +212,14 @@ def process_withdraw(driver, profile: Dict[str, Any]) -> Tuple[bool, str]:
         return False, 'Missing profile_url'
 
     driver.get(url)
-    # Wait 15s after page load before checking Pending button per requirement
-    time.sleep(15.0)
+    # Wait 5 seconds after page load before starting to search for xpath
+    time.sleep(5.0)
     wait = WebDriverWait(driver, 12)
 
     # Try to find the exact Pending span
     span_el = find_pending_span_exact(driver, timeout=10)
-    if not span_el:
-        return False, 'Pending button not found at required XPath'
+    if not span_el or not (span_el.text or '').strip():
+        raise ValueError('Pending span not found or no text in it')
 
     label = (span_el.text or '').strip()
     if label.lower() != 'pending':
@@ -345,7 +339,11 @@ def main() -> int:
             profile = scraped_data[idx]
             name = profile.get('name', 'Unknown')
 
-            did_withdraw, message = process_withdraw(driver, profile)
+            try:
+                did_withdraw, message = process_withdraw(driver, profile)
+            except ValueError as e:
+                info(str(e))
+                return 1
 
             # Insert withdraw key immediately after sent_request_timestamp
             withdraw_value = True if did_withdraw else False
