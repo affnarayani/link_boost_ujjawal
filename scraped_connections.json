@@ -4104,7 +4104,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/m-v-845a251bb?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADM7MHUBZbZhqZa_y6vT3-WLKRKai5p_11w",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-30T05:17:42"
+    "sent_request_timestamp": "2025-11-30T05:17:42",
+    "withdraw": false
   },
   {
     "page": 32,
@@ -4116,7 +4117,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/dhirendra-narain-mallik-83641b368?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFsvz-oBIAM-iBoDP2wMClf8ziW3MzOHwco",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-30T05:17:46"
+    "sent_request_timestamp": "2025-11-30T05:17:46",
+    "withdraw": false
   },
   {
     "page": 32,
@@ -4128,7 +4130,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/pramod-kumar-thakur-b76217286?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEVxfsoBNoERV_RRWA3rcVLKb2nmGGB3zUw",
     "sent_request": true,
-    "sent_request_timestamp": "2025-11-30T05:17:50"
+    "sent_request_timestamp": "2025-11-30T05:17:50",
+    "withdraw": true
   },
   {
     "page": 32,
