@@ -12,7 +12,7 @@
 from __future__ import annotations
 
 # Headless mode toggle: set True for headless, False for visible (maximized)
-headless = True
+headless = False
 
 import json
 import os
