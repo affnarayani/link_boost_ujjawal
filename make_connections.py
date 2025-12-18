@@ -16,7 +16,7 @@ headless = True
 os.environ['HEADLESS'] = 'true' if headless else 'false'
 
 # XPath for connect button
-connect_button = '//*[@id="workspace"]/div/div/div[1]/div/div/div[2]/div/section/div/div/div[2]/div[3]/div/div/div/div/div/a/span'
+connect_button = '/html/body/div[6]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
 
 def main():
     print("Loading scraped_connections.json...", flush=True)
