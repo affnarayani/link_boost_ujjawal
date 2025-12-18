@@ -1,28 +1,28 @@
 {
-  "timestamp": "2025-12-11T07:17:40.957665Z",
+  "timestamp": "2025-12-18T18:26:18.773946Z",
   "mynetwork": {
-    "connections": "182"
+    "connections": "202"
   },
   "invitations": {
     "received_invitations": "0",
-    "sent_invitations": "121"
+    "sent_invitations": "115"
   },
   "dashboard": {
-    "post_impressions": "611",
-    "followers": "192",
-    "profile_viewers": "214",
-    "search_appearances": "0",
-    "posts": "2",
-    "comments": "5"
+    "post_impressions": "98",
+    "followers": "212",
+    "profile_viewers": "222",
+    "search_appearances": "2",
+    "posts": "0",
+    "comments": "0"
   },
   "growth": {
-    "post_impression_growth_value": "32.3%",
+    "post_impression_growth_value": "84.4%",
     "post_impression_growth_direction": "down",
-    "post_impression_growth_signed": "-32.3%",
-    "post_impression_growth": "-32.3%",
-    "followers_growth_value": "21.6%",
+    "post_impression_growth_signed": "-84.4%",
+    "post_impression_growth": "-84.4%",
+    "followers_growth_value": "7.7%",
     "followers_growth_direction": "up",
-    "followers_growth_signed": "+21.6%",
-    "followers_growth": "+21.6%"
+    "followers_growth_signed": "+7.7%",
+    "followers_growth": "+7.7%"
   }
 }

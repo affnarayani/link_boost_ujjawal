@@ -7,3 +7,4 @@ cryptography>=41.0.0
 google-api-core>=2.26.0
 transformers>=4.0.0
 pytz>=2025.2
+selenium-stealth>=1.0.0

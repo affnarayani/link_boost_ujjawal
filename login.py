@@ -7,6 +7,7 @@ import sys
 import time
 import json
 import base64
+import random
 from datetime import datetime, timezone, timedelta
 from typing import Optional, Tuple
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
@@ -21,6 +22,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium_stealth import stealth
 
 LOGIN_URL = "https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin"
 HOME_URL = "https://www.linkedin.com/feed/"
@@ -46,6 +48,15 @@ SESSION_COOKIE_NAME = "li_at"
 # IST timezone (UTC+05:30)
 IST = timezone(timedelta(hours=5, minutes=30), name="IST")
 
+# List of user agents to rotate for anti-detection
+USER_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+]
+
 
 def _build_driver() -> webdriver.Chrome:
     """Create a Chrome WebDriver with desired options and return it."""
@@ -65,10 +76,23 @@ def _build_driver() -> webdriver.Chrome:
     chrome_options.add_argument("--log-level=3")
     chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"])  # Reduce console noise on Windows
     chrome_options.page_load_strategy = "eager"
-    chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36")
+
+    # Use random user agent for anti-detection
+    user_agent = random.choice(USER_AGENTS)
+    chrome_options.add_argument(f"--user-agent={user_agent}")
 
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=chrome_options)
+
+    # Apply selenium-stealth to mask automation
+    stealth(driver,
+        languages=["en-US", "en"],
+        vendor="Google Inc.",
+        platform="Win32",
+        webgl_vendor="Intel Inc.",
+        renderer="Intel Iris OpenGL Engine",
+        fix_hairline=True,
+    )
 
     if not is_headless:
         try:
@@ -339,13 +363,16 @@ def login_and_get_driver() -> webdriver.Chrome:
 
     try:
         driver.get(LOGIN_URL)
+        time.sleep(random.uniform(2, 4))  # Random delay to mimic human loading
 
         email_el = wait.until(EC.visibility_of_element_located((By.XPATH, X_USERNAME)))
         email_el.clear()
+        time.sleep(random.uniform(0.5, 1.5))  # Delay before typing email
         email_el.send_keys(email)
 
         password_el = wait.until(EC.visibility_of_element_located((By.XPATH, X_PASSWORD)))
         password_el.clear()
+        time.sleep(random.uniform(0.5, 1.5))  # Delay before typing password
         password_el.send_keys(password)
 
         # Uncheck "Remember me" only if the checkbox is present
@@ -356,6 +383,7 @@ def login_and_get_driver() -> webdriver.Chrome:
                 if cb_input.is_selected():
                     label_elems = driver.find_elements(By.XPATH, X_REMEMBER_ME_LABEL)
                     target = label_elems[0] if label_elems else cb_input
+                    time.sleep(random.uniform(0.3, 1.0))  # Delay before clicking
                     target.click()
                     if cb_input.is_selected():
                         target.click()
@@ -364,6 +392,7 @@ def login_and_get_driver() -> webdriver.Chrome:
 
         # Click the Sign in button
         sign_in_btn = wait.until(EC.element_to_be_clickable((By.XPATH, X_SIGN_IN_BUTTON)))
+        time.sleep(random.uniform(0.5, 1.5))  # Delay before clicking sign in
         sign_in_btn.click()
 
         # If LinkedIn triggers a challenge, wait for user to solve it
