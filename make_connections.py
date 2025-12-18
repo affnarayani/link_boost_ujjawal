@@ -21,7 +21,7 @@ connect_button = '/html/body/div[6]/div[3]/div/div/div[2]/div/div/main/section[1
 def main():
     print("Loading scraped_connections.json...", flush=True)
     # Load scraped_connections.json
-    with open('scraped_connections.json', 'r') as f:
+    with open('scraped_connections.json', 'r', encoding='utf-8') as f:
         connections = json.load(f)
 
     # Find the first connection where sent_request is False
@@ -91,7 +91,7 @@ def main():
         profile['sent_request_timestamp'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
 
         # Save back to file
-        with open('scraped_connections.json', 'w') as f:
+        with open('scraped_connections.json', 'w', encoding='utf-8') as f:
             json.dump(connections, f, indent=4)
 
         print("Successfully processed connection.", flush=True)
