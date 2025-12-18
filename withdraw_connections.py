@@ -194,6 +194,22 @@ def find_pending_span_exact(driver, timeout: int = 10):
     return None
 
 
+def find_more_button(driver, timeout: int = 10):
+    """Find the More button span using XPaths with div[i] where i from 1 to 9.
+    Returns True if found with text 'More', else False.
+    """
+    end_time = time.time() + max(0, timeout)
+    while time.time() < end_time:
+        for i in range(1, 10):
+            xpath = f'/html/body/div[{i}]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/div[2]/button/span'
+            elems = driver.find_elements(By.XPATH, xpath)
+            for elem in elems:
+                if (elem.text or '').strip().lower() == 'more':
+                    return True
+        time.sleep(0.3)
+    return False
+
+
 def click_parent_button_of_span(span_el) -> None:
     try:
         button_el = span_el.find_element(By.XPATH, "..")
@@ -219,7 +235,7 @@ def process_withdraw(driver, profile: Dict[str, Any]) -> Tuple[bool, str]:
     # Try to find the exact Pending span
     span_el = find_pending_span_exact(driver, timeout=10)
     if not span_el or not (span_el.text or '').strip():
-        raise ValueError('Pending span not found or no text in it')
+        return False, 'Pending span not found or no text in it'
 
     label = (span_el.text or '').strip()
     if label.lower() != 'pending':
@@ -339,11 +355,25 @@ def main() -> int:
             profile = scraped_data[idx]
             name = profile.get('name', 'Unknown')
 
-            try:
-                did_withdraw, message = process_withdraw(driver, profile)
-            except ValueError as e:
-                info(str(e))
-                return 1
+            did_withdraw, message = process_withdraw(driver, profile)
+
+            if not did_withdraw and message == 'Pending span not found or no text in it':
+                # Check for More button before exiting
+                if find_more_button(driver, timeout=10):
+                    info(f"{name} -> Pending span not found, but More button found. Marked withdraw = false and skipped.")
+                else:
+                    info(f"{name} -> Pending span not found and no More button. Exiting.")
+                    return 1
+            elif not did_withdraw:
+                info(f"{name} -> {message}. Marked withdraw = false and skipped.")
+            else:
+                withdrawn_count += 1
+                info(f"{name} -> {message}")
+                # Delay between successful withdrawals if more remaining
+                if withdrawn_count < withdraw_max:
+                    delay = random.uniform(min_delay, max_delay)
+                    info(f"Sleeping for {delay:.1f}s before next withdraw...")
+                    time.sleep(delay)
 
             # Insert withdraw key immediately after sent_request_timestamp
             withdraw_value = True if did_withdraw else False
@@ -355,17 +385,6 @@ def main() -> int:
                 save_json_file(SCRAPED_PATH, scraped_data)
             except Exception as e:
                 info(f"Warning: failed to persist update for {name}: {e}")
-
-            if did_withdraw:
-                withdrawn_count += 1
-                info(f"{name} -> {message}")
-                # Delay between successful withdrawals if more remaining
-                if withdrawn_count < withdraw_max:
-                    delay = random.uniform(min_delay, max_delay)
-                    info(f"Sleeping for {delay:.1f}s before next withdraw...")
-                    time.sleep(delay)
-            else:
-                info(f"{name} -> {message}. Marked withdraw = false and skipped.")
 
         info(f"Done. Withdrawn: {withdrawn_count} (max {withdraw_max}).")
         return 0
