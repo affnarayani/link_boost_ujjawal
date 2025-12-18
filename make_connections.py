@@ -15,9 +15,6 @@ headless = True
 # Set environment variable based on headless
 os.environ['HEADLESS'] = 'true' if headless else 'false'
 
-# XPath for connect button
-connect_button = '/html/body/div[6]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
-
 def main():
     print("Loading scraped_connections.json...", flush=True)
     # Load scraped_connections.json
@@ -52,38 +49,50 @@ def main():
         print("Waiting for page to load...", flush=True)
         time.sleep(5)  # Adjust if needed
 
-        # Find and click the first xpath
-        print("Finding and clicking the connect button...", flush=True)
-        xpath_found = False
-        try:
-            element1 = wait.until(EC.element_to_be_clickable((By.XPATH, connect_button)))
-            element1.click()
-            xpath_found = True
-            print("Connect button clicked successfully.", flush=True)
-        except Exception as e:
-            print(f"Connect button not found", flush=True)
+        # Find connect button by checking XPath with i from 1 to 9
+        print("Finding connect button...", flush=True)
+        connect_button_element = None
+        for i in range(1, 10):
+            print(f"Checking for i={i}...", flush=True)
+            xpath = f'/html/body/div[{i}]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
+            try:
+                element = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
+                if element.text.strip() == "Connect":
+                    connect_button_element = element
+                    print(f"Connect button found at div[{i}] with text 'Connect'.", flush=True)
+                    break
+            except Exception as e:
+                continue
 
-        if xpath_found:
-            # Wait 15 seconds
-            print("Waiting 15 seconds after first click...", flush=True)
-            time.sleep(15)
+        if not connect_button_element:
+            print("Connect button not found or does not contain text 'Connect'. Exiting.", flush=True)
+            exit(1)
 
-            # Press TAB 3 times with 5s intervals, then ENTER
-            print("Sending TAB keys...", flush=True)
-            for i in range(3):
-                webdriver.ActionChains(driver).send_keys(Keys.TAB).perform()
-                print(f"Pressed TAB {i+1}", flush=True)
-                time.sleep(5)
+        # Click the connect button
+        print("Clicking the connect button...", flush=True)
+        connect_button_element.click()
+        print("Connect button clicked successfully.", flush=True)
 
-            print("Waiting 5 seconds before pressing ENTER...", flush=True)
+        # Wait 15 seconds
+        print("Waiting 15 seconds after first click...", flush=True)
+        time.sleep(15)
+
+        # Press TAB 3 times with 5s intervals, then ENTER
+        print("Sending TAB keys...", flush=True)
+        for i in range(3):
+            webdriver.ActionChains(driver).send_keys(Keys.TAB).perform()
+            print(f"Pressed TAB {i+1}", flush=True)
             time.sleep(5)
 
-            print("Pressing ENTER...", flush=True)
-            webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
+        print("Waiting 5 seconds before pressing ENTER...", flush=True)
+        time.sleep(5)
 
-            # Wait 15 seconds
-            print("Waiting 15 seconds after sending keys...", flush=True)
-            time.sleep(15)
+        print("Pressing ENTER...", flush=True)
+        webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
+
+        # Wait 15 seconds
+        print("Waiting 15 seconds after sending keys...", flush=True)
+        time.sleep(15)
 
         # Update the JSON
         print("Updating JSON file...", flush=True)

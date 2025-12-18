@@ -7093,7 +7093,8 @@
         "verified": false,
         "connect": true,
         "profile_url": "https://www.linkedin.com/in/anill-chandra-84bb5b282?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAETex_sBGVjHyXGOala1BImpCPBbvEJp4kk",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2025-12-19T01:59:36"
     },
     {
         "page": 57,
@@ -7104,7 +7105,8 @@
         "verified": false,
         "connect": true,
         "profile_url": "https://www.linkedin.com/in/arun-kumar-6231741b2?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADGAgXsBZn-ZzGSzghWgA_2WejkOETY-_kE",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2025-12-19T02:04:25"
     },
     {
         "page": 57,

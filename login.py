@@ -58,7 +58,7 @@ USER_AGENTS = [
 ]
 
 
-def _build_driver() -> webdriver.Chrome:
+def _build_driver(user_agent: str = "") -> webdriver.Chrome:
     """Create a Chrome WebDriver with desired options and return it."""
     chrome_options = Options()
 
@@ -77,8 +77,9 @@ def _build_driver() -> webdriver.Chrome:
     chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"])  # Reduce console noise on Windows
     chrome_options.page_load_strategy = "eager"
 
-    # Use random user agent for anti-detection
-    user_agent = random.choice(USER_AGENTS)
+    # Use provided user agent or random for anti-detection
+    if not user_agent:
+        user_agent = random.choice(USER_AGENTS)
     chrome_options.add_argument(f"--user-agent={user_agent}")
 
     service = Service(ChromeDriverManager().install())
@@ -137,9 +138,10 @@ def _format_remaining_ist(epoch_seconds: Optional[int]) -> str:
     return " ".join(parts)
 
 
-def _read_session_cookie_from_disk() -> Tuple[Optional[dict], bool]:
-    """Return (cookie_dict, expired_flag).
+def _read_session_cookie_from_disk() -> Tuple[Optional[dict], str, bool]:
+    """Return (cookie_dict, user_agent, expired_flag).
     - cookie_dict: stored li_at cookie dict (may be returned even if expired)
+    - user_agent: the user agent used when the cookie was saved
     - expired_flag: True if stored cookie exists but is expired
     """
     data = None
@@ -165,32 +167,35 @@ def _read_session_cookie_from_disk() -> Tuple[Optional[dict], bool]:
     if data is None:
         if not os.path.exists(COOKIE_FILE):
             print("[Cookie] No session cookie file found.")
-            return None, False
+            return None, "", False
         try:
             with open(COOKIE_FILE, "r", encoding="utf-8") as f:
                 data = json.load(f)
         except Exception:
             print("[Cookie] Failed to read cookie file.")
-            return None, False
+            return None, "", False
 
     cookie = data.get(SESSION_COOKIE_NAME)
     if not isinstance(cookie, dict) or "value" not in cookie:
         print("[Cookie] Cookie file does not contain a valid session cookie.")
-        return None, False
+        return None, "", False
 
     expiry = cookie.get("expiry")
     if isinstance(expiry, (int, float)):
         now = int(time.time())
         if int(expiry) <= now:
             print(f"[Cookie] Found session cookie but it is expired (expired at {_format_expiry_ist(expiry)}).")
-            return cookie, True
+            return cookie, data.get("user_agent", ""), True
 
+    user_agent = data.get("user_agent", "")
     print(f"[Cookie] Found active session cookie. Expires at {_format_expiry_ist(expiry)}. Remaining: {_format_remaining_ist(expiry)}.")
-    return cookie, False
+    return cookie, user_agent, False
 
 
-def _write_session_cookie_to_disk(cookie: dict) -> None:
+def _write_session_cookie_to_disk(cookie: dict, user_agent: str = "") -> None:
     payload = {SESSION_COOKIE_NAME: cookie, "saved_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+    if user_agent:
+        payload["user_agent"] = user_agent
     try:
         # If an encrypted cookie exists, avoid creating plaintext
         if any(os.path.exists(p) for p in ENCRYPTED_COOKIE_FILES):
@@ -266,7 +271,7 @@ def _try_cookie_login(driver: webdriver.Chrome, wait: WebDriverWait) -> bool:
     """Try to log in by reusing the stored session cookie. Return True if successful.
     No refresh or re-save is performed on success.
     """
-    cookie, expired = _read_session_cookie_from_disk()
+    cookie, ua, expired = _read_session_cookie_from_disk()
 
     if expired:
         _delete_cookie_file_if_exists()
@@ -327,7 +332,9 @@ def _save_current_session_cookie(driver: webdriver.Chrome) -> None:
             }
             if isinstance(session.get("expiry"), (int, float)):
                 to_store["expiry"] = int(session["expiry"])  # seconds since epoch
-            _write_session_cookie_to_disk(to_store)
+            # Get current user agent
+            current_ua = driver.execute_script("return navigator.userAgent")
+            _write_session_cookie_to_disk(to_store, current_ua)
         else:
             print("[Cookie] Session cookie not found after login (nothing to save).")
     except Exception:
@@ -342,7 +349,12 @@ def login_and_get_driver() -> webdriver.Chrome:
     2) If absent or expired/invalid, log in with credentials and store a fresh session cookie.
     3) If a CAPTCHA challenge appears, wait for manual completion.
     """
-    driver = _build_driver()
+    # Check if we have a valid cookie and get its user agent
+    cookie, saved_ua, expired = _read_session_cookie_from_disk()
+    use_saved_ua = not expired and cookie and saved_ua
+
+    # Build driver with matching user agent if available
+    driver = _build_driver(saved_ua if use_saved_ua else "")
     wait = WebDriverWait(driver, 25)
 
     # 1) Try cookie-based login first
