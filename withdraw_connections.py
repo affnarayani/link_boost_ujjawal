@@ -230,6 +230,9 @@ def process_withdraw(driver, profile: Dict[str, Any]) -> Tuple[bool, str]:
     driver.get(url)
     # Wait 5 seconds after page load before starting to search for xpath
     time.sleep(5.0)
+    current_url = driver.current_url
+    if current_url in ["https://www.linkedin.com/404", "https://www.linkedin.com/404/?_l=en_US"]:
+        return False, "Profile redirected to 404"
     wait = WebDriverWait(driver, 12)
 
     # Try to find the exact Pending span
