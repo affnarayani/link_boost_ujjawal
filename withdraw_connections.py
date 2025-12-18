@@ -12,7 +12,7 @@
 from __future__ import annotations
 
 # Headless mode toggle: set True for headless, False for visible (maximized)
-headless = True
+headless = False
 
 import json
 import os
@@ -62,11 +62,11 @@ except Exception as e:
     raise
 
 # Absolute XPaths provided in spec
-X_PENDING_SPAN = '/html/body/div[7]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
+X_PENDING_SPAN = '/html/body/div[6]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
 # Secondary Pending span XPath fallback
-X_PENDING_SPAN_ALT = '/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div[2]/div/section/div/div/div[2]/div[3]/div/div/div/div/div/button/span'
-X_WITHDRAW_DIALOG = '//*[@id="root"]/dialog/div'
-X_WITHDRAW_CONFIRM_SPAN = '//*[@id="root"]/dialog/div/div/div/div/div/div/button'
+X_PENDING_SPAN_ALT = '/html/body/div[6]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
+X_WITHDRAW_DIALOG = '//*[@id="dialog-label-st8"]'
+X_WITHDRAW_CONFIRM_SPAN = '/html/body/div[4]/div/div/div[3]/button[2]/span'
 
 # Paths (resolve relative to this script's directory)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -240,6 +240,8 @@ def process_withdraw(driver, profile: Dict[str, Any]) -> Tuple[bool, str]:
     # Wait for withdraw dialog
     try:
         wait.until(EC.presence_of_element_located((By.XPATH, X_WITHDRAW_DIALOG)))
+        # Wait random 5-15 seconds before clicking confirm
+        time.sleep(random.uniform(5, 15))
     except Exception:
         # Even if not found, attempt to click confirm per spec (it might still be present)
         pass
