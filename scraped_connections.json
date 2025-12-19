@@ -4624,7 +4624,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/ashutosh-ranjan-aa1132201?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADN0YpkBl1HYNHLWr31G5e3-uuWJwD6XQ5Y",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-01T03:49:33"
+    "sent_request_timestamp": "2025-12-01T03:49:33",
+    "withdraw": false
   },
   {
     "page": 36,
@@ -4636,7 +4637,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/rajesh-k-sinha-3b9512286?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEV8vL0Bs8GEl5doZeAvnm6eAXALsrXxbDo",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-01T04:48:16"
+    "sent_request_timestamp": "2025-12-01T04:48:16",
+    "withdraw": true
   },
   {
     "page": 36,
