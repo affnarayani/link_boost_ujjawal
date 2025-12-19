@@ -4715,7 +4715,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/ashutosh-mishra-5b451a373?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFxyg9gBECUDNgo-phMtvPqM1fdL-S4DZzI",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-01T08:29:32"
+    "sent_request_timestamp": "2025-12-01T08:29:32",
+    "withdraw": false
   },
   {
     "page": 37,
@@ -4727,7 +4728,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/barkha-singh-99247731b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFEMi74Bh5PZtCKQFsXsFfSfCbvdSZPH1P8",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-01T09:26:27"
+    "sent_request_timestamp": "2025-12-01T09:26:27",
+    "withdraw": true
   },
   {
     "page": 37,
