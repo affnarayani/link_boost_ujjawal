@@ -4936,7 +4936,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/amit-sinha-9aa69337b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF3lKtIB3VWOg41AQae5XFKlUP932LiSuXg",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-01T23:17:43"
+    "sent_request_timestamp": "2025-12-01T23:17:43",
+    "withdraw": false
   },
   {
     "page": 39,
@@ -4948,7 +4949,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/priyanjali-singh-a466a5375?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFzUKZYBNU78w7KlJmiuO8Rxjqy1obb5BPA",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-02T01:22:12"
+    "sent_request_timestamp": "2025-12-02T01:22:12",
+    "withdraw": true
   },
   {
     "page": 39,
