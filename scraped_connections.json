@@ -5040,7 +5040,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/prateek-palrav-a68a23374?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFyzNDAB_6YPbHliPBrCMsOxDPbMj5pRVSY",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-02T08:27:51"
+    "sent_request_timestamp": "2025-12-02T08:27:51",
+    "withdraw": false
   },
   {
     "page": 39,
@@ -5052,7 +5053,8 @@
     "connect": false,
     "profile_url": "https://www.linkedin.com/in/shambhawi-jha-445127263?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAECfz7UBvWeuEnCzdWb57_6fb8c9cHIA11c",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-02T08:27:56"
+    "sent_request_timestamp": "2025-12-02T08:27:56",
+    "withdraw": false
   },
   {
     "page": 39,
@@ -5064,7 +5066,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/aman-kumar-6623a22b0?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAErO3yoBLUgQu9xrLnk8qLgvq9ejyPCtbWg",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-02T08:28:00"
+    "sent_request_timestamp": "2025-12-02T08:28:00",
+    "withdraw": true
   },
   {
     "page": 40,
