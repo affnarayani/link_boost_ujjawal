@@ -302,6 +302,21 @@ def main() -> int:
     except Exception:
         pass
 
+    # Pre-process profiles with connect=false and sent_request_timestamp
+    for idx, profile in enumerate(scraped_data):
+        if not isinstance(profile, dict):
+            continue
+        if profile.get('connect') == False and 'sent_request_timestamp' in profile:
+            profile['withdraw'] = True
+            scraped_data[idx] = profile
+            info(f"Marked {profile.get('name', 'Unknown')} -> withdraw = true (connect=false, has timestamp)")
+
+    # Persist the changes
+    try:
+        save_json_file(SCRAPED_PATH, scraped_data)
+    except Exception as e:
+        info(f"Warning: failed to persist pre-processing updates: {e}")
+
     # Compute eligible profiles
     eligible_indices: List[int] = []
     for idx, profile in enumerate(scraped_data):

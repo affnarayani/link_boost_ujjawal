@@ -27,9 +27,21 @@ def main():
     wait = WebDriverWait(driver, 30)
 
     try:
-        # Loop through connections where sent_request is False and connect is True
+        # Loop through connections where sent_request is False
         for profile in connections:
-            if profile.get('sent_request', False) or not profile.get('connect', False):
+            if profile.get('sent_request', False):
+                continue
+
+            if not profile.get('connect', False):
+                # No need to open profile, just mark as sent_request
+                profile['sent_request'] = True
+                profile['sent_request_timestamp'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+
+                # Save back to file
+                with open('scraped_connections.json', 'w', encoding='utf-8') as f:
+                    json.dump(connections, f, indent=4)
+
+                print(f"Marked profile as sent_request (connect: false): {profile['name']}", flush=True)
                 continue
 
             profile_url = profile['profile_url']
@@ -61,10 +73,10 @@ def main():
             print("Finding connect button...", flush=True)
             connect_button_element = None
             for i in range(1, 10):
-                print(f"Checking for i={i}...", flush=True)
                 xpath = f'/html/body/div[{i}]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
-                try:
-                    element = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
+                elements = driver.find_elements(By.XPATH, xpath)
+                if elements:
+                    element = elements[0]
                     text = element.text.strip()
                     if text == "Connect":
                         connect_button_element = element
@@ -82,8 +94,27 @@ def main():
 
                         print("Successfully marked as sent_request.", flush=True)
                         break
-                except Exception as e:
-                    continue
+
+            if not connect_button_element:
+                # Check for message button if no connect button found
+                print("No connect button found, checking for message button...", flush=True)
+                for i in range(1, 10):
+                    message_xpath = f'/html/body/div[{i}]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/div[1]/button/span'
+                    message_elements = driver.find_elements(By.XPATH, message_xpath)
+                    if message_elements:
+                        message_element = message_elements[0]
+                        message_text = message_element.text.strip()
+                        if message_text == "Message":
+                            print(f"Message button found at div[{i}], user already connected, marking as sent_request.", flush=True)
+                            profile['sent_request'] = True
+                            profile['sent_request_timestamp'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+
+                            # Save back to file
+                            with open('scraped_connections.json', 'w', encoding='utf-8') as f:
+                                json.dump(connections, f, indent=4)
+
+                            print("Successfully marked as sent_request.", flush=True)
+                            break
 
             if connect_button_element:
                 # Click the connect button

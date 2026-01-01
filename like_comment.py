@@ -620,82 +620,11 @@ def main() -> int:
                                         except Exception:
                                             pass
 
-                                    # Try keyboard submit first: TAB → TAB → TAB → ENTER (as required)
+                                    # Keyboard Navigation and Enter: Uses ActionChains to simulate pressing TAB three times (to navigate to the submit button) followed by ENTER key.
                                     try:
-                                        ActionChains(driver).send_keys(Keys.TAB).pause(0.2).send_keys(Keys.TAB).pause(0.2).send_keys(Keys.TAB).pause(0.2).send_keys(Keys.ENTER).perform()
-                                        time.sleep(0.8 if is_headless else 0.6)
+                                        ActionChains(driver).send_keys(Keys.TAB).pause(3).send_keys(Keys.TAB).pause(3).send_keys(Keys.TAB).pause(3).send_keys(Keys.ENTER).perform()
+                                        time.sleep(15)
                                         success("Comment submitted (via keyboard).")
-                                    except Exception:
-                                        pass
-
-                                    # Fallback: click an enabled Post/Comment/Send button with a short wait
-                                    try:
-                                        submit_xpaths = [
-                                            ".//div[contains(@class,'comments-comment-box') or contains(@class,'comments-comment-box__form') or contains(@class,'comments-comments-list') or contains(@class,'comments-comment-box__container')]/descendant::button[not(@disabled) and (contains(translate(., 'POST','post'),'post') or contains(translate(., 'COMMENT','comment'),'comment') or contains(translate(., 'SEND','send'),'send') or contains(@data-control-name,'comment_post'))]",
-                                            ".//button[not(@disabled) and (contains(translate(., 'POST','post'),'post') or contains(translate(., 'SEND','send'),'send') or contains(translate(., 'COMMENT','comment'),'comment'))]",
-                                        ]
-                                        submit_btn = None
-                                        for sx in submit_xpaths:
-                                            try:
-                                                submit_btn = post_el.find_element(By.XPATH, sx)
-                                                if submit_btn:
-                                                    break
-                                            except Exception:
-                                                continue
-                                        if not submit_btn:
-                                            try:
-                                                container = editor.find_element(
-                                                    By.XPATH,
-                                                    "./ancestor::*[contains(@class,'comments-comment-box') or contains(@class,'comments-container') or contains(@class,'comments-comment-box__container')][1]"
-                                                )
-                                                for sx in submit_xpaths:
-                                                    try:
-                                                        submit_btn = container.find_element(By.XPATH, sx)
-                                                        if submit_btn:
-                                                            break
-                                                    except Exception:
-                                                        continue
-                                            except Exception:
-                                                pass
-
-                                        # Wait briefly for button to become clickable/displayed
-                                        end_time = time.time() + (4.0 if is_headless else 2.0)
-                                        while (submit_btn is None or (not submit_btn.is_displayed() or not submit_btn.is_enabled())) and time.time() < end_time:
-                                            try:
-                                                for sx in submit_xpaths:
-                                                    try:
-                                                        scope = container if 'container' in locals() and container is not None else post_el
-                                                        candidate = scope.find_element(By.XPATH, sx)
-                                                        if candidate and candidate.is_displayed() and candidate.is_enabled():
-                                                            submit_btn = candidate
-                                                            break
-                                                    except Exception:
-                                                        continue
-                                            except Exception:
-                                                pass
-                                            time.sleep(0.12)
-
-                                        if submit_btn and submit_btn.is_displayed():
-                                            try:
-                                                driver.execute_script("arguments[0].scrollIntoView({block:'center'});", submit_btn)
-                                            except Exception:
-                                                pass
-                                            try:
-                                                submit_btn.click()
-                                                success("Comment submitted (via click).")
-                                            except Exception:
-                                                driver.execute_script("arguments[0].click();", submit_btn)
-                                                success("Comment submitted (via JS click).")
-                                            time.sleep(0.8 if is_headless else 0.6)
-                                        else:
-                                            # Last resort: Ctrl+Enter (often works for LinkedIn comment box)
-                                            try:
-                                                editor.send_keys(Keys.CONTROL, Keys.ENTER)
-                                                time.sleep(0.5 if is_headless else 0.4)
-                                                success("Comment submitted (via Ctrl+Enter).")
-                                            except Exception:
-                                                warn("Failed to submit comment.")
-                                                pass
                                     except Exception as e:
                                         warn(f"Failed to submit comment: {e}")
                             except Exception as e:
