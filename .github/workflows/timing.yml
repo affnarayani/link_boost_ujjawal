@@ -34,7 +34,7 @@ jobs:
       - name: Commit and push changes
         shell: bash
         env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN_ALL }}
         run: |
           set -e
 
