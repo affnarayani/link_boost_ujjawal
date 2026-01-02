@@ -6,20 +6,24 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch: {}
 
+# Prevent overlapping runs
 concurrency:
   group: ci-${{ github.workflow }}
   cancel-in-progress: false
 
+# Minimum permissions (PAT will be used for push)
 permissions:
-  contents: write
-  actions: write
+  contents: read
 
 jobs:
   update-timings:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -31,18 +35,26 @@ jobs:
 
       - name: Commit and push changes
         shell: bash
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
+          set -e
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
           git add -A
-          if ! git diff --cached --quiet; then
-            git commit -m "chore: update workflow cron times from timing.py [skip ci]"
-            if git pull --rebase --no-edit; then
-              git push
-            else
-              git rebase --abort
-              echo "Rebase failed due to conflicts, skipping push"
-            fi
-          else
+
+          if git diff --cached --quiet; then
             echo "No changes to commit."
+            exit 0
           fi
+
+          git commit -m "chore: update workflow cron times from timing.py [skip ci]"
+
+          # Use PAT for authentication (required for workflow file updates)
+          git remote set-url origin \
+            https://x-access-token:${PAT_TOKEN}@github.com/${{ github.repository }}.git
+
+          git pull --rebase --no-edit
+          git push
