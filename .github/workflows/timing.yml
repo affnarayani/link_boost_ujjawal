@@ -2,16 +2,13 @@ name: Update Workflow Timings
 
 on:
   schedule:
-    # 12 AM daily (UTC)
     - cron: '0 0 * * *'
   workflow_dispatch: {}
 
-# Prevent overlapping runs
 concurrency:
   group: ci-${{ github.workflow }}
   cancel-in-progress: false
 
-# Minimum permissions (PAT will be used for push)
 permissions:
   contents: read
 
@@ -24,6 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          persist-credentials: false   # 🔥 THIS IS THE KEY FIX
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -52,7 +50,7 @@ jobs:
 
           git commit -m "chore: update workflow cron times from timing.py [skip ci]"
 
-          # Use PAT for authentication (required for workflow file updates)
+          # Use PAT explicitly
           git remote set-url origin \
             https://x-access-token:${PAT_TOKEN}@github.com/${{ github.repository }}.git
 
