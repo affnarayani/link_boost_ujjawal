@@ -1,9 +1,9 @@
-name: Make Connections
+name: Post LinkedIn Content
 
 on:
   schedule:
-    # runs every hour
-    - cron: '0 * * * *'
+    # 8 AM, 8 PM IST everyday excluding 1st of every month
+    - cron: '28 3 * * *'
   workflow_dispatch: {}
 
 concurrency:
@@ -14,7 +14,7 @@ permissions:
   contents: write
 
 jobs:
-  make-connections:
+  post-content:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -57,11 +57,11 @@ jobs:
             echo "DECRYPT_KEY=${{ secrets.DECRYPT_KEY }}" >> .env
           fi
 
-      - name: Run make_connections.py (headless)
+      - name: Run post_content.py (headless)
         env:
           HEADLESS: '1'
         run: |
-          python make_connections.py
+          python post_content.py
 
       - name: Commit and push changes (end only)
         shell: bash
@@ -70,7 +70,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           if ! git diff --cached --quiet; then
-            git commit -m "chore: update data from make_connections.py [skip ci]"
+            git commit -m "chore: update data from post_content.py [skip ci]"
             if git pull --rebase --no-edit; then
               git push
             else

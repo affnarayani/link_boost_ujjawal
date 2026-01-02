@@ -1,10 +1,14 @@
-name: Post LinkedIn Content
+name: Like and Comment on LinkedIn Posts
 
 on:
   schedule:
-    # 8 AM, 8 PM IST everyday excluding 1st of every month
-    - cron: '30 2 * * *'
-    - cron: '30 14 * * *'
+    # 3 AM, 7 AM, 11 AM, 3 PM, 7 PM, 11 PM IST everyday excluding 1st of every month
+    - cron: '24 18 * * *'
+    - cron: '13 7 * * *'
+    - cron: '56 22 * * *'
+    - cron: '32 17 * * *'
+    - cron: '15 21 * * *'
+    - cron: '0 18 * * *'
   workflow_dispatch: {}
 
 concurrency:
@@ -15,7 +19,7 @@ permissions:
   contents: write
 
 jobs:
-  post-content:
+  like-comment:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -49,7 +53,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Create .env with DECRYPT_KEY only
+      - name: Create .env with required secrets only
         shell: bash
         run: |
           set -e
@@ -57,12 +61,15 @@ jobs:
           if [ -n "${{ secrets.DECRYPT_KEY }}" ]; then
             echo "DECRYPT_KEY=${{ secrets.DECRYPT_KEY }}" >> .env
           fi
+          if [ -n "${{ secrets.GEMINI_API_KEY }}" ]; then
+            echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
+          fi
 
-      - name: Run post_content.py (headless)
+      - name: Run like_comment.py (headless)
         env:
           HEADLESS: '1'
         run: |
-          python post_content.py
+          python like_comment.py
 
       - name: Commit and push changes (end only)
         shell: bash
@@ -71,7 +78,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           if ! git diff --cached --quiet; then
-            git commit -m "chore: update data from post_content.py [skip ci]"
+            git commit -m "chore: update liked_commented.json from like_comment.py [skip ci]"
             if git pull --rebase --no-edit; then
               git push
             else

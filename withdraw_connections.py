@@ -306,7 +306,7 @@ def main() -> int:
     for idx, profile in enumerate(scraped_data):
         if not isinstance(profile, dict):
             continue
-        if profile.get('connect') == False and 'sent_request_timestamp' in profile:
+        if profile.get('connect') == False and 'sent_request_timestamp' in profile and 'withdraw' not in profile:
             profile['withdraw'] = True
             scraped_data[idx] = profile
             info(f"Marked {profile.get('name', 'Unknown')} -> withdraw = true (connect=false, has timestamp)")

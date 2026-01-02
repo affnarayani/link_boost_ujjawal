@@ -1,14 +1,25 @@
-name: Like and Comment on LinkedIn Posts
+name: Make Connections
 
 on:
   schedule:
-    # 3 AM, 7 AM, 11 AM, 3 PM, 7 PM, 11 PM IST everyday excluding 1st of every month
-    - cron: '30 21 * * *'
-    - cron: '30 1 * * *'
-    - cron: '30 5 * * *'
-    - cron: '30 9 * * *'
-    - cron: '30 13 * * *'
-    - cron: '30 17 * * *'
+    - cron: '59 18 * * *'
+    - cron: '35 4 * * *'
+    - cron: '7 19 * * *'
+    - cron: '59 5 * * *'
+    - cron: '38 18 * * *'
+    - cron: '10 8 * * *'
+    - cron: '15 11 * * *'
+    - cron: '35 19 * * *'
+    - cron: '5 6 * * *'
+    - cron: '34 11 * * *'
+    - cron: '49 19 * * *'
+    - cron: '53 12 * * *'
+    - cron: '27 8 * * *'
+    - cron: '57 3 * * *'
+    - cron: '54 2 * * *'
+    - cron: '26 11 * * *'
+    - cron: '3 21 * * *'
+    - cron: '29 11 * * *'
   workflow_dispatch: {}
 
 concurrency:
@@ -19,7 +30,7 @@ permissions:
   contents: write
 
 jobs:
-  like-comment:
+  make-connections:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -53,7 +64,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Create .env with required secrets only
+      - name: Create .env with DECRYPT_KEY only
         shell: bash
         run: |
           set -e
@@ -61,15 +72,12 @@ jobs:
           if [ -n "${{ secrets.DECRYPT_KEY }}" ]; then
             echo "DECRYPT_KEY=${{ secrets.DECRYPT_KEY }}" >> .env
           fi
-          if [ -n "${{ secrets.GEMINI_API_KEY }}" ]; then
-            echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
-          fi
 
-      - name: Run like_comment.py (headless)
+      - name: Run make_connections.py (headless)
         env:
           HEADLESS: '1'
         run: |
-          python like_comment.py
+          python make_connections.py
 
       - name: Commit and push changes (end only)
         shell: bash
@@ -78,7 +86,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
           if ! git diff --cached --quiet; then
-            git commit -m "chore: update liked_commented.json from like_comment.py [skip ci]"
+            git commit -m "chore: update data from make_connections.py [skip ci]"
             if git pull --rebase --no-edit; then
               git push
             else
