@@ -5300,7 +5300,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/shweta-singh-799525350?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFekhCUBbLbpBmduy-hv1LIwBXCWw9MNMB4",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-02T20:22:33"
+    "sent_request_timestamp": "2025-12-02T20:22:33",
+    "withdraw": false
   },
   {
     "page": 41,
@@ -5351,7 +5352,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/abhijeet-gautam-087874217?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADbEYmcBRhnGJpcBaK61UF0BhbuRCJ9Xd_s",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-02T22:16:31"
+    "sent_request_timestamp": "2025-12-02T22:16:31",
+    "withdraw": true
   },
   {
     "page": 42,
