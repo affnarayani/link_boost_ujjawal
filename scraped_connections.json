@@ -9968,7 +9968,8 @@
         "verified": false,
         "connect": false,
         "profile_url": "https://www.linkedin.com/in/vikash-yadav-9a25a5387?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF9OPUoBhS-HR_oczErQdEkP3Cbx7mKXQ94",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-01-04T22:40:55"
     },
     {
         "page": 78,
@@ -9979,7 +9980,8 @@
         "verified": false,
         "connect": true,
         "profile_url": "https://www.linkedin.com/in/adv-shyam-sundar-82915b1b8?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADKRb-EBotitQQlIJbjyp0U1rv7H7fHI5V0",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-01-04T22:41:53"
     },
     {
         "page": 78,
