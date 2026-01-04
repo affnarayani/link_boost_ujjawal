@@ -3,12 +3,12 @@ name: Like and Comment on LinkedIn Posts
 on:
   schedule:
     # 3 AM, 7 AM, 11 AM, 3 PM, 7 PM, 11 PM IST everyday excluding 1st of every month
-    - cron: '49 6 * * *'
-    - cron: '46 6 * * *'
-    - cron: '13 9 * * *'
-    - cron: '6 9 * * *'
-    - cron: '48 16 * * *'
-    - cron: '1 21 * * *'
+    - cron: '56 6 * * *'
+    - cron: '13 16 * * *'
+    - cron: '2 16 * * *'
+    - cron: '10 9 * * *'
+    - cron: '12 6 * * *'
+    - cron: '46 17 * * *'
   workflow_dispatch: {}
 
 concurrency:
