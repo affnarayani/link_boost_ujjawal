@@ -6873,7 +6873,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/shaan-kumar-advocate-13a9b8322?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFGpfb4BhL9WxKUCxkgP8DelrCXfKv22B5s",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-05T09:20:25"
+    "sent_request_timestamp": "2025-12-05T09:20:25",
+    "withdraw": false
   },
   {
     "page": 53,
@@ -6924,7 +6925,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/ritika-roy-61ba00241?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADwgi3cBR1Aim9ykHA_Og7BtHZyXT7kkOdw",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-05T10:20:27"
+    "sent_request_timestamp": "2025-12-05T10:20:27",
+    "withdraw": true
   },
   {
     "page": 54,
