@@ -10988,7 +10988,8 @@
         "verified": false,
         "connect": false,
         "profile_url": "https://www.linkedin.com/in/adv-satyam-nandan-603214214?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADYjB2MB_AKakHtpI-lZnyap9f9OdD0IuEU",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-01-06T14:20:54"
     },
     {
         "page": 86,
@@ -10999,7 +11000,8 @@
         "verified": false,
         "connect": true,
         "profile_url": "https://www.linkedin.com/in/chandan-kumar-0133971a5?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC_uvE8BgOMjkzCjl7SoVjkNgWRSnIrGoeE",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-01-06T14:21:52"
     },
     {
         "page": 86,
