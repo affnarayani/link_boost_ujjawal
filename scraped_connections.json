@@ -10952,7 +10952,8 @@
         "verified": false,
         "connect": false,
         "profile_url": "https://www.linkedin.com/in/tetara-kumari-a42270228?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADj91NIBvNB2_kBFS5OA5QgKs96wADUz6ZU",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-01-06T09:38:49"
     },
     {
         "page": 86,
@@ -10963,7 +10964,8 @@
         "verified": false,
         "connect": true,
         "profile_url": "https://www.linkedin.com/in/rupesh-kumar-roy-54798637b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF3wT4cB_Rr8aZxZ5rQAfhXpdNZAETkRRoM",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-01-06T09:39:47"
     },
     {
         "page": 86,
