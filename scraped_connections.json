@@ -10976,7 +10976,8 @@
         "verified": false,
         "connect": true,
         "profile_url": "https://www.linkedin.com/in/samiksha-kumari-044591220?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADedW_QB6aIQTcPa9XyZrA8FhHrfsq426ds",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-01-06T11:11:30"
     },
     {
         "page": 86,
