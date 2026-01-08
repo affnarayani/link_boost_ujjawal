@@ -12176,7 +12176,8 @@
         "verified": false,
         "connect": false,
         "profile_url": "https://www.linkedin.com/in/digital-sohel-ba262725b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD_8j-oBL-2WxQVgjCp46LGQWZIpTJJrTCI",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-01-08T11:52:13"
     },
     {
         "page": 96,
@@ -12187,7 +12188,8 @@
         "verified": false,
         "connect": false,
         "profile_url": "https://www.linkedin.com/in/rabishankar-das-a75358372?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFw-lPkBoKW3hHdLMWAMmy4J8RogM9tjQq8",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-01-08T11:52:13"
     },
     {
         "page": 96,
@@ -12198,7 +12200,8 @@
         "verified": false,
         "connect": true,
         "profile_url": "https://www.linkedin.com/in/rishu-kumar-4b3751363?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFpYYocBsMvMshwQO11fyo0lQeI3TlOZd_Q",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-01-08T11:53:11"
     },
     {
         "page": 96,
