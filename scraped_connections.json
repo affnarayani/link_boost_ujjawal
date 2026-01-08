@@ -12212,7 +12212,8 @@
         "verified": false,
         "connect": false,
         "profile_url": "https://www.linkedin.com/in/raja-goswami-536720322?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFGe2PoBgmlIsqvSrlPByLh_HuF9iDg0YzU",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-01-08T13:06:06"
     },
     {
         "page": 97,
@@ -12223,7 +12224,8 @@
         "verified": false,
         "connect": true,
         "profile_url": "https://www.linkedin.com/in/saurav-kumar-54293532b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFNA88IBbaWMLyoL-KaIsKw9ylE2Xft-1c8",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-01-08T13:07:04"
     },
     {
         "page": 97,
