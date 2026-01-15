@@ -7068,7 +7068,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/shardool-shaurya-9b5129249?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD1rwFkBV7ZcjG35eD3yAQxPO-jz_ddYE7o",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-05T20:21:09"
+    "sent_request_timestamp": "2025-12-05T20:21:09",
+    "withdraw": false
   },
   {
     "page": 55,
@@ -7093,7 +7094,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/sana-kauser-77a1a2220?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADeOh84BKbvDkwtztT7PeNUIDCOXMO7tixo",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-05T21:17:29"
+    "sent_request_timestamp": "2025-12-05T21:17:29",
+    "withdraw": true
   },
   {
     "page": 55,
