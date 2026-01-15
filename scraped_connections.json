@@ -7289,7 +7289,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/adv-rajnish-kumar-620760336?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFR5HXgBpcTVmYm2JhF14oBDN2BfGRqfU4Y",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-11T09:29:35"
+    "sent_request_timestamp": "2025-12-11T09:29:35",
+    "withdraw": false
   },
   {
     "page": 57,
@@ -7353,7 +7354,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/anill-chandra-84bb5b282?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAETex_sBGVjHyXGOala1BImpCPBbvEJp4kk",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-19T01:59:36"
+    "sent_request_timestamp": "2025-12-19T01:59:36",
+    "withdraw": true
   },
   {
     "page": 57,
