@@ -230,9 +230,21 @@ def process_withdraw(driver, profile: Dict[str, Any]) -> Tuple[bool, str]:
     driver.get(url)
     # Wait 5 seconds after page load before starting to search for xpath
     time.sleep(5.0)
-    current_url = driver.current_url
-    if current_url in ["https://www.linkedin.com/404", "https://www.linkedin.com/404/?_l=en_US"]:
-        return False, "Profile redirected to 404"
+
+    # Check for 404 page by looking for specific text in /html/body/div[i]/section/p
+    is_404 = False
+    for i in range(1, 10):
+        try:
+            xpath = f'/html/body/div[{i}]/section/p'
+            elem = driver.find_element(By.XPATH, xpath)
+            if elem and "Please check your URL or return to LinkedIn home." in (elem.text or ''):
+                is_404 = True
+                break
+        except Exception:
+            continue
+
+    if is_404:
+        return True, "Profile no longer exists, marked as withdrawn"
     wait = WebDriverWait(driver, 12)
 
     # Try to find the exact Pending span

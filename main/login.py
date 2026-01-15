@@ -7,6 +7,7 @@ import sys
 import time
 import json
 import base64
+import random
 from datetime import datetime, timezone, timedelta
 from typing import Optional, Tuple
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
@@ -21,9 +22,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium_stealth import stealth
 
 LOGIN_URL = "https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin"
-HOME_URL = "https://www.linkedin.com/in/adv-ujjawal-kumar/"
+HOME_URL = "https://www.linkedin.com/feed/"
 BASE_URL = "https://www.linkedin.com/"
 CHALLENGE_PREFIX = "https://www.linkedin.com/checkpoint/challenge"
 CHALLENGE_V2_PREFIX = "https://www.linkedin.com/checkpoint/challengesV2/"
@@ -46,8 +48,17 @@ SESSION_COOKIE_NAME = "li_at"
 # IST timezone (UTC+05:30)
 IST = timezone(timedelta(hours=5, minutes=30), name="IST")
 
+# List of user agents to rotate for anti-detection
+USER_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+]
 
-def _build_driver() -> webdriver.Chrome:
+
+def _build_driver(user_agent: str = "") -> webdriver.Chrome:
     """Create a Chrome WebDriver with desired options and return it."""
     chrome_options = Options()
 
@@ -65,10 +76,24 @@ def _build_driver() -> webdriver.Chrome:
     chrome_options.add_argument("--log-level=3")
     chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"])  # Reduce console noise on Windows
     chrome_options.page_load_strategy = "eager"
-    chrome_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36")
+
+    # Use provided user agent or random for anti-detection
+    if not user_agent:
+        user_agent = random.choice(USER_AGENTS)
+    chrome_options.add_argument(f"--user-agent={user_agent}")
 
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service, options=chrome_options)
+
+    # Apply selenium-stealth to mask automation
+    stealth(driver,
+        languages=["en-US", "en"],
+        vendor="Google Inc.",
+        platform="Win32",
+        webgl_vendor="Intel Inc.",
+        renderer="Intel Iris OpenGL Engine",
+        fix_hairline=True,
+    )
 
     if not is_headless:
         try:
@@ -113,9 +138,10 @@ def _format_remaining_ist(epoch_seconds: Optional[int]) -> str:
     return " ".join(parts)
 
 
-def _read_session_cookie_from_disk() -> Tuple[Optional[dict], bool]:
-    """Return (cookie_dict, expired_flag).
+def _read_session_cookie_from_disk() -> Tuple[Optional[dict], str, bool]:
+    """Return (cookie_dict, user_agent, expired_flag).
     - cookie_dict: stored li_at cookie dict (may be returned even if expired)
+    - user_agent: the user agent used when the cookie was saved
     - expired_flag: True if stored cookie exists but is expired
     """
     data = None
@@ -141,32 +167,35 @@ def _read_session_cookie_from_disk() -> Tuple[Optional[dict], bool]:
     if data is None:
         if not os.path.exists(COOKIE_FILE):
             print("[Cookie] No session cookie file found.")
-            return None, False
+            return None, "", False
         try:
             with open(COOKIE_FILE, "r", encoding="utf-8") as f:
                 data = json.load(f)
         except Exception:
             print("[Cookie] Failed to read cookie file.")
-            return None, False
+            return None, "", False
 
     cookie = data.get(SESSION_COOKIE_NAME)
     if not isinstance(cookie, dict) or "value" not in cookie:
         print("[Cookie] Cookie file does not contain a valid session cookie.")
-        return None, False
+        return None, "", False
 
     expiry = cookie.get("expiry")
     if isinstance(expiry, (int, float)):
         now = int(time.time())
         if int(expiry) <= now:
             print(f"[Cookie] Found session cookie but it is expired (expired at {_format_expiry_ist(expiry)}).")
-            return cookie, True
+            return cookie, data.get("user_agent", ""), True
 
+    user_agent = data.get("user_agent", "")
     print(f"[Cookie] Found active session cookie. Expires at {_format_expiry_ist(expiry)}. Remaining: {_format_remaining_ist(expiry)}.")
-    return cookie, False
+    return cookie, user_agent, False
 
 
-def _write_session_cookie_to_disk(cookie: dict) -> None:
+def _write_session_cookie_to_disk(cookie: dict, user_agent: str = "") -> None:
     payload = {SESSION_COOKIE_NAME: cookie, "saved_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())}
+    if user_agent:
+        payload["user_agent"] = user_agent
     try:
         # If an encrypted cookie exists, avoid creating plaintext
         if any(os.path.exists(p) for p in ENCRYPTED_COOKIE_FILES):
@@ -242,7 +271,7 @@ def _try_cookie_login(driver: webdriver.Chrome, wait: WebDriverWait) -> bool:
     """Try to log in by reusing the stored session cookie. Return True if successful.
     No refresh or re-save is performed on success.
     """
-    cookie, expired = _read_session_cookie_from_disk()
+    cookie, ua, expired = _read_session_cookie_from_disk()
 
     if expired:
         _delete_cookie_file_if_exists()
@@ -303,7 +332,9 @@ def _save_current_session_cookie(driver: webdriver.Chrome) -> None:
             }
             if isinstance(session.get("expiry"), (int, float)):
                 to_store["expiry"] = int(session["expiry"])  # seconds since epoch
-            _write_session_cookie_to_disk(to_store)
+            # Get current user agent
+            current_ua = driver.execute_script("return navigator.userAgent")
+            _write_session_cookie_to_disk(to_store, current_ua)
         else:
             print("[Cookie] Session cookie not found after login (nothing to save).")
     except Exception:
@@ -318,7 +349,12 @@ def login_and_get_driver() -> webdriver.Chrome:
     2) If absent or expired/invalid, log in with credentials and store a fresh session cookie.
     3) If a CAPTCHA challenge appears, wait for manual completion.
     """
-    driver = _build_driver()
+    # Check if we have a valid cookie and get its user agent
+    cookie, saved_ua, expired = _read_session_cookie_from_disk()
+    use_saved_ua = not expired and cookie and saved_ua
+
+    # Build driver with matching user agent if available
+    driver = _build_driver(saved_ua if use_saved_ua else "")
     wait = WebDriverWait(driver, 25)
 
     # 1) Try cookie-based login first
@@ -339,13 +375,16 @@ def login_and_get_driver() -> webdriver.Chrome:
 
     try:
         driver.get(LOGIN_URL)
+        time.sleep(random.uniform(2, 4))  # Random delay to mimic human loading
 
         email_el = wait.until(EC.visibility_of_element_located((By.XPATH, X_USERNAME)))
         email_el.clear()
+        time.sleep(random.uniform(0.5, 1.5))  # Delay before typing email
         email_el.send_keys(email)
 
         password_el = wait.until(EC.visibility_of_element_located((By.XPATH, X_PASSWORD)))
         password_el.clear()
+        time.sleep(random.uniform(0.5, 1.5))  # Delay before typing password
         password_el.send_keys(password)
 
         # Uncheck "Remember me" only if the checkbox is present
@@ -356,6 +395,7 @@ def login_and_get_driver() -> webdriver.Chrome:
                 if cb_input.is_selected():
                     label_elems = driver.find_elements(By.XPATH, X_REMEMBER_ME_LABEL)
                     target = label_elems[0] if label_elems else cb_input
+                    time.sleep(random.uniform(0.3, 1.0))  # Delay before clicking
                     target.click()
                     if cb_input.is_selected():
                         target.click()
@@ -364,6 +404,7 @@ def login_and_get_driver() -> webdriver.Chrome:
 
         # Click the Sign in button
         sign_in_btn = wait.until(EC.element_to_be_clickable((By.XPATH, X_SIGN_IN_BUTTON)))
+        time.sleep(random.uniform(0.5, 1.5))  # Delay before clicking sign in
         sign_in_btn.click()
 
         # If LinkedIn triggers a challenge, wait for user to solve it

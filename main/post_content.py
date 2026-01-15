@@ -55,24 +55,21 @@ FEED_URL = "https://www.linkedin.com/feed/"
 SAVED_FEED_HTML = TEMP_DIR / "feed.html"
 
 # Provided XPaths (primary attempts)
-XPATH_START_POST_A = "/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[2]/div/div/div[1]/div/div/div"
-XPATH_START_POST_B = "div[aria-label='Start a post']"
-# Provided composer input CSS Selector (for shadow DOM)
-CSS_COMPOSER_INPUT = '.ql-editor.ql-blank'
+XPATH_START_POST_A = "/html/body/div[5]/div[3]/div/div/div[2]/div/div/main/div[1]/div[2]/div[2]/button/span/span"
+XPATH_START_POST_B = "/html/body/div[6]/div[3]/div/div/div[2]/div/div/main/div[1]/div[2]/div[2]/button/span/span"
+# Provided composer input XPath
+XPATH_COMPOSER_INPUT = "/html/body/div[4]/div/div/div/div[2]/div/div[2]/div[1]/div/div/div/div/div/div/div[1]/p"
 # Provided Post button XPath (updated per request)
-XPATH_POST_BUTTON = "/html/body/div[1]/div[3]//div/div[1]/div/div/div/div[2]/div/div[2]/div[2]/div[2]/div/div[2]/button/span"
-
-# Shadow DOM host selector
-SHADOW_HOST_SELECTOR = "#interop-outlet"
-
-# Maximum characters allowed for a LinkedIn post (including spaces)
-MAX_POST_CHARS = 2950
+XPATH_POST_BUTTON = "/html/body/div[4]/div/div/div/div[2]/div/div/div[2]/div[3]/div/div[2]/button/span"
 
 # GitHub source for content.json and the target textarea XPath
 GITHUB_BLOB_URL = (
     "https://github.com/affnarayani/ninetynine_credits_legal_advice_app_content/blob/main/content.json"
 )
 GITHUB_TARGET_XPATH = '//*[@id="read-only-cursor-text-area"]'
+
+# Maximum characters allowed for a LinkedIn post (including spaces)
+MAX_POST_CHARS = 2950
 
 
 def build_driver(is_headless: bool) -> webdriver.Chrome:
@@ -180,7 +177,7 @@ def html_to_plain_paragraphs(desc_html: str) -> List[str]:
     text = text.replace("</p>", "</p>\n")
     # Strip all tags
     text = re.sub(r"<[^>]+>", "", text)
-    # Unescape entities (&nbsp;, &, etc.)
+    # Unescape entities (&nbsp;, &amp;, etc.)
     text = html_unescape.unescape(text)
     # Normalize line breaks
     lines = [ln.strip() for ln in text.splitlines()]
@@ -258,7 +255,7 @@ def try_click_start_post(driver, wait: WebDriverWait) -> None:
     """Try multiple strategies to click the 'Start a post' entry point."""
     candidates = [
         (By.XPATH, XPATH_START_POST_A),
-        (By.CSS_SELECTOR, XPATH_START_POST_B), # Changed to CSS_SELECTOR
+        (By.XPATH, XPATH_START_POST_B),
         # Fallback: text-based button/span
         (By.XPATH, "//button[.//span[normalize-space(text())='Start a post']]"),
         (By.XPATH, "//span[normalize-space(.)='Start a post']/ancestor::button"),
@@ -280,13 +277,11 @@ def try_click_start_post(driver, wait: WebDriverWait) -> None:
     raise RuntimeError(f"Could not find 'Start a post' entry. Last error: {last_err}")
 
 
-def focus_composer_input(wait_context: WebDriverWait):
-    """Focus the contenteditable composer input area using several strategies.
-    Accepts a WebDriverWait instance (scoped to driver or shadow_root) to find the element.
-    """
+def focus_composer_input(driver, wait: WebDriverWait):
+    """Focus the contenteditable composer input area using several strategies."""
     candidates = [
-        (By.CSS_SELECTOR, CSS_COMPOSER_INPUT), # Use CSS selector for shadow DOM element
-        # Robust fallbacks commonly found in LinkedIn composer (using XPath for main DOM if needed, but primarily for shadow)
+        (By.XPATH, XPATH_COMPOSER_INPUT),
+        # Robust fallbacks commonly found in LinkedIn composer
         (By.XPATH, "//div[@role='textbox' and @contenteditable='true']"),
         (By.XPATH, "//div[contains(@class,'ql-editor') and @contenteditable='true']"),
         (By.XPATH, "//div[@data-placeholder and @contenteditable='true']"),
@@ -296,8 +291,7 @@ def focus_composer_input(wait_context: WebDriverWait):
     last_err = None
     for by, sel in candidates:
         try:
-            # The wait_context is already scoped to the correct SearchContext (driver or shadow_root)
-            el = wait_context.until(EC.visibility_of_element_located((by, sel)))
+            el = wait.until(EC.visibility_of_element_located((by, sel)))
             el.click()
             return el
         except Exception as e:
@@ -305,7 +299,7 @@ def focus_composer_input(wait_context: WebDriverWait):
     raise RuntimeError(f"Could not focus composer input. Last error: {last_err}")
 
 
-def type_paragraphs_with_retries(shadow_wait: WebDriverWait, paragraphs: List[str]):
+def type_paragraphs_with_retries(driver, wait: WebDriverWait, paragraphs: List[str]):
     """Enter the entire content in one send_keys call, waiting 6 seconds before and after.
     Retries if the composer element becomes stale by re-focusing it.
     """
@@ -315,8 +309,8 @@ def type_paragraphs_with_retries(shadow_wait: WebDriverWait, paragraphs: List[st
     attempts = 0
     while True:
         try:
-            # Re-focus before sending to get a fresh reference, using the shadow_wait object
-            input_el = focus_composer_input(shadow_wait)
+            # Re-focus before sending to get a fresh reference
+            input_el = focus_composer_input(driver, wait)
             # Wait 6 seconds before entering text
             time.sleep(6)
             if content:
@@ -337,34 +331,46 @@ def download_image(url: str, dest_path: Path) -> Path:
     return dest_path
 
 
-def upload_image_in_composer(driver, wait: WebDriverWait, shadow_wait: WebDriverWait, image_path: Path) -> None:
+def upload_image_in_composer(driver, wait: WebDriverWait, image_path: Path) -> None:
     """Attach an image and handle LinkedIn's media modal (Next/Done flows)."""
-
-    # Specific CSS selector for the "Add media" button within the shadow DOM
-    add_media_button_selector = "div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > section:nth-child(1) > div:nth-child(2) > ul:nth-child(1) > li:nth-child(2) > div:nth-child(1) > div:nth-child(1) > span:nth-child(1) > button:nth-child(1) > span:nth-child(1)"
-
-    # The user indicated the file input has an ID derived from the label 'media-editor-file-selector__file-input'
-    file_input_id = "media-editor-file-selector__file-input"
-    uploaded = False
-
-    # 1) Click the specific "Add media" button in the shadow DOM first
-    try:
-        btn = shadow_wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, add_media_button_selector)))
-        btn.click()
-        time.sleep(2.0) # Give time for the editor and file input to appear
-    except Exception as e:
-        raise RuntimeError(f"Could not click 'Add media' button in shadow DOM. Error: {e}")
-
-    # 2) Now, locate the actual file input element and send keys to it.
-    # Based on user feedback, this file input is likely within the shadow DOM.
-    try:
-        inp = shadow_wait.until(EC.presence_of_element_located((By.ID, file_input_id)))
-        inp.send_keys(str(image_path.resolve()))
-        uploaded = True
-    except Exception as e:
-        # Fallback: Try a more generic file input if the specific ID fails, also within shadow DOM
+    # A few strategies to reveal/locate the file input
+    # 1) Click a visible 'Add a photo' / 'Media' button first
+    media_buttons = [
+        (By.XPATH, "//button[.//span[contains(normalize-space(.), 'Add a photo')]]"),
+        (By.XPATH, "//button[contains(@aria-label,'Add a photo')]"),
+        (By.XPATH, "//button[contains(@aria-label,'Add media')]"),
+        (By.XPATH, "//button[.//span[contains(normalize-space(.), 'Media')]]"),
+        (By.XPATH, "//button[.//span[contains(normalize-space(.), 'Photo')]]"),
+    ]
+    for by, sel in media_buttons:
         try:
-            any_file_input = shadow_wait.until(EC.presence_of_element_located((By.XPATH, "//input[@type='file' and contains(@accept,'image')]")))
+            btn = driver.find_element(by, sel)
+            if btn.is_displayed():
+                btn.click()
+                time.sleep(1.0)
+                break
+        except Exception:
+            pass
+
+    # 2) Try common selectors for file inputs
+    file_inputs = [
+        (By.XPATH, "//input[@type='file' and contains(@accept,'image')]")
+    ]
+
+    uploaded = False
+    for by, sel in file_inputs:
+        try:
+            inp = wait.until(EC.presence_of_element_located((by, sel)))
+            inp.send_keys(str(image_path.resolve()))
+            uploaded = True
+            break
+        except Exception:
+            pass
+
+    if not uploaded:
+        # 3) Last resort: any file input in the composer modal
+        try:
+            any_file_input = driver.find_element(By.XPATH, "//div[contains(@class,'artdeco-modal')]//input[@type='file']")
             any_file_input.send_keys(str(image_path.resolve()))
             uploaded = True
         except Exception:
@@ -380,48 +386,30 @@ def upload_image_in_composer(driver, wait: WebDriverWait, shadow_wait: WebDriver
     save_snapshot(driver, TEMP_DIR / "after_image_upload.html")
 
     # Handle possible intermediate modal: click Next/Done/Continue if present via JS
-    # First, try to click the specific "Next" button provided by the user within the shadow DOM.
-    next_button_selector = "div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > button:nth-child(2)"
-    try:
-        next_btn = shadow_wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, next_button_selector)))
-        next_btn.click()
-        time.sleep(1.0) # Give a moment for the action to register
-    except Exception:
-        # Fallback to generic JS click if the specific button isn't found or clickable
-        js_click_first_matching_button(driver, ["Next", "Done", "Continue", "Apply"])
-        time.sleep(1.0)
+    js_click_first_matching_button(driver, ["Next", "Done", "Continue", "Apply"]) 
+    time.sleep(1.0)
 
     # Additional wait requested after media upload
     time.sleep(6)
 
 
-def click_post_button(driver, wait: WebDriverWait, shadow_wait: WebDriverWait) -> None:
-    """Click the Post button directly using the provided CSS selector or robust fallbacks within shadow DOM."""
-    # Specific CSS selector for the "Post" button within the shadow DOM
-    post_button_selector = "div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(5) > div:nth-child(1) > div:nth-child(2) > button:nth-child(1)"
-
-    try:
-        post_btn = shadow_wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, post_button_selector)))
-        post_btn.click()
-        return
-    except Exception as e:
-        last_err = e
-
-    # Fallback candidates (within shadow DOM)
+def click_post_button(driver, wait: WebDriverWait) -> None:
+    """Click the Post button directly using XPath or robust fallbacks."""
     candidates = [
+        (By.XPATH, XPATH_POST_BUTTON),
         (By.XPATH, "//button[.//span[normalize-space(text())='Post']]"),
         (By.XPATH, "//span[normalize-space(.)='Post']/ancestor::button"),
     ]
+    last_err = None
     for by, sel in candidates:
         try:
-            el = shadow_wait.until(EC.element_to_be_clickable((by, sel)))
-            # If the element is a span, click the nearest button ancestor if present
+            el = wait.until(EC.element_to_be_clickable((by, sel)))
+            # If the element is a span, click the nearest button ancestor
             try:
                 btn = el.find_element(By.XPATH, "ancestor::button[1]")
                 btn.click()
             except Exception:
                 el.click()
-            print(f"DEBUG: Successfully clicked fallback 'Post' button using {by} and {sel}.")
             return
         except Exception as e:
             last_err = e
@@ -482,10 +470,8 @@ def main() -> int:
 
     def prepend_posted(item: dict) -> None:
         posted = load_posted()
-        # Add status to the item
-        item_to_record = item.copy()
         # Remove any existing entries with same title
-        new_posted = [item_to_record] + [p for p in posted if normalize_title(p.get("title")) != normalize_title(item.get("title"))]
+        new_posted = [item] + [p for p in posted if normalize_title(p.get("title")) != normalize_title(item.get("title"))]
         with open(POSTED_JSON, "w", encoding="utf-8") as f:
             json.dump(new_posted, f, ensure_ascii=False, indent=2)
 
@@ -566,20 +552,14 @@ def main() -> int:
 
         # 7) Focus the composer input (initial focus; subsequent sends will re-focus as needed)
         step(7, "Focusing composer input")
-        # First, find the shadow host
-        shadow_host = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, SHADOW_HOST_SELECTOR)))
-        shadow_root = shadow_host.shadow_root
-        # Create a new WebDriverWait instance scoped to the shadow root
-        shadow_wait = WebDriverWait(shadow_root, 25)
-        # Now, focus the composer input within the shadow DOM using the shadow_wait
-        focus_composer_input(shadow_wait)
-        success("Composer focused within shadow DOM")
+        focus_composer_input(driver, wait)
+        success("Composer focused")
 
         # 8) Prepare text: convert first item's description to plain paragraphs
         step(8, "Typing post content")
         desc_html = first.get("description") or ""
         paragraphs = html_to_plain_paragraphs(desc_html)
-        type_paragraphs_with_retries(shadow_wait, paragraphs) # Pass shadow_wait here
+        type_paragraphs_with_retries(driver, wait, paragraphs)
         success("Content typed")
 
         # 9) Download and upload the image (if present)
@@ -588,14 +568,14 @@ def main() -> int:
             step(9, "Uploading image")
             local_image = TEMP_DIR / "post_image.jpg"
             download_image(image_url, local_image)
-            upload_image_in_composer(driver, wait, shadow_wait, local_image) # Pass shadow_wait here
+            upload_image_in_composer(driver, wait, local_image)
             success("Image attached")
         else:
             info("No image for this item")
 
         # 10) Click Post
         step(10, "Clicking Post")
-        click_post_button(driver, wait, shadow_wait)
+        click_post_button(driver, wait)
         success("Post button clicked successfully")
 
         # Record as posted immediately after successful click
