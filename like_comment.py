@@ -40,6 +40,17 @@ HEADLESS = True
 
 FEED_URL = "https://www.linkedin.com/feed/"
 
+# XPath templates
+POST_XPATH_TEMPLATE = "/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{index}]"
+SPONSORED_PROMOTED_XPATH_TEMPLATE = "/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{index}]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
+COMMENT_BTN_XPATH_TEMPLATE = "/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{index}]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/button[1]/span[1]"
+INITIAL_CONTENT_XPATH_TEMPLATE = "/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{index}]/div[1]/div[1]/div[1]/div[1]/div[1]/p[1]/span[1]"
+MORE_BUTTON_XPATH_TEMPLATE = "/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{index}]/div[1]/div[1]/div[1]/div[1]/div[1]/p[1]/span[1]/button[1]/span[1]"
+EXPANDED_CONTENT_XPATH_TEMPLATE = "/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{index}]/div[1]/div[1]/div[1]/div[1]/div[1]/p[1]/span[1]/span[2]"
+COMPONENT_KEY_XPATH_TEMPLATE = "/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[{index}]/div/div/div/div[1]/div"
+LIKE_BTN_XPATH_TEMPLATE = "/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{index}]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div[1]/button[1]/span[1]"
+EDITOR_XPATH_TEMPLATE = "/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[{index}]/div/div/div/div[3]/div/div/div/div[1]/div[1]/div/div/div[1]/div/p"
+
 def banner(msg: str) -> None:
     print(f"{Style.BRIGHT}{Fore.CYAN}=== {msg} ==={Style.RESET_ALL}")
 
@@ -243,11 +254,11 @@ def main() -> int:
             for i in range(1, 16):
                 try:
                     # Base XPath for the post container
-                    post_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{i}]"
+                    post_xpath = POST_XPATH_TEMPLATE.format(index=i)
                     post = driver.find_element(By.XPATH, post_xpath)
 
                     # Check for sponsored/promoted content
-                    sponsored_promoted_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{i}]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]"
+                    sponsored_promoted_xpath = SPONSORED_PROMOTED_XPATH_TEMPLATE.format(index=i)
                     try:
                         sponsored_promoted_text_el = driver.find_element(By.XPATH, sponsored_promoted_xpath)
                         if re.search(r"(?i)\b(Promoted|Sponsored)\b", sponsored_promoted_text_el.text):
@@ -257,7 +268,7 @@ def main() -> int:
                         pass # Not sponsored/promoted, continue
 
                     # Check for comment button
-                    comment_btn_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{i}]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/button[1]/span[1]"
+                    comment_btn_xpath = COMMENT_BTN_XPATH_TEMPLATE.format(index=i)
                     try:
                         comment_btn = driver.find_element(By.XPATH, comment_btn_xpath)
                         if not comment_btn.is_displayed() or not comment_btn.is_enabled():
@@ -271,12 +282,12 @@ def main() -> int:
                     text_val: Optional[str] = None
                     try:
                         # First try the initial span for content
-                        initial_content_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{i}]/div[1]/div[1]/div[1]/div[1]/div[1]/p[1]/span[1]"
+                        initial_content_xpath = INITIAL_CONTENT_XPATH_TEMPLATE.format(index=i)
                         initial_content_el = driver.find_element(By.XPATH, initial_content_xpath)
                         text_val = norm_text(initial_content_el.text)
 
                         # Check for "more" button and click if present
-                        more_button_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{i}]/div[1]/div[1]/div[1]/div[1]/div[1]/p[1]/span[1]/button[1]/span[1]"
+                        more_button_xpath = MORE_BUTTON_XPATH_TEMPLATE.format(index=i)
                         try:
                             more_button = driver.find_element(By.XPATH, more_button_xpath)
                             if more_button.is_displayed() and more_button.is_enabled():
@@ -284,7 +295,7 @@ def main() -> int:
                                 more_button.click()
                                 time.sleep(0.5) # Give time for content to expand
                                 # Re-read content after expansion
-                                expanded_content_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{i}]/div[1]/div[1]/div[1]/div[1]/div[1]/p[1]/span[1]/span[2]"
+                                expanded_content_xpath = EXPANDED_CONTENT_XPATH_TEMPLATE.format(index=i)
                                 expanded_content_el = driver.find_element(By.XPATH, expanded_content_xpath)
                                 text_val = norm_text(expanded_content_el.text)
                         except Exception:
@@ -302,7 +313,7 @@ def main() -> int:
                     link_val: Optional[str] = None
                     try:
                         # Use the new XPath provided by the user to find the element with componentkey
-                        component_key_xpath = f"/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[{i}]/div/div/div/div[1]/div"
+                        component_key_xpath = COMPONENT_KEY_XPATH_TEMPLATE.format(index=i)
                         component_el = driver.find_element(By.XPATH, component_key_xpath)
                         urn_val = component_el.get_attribute("componentkey") or ""
 
@@ -385,7 +396,7 @@ def main() -> int:
                     info("Liking post (no AI comment available)")
                     # Like only (since no AI comment available)
                     try:
-                        like_btn_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{post_index}]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div[1]/button[1]/span[1]"
+                        like_btn_xpath = LIKE_BTN_XPATH_TEMPLATE.format(index=post_index)
                         like_btn = driver.find_element(By.XPATH, like_btn_xpath)
                         try:
                             driver.execute_script("arguments[0].scrollIntoView({block:'center'});", like_btn)
@@ -468,7 +479,7 @@ def main() -> int:
                 current_post_el = None
                 if post_index is not None:
                     try:
-                        re_find_post_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{post_index}]"
+                        re_find_post_xpath = POST_XPATH_TEMPLATE.format(index=post_index)
                         current_post_el = driver.find_element(By.XPATH, re_find_post_xpath)
                         info(f"Re-found post element for index {post_index}.")
                     except Exception as e:
@@ -479,7 +490,7 @@ def main() -> int:
                     if comment and comment_text:
                         info("Opening comment box…")
                         try:
-                            comment_btn_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{post_index}]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/button[1]/span[1]"
+                            comment_btn_xpath = COMMENT_BTN_XPATH_TEMPLATE.format(index=post_index)
                             comment_btn = driver.find_element(By.XPATH, comment_btn_xpath)
                         except Exception:
                             comment_btn = None
@@ -509,7 +520,7 @@ def main() -> int:
                                 deadline = time.time() + (6.0 if is_headless else 3.0)
 
                                 # Use the provided XPath for the comment box input
-                                editor_xpath = f"/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[{post_index}]/div/div/div/div[3]/div/div/div/div[1]/div[1]/div/div/div[1]/div/p"
+                                editor_xpath = EDITOR_XPATH_TEMPLATE.format(index=post_index)
 
                                 while editor is None and time.time() < deadline:
                                     try:
@@ -578,7 +589,7 @@ def main() -> int:
                     if like:
                         info("Liking post…")
                         try:
-                            like_btn_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/div[1]/main[1]/div[1]/div[1]/div[2]/div[1]/div[{post_index}]/div[1]/div[1]/div[1]/div[1]/div[1]/div[5]/div[1]/div[1]/div[1]/div[1]/button[1]/span[1]"
+                            like_btn_xpath = LIKE_BTN_XPATH_TEMPLATE.format(index=post_index)
                             like_btn = driver.find_element(By.XPATH, like_btn_xpath)
                             try:
                                 driver.execute_script("arguments[0].scrollIntoView({block:'center'});", like_btn)
