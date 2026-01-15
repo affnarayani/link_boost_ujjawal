@@ -7575,7 +7575,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/ram-prawesh-r-14b7a8258?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD96NMsBVR1-_4uEnx-900QOEkjNy-9_I9Y",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-18T21:33:56"
+    "sent_request_timestamp": "2025-12-18T21:33:56",
+    "withdraw": false
   },
   {
     "page": 59,
@@ -7613,7 +7614,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/upendra-pratap-singh-320613270?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEJMbwgBbDdY9cU5vfXh_zHhPmDN2T1KClc",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-18T21:36:53"
+    "sent_request_timestamp": "2025-12-18T21:36:53",
+    "withdraw": true
   },
   {
     "page": 59,
