@@ -8849,7 +8849,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/neeraj-k-4768451b4?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADH1SFoBm07SzZSPQKlPqm9ORkt0PvmTzKw",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-31T19:27:47"
+    "sent_request_timestamp": "2025-12-31T19:27:47",
+    "withdraw": false
   },
   {
     "page": 69,
@@ -8861,7 +8862,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/abhyant-patel-0584a722b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADmPOYQBpZeuJFrE4eVRC-fvInQHIbYMYqQ",
     "sent_request": true,
-    "sent_request_timestamp": "2025-12-31T19:28:51"
+    "sent_request_timestamp": "2025-12-31T19:28:51",
+    "withdraw": true
   },
   {
     "page": 69,
