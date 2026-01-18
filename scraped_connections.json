@@ -9616,7 +9616,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/tanuja-shashi-264387317?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFBSzKwBZzblj4FfRXGAmkWk9YwCt4X5mBw",
     "sent_request": true,
-    "sent_request_timestamp": "2026-01-04T04:17:29"
+    "sent_request_timestamp": "2026-01-04T04:17:29",
+    "withdraw": false
   },
   {
     "page": 75,
@@ -9628,7 +9629,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/mukul-kumar-7619051aa?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADDmcfkBI4zTZ-FNLBHJs8M4EjOdNpv-tTM",
     "sent_request": true,
-    "sent_request_timestamp": "2026-01-04T04:31:04"
+    "sent_request_timestamp": "2026-01-04T04:31:04",
+    "withdraw": false
   },
   {
     "page": 75,
@@ -9653,7 +9655,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/shashi-ranjan-dayal-12ba0b253?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD6esvMBZEVuAcJuBTeYVvbZBdsIcdzQlVE",
     "sent_request": true,
-    "sent_request_timestamp": "2026-01-04T04:32:01"
+    "sent_request_timestamp": "2026-01-04T04:32:01",
+    "withdraw": true
   },
   {
     "page": 75,
