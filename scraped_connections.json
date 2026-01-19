@@ -10136,7 +10136,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/navneet-chandra-3196661b4?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADHuWEUBasBataOAXWOhqoUYnNpLEZYmcEw",
     "sent_request": true,
-    "sent_request_timestamp": "2026-01-05T04:44:07"
+    "sent_request_timestamp": "2026-01-05T04:44:07",
+    "withdraw": false
   },
   {
     "page": 79,
@@ -10148,7 +10149,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/akash-chaturvedi-58bb54297?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEflJzsBd986hB2qUpQEjKJb56MGf4e78lw",
     "sent_request": true,
-    "sent_request_timestamp": "2026-01-05T04:45:04"
+    "sent_request_timestamp": "2026-01-05T04:45:04",
+    "withdraw": true
   },
   {
     "page": 79,
