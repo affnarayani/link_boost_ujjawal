@@ -11254,7 +11254,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/pooja-kumari-01786a359?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFlLWZMBqwUeqZHz31yOsn092IT_95R0ThM",
     "sent_request": true,
-    "sent_request_timestamp": "2026-01-06T16:00:15"
+    "sent_request_timestamp": "2026-01-06T16:00:15",
+    "withdraw": false
   },
   {
     "page": 87,
@@ -11266,7 +11267,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/astha-prakhar-a07449202?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADOt1mcBnEM-JD08uBhHiUSlRtgMr_6lc7o",
     "sent_request": true,
-    "sent_request_timestamp": "2026-01-06T19:01:48"
+    "sent_request_timestamp": "2026-01-06T19:01:48",
+    "withdraw": true
   },
   {
     "page": 87,
