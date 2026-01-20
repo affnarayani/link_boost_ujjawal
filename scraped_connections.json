@@ -11020,7 +11020,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/ramadhar-tiwari-9a685a20b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADVXbg4BJyFRmfQZ-6O1PE5euCmQOZdJoq0",
     "sent_request": true,
-    "sent_request_timestamp": "2026-01-06T09:01:09"
+    "sent_request_timestamp": "2026-01-06T09:01:09",
+    "withdraw": false
   },
   {
     "page": 85,
@@ -11097,7 +11098,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/harsha-shashwat-419146314?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE_BOtUBeVGH5vKfYkisk93sKwnwAKnqUVo",
     "sent_request": true,
-    "sent_request_timestamp": "2026-01-06T09:02:06"
+    "sent_request_timestamp": "2026-01-06T09:02:06",
+    "withdraw": true
   },
   {
     "page": 86,
