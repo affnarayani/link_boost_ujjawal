@@ -11943,7 +11943,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/sachin-kumar-789444203?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADPbQ1kBKsnzvziryAT30X67uBgu1aLHzv8",
     "sent_request": true,
-    "sent_request_timestamp": "2026-01-07T21:49:57"
+    "sent_request_timestamp": "2026-01-07T21:49:57",
+    "withdraw": false
   },
   {
     "page": 92,
@@ -11994,7 +11995,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/adv-rajrani-choudhary-419714299?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEgv0lUBIAG1Jsym3q0r8J0cQ_55h6Nk3z4",
     "sent_request": true,
-    "sent_request_timestamp": "2026-01-07T22:59:28"
+    "sent_request_timestamp": "2026-01-07T22:59:28",
+    "withdraw": true
   },
   {
     "page": 93,
