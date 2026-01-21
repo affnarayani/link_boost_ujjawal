@@ -11553,7 +11553,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/onkar-dutt-gautam-9297452a8?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEol_vEBpauisrSbzgb4zQ-KZzN4LiRdi_0",
     "sent_request": true,
-    "sent_request_timestamp": "2026-01-07T09:54:55"
+    "sent_request_timestamp": "2026-01-07T09:54:55",
+    "withdraw": false
   },
   {
     "page": 89,
@@ -11578,7 +11579,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/adv-ram-babu-59682736b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFvH5IIBPeDhWgvNzY3_O6YasHytF1IQG48",
     "sent_request": true,
-    "sent_request_timestamp": "2026-01-07T11:18:31"
+    "sent_request_timestamp": "2026-01-07T11:18:31",
+    "withdraw": true
   },
   {
     "page": 90,
