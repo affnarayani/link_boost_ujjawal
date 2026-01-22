@@ -12983,7 +12983,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/adv-shilpa-tiwary-3a030a353?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFglGagBodsrOESa0qSwzvvDz5S6AB6SAKs",
     "sent_request": true,
-    "sent_request_timestamp": "2026-01-09T07:04:29"
+    "sent_request_timestamp": "2026-01-09T07:04:29",
+    "withdraw": false
   },
   {
     "page": 100,
@@ -12995,6 +12996,7 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/harendra-narayan-jagdishwar-b054a2274?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEL97bUB4kjEet_hIpeLo2UGTUgo3OMLslU",
     "sent_request": true,
-    "sent_request_timestamp": "2026-01-09T07:55:03"
+    "sent_request_timestamp": "2026-01-09T07:55:03",
+    "withdraw": true
   }
 ]
