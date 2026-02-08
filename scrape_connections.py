@@ -466,6 +466,10 @@ def scrape() -> None:
     search_url = config.get("search_url")
     scrape_pages = int(config.get("scrape_pages", 1))
 
+    # Stop after this many consecutive pages with no results
+    MAX_EMPTY_PAGES = 3
+    empty_page_count = 0
+
     if not search_url:
         raise RuntimeError("config.json missing 'search_url'")
 
@@ -539,13 +543,16 @@ def scrape() -> None:
                 # - Page 1: indices up to 11 due to an absent entry
                 # - Other pages: 1..10
                 max_idx = 11 if page == 1 else 10
+                
+                # Short wait for checking missing rows (2 seconds)
+                short_wait = WebDriverWait(driver, 2)
 
                 for idx in range(1, max_idx + 1):
                     log(f"- Row {idx}: extracting fields...")
                     cands = _xpath_candidates_for_row(idx)
 
-                    # Try to detect if the row exists at all by checking name presence
-                    name = _text_or_none(driver, wait, cands["name"])  # None if row missing
+                    # Try to detect if the row exists at all by checking name presence (quick check)
+                    name = _text_or_none(driver, short_wait, cands["name"])  # None if row missing
                     if not name:
                         log("  - Name not found. Possibly missing slot. Skipping.")
                         continue
@@ -603,8 +610,16 @@ def scrape() -> None:
             # Remove saved HTML for this page on success; keep it if we captured nothing for debugging
             if processed_in_page > 0 and html_path:
                 _delete_file_silent(html_path)
+                empty_page_count = 0  # Reset counter when we find results
             elif processed_in_page == 0:
                 log("No profiles extracted on this page. Keeping saved HTML in temp for manual inspection.")
+                empty_page_count += 1
+                log(f"Empty page count: {empty_page_count}/{MAX_EMPTY_PAGES}")
+                
+                # Stop scraping if too many consecutive empty pages
+                if empty_page_count >= MAX_EMPTY_PAGES:
+                    log(f"Stopping early: {MAX_EMPTY_PAGES} consecutive pages with no results.")
+                    break
 
             # Wait 30–60 seconds between pages to be gentle
             if page < scrape_pages:
