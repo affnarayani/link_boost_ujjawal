@@ -376,17 +376,24 @@ def _extract_from_result_item(item: Any) -> Dict[str, Any]:
         except Exception:
             pass
 
-    # Connect: any button within item with text 'Connect'
+    # Connect: check for Connect button/link within item
     connect = False
     try:
-        btns = item.find_elements(By.CSS_SELECTOR, 'button')
-        for b in btns:
-            txt = (b.get_attribute('innerText') or b.text or '').strip().lower()
-            if txt == 'connect':
-                connect = True
-                break
+        # Try the XPath for Connect button/span within the item
+        connect_el = item.find_element(By.XPATH, ".//span[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'connect')]")
+        if connect_el:
+            connect = True
     except Exception:
-        connect = False
+        try:
+            # Fallback: look for button with Connect text
+            btns = item.find_elements(By.CSS_SELECTOR, 'button')
+            for b in btns:
+                txt = (b.get_attribute('innerText') or b.text or '').strip().lower()
+                if 'connect' in txt:
+                    connect = True
+                    break
+        except Exception:
+            connect = False
 
     return {
         "name": name,
@@ -560,14 +567,14 @@ def scrape() -> None:
                     tag = _text_or_none(driver, wait, cands["tag"]) or ""
                     location = _text_or_none(driver, wait, cands["location"]) or ""
 
-                    # Check "Connect" button text at the specified XPath for this row index
-                    connect_xpath = f"/html/body/div[6]/div[3]/div[2]/div/div[1]/main/div/div/div[1]/div/ul/li[{idx}]/div/div/div/div[3]/div/button/span"
+                    # Check for "Connect" button at the specified XPath for this row index
+                    connect_xpath = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[{idx}]/a[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/a[1]/span[1]"
                     connect = False
                     try:
                         connect_el = driver.find_element(By.XPATH, connect_xpath)
-                        connect_text = (connect_el.text or connect_el.get_attribute("innerText") or "").strip()
-                        # Mark True only when the text equals "Connect" (case-insensitive)
-                        connect = (connect_text.lower() == "connect")
+                        connect_text = (connect_el.text or connect_el.get_attribute("innerText") or "").strip().lower()
+                        # Mark True only when the text contains "connect"
+                        connect = "connect" in connect_text
                     except Exception:
                         connect = False
 
