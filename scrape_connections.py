@@ -201,31 +201,23 @@ def _xpath_candidates_for_row(idx: int) -> Dict[str, List[str]]:
     Based on provided row 1 and row 2 patterns. We'll try variants A and B.
     """
     # Variant A (like row 1 example)
-    base_a = f"/html/body/div[6]/div[3]/div[2]/div/div[1]/main/div/div/div[1]/div/ul/li[{idx}]/div/div/div/div[2]"
+    base_a = f"/html/body/div[1]/div[2]/div[2]/div[2]/main/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[{idx}]"
     # Variant B (like row 2 example - note extra [1] levels)
-    base_b = f"/html/body/div[6]/div[3]/div[2]/div/div[1]/main/div/div/div[1]/div/ul/li[{idx}]/div/div/div/div[2]/div[1]"
+    # base_b = f"/html/body/div[6]/div[3]/div[2]/div/div[1]/main/div/div/div[1]/div/ul/li[{idx}]/div/div/div/div[2]/div[1]"
 
     name_candidates = [
-        f"{base_a}/div/div[1]/div/span[1]/span/a/span/span[1]",
-        f"{base_b}/div[1]/div/span[1]/span/a/span/span[1]",
+        f"{base_a}/a/div/div[1]/div[1]/p/a",
     ]
     tag_candidates = [
-        f"{base_a}/div/div[2]",
-        f"{base_b}/div[2]",
+        f"{base_a}/a/div/div[1]/div[1]/div[1]/p",
     ]
     location_candidates = [
-        f"{base_a}/div/div[3]",
-        f"{base_b}/div[3]",
-    ]
-    # Verified button candidate (provided for row 1). If not found, it's False.
-    verified_candidates = [
-        f"{base_a}/div/div[1]/div/span[1]/span/span/div/span[1]/button",
+        f"{base_a}/a/div/div[1]/div[1]/div[2]/p",
     ]
     return {
         "name": name_candidates,
         "tag": tag_candidates,
         "location": location_candidates,
-        "verified": verified_candidates,
     }
 
 
@@ -243,16 +235,6 @@ def _text_or_none(driver: webdriver.Chrome, wait: WebDriverWait, candidates: Lis
         except Exception:
             continue
     return None
-
-
-def _exists(driver: webdriver.Chrome, candidates: List[str]) -> bool:
-    for xp in candidates:
-        try:
-            driver.find_element(By.XPATH, xp)
-            return True
-        except Exception:
-            continue
-    return False
 
 
 def _save_page_html(driver: webdriver.Chrome, page: int, prefix: str = "people_search") -> Optional[Path]:
@@ -305,7 +287,7 @@ def _find_result_items(driver: webdriver.Chrome) -> List[Any]:
 essential_text_tags = 'p,span,strong,h1,h2,h3,div'
 
 def _extract_from_result_item(item: Any) -> Dict[str, Any]:
-    """Extract name, tag, location, verified, connect, profile_url from a result item using robust selectors.
+    """Extract name, tag, location, connect, profile_url from a result item using robust selectors.
     Item can be either the <li> or the inner container with data-view-name.
     """
     def _get_text(css_list: List[str]) -> Optional[str]:
@@ -318,15 +300,6 @@ def _extract_from_result_item(item: Any) -> Dict[str, Any]:
             except Exception:
                 continue
         return None
-
-    def _exists_css(css_list: List[str]) -> bool:
-        for css in css_list:
-            try:
-                item.find_element(By.CSS_SELECTOR, css)
-                return True
-            except Exception:
-                continue
-        return False
 
     def _get_href(css_list: List[str]) -> Optional[str]:
         for css in css_list:
@@ -403,11 +376,6 @@ def _extract_from_result_item(item: Any) -> Dict[str, Any]:
         except Exception:
             pass
 
-    verified = _exists_css([
-        'button[aria-label*="Verified" i]',
-        'svg[aria-label*="Verified" i]',
-    ])
-
     # Connect: any button within item with text 'Connect'
     connect = False
     try:
@@ -424,7 +392,6 @@ def _extract_from_result_item(item: Any) -> Dict[str, Any]:
         "name": name,
         "tag": tag,
         "location": location,
-        "verified": bool(verified),
         "connect": bool(connect),
         "profile_url": profile_url,
     }
@@ -555,13 +522,12 @@ def scrape() -> None:
                         "name": name,
                         "tag": data.get("tag", ""),
                         "location": data.get("location", ""),
-                        "verified": bool(data.get("verified", False)),
                         "connect": bool(data.get("connect", False)),
                         "profile_url": data.get("profile_url"),
                         "sent_request": False,
                     }
 
-                    log(f"  - Extracted: name='{name}', verified={bool(profile['verified'])}")
+                    log(f"  - Extracted: name='{name}'")
                     if _append_one_immediately(profile, existing, seen):
                         saved_count += 1
                         processed_in_page += 1
@@ -586,7 +552,6 @@ def scrape() -> None:
 
                     tag = _text_or_none(driver, wait, cands["tag"]) or ""
                     location = _text_or_none(driver, wait, cands["location"]) or ""
-                    verified = _exists(driver, cands["verified"])  # True if button present for this row structure
 
                     # Check "Connect" button text at the specified XPath for this row index
                     connect_xpath = f"/html/body/div[6]/div[3]/div[2]/div/div[1]/main/div/div/div[1]/div/ul/li[{idx}]/div/div/div/div[3]/div/button/span"
@@ -625,13 +590,12 @@ def scrape() -> None:
                         "name": name,
                         "tag": tag,
                         "location": location,
-                        "verified": bool(verified),
                         "connect": bool(connect),
                         "profile_url": profile_url,
                         "sent_request": False,
                     }
 
-                    log(f"  - Extracted: name='{name}', verified={bool(verified)}")
+                    log(f"  - Extracted: name='{name}'")
                     if _append_one_immediately(profile, existing, seen):
                         saved_count += 1
                         processed_in_page += 1
