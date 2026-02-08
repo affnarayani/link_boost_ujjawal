@@ -201,18 +201,18 @@ def _xpath_candidates_for_row(idx: int) -> Dict[str, List[str]]:
     Based on provided row 1 and row 2 patterns. We'll try variants A and B.
     """
     # Variant A (like row 1 example)
-    base_a = f"/html/body/div[1]/div[2]/div[2]/div[2]/main/div/div/div/div[1]/div/div/div/div[1]/div[1]/div[{idx}]"
+    base_a = f"/html[1]/body[1]/div[1]/div[2]/div[2]/div[2]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[{idx}]"
     # Variant B (like row 2 example - note extra [1] levels)
     # base_b = f"/html/body/div[6]/div[3]/div[2]/div/div[1]/main/div/div/div[1]/div/ul/li[{idx}]/div/div/div/div[2]/div[1]"
 
     name_candidates = [
-        f"{base_a}/a/div/div[1]/div[1]/p/a",
+        f"{base_a}/a[1]/div[1]/div[1]/div[1]/p[1]/a[1]",
     ]
     tag_candidates = [
-        f"{base_a}/a/div/div[1]/div[1]/div[1]/p",
+        f"{base_a}/a[1]/div[1]/div[1]/div[1]/div[1]/p[1]",
     ]
     location_candidates = [
-        f"{base_a}/a/div/div[1]/div[1]/div[2]/p",
+        f"{base_a}/a[1]/div[1]/div[1]/div[1]/div[2]/p[1]",
     ]
     return {
         "name": name_candidates,
