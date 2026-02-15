@@ -164,7 +164,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/binod-kumar-sahu-77820516b/",
     "sent_request": true,
-    "sent_request_timestamp": "2026-02-08T19:19:21"
+    "sent_request_timestamp": "2026-02-08T19:19:21",
+    "withdraw": false
   },
   {
     "page": 3,
@@ -175,7 +176,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/jagjit-kumar-054360172/",
     "sent_request": true,
-    "sent_request_timestamp": "2026-02-08T19:39:02"
+    "sent_request_timestamp": "2026-02-08T19:39:02",
+    "withdraw": true
   },
   {
     "page": 3,
