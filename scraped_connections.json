@@ -20,7 +20,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/adv-abhishek-kumar-725a04397/",
     "sent_request": true,
-    "sent_request_timestamp": "2026-02-08T13:13:24"
+    "sent_request_timestamp": "2026-02-08T13:13:24",
+    "withdraw": false
   },
   {
     "page": 1,
@@ -67,7 +68,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/manmohan-kaushik-3a1590202/",
     "sent_request": true,
-    "sent_request_timestamp": "2026-02-08T13:16:34"
+    "sent_request_timestamp": "2026-02-08T13:16:34",
+    "withdraw": true
   },
   {
     "page": 1,
