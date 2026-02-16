@@ -200,7 +200,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/imran-hussain-chand-b9b145284/",
     "sent_request": true,
-    "sent_request_timestamp": "2026-02-08T23:17:02"
+    "sent_request_timestamp": "2026-02-08T23:17:02",
+    "withdraw": false
   },
   {
     "page": 4,
@@ -247,7 +248,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/sanjay-kumar-singh-advocate-546163329/",
     "sent_request": true,
-    "sent_request_timestamp": "2026-02-09T04:40:05"
+    "sent_request_timestamp": "2026-02-09T04:40:05",
+    "withdraw": true
   },
   {
     "page": 5,
