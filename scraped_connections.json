@@ -238,7 +238,8 @@
         "location": "Legal Manager at HDFC BANK",
         "connect": true,
         "profile_url": "https://www.linkedin.com/in/sumit-kumar-150952305?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE3qn0wBkHikiL_ycULUrLLSMpAhlFMnE3o",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-03-18T06:45:30"
     },
     {
         "page": 3,
