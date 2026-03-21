@@ -1371,7 +1371,8 @@
         "location": "Advocate at Civil Court Katihar",
         "connect": true,
         "profile_url": "https://www.linkedin.com/in/adv-sudarshan-kumar-jha-28195b280?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAER8DMEBFqoSfl2bfodOwMOW8C4pr0x5qFY",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-03-21T22:51:50"
     },
     {
         "page": 23,
