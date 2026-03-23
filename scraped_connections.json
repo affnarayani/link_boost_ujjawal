@@ -1789,7 +1789,8 @@
         "location": "Advocate at Patna High Court",
         "connect": true,
         "profile_url": "https://www.linkedin.com/in/shashank-shekhar-93034b94?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAABP793QBivmrJNYKUQ2U5uxAgbqWYmynkEs",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-03-23T06:55:07"
     },
     {
         "page": 34,
@@ -1799,7 +1800,8 @@
         "location": "Advocate at District Court, Munger",
         "connect": true,
         "profile_url": "https://www.linkedin.com/in/advocate-umesh-singh-7b8120209?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADTggnwB-R2ftxAvxvRkAwdv6tHpE7nHYd0",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-03-23T06:56:03"
     },
     {
         "page": 34,
