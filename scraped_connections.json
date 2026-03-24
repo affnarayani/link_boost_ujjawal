@@ -92,7 +92,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/salil-choudhary-396534190?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAACztzCIBxcHbDSimlyGyQtFRXarPmZkm8ig",
     "sent_request": true,
-    "sent_request_timestamp": "2026-03-17T11:10:00"
+    "sent_request_timestamp": "2026-03-17T11:10:00",
+    "withdraw": false
   },
   {
     "page": 1,
