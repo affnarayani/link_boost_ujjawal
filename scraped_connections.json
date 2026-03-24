@@ -2080,7 +2080,8 @@
         "location": "Attended Central University of South Bihar,Patna University (DDE),Sainik School Tilaiya",
         "connect": true,
         "profile_url": "https://www.linkedin.com/in/shivam-kumar-724243271?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEJrxEwB-aLuAy-RcMebGAV2Kf52cztPgv4",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-03-24T08:31:39"
     },
     {
         "page": 37,
@@ -2090,7 +2091,8 @@
         "location": "Advocate at Advocate",
         "connect": true,
         "profile_url": "https://www.linkedin.com/in/akd-k-616b3129a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEhtITIBBkKOy7G5c1aj9aFBVDfEOX5kRnY",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-03-24T08:32:36"
     },
     {
         "page": 38,
