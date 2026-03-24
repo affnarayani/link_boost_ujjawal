@@ -2047,7 +2047,8 @@
         "location": "Additional public prosecutor at JEHANABAD district court",
         "connect": true,
         "profile_url": "https://www.linkedin.com/in/shardanand-kumar-4474aa326?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFJMf_cBlpVXOaWwK2_M-4iuD_Ug9RAV6ec",
-        "sent_request": false
+        "sent_request": true,
+        "sent_request_timestamp": "2026-03-24T05:50:36"
     },
     {
         "page": 37,
