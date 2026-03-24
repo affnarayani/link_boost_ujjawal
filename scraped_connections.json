@@ -200,7 +200,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/aditi-kumari-2441382b5?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEupBlQBa1be6wVnACRq2CWrLwPYIg0Eaxo",
     "sent_request": true,
-    "sent_request_timestamp": "2026-03-17T20:56:37"
+    "sent_request_timestamp": "2026-03-17T20:56:37",
+    "withdraw": false
   },
   {
     "page": 2,
@@ -211,7 +212,8 @@
     "connect": true,
     "profile_url": "https://www.linkedin.com/in/adv-upendra-kumar-154742274?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEMHZlABbwv1-H_C-dlZAzV4JMa56qqT7nk",
     "sent_request": true,
-    "sent_request_timestamp": "2026-03-17T21:02:09"
+    "sent_request_timestamp": "2026-03-17T21:02:09",
+    "withdraw": true
   },
   {
     "page": 2,
