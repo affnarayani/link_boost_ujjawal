@@ -73,7 +73,7 @@ def main():
             print("Finding connect button...", flush=True)
             connect_button_element = None
             for i in range(1, 10):
-                xpath = f'/html/body/div[{i}]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/button/span'
+                xpath = f'/html/body/div[{i}]/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div[1]/div/section/div/div/div[2]/div[3]/div/div/div[1]/div/div/a/span'
                 elements = driver.find_elements(By.XPATH, xpath)
                 if elements:
                     element = elements[0]
@@ -99,7 +99,7 @@ def main():
                 # Check for message button if no connect button found
                 print("No connect button found, checking for message button...", flush=True)
                 for i in range(1, 10):
-                    message_xpath = f'/html/body/div[{i}]/div[3]/div/div/div[2]/div/div/main/section[1]/div[2]/div[3]/div/div[1]/button/span'
+                    message_xpath = f'/html/body/div[{i}]/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div[1]/div/section/div/div/div[2]/div[3]/div/div/div[2]/a/span'
                     message_elements = driver.find_elements(By.XPATH, message_xpath)
                     if message_elements:
                         message_element = message_elements[0]

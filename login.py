@@ -29,8 +29,8 @@ CHALLENGE_PREFIX = "https://www.linkedin.com/checkpoint/challenge"
 CHALLENGE_V2_PREFIX = "https://www.linkedin.com/checkpoint/challengesV2/"
 
 # XPaths provided in the requirements
-X_USERNAME = '//*[@id="username"]'
-X_PASSWORD = '//*[@id="password"]'
+X_USERNAME = "(//input[@id='username'])[1]"
+X_PASSWORD = "(//input[@id='password'])[1]"
 X_REMEMBER_ME_LABEL = '//*[@id="organic-div"]/form/div[3]/label'
 X_SIGN_IN_BUTTON = '//*[@id="organic-div"]/form/div[4]/button'
 
