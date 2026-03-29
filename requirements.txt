@@ -1,11 +1,13 @@
-# Web Automation & Browser Control
+# --- Web Automation ---
 playwright==1.42.0
 pytest-playwright==0.4.4
 
-# AI & LLM (For Post Rewriting)
+# --- AI & Text Processing (g4f) ---
 g4f==0.2.8.2
 curl_cffi==0.6.2
 
-# Environment & Utility
+# --- Security & Encryption ---
+cryptography==42.0.5
+
+# --- Utilities & Environment ---
 python-dotenv==1.0.1
-datetime
