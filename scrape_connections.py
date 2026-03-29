@@ -2,6 +2,7 @@ import json
 import re
 import time
 import random
+import sys
 from login import login_and_get_context
 
 # --- Configuration ---
@@ -124,6 +125,7 @@ def scrape_connections():
 
     except Exception as e:
         print(f"Scraping Error: {e}")
+        sys.exit(1)
     finally:
         try:
             browser.close()
