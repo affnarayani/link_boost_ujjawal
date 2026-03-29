@@ -1,33 +1,5 @@
 [
     {
-        "name": "Kapil Jha",
-        "link": "https://www.linkedin.com/in/kapil-jha-839074210?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADVnFq0BjT7vh4e-ZJRX7-3GnSmJLn5gwt0",
-        "invited": true,
-        "timestamp": "2026-03-21 20:27:59",
-        "withdraw": true
-    },
-    {
-        "name": "Advocate Anandi Yadav",
-        "link": "https://www.linkedin.com/in/advocate-anandi-yadav-256140209?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADThIWIBn_jl5KK70Ay_HR-dhx1CHCp2Gds",
-        "invited": true,
-        "timestamp": "2026-03-21 20:45:28",
-        "withdraw": true
-    },
-    {
-        "name": "Md Saleh Rashid",
-        "link": "https://www.linkedin.com/in/md-saleh-rashid-9771b0365?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFqenGsBe7iPve4_QJrkTjLn1Jg_saTwZAQ",
-        "invited": true,
-        "timestamp": "2026-03-21 21:11:32",
-        "withdraw": true
-    },
-    {
-        "name": "Kumar Jayant Advocate",
-        "link": "https://www.linkedin.com/in/kumar-jayant-advocate-93778b324?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFH8K3sBUkc3n8Q-RxsBJAI6mWy-qMpo0Ag",
-        "invited": true,
-        "timestamp": "2026-03-21 19:00:03",
-        "withdraw": true
-    },
-    {
         "name": "Shiv Shankar",
         "link": "https://www.linkedin.com/in/shiv-shankar-8bba76257?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD9XDI8BOnlPfPoQ-aVSPN322OO6CdeWz44",
         "invited": false
