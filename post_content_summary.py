@@ -103,7 +103,7 @@ def run_post_automation():
         new_content = response.json()
     except Exception as e:
         print(f"[ERROR] Fetch failed: {e}")
-        return
+        sys.exit(1)
 
     # 2. History check
     posted_data = []
@@ -132,7 +132,9 @@ def run_post_automation():
 
     # 5. Media
     image_path = download_image(target_item['image'])
-    if not image_path: return
+    if not image_path:
+        print("[ERROR] Image path is missing.")
+        sys.exit(1)
 
     # 6. LinkedIn Upload
     pw, browser, context, page = login_and_get_context()
@@ -165,6 +167,7 @@ def run_post_automation():
 
     except Exception as e:
         print(f"[ERROR] Failed: {e}")
+        sys.exit(1)
     finally:
         browser.close()
         pw.stop()
