@@ -1,28 +1,6 @@
-{
-  "timestamp": "2026-02-28T21:43:51.509750Z",
-  "mynetwork": {
-    "connections": "359"
-  },
-  "invitations": {
-    "received_invitations": "3",
-    "sent_invitations": "0"
-  },
-  "dashboard": {
-    "post_impressions": "345",
-    "followers": "373",
-    "profile_viewers": "246",
-    "search_appearances": "4",
-    "posts": "3",
-    "comments": "30"
-  },
-  "growth": {
-    "post_impression_growth": null,
-    "post_impression_growth_value": null,
-    "post_impression_growth_direction": null,
-    "post_impression_growth_signed": null,
-    "followers_growth": null,
-    "followers_growth_value": null,
-    "followers_growth_direction": null,
-    "followers_growth_signed": null
-  }
-}
+[
+    {
+        "timestamp": "2026-03-29 13:58:06",
+        "connections": "442"
+    }
+]

@@ -1,167 +1,124 @@
+import time
 import json
 import os
-import time
+import re
+import random  # <--- Ab import ho gaya
 from datetime import datetime
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from login import login_and_get_driver
+from playwright.sync_api import expect
+from login import login_and_get_context
 
-# Headless variable - set to False by default, developer can toggle to True for headless mode
-headless = True
+def make_connections():
+    # 1. Login session mangwao (Importing from login.py)
+    pw, browser, context, page = login_and_get_context()
+    
+    json_file = 'scraped_connections.json'
+    
+    if not os.path.exists(json_file):
+        print(f"[ERROR] {json_file} file nahi mili!")
+        pw.stop()
+        return
 
-# Set environment variable based on headless
-os.environ['HEADLESS'] = 'true' if headless else 'false'
-
-def main():
-    print("Loading scraped_connections.json...", flush=True)
-    # Load scraped_connections.json
-    with open('scraped_connections.json', 'r', encoding='utf-8') as f:
+    # 2. JSON Data load karo
+    with open(json_file, 'r', encoding='utf-8') as f:
         connections = json.load(f)
 
-    # Get logged-in driver from login.py
-    print("Logging in and getting driver...", flush=True)
-    driver = login_and_get_driver()
-    wait = WebDriverWait(driver, 30)
+    invitation_sent_successfully = False
 
     try:
-        # Loop through connections where sent_request is False
-        for profile in connections:
-            if profile.get('sent_request', False):
+        for index, person in enumerate(connections):
+            # Agar pehle se invited hai toh skip karo
+            if person.get('invited') is True:
                 continue
+            
+            profile_link = person.get('link')
+            profile_name = person.get('name', 'User')
+            
+            print(f"\n[PROCESS] Target: {profile_name}")
+            print(f"[NAVIGATE] Visiting: {profile_link}")
+            
+            # Profile page par navigate karein aur random wait karein
+            page.goto(profile_link)
+            print(f"[WAIT] Waiting for profile to load...")
+            time.sleep(random.uniform(8, 15)) 
 
-            if not profile.get('connect', False):
-                # No need to open profile, just mark as sent_request
-                profile['sent_request'] = True
-                profile['sent_request_timestamp'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+            # 3. Regex Locators for 'Invite'
+            # Pattern: 'Invite' se shuru hone wala button
+            invite_regex = re.compile(r"^Invite.*", re.IGNORECASE)
+            
+            # Dono locators search karein
+            loc1 = page.get_by_test_id('lazy-column').get_by_role('link', name=invite_regex)
+            loc2 = page.get_by_role('link', name=invite_regex)
 
-                # Save back to file
-                with open('scraped_connections.json', 'w', encoding='utf-8') as f:
+            target_invite_btn = None
+            if loc1.count() > 0 and loc1.first.is_visible():
+                target_invite_btn = loc1.first
+            elif loc2.count() > 0 and loc2.first.is_visible():
+                target_invite_btn = loc2.first
+
+            # 4. Action Logic
+            if target_invite_btn:
+                print(f"[ACTION] Invite button mil gaya. Clicking in a moment...")
+                time.sleep(random.uniform(5, 10)) # Click se pehle human-like pause
+                target_invite_btn.click()
+                
+                # Verify Pop-up: 'Add a note to your invitation?'
+                popup_header = page.get_by_role('heading', name='Add a note to your invitation?')
+                
+                try:
+                    # Check if popup appeared
+                    expect(popup_header).to_be_visible(timeout=12000)
+                    print("[INFO] Invitation popup verified. Waiting before sending...")
+                    time.sleep(random.uniform(6, 12)) 
+                    
+                    # 'Send' button click karein
+                    send_btn = page.get_by_role('button', name='Send', exact=False)
+                    send_btn.click()
+                    
+                    print("[SUCCESS] Invitation sent!")
+                    # Send ke baad update aur 5-10 second ka wait
+                    connections[index]['invited'] = True
+                    connections[index]['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    
+                    time.sleep(random.uniform(5, 8))
+                    invitation_sent_successfully = True
+                    
+                    # Ek invitation bhej di, ab break karke exit karenge
+                    break 
+
+                except Exception as e:
+                    print(f"[WARNING] Popup load nahi hua: {e}")
+                    connections[index]['invited'] = True
+                    connections[index]['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            else:
+                # Agar locator nahi mila (Invite button missing)
+                print(f"[SKIP] Invite button missing for {profile_name}. Updating JSON...")
+                connections[index]['invited'] = True
+                connections[index]['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                
+                # File save karke next profile par move karein
+                with open(json_file, 'w', encoding='utf-8') as f:
                     json.dump(connections, f, indent=4)
+                
+                time.sleep(random.uniform(5, 10))
+                continue 
 
-                print(f"Marked profile as sent_request (connect: false): {profile['name']}", flush=True)
-                continue
+        # 5. Final JSON Update
+        with open(json_file, 'w', encoding='utf-8') as f:
+            json.dump(connections, f, indent=4)
 
-            profile_url = profile['profile_url']
-            print(f"Processing profile: {profile_url}", flush=True)
-
-            # Open the profile URL
-            print(f"Opening profile URL: {profile_url}", flush=True)
-            driver.get(profile_url)
-
-            # Wait for page to load (basic wait)
-            print("Waiting for page to load...", flush=True)
-            time.sleep(5)  # Adjust if needed
-
-            # Check if redirected to 404
-            current_url = driver.current_url
-            if "linkedin.com/404" in current_url:
-                print("Profile redirected to 404, marking as sent_request.", flush=True)
-                profile['sent_request'] = True
-                profile['sent_request_timestamp'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
-
-                # Save back to file
-                with open('scraped_connections.json', 'w', encoding='utf-8') as f:
-                    json.dump(connections, f, indent=4)
-
-                print("Successfully marked as sent_request due to 404 redirect.", flush=True)
-                continue
-
-            # Find connect button by checking XPath with i from 1 to 9
-            print("Finding connect button...", flush=True)
-            connect_button_element = None
-            for i in range(1, 10):
-                xpath = f'/html/body/div[{i}]/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div[1]/div/section/div/div/div[2]/div[3]/div/div/div[1]/div/div/a/span'
-                elements = driver.find_elements(By.XPATH, xpath)
-                if elements:
-                    element = elements[0]
-                    text = element.text.strip()
-                    if text == "Connect":
-                        connect_button_element = element
-                        print(f"Connect button found at div[{i}] with text 'Connect'.", flush=True)
-                        break
-                    else:
-                        # Any text other than "Connect"
-                        print(f"Found text '{text}' at div[{i}], marking as sent_request.", flush=True)
-                        profile['sent_request'] = True
-                        profile['sent_request_timestamp'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
-
-                        # Save back to file
-                        with open('scraped_connections.json', 'w', encoding='utf-8') as f:
-                            json.dump(connections, f, indent=4)
-
-                        print("Successfully marked as sent_request.", flush=True)
-                        break
-
-            if not connect_button_element:
-                # Check for message button if no connect button found
-                print("No connect button found, checking for message button...", flush=True)
-                for i in range(1, 10):
-                    message_xpath = f'/html/body/div[{i}]/div[2]/div[2]/div[2]/div/main/div/div/div[1]/div/div/div[1]/div/section/div/div/div[2]/div[3]/div/div/div[2]/a/span'
-                    message_elements = driver.find_elements(By.XPATH, message_xpath)
-                    if message_elements:
-                        message_element = message_elements[0]
-                        message_text = message_element.text.strip()
-                        if message_text == "Message":
-                            print(f"Message button found at div[{i}], user already connected, marking as sent_request.", flush=True)
-                            profile['sent_request'] = True
-                            profile['sent_request_timestamp'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
-
-                            # Save back to file
-                            with open('scraped_connections.json', 'w', encoding='utf-8') as f:
-                                json.dump(connections, f, indent=4)
-
-                            print("Successfully marked as sent_request.", flush=True)
-                            break
-
-            if connect_button_element:
-                # Click the connect button
-                print("Clicking the connect button...", flush=True)
-                connect_button_element.click()
-                print("Connect button clicked successfully.", flush=True)
-
-                # Wait 15 seconds
-                print("Waiting 15 seconds after first click...", flush=True)
-                time.sleep(15)
-
-                # Press TAB 3 times with 5s intervals, then ENTER
-                print("Sending TAB keys...", flush=True)
-                for i in range(3):
-                    webdriver.ActionChains(driver).send_keys(Keys.TAB).perform()
-                    print(f"Pressed TAB {i+1}", flush=True)
-                    time.sleep(5)
-
-                print("Waiting 5 seconds before pressing ENTER...", flush=True)
-                time.sleep(5)
-
-                print("Pressing ENTER...", flush=True)
-                webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
-
-                # Wait 15 seconds
-                print("Waiting 15 seconds after sending keys...", flush=True)
-                time.sleep(15)
-
-                # Update the JSON
-                print("Updating JSON file...", flush=True)
-                profile['sent_request'] = True
-                profile['sent_request_timestamp'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
-
-                # Save back to file
-                with open('scraped_connections.json', 'w', encoding='utf-8') as f:
-                    json.dump(connections, f, indent=4)
-
-                print("Successfully processed connection.", flush=True)
-                break  # Exit after successful connect
-
+        if invitation_sent_successfully:
+            print("\n" + "="*50)
+            print(f"RESULT: 1 Invitation sent to {profile_name}")
+            print("="*50)
         else:
-            print("No more pending connections to process.", flush=True)
+            print("\n[FINISH] No new invitations were sent.")
 
+    except Exception as e:
+        print(f"[CRITICAL ERROR] Logic failed: {e}")
     finally:
-        # Quit the browser
-        print("Quitting browser.", flush=True)
-        driver.quit()
+        print("[INFO] Closing browser session...")
+        browser.close()
+        pw.stop()
 
 if __name__ == "__main__":
-    main()
+    make_connections()

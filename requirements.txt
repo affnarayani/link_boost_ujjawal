@@ -1,10 +1,11 @@
-selenium>=4.22.0
-webdriver-manager>=4.0.2
-python-dotenv>=1.0.0
-colorama>=0.4.6
-google-genai>=0.1.0
-cryptography>=41.0.0
-google-api-core>=2.26.0
-transformers>=4.0.0
-pytz>=2025.2
-selenium-stealth>=1.0.0
+# Web Automation & Browser Control
+playwright==1.42.0
+pytest-playwright==0.4.4
+
+# AI & LLM (For Post Rewriting)
+g4f==0.2.8.2
+curl_cffi==0.6.2
+
+# Environment & Utility
+python-dotenv==1.0.1
+datetime

@@ -1,300 +1,216 @@
-import os
 import time
-import json
 import random
 import re
+import json
+import os
+import subprocess
+from playwright.sync_api import expect
+from login import login_and_get_context
 
-from google import genai
-
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.action_chains import ActionChains
-
+# G4F update requirement
 try:
-    from colorama import init as colorama_init, Fore, Style
-    colorama_init(autoreset=True)
-except Exception:
-    class Fore:
-        GREEN = ""; YELLOW = ""; RED = ""; CYAN = ""; MAGENTA = ""; BLUE = ""
-    class Style:
-        BRIGHT = ""; RESET_ALL = ""
+    print("[INFO] Updating g4f...")
+    subprocess.run(["pip", "install", "-U", "g4f"], check=True)
+except Exception as e:
+    print(f"[WARNING] G4F update failed: {e}")
 
-from login import login_and_get_driver
+import g4f
 
-HEADLESS = True
-FEED_URL = "https://www.linkedin.com/feed/"
+def get_posted_links():
+    """JSON file se already posted links load karne ke liye"""
+    file_path = 'liked_commented.json'
+    if not os.path.exists(file_path):
+        return []
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return [item['post_link'] for item in data if 'post_link' in item]
+    except Exception as e:
+        print(f"[ERROR] JSON read failed: {e}")
+        return []
 
-def banner(msg: str) -> None:
-    print(f"{Style.BRIGHT}{Fore.CYAN}=== {msg} ==={Style.RESET_ALL}")
+def save_to_json_top(new_link):
+    """Result ko JSON ke top (start) mein append karne ke liye"""
+    file_path = 'liked_commented.json'
+    data = []
+    if os.path.exists(file_path):
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+        except:
+            data = []
+    
+    data.insert(0, {"post_link": new_link})
+    
+    with open(file_path, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=4)
+    print(f"[SUCCESS] Saved to JSON: {new_link}")
 
-def step(n: int, msg: str) -> None:
-    print(f"{Fore.BLUE}{Style.BRIGHT}[STEP {n}] {msg}{Style.RESET_ALL}")
+def generate_ai_comment(content):
+    """GPT4Free ka use karke comment generate karna"""
+    try:
+        prompt = f"Analyze this content and write a 30-word insightful comment showing I understood it. Comment only, no quotes, no asterisks, no prefix: {content}"
+        response = g4f.ChatCompletion.create(
+            model=g4f.models.gpt_4,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        clean_comment = response.replace('*', '').replace('"', '').strip()
+        return clean_comment
+    except Exception as e:
+        print(f"[ERROR] G4F Generation failed: {e}")
+        return "Insightful post with great perspective on this topic, thanks for sharing these valuable details."
 
-def info(msg: str) -> None:
-    print(f"{Fore.CYAN}ℹ {msg}{Style.RESET_ALL}")
-
-def success(msg: str) -> None:
-    print(f"{Fore.GREEN}✔ {msg}{Style.RESET_ALL}")
-
-def warn(msg: str) -> None:
-    print(f"{Fore.YELLOW}⚠ {msg}{Style.RESET_ALL}")
-
-def error(msg: str) -> None:
-    print(f"{Fore.RED}✖ {msg}{Style.RESET_ALL}")
-
-def clean_model_comment(text: str) -> str:
-    s = (text or "").strip()
-    # Remove common headings/labels and markdown
-    s = re.sub(r"^\s*Gemini\s*Comment\s*:\s*", "", s, flags=re.IGNORECASE)
-    s = re.sub(r"^\s*Here.*?comment.*?:\s*", "", s, flags=re.IGNORECASE)
-    s = re.sub(r"^\s*Task\s*\d+\s*:\s*.*?\n+", "", s, flags=re.IGNORECASE)
-    s = re.sub(r"^\s*\*\*(.*?)\*\*\s*", "", s)  # drop leading bold heading
-    # Strip surrounding quotes/backticks
-    s = s.strip().strip("\"'`").strip()
-    # Collapse whitespace
-    s = re.sub(r"\s+", " ", s).strip()
-    return s
-
-def main() -> int:
-    banner("LinkedIn Text Extractor")
-
-    os.environ["HEADLESS"] = "1" if HEADLESS else "0"
-
-    driver = None
+def extract_single_new_share_link():
+    pw, browser, context, page = login_and_get_context()
 
     try:
-        step(1, "Logging in and launching browser")
-        driver = login_and_get_driver()
-        success("Driver ready")
+        already_posted = get_posted_links()
+        print(f"[INFO] Loaded {len(already_posted)} links from JSON.")
 
-        step(2, "Opening LinkedIn feed")
-        driver.get(FEED_URL)
+        print("[INFO] Waiting for LinkedIn Feed to settle...")
+        time.sleep(random.uniform(8, 12))
 
-        wait = WebDriverWait(driver, 25)
-        try:
-            wait.until(EC.presence_of_element_located((By.TAG_NAME, "main")))
-            success("Feed loaded")
-        except Exception:
-            time.sleep(2)
-            warn("Main element not found quickly, proceeding after small delay.")
+        workspace = page.locator('#workspace')
+        menu_pattern = re.compile(r"Open control menu for post by .*", re.IGNORECASE)
+        control_menu_locator = page.get_by_role('button', name=menu_pattern)
 
-        step(3, "Waiting 15 seconds for dynamic content to load")
-        time.sleep(15)
-        success("Dynamic content wait complete.")
+        target_link = None 
 
-        time.sleep(2)
+        for i in range(6):
+            if target_link: break 
 
-        step(4, "Refocusing website with TAB key presses")
-        actions = ActionChains(driver)
-        for i in range(13):
-            actions.send_keys(Keys.TAB)
-            actions.perform()
-            time.sleep(1)
-            info(f"Pressed TAB {i+1}/13 times.")
-        success("Website refocused.")
+            workspace.focus()
+            page.keyboard.press("PageDown")
+            page.evaluate("document.querySelector('#workspace').scrollBy(0, 1000)")
+            print(f"[ACTION] Scroll {i+1}/6...")
+            time.sleep(5)
 
-        step(5, "Performing scrolling with Page Down key")
-        actions = ActionChains(driver)
-        for _ in range(5):
-            actions.send_keys(Keys.PAGE_DOWN).pause(1)
-        actions.perform()
-        success("Scrolling with Page Down complete.")
-
-        step(6, "Locating and printing text from specified xpath")
-        # Load existing links
-        liked_file_path = os.path.join(os.path.dirname(__file__), "liked_commented.json")
-        existing_links = set()
-        try:
-            if os.path.exists(liked_file_path):
-                with open(liked_file_path, "r", encoding="utf-8") as f:
-                    data = json.load(f)
-                    if isinstance(data, list):
-                        for item in data:
-                            if isinstance(item, dict) and item.get("post_link"):
-                                existing_links.add(item["post_link"])
-        except Exception as e:
-            warn(f"Failed to load liked_commented.json: {e}")
-
-        short_content_xpath_template = "/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[{i}]/div/div/div/div[1]/div/p/span"
-        promoted_xpath_template = "/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[{i}]/div/div/div/div[1]/div/div[2]/a[2]/div/div[3]/p"
-        for i in range(4, 10):
-            promoted_xpath = promoted_xpath_template.format(i=i)
-            is_promoted = False
-            try:
-                promoted_element = driver.find_element(By.XPATH, promoted_xpath)
-                if "Promoted" in promoted_element.text:
-                    is_promoted = True
-            except Exception:
-                pass  # Not found or error, assume not promoted
-
-            if not is_promoted:
-                # Try to click more button first
-                more_button_xpath = f"/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[{i}]/div/div/div/div[1]/div/p/span/button/span/span/span[2]"
-                clicked_more = False
+            menus = control_menu_locator.all()
+            for menu in menus:
+                if target_link: break 
+                
                 try:
-                    more_button = driver.find_element(By.XPATH, more_button_xpath)
-                    more_button.click()
-                    info(f"Clicked more button for i={i}")
-                    time.sleep(0.5)  # Wait for expansion
-                    clicked_more = True
-                except Exception as e:
-                    warn(f"Failed to find or click more button for i={i}: {e}")
+                    if menu.is_visible():
+                        menu.scroll_into_view_if_needed()
+                        menu.click()
+                        time.sleep(2)
 
-                # Now read the content
-                short_content_xpath = short_content_xpath_template.format(i=i)
-                try:
-                    element = driver.find_element(By.XPATH, short_content_xpath)
-                    text = element.text
-                    info(f"Text for i={i}: {text}")
+                        embed_item = page.get_by_role('menuitem', name='Embed this post')
+                        
+                        if embed_item.count() > 0:
+                            embed_item.click()
 
-                    # Extract and print the post link
-                    three_dot_xpath = f"/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[{i}]/div/div/div/div[1]/div/div[1]/button[1]/span"
-                    try:
-                        three_dot_button = driver.find_element(By.XPATH, three_dot_xpath)
-                        three_dot_button.click()
-                        info(f"Clicked three dot button for i={i}")
-                        time.sleep(3)  # Wait for dropdown
+                            modal_heading = page.get_by_role('heading', name='Embed this post')
+                            expect(modal_heading).to_be_visible(timeout=15000)
+                            
+                            embed_textbox = page.locator("#feed-components-shared-embed-modal__snippet")
+                            expect(embed_textbox).to_be_visible(timeout=10000)
+                            
+                            raw_embed = None
+                            for _ in range(20):
+                                val = embed_textbox.input_value()
+                                if val and "iframe" in val.lower():
+                                    raw_embed = val
+                                    break
+                                time.sleep(0.5)
 
-                        embed_post_xpath = "/html/body/div[2]/div/div/div/div/div/div/a[1]/div/div/p"
-                        embed_button = driver.find_element(By.XPATH, embed_post_xpath)
-                        embed_button.click()
-                        info(f"Clicked embed post button for i={i}")
-                        time.sleep(15)  # Wait for popup to open
+                            if raw_embed:
+                                match = re.search(r'src="([^"]+)"', raw_embed)
+                                if match:
+                                    full_url = match.group(1)
+                                    base_url = full_url.split('?')[0]
+                                    final_link = base_url.replace('/embed/', '/')
+                                    
+                                    if "urn:li:share:" in final_link:
+                                        if final_link not in already_posted:
+                                            print(f"\n[NEW POST FOUND]: {final_link}")
+                                            
+                                            page.get_by_text('Embed full post').click()
+                                            time.sleep(15)
 
-                        host_element = driver.find_element(By.XPATH, "/html/body/div[1]/div[4]")
-                        shadow_root = driver.execute_script('return arguments[0].shadowRoot', host_element)
-                        input_element = shadow_root.find_element(By.CSS_SELECTOR, "#feed-components-shared-embed-modal__snippet")
-                        full_link = input_element.get_attribute("value")
-                        # Extract src from iframe tag if present
-                        src_match = re.search(r'src="([^"]+)"', full_link)
-                        if src_match:
-                            link = src_match.group(1).replace('/embed/', '/')
+                                            embed_iframe = page.frame_locator('iframe[title="Embed a post iframe"]')
+                                            commentary_loc = embed_iframe.locator('[data-test-id="main-feed-activity-embed-card__commentary"]')
+                                            content = commentary_loc.inner_text() if commentary_loc.count() > 0 else ""
+                                            
+                                            if len(content) < 30:
+                                                print("[SKIP] Content too short. Closing modal...")
+                                                page.keyboard.press("Escape")
+                                                time.sleep(2)
+                                                continue
+
+                                            more_btn = embed_iframe.get_by_text('…more')
+                                            if more_btn.count() > 0:
+                                                expect(more_btn).to_be_hidden(timeout=30000)
+
+                                            ai_comment = generate_ai_comment(content)
+                                            print(f"[AI COMMENT]: {ai_comment}")
+
+                                            # Open New Tab
+                                            with context.expect_page() as new_page_info:
+                                                embed_iframe.get_by_role('link', name='Comment', exact=True).click()
+                                            new_tab = new_page_info.value
+                                            new_tab.bring_to_front()
+                                            
+                                            # Wait for page to load completely
+                                            print("[ACTION] Waiting for page load...")
+                                            new_tab.wait_for_load_state("networkidle")
+                                            time.sleep(15)
+
+                                            # --- LIKE ACTION ---
+                                            print("[ACTION] Attempting to Like...")
+                                            like_btn = new_tab.get_by_role('button', name='React Like', exact=True)
+                                            if like_btn.is_visible():
+                                                like_btn.click()
+                                                print("[SUCCESS] Post Liked.")
+                                                time.sleep(5)
+                                            else:
+                                                print("[WARNING] Like button not found or already liked.")
+
+                                            # --- COMMENT ACTION ---
+                                            comment_box = new_tab.get_by_role('textbox', name='Text editor for creating').get_by_role('paragraph')
+                                            comment_box.click()
+                                            comment_box.fill(ai_comment)
+                                            time.sleep(2)
+
+                                            for _ in range(3):
+                                                new_tab.keyboard.press("Tab")
+                                                time.sleep(2)
+
+                                            new_tab.keyboard.press("Enter")
+                                            time.sleep(15)
+                                            new_tab.close()
+
+                                            save_to_json_top(final_link)
+                                            target_link = final_link
+                                            page.keyboard.press("Escape")
+                                            break 
+                                        else:
+                                            print(f"[SKIP] Already posted: {final_link[-20:]}")
+                                    else:
+                                        print(f"[IGNORE] Not a 'share' link.")
+                            
+                            if not target_link:
+                                page.keyboard.press("Escape")
+                                time.sleep(2)
                         else:
-                            link = full_link
-                        link = link.split('?')[0]
-                        info(f"Post link: {link}")
-
-                        time.sleep(5)  # Wait before exiting
-                        exit_button = shadow_root.find_element(By.CSS_SELECTOR, ".artdeco-button.artdeco-button--circle.artdeco-button--muted.artdeco-button--2.artdeco-button--tertiary.ember-view.artdeco-modal__dismiss")
-                        exit_button.click()
-                        time.sleep(5)  # Wait after exiting
-                        if link not in existing_links:
-                            info("New link found.")
-                            info(f"Text for i={i}: {text}")
-
-                            # Generate AI comment
-                            api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or os.getenv("GENAI_API_KEY")
-                            if not api_key:
-                                warn("Gemini API key not found. Skipping comment generation.")
-                            else:
-                                client = genai.Client(api_key=api_key)
-                                post_text = text
-                                prompt = (
-                                    "You are writing a short, thoughtful LinkedIn comment (1–2 sentences) in response to the post below.\n"
-                                    "Read the post carefully and understand its message, mood, and context before responding.\n"
-                                    "Your comment should:\n"
-                                    "- Sound natural, human, and emotionally intelligent.\n"
-                                    "- Match the tone and sentiment of the post (e.g., inspiring, reflective, proud, grateful, etc.).\n"
-                                    "- Add a genuine personal insight, appreciation, or perspective that feels relevant to the post.\n"
-                                    "- Avoid generic praise or repetition of the post’s content.\n"
-                                    "- Do not use any special characters like asterisks (*) or Markdown-style formatting.\n"
-                                    "Output only the comment text — no labels, explanations, or formatting.\n\n"
-                                    f"Post:\n{post_text}\n"
-                                )
-                                try:
-                                    response = client.models.generate_content(
-                                        model="gemini-3-flash-preview",
-                                        contents=prompt,
-                                    )
-                                    raw_comment = (response.text or "").strip()
-                                    comment_text = clean_model_comment(raw_comment)
-                                    info(f"AI Comment: {comment_text}")
-
-                                    # Now comment on the post
-                                    comment_button_xpath = f"/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[{i}]/div/div/div/div[1]/div/div[5]/button[1]/span"
-                                    try:
-                                        comment_button = driver.find_element(By.XPATH, comment_button_xpath)
-                                        comment_button.click()
-                                        info("Clicked comment button")
-                                        time.sleep(5)
-                                    except Exception as e:
-                                        warn(f"Failed to click comment button: {e}")
-
-                                    comment_box_xpath = f"/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[{i}]/div/div/div/div[3]/div/div/div/div/div[1]/div[1]/div/div/div[1]/div/p"
-                                    try:
-                                        comment_box = driver.find_element(By.XPATH, comment_box_xpath)
-                                        comment_box.click()
-                                        info("Clicked comment box")
-                                        time.sleep(5)
-
-                                        # Type comment human-like
-                                        for char in comment_text:
-                                            comment_box.send_keys(char)
-                                            time.sleep(random.uniform(0.01, 0.05))
-                                        info("Typed comment")
-                                        time.sleep(5)
-                                    except Exception as e:
-                                        warn(f"Failed to type comment: {e}")
-
-                                    post_comment_xpath = f"/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[{i}]/div/div/div/div[3]/div/div/div/div/div[3]/div[2]/button/span"
-                                    try:
-                                        post_button = driver.find_element(By.XPATH, post_comment_xpath)
-                                        post_button.click()
-                                        info("Posted comment")
-                                        time.sleep(5)
-                                        like_button_xpath = f"/html/body/div[1]/div[2]/div[2]/div[2]/div/main/div/div/div[2]/div/div[{i}]/div/div/div/div[1]/div/div[5]/div/div/div/div/button/span"
-                                        try:
-                                            like_button = driver.find_element(By.XPATH, like_button_xpath)
-                                            like_button.click()
-                                            info("Clicked like button")
-                                            # Now save to file
-                                            try:
-                                                with open(liked_file_path, "r", encoding="utf-8") as f:
-                                                    data = json.load(f)
-                                                data.insert(0, {"post_link": link})
-                                                with open(liked_file_path, "w", encoding="utf-8") as f:
-                                                    json.dump(data, f, indent=4)
-                                                info("Saved post link to liked_commented.json")
-                                            except Exception as e:
-                                                warn(f"Failed to save to liked_commented.json: {e}")
-                                        except Exception as e:
-                                            warn(f"Failed to click like button: {e}")
-                                    except Exception as e:
-                                        warn(f"Failed to post comment: {e}")
-
-                                except Exception as e:
-                                    warn(f"Failed to generate AI comment: {e}")
-
-                            break  # Found new link, stop
-                        else:
-                            info(f"Link already exists for i={i}, skipping. Link: {link}")
-                    except Exception as e:
-                        warn(f"Failed to extract link for i={i}: {e}")
+                            page.keyboard.press("Escape")
+                
                 except Exception as e:
-                    warn(f"Failed to find or get text for i={i}: {e}")
-        success("Finished locating and printing text.")
+                    page.keyboard.press("Escape")
+                    continue
 
-        return 0
+        print("\n" + "="*70)
+        if target_link:
+            print(f"RESULT: {target_link}")
+        else:
+            print("RESULT: No new eligible share links found in 6 scrolls.")
+        print("="*70)
 
-    except KeyboardInterrupt:
-        info("Interrupted by user. Exiting gracefully…")
-        return 0
-    except Exception as exc:
-        error(f"Unhandled error: {exc}")
-        return 1
-
+    except Exception as e:
+        print(f"[ERROR] Logic failed: {e}")
     finally:
-        try:
-            if driver:
-                time.sleep(15)  # Wait 15 seconds before closing
-                info("Closing browser…")
-                driver.quit()
-                success("Browser closed.")
-        except Exception as e:
-            warn(f"Failed to close browser: {e}")
-
+        browser.close()
+        pw.stop()
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    extract_single_new_share_link()
