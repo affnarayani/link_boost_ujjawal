@@ -3,7 +3,7 @@ playwright==1.42.0
 pytest-playwright==0.4.4
 
 # --- AI & Text Processing (g4f) ---
-g4f==0.2.8.2
+g4f
 curl_cffi==0.6.2
 
 # --- Security & Encryption ---
