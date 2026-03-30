@@ -25,102 +25,81 @@ def withdraw_all():
 
     # --- CONDITION 1: Latest Timestamp + 7 Days Check ---
     timestamps = [datetime.strptime(c['timestamp'], "%Y-%m-%d %H:%M:%S") for c in connections if 'timestamp' in c]
-    
     if not timestamps:
         print("[WAIT] Kisi bhi record mein timestamp nahi mila.", flush=True)
         return
 
     latest_ts = max(timestamps)
-    print(f"[INFO] Latest Timestamp found: {latest_ts}", flush=True)
-
     current_date = datetime.now()
     threshold_date = latest_ts + timedelta(days=7)
 
     if threshold_date > current_date:
-        print(f"[WAIT] (Latest TS + 7 days) {threshold_date} is in the future. Current is {current_date}.", flush=True)
-        status_1 = "WAIT"
-    else:
-        print(f"[PROCEED] 7 days have passed since the latest invitation.", flush=True)
-        status_1 = "PROCEED"
-
-    # --- CONDITION 2: Check if 'withdraw' key exists in ALL elements ---
-    all_have_withdraw = all('withdraw' in c for c in connections)
-    
-    if all_have_withdraw:
-        print("[PROCEED] All elements have the 'withdraw' key.", flush=True)
-        status_2 = "PROCEED"
-    else:
-        print("[WAIT] Some elements are missing the 'withdraw' key.", flush=True)
-        status_2 = "WAIT"
-
-    # --- FINAL TRIGGER ---
-    if status_1 == "PROCEED" and status_2 == "PROCEED":
-        print("\n[START] Both conditions met. Navigating to LinkedIn Manager...", flush=True)
-    else:
-        print("\n[STOP] Conditions not met. Ending program.", flush=True)
+        print(f"[WAIT] 7-day rule not met. Next run after: {threshold_date}", flush=True)
         return
+    
+    # --- CONDITION 2: Check if 'withdraw' key exists in ALL ---
+    if not all('withdraw' in c for c in connections):
+        print("[WAIT] Process not complete for all connections in JSON.", flush=True)
+        return
+
+    print("\n[START] All conditions met. Launching Stealth Browser...", flush=True)
 
     # 2. Start Stealth Browser (Login)
     pw, browser, context, page = login_and_get_context()
 
     try:
-        # Invitation Manager Page
         page.goto("https://www.linkedin.com/mynetwork/invitation-manager/sent/")
         print("[NAVIGATE] Sent invitations page loaded.", flush=True)
-        time.sleep(random.uniform(8, 15))
+        time.sleep(random.uniform(8, 12))
 
-        load_more_attempted = False
-
+        # --- PHASE 1: EXPAND ALL (Load More) ---
+        print("[PHASE 1] Expanding the list...", flush=True)
         while True:
-            # 3. Locate: Withdraw Link
+            load_more_btn = page.get_by_role('button', name='Load more')
+            if load_more_btn.is_visible():
+                print("[ACTION] Clicking 'Load more'...", flush=True)
+                load_more_btn.click()
+                # Wait for new content to inject
+                time.sleep(random.uniform(5, 10))
+            else:
+                print("[INFO] No more 'Load more' buttons. List is fully expanded.", flush=True)
+                break
+
+        # --- PHASE 2: WITHDRAWAL ---
+        print("[PHASE 2] Starting withdrawal process...", flush=True)
+        
+        while True:
+            # Hamesha first available "Withdraw" button uthao expanded list se
             target_link = page.get_by_role('listitem').get_by_role('link', name="Withdraw").first
 
             if target_link.count() == 0 or not target_link.is_visible():
-                # Agar button nahi mila aur abhi tak "Load more" try nahi kiya hai
-                if not load_more_attempted:
-                    load_more_btn = page.get_by_role('button', name='Load more')
-                    
-                    if load_more_btn.is_visible():
-                        print("[ACTION] No buttons visible. Clicking 'Load more' to fetch more data...", flush=True)
-                        load_more_btn.click()
-                        load_more_attempted = True # Mark as done
-                        time.sleep(random.uniform(5, 15))
-                        continue # Loop ke start par jao aur phir se check karo
-                    else:
-                        print("[FINISH] 'Load more' button not found. All visible invitations processed.", flush=True)
-                        break
-                else:
-                    print("[FINISH] No more withdraw buttons found after loading more data. All done.", flush=True)
-                    break
+                print("[FINISH] All visible invitations processed successfully.", flush=True)
+                break
 
-            # 4. Perform Withdrawal
-            print(f"[ACTION] Found a pending invitation. Clicking Withdraw...", flush=True)
+            print(f"[ACTION] Clicking Withdraw button...", flush=True)
             target_link.click()
             
+            # Pop-up validation
             time.sleep(random.uniform(5, 15))
             popup_heading = page.get_by_role('heading', name='Withdraw invitation')
             
             if popup_heading.is_visible():
-                print("[VERIFIED] Withdraw popup opened.", flush=True)
+                print("[VERIFIED] Popup visible.", flush=True)
                 time.sleep(random.uniform(5, 15))
                 
-                # Confirm Button
                 confirm_btn = page.get_by_role('button', name=re.compile(r"Withdraw", re.IGNORECASE))
                 
                 if confirm_btn.is_visible():
                     confirm_btn.click()
                     print("[SUCCESS] Invitation withdrawn.", flush=True)
+                    # Har withdrawal ke baad thoda buffer time
                     time.sleep(random.uniform(5, 15))
                 else:
-                    print("[ERROR] Confirmation button not found!", flush=True)
+                    print("[ERROR] Confirm button not found!", flush=True)
                     sys.exit(1)
             else:
-                print("[ERROR] Popup heading not found!", flush=True)
+                print("[ERROR] Popup did not appear!", flush=True)
                 sys.exit(1)
-
-            # Reset load_more_attempted agar humein beech mein naye buttons milte rahein
-            # load_more_attempted = False 
-            time.sleep(random.uniform(2, 5))
 
     except Exception as e:
         print(f"[CRITICAL ERROR] {e}", flush=True)
