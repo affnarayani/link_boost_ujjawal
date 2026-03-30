@@ -58,16 +58,16 @@ def perform_activity():
                     json.dump(new_data, f, indent=4)
                 
                 # Success message (Binary status, not the value)
-                print("Status: Information updated successfully in JSON.")
+                print("Status: Information updated successfully in JSON.", flush=True)
             else:
-                print("Status: Failed to find numeric data.")
+                print("Status: Failed to find numeric data.", flush=True)
                 sys.exit(1)
         else:
-            print("Status: Target element not visible.")
+            print("Status: Target element not visible.", flush=True)
             sys.exit(1)
 
     except Exception as e:
-        print(f"Status: Activity Error occurred.")
+        print(f"Status: Activity Error occurred.", flush=True)
         sys.exit(1)
     finally:
         # Silent Cleanup
@@ -76,7 +76,7 @@ def perform_activity():
             pw.stop()
         except:
             pass
-    print("Process Finished.")
+    print("Process Finished.", flush=True)
 
 if __name__ == "__main__":
     perform_activity()

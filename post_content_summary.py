@@ -11,12 +11,12 @@ import shutil
 # --- Automatic Update Logic ---
 def update_packages():
     """Har baar run hone se pehle g4f ko update karta hai"""
-    print("[INIT] Updating g4f package... please wait.")
+    print("[INIT] Updating g4f package... please wait.", flush=True)
     try:
         subprocess.check_call([sys.executable, "-m", "pip", "install", "-U", "g4f"])
-        print("[INIT] g4f updated to the latest version.\n")
+        print("[INIT] g4f updated to the latest version.\n", flush=True)
     except Exception as e:
-        print(f"[WARNING] Update failed, continuing with current version: {e}")
+        print(f"[WARNING] Update failed, continuing with current version: {e}", flush=True)
 
 # Script shuru hote hi update call
 update_packages()
@@ -40,7 +40,7 @@ def sanitize_ai_content(text):
 
 def rewrite_with_g4f(text):
     """g4f rewrite with strict no-formatting rules (Target: ~120 words)"""
-    print("[AI] Rewriting description with g4f...")
+    print("[AI] Rewriting description with g4f...", flush=True)
     
     prompt = (
         f"Task: Rewrite the legal content below into a high-engagement LinkedIn post of approximately 120 words.\n"
@@ -61,12 +61,12 @@ def rewrite_with_g4f(text):
         )
         return sanitize_ai_content(response)
     except Exception as e:
-        print(f"[ERROR] g4f rewrite failed: {e}. Using original clean text.")
+        print(f"[ERROR] g4f rewrite failed: {e}. Using original clean text.", flush=True)
         return sanitize_ai_content(text)
 
 def random_delay(step_name, min_s=5, max_s=15):
     delay = random.uniform(min_s, max_s)
-    print(f"[STEP] {step_name} | Waiting for {delay:.2f} seconds...")
+    print(f"[STEP] {step_name} | Waiting for {delay:.2f} seconds...", flush=True)
     time.sleep(delay)
 
 def clean_temp():
@@ -81,7 +81,7 @@ def clean_html(raw_html):
     return clean_text.strip()
 
 def download_image(url):
-    print(f"[INFO] Downloading image: {url}")
+    print(f"[INFO] Downloading image: {url}", flush=True)
     local_filename = os.path.join(TEMP_FOLDER, "post_image.jpg")
     try:
         with requests.get(url, stream=True, timeout=20) as r:
@@ -91,7 +91,7 @@ def download_image(url):
                     f.write(chunk)
         return os.path.abspath(local_filename)
     except Exception as e:
-        print(f"[ERROR] Image download failed: {e}")
+        print(f"[ERROR] Image download failed: {e}", flush=True)
         return None
 
 def run_post_automation():
@@ -102,7 +102,7 @@ def run_post_automation():
         response = requests.get(GITHUB_RAW_URL, timeout=20)
         new_content = response.json()
     except Exception as e:
-        print(f"[ERROR] Fetch failed: {e}")
+        print(f"[ERROR] Fetch failed: {e}", flush=True)
         sys.exit(1)
 
     # 2. History check
@@ -124,7 +124,7 @@ def run_post_automation():
             break
 
     if not target_item:
-        print("[INFO] No new content found.")
+        print("[INFO] No new content found.", flush=True)
         return
 
     # 4. AI Rewrite & Sanitize
@@ -133,7 +133,7 @@ def run_post_automation():
     # 5. Media
     image_path = download_image(target_item['image'])
     if not image_path:
-        print("[ERROR] Image path is missing.")
+        print("[ERROR] Image path is missing.", flush=True)
         sys.exit(1)
 
     # 6. LinkedIn Upload
@@ -163,10 +163,10 @@ def run_post_automation():
         posted_data.insert(0, target_item)
         with open(POSTED_FILE, "w", encoding="utf-8") as f:
             json.dump(posted_data, f, indent=4)
-        print(f"[SUCCESS] Posted: {target_item['title']}")
+        print(f"[SUCCESS] Posted: {target_item['title']}", flush=True)
 
     except Exception as e:
-        print(f"[ERROR] Failed: {e}")
+        print(f"[ERROR] Failed: {e}", flush=True)
         sys.exit(1)
     finally:
         browser.close()

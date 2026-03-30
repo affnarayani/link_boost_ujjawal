@@ -12,7 +12,7 @@ def withdraw_all():
     json_file = 'scraped_connections.json'
     
     if not os.path.exists(json_file):
-        print(f"[ERROR] {json_file} nahi mili!")
+        print(f"[ERROR] {json_file} nahi mili!", flush=True)
         sys.exit(1)
 
     # 1. JSON Load aur Validation
@@ -20,7 +20,7 @@ def withdraw_all():
         connections = json.load(f)
 
     if not connections:
-        print("[INFO] JSON khali hai.")
+        print("[INFO] JSON khali hai.", flush=True)
         return
 
     # --- CONDITION 1: Latest Timestamp + 7 Days Check ---
@@ -28,20 +28,20 @@ def withdraw_all():
     timestamps = [datetime.strptime(c['timestamp'], "%Y-%m-%d %H:%M:%S") for c in connections if 'timestamp' in c]
     
     if not timestamps:
-        print("[WAIT] Kisi bhi record mein timestamp nahi mila.")
+        print("[WAIT] Kisi bhi record mein timestamp nahi mila.", flush=True)
         return
 
     latest_ts = max(timestamps)
-    print(f"[INFO] Latest Timestamp found: {latest_ts}")
+    print(f"[INFO] Latest Timestamp found: {latest_ts}", flush=True)
 
     current_date = datetime.now()
     threshold_date = latest_ts + timedelta(days=7)
 
     if threshold_date > current_date:
-        print(f"[WAIT] (Latest TS + 7 days) {threshold_date} is in the future. Current is {current_date}.")
+        print(f"[WAIT] (Latest TS + 7 days) {threshold_date} is in the future. Current is {current_date}.", flush=True)
         status_1 = "WAIT"
     else:
-        print(f"[PROCEED] 7 days have passed since the latest invitation.")
+        print(f"[PROCEED] 7 days have passed since the latest invitation.", flush=True)
         status_1 = "PROCEED"
 
     # --- CONDITION 2: Check if 'withdraw' key exists in ALL elements ---
@@ -49,17 +49,17 @@ def withdraw_all():
     all_have_withdraw = all('withdraw' in c for c in connections)
     
     if all_have_withdraw:
-        print("[PROCEED] All elements have the 'withdraw' key.")
+        print("[PROCEED] All elements have the 'withdraw' key.", flush=True)
         status_2 = "PROCEED"
     else:
-        print("[WAIT] Some elements are missing the 'withdraw' key.")
+        print("[WAIT] Some elements are missing the 'withdraw' key.", flush=True)
         status_2 = "WAIT"
 
     # --- FINAL TRIGGER ---
     if status_1 == "PROCEED" and status_2 == "PROCEED":
-        print("\n[START] Both conditions met. Navigating to LinkedIn Manager...")
+        print("\n[START] Both conditions met. Navigating to LinkedIn Manager...", flush=True)
     else:
-        print("\n[STOP] Conditions not met. Ending program.")
+        print("\n[STOP] Conditions not met. Ending program.", flush=True)
         return
 
     # 2. Start Stealth Browser (Login)
@@ -68,7 +68,7 @@ def withdraw_all():
     try:
         # Invitation Manager Page par jao
         page.goto("https://www.linkedin.com/mynetwork/invitation-manager/sent/")
-        print("[NAVIGATE] Sent invitations page loaded.")
+        print("[NAVIGATE] Sent invitations page loaded.", flush=True)
         time.sleep(random.uniform(8, 15))
 
         while True:
@@ -80,10 +80,10 @@ def withdraw_all():
             target_link = page.get_by_role('listitem').get_by_role('link', name="Withdraw").first
 
             if target_link.count() == 0 or not target_link.is_visible():
-                print("[FINISH] No more withdraw buttons found. All done.")
+                print("[FINISH] No more withdraw buttons found. All done.", flush=True)
                 break
 
-            print(f"[ACTION] Found a pending invitation. Clicking Withdraw...")
+            print(f"[ACTION] Found a pending invitation. Clicking Withdraw...", flush=True)
             target_link.click()
             
             # Pop-up wait and verify
@@ -91,7 +91,7 @@ def withdraw_all():
             popup_heading = page.get_by_role('heading', name='Withdraw invitation')
             
             if popup_heading.is_visible():
-                print("[VERIFIED] Withdraw popup opened.")
+                print("[VERIFIED] Withdraw popup opened.", flush=True)
                 time.sleep(random.uniform(5, 15))
                 
                 # Final Confirm Button
@@ -99,23 +99,23 @@ def withdraw_all():
                 
                 if confirm_btn.is_visible():
                     confirm_btn.click()
-                    print("[SUCCESS] Invitation withdrawn.")
+                    print("[SUCCESS] Invitation withdrawn.", flush=True)
                     time.sleep(random.uniform(5, 15))
                 else:
-                    print("[ERROR] Confirmation button not found!")
+                    print("[ERROR] Confirmation button not found!", flush=True)
                     sys.exit(1)
             else:
-                print("[ERROR] Popup heading not found!")
+                print("[ERROR] Popup heading not found!", flush=True)
                 sys.exit(1)
 
             # Page ko thoda settle hone do next loop se pehle
             time.sleep(random.uniform(2, 5))
 
     except Exception as e:
-        print(f"[CRITICAL ERROR] {e}")
+        print(f"[CRITICAL ERROR] {e}", flush=True)
         sys.exit(1)
     finally:
-        print("[INFO] Closing session.")
+        print("[INFO] Closing session.", flush=True)
         browser.close()
         pw.stop()
 

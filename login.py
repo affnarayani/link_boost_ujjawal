@@ -81,9 +81,9 @@ def _write_session_cookie_to_disk(cookie: dict) -> None:
 
 def _handle_challenge_if_present(page: Page):
     if CHALLENGE_PREFIX in page.url or CHALLENGE_V2_PREFIX in page.url:
-        print("[Captcha] Human verification required. Please solve it in the browser.")
+        print("[Captcha] Human verification required. Please solve it in the browser.", flush=True)
         page.wait_for_url(lambda url: CHALLENGE_PREFIX not in url and CHALLENGE_V2_PREFIX not in url, timeout=0)
-        print("[Captcha] Challenge completed.")
+        print("[Captcha] Challenge completed.", flush=True)
 
 def login_and_get_context(is_headless: bool = HEADLESS):
     stealth = Stealth()
@@ -120,10 +120,10 @@ def login_and_get_context(is_headless: bool = HEADLESS):
         
         try:
             page.get_by_role("button", name="Me", exact=True).wait_for(state="visible", timeout=10000)
-            print("[Cookie] Login successful.")
+            print("[Cookie] Login successful.", flush=True)
             return pw, browser, context, page
         except:
-            print("[Cookie] Session invalid. Proceeding to credentials.")
+            print("[Cookie] Session invalid. Proceeding to credentials.", flush=True)
 
     # 2. Credential Login
     load_dotenv()
@@ -148,14 +148,14 @@ def login_and_get_context(is_headless: bool = HEADLESS):
     try:
         me_button = page.get_by_role("button", name="Me", exact=True)
         me_button.wait_for(state="visible", timeout=15000)
-        print("[Login] Success via credentials.")
+        print("[Login] Success via credentials.", flush=True)
         
         all_cookies = context.cookies()
         session = next((c for c in all_cookies if c["name"] == SESSION_COOKIE_NAME), None)
         if session:
             _write_session_cookie_to_disk(session)
     except Exception as e:
-        print(f"[Login] Could not verify login via 'Me' button: {e}")
+        print(f"[Login] Could not verify login via 'Me' button: {e}", flush=True)
 
     return pw, browser, context, page
 
@@ -164,7 +164,7 @@ def main():
     browser_instance = None
     try:
         pw_instance, browser_instance, context, page = login_and_get_context()
-        print("\n--- Browser Active ---")
+        print("\n--- Browser Active ---", flush=True)
         
         # State tracking
         is_active = [True]
@@ -174,9 +174,9 @@ def main():
             time.sleep(1)
             
     except KeyboardInterrupt:
-        print("\nExiting via Ctrl+C...")
+        print("\nExiting via Ctrl+C...", flush=True)
     except Exception as e:
-        print(f"CRITICAL ERROR: {e}")
+        print(f"CRITICAL ERROR: {e}", flush=True)
         return 1
     finally:
         # SILENT CLEANUP: Surrounding with broad try-except to swallow "already closed" errors
@@ -192,7 +192,7 @@ def main():
         except:
             pass
             
-        print("Process Finished Cleanly.")
+        print("Process Finished Cleanly.", flush=True)
     return 0
 
 if __name__ == "__main__":

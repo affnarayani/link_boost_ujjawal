@@ -16,7 +16,7 @@ def get_eligible_index():
     """
     json_file = 'scraped_connections.json'
     if not os.path.exists(json_file):
-        print(f"[ERROR] {json_file} nahi mili!")
+        print(f"[ERROR] {json_file} nahi mili!", flush=True)
         sys.exit(1)
 
     with open(json_file, 'r', encoding='utf-8') as f:
@@ -42,15 +42,15 @@ def get_eligible_index():
 
 def run_withdrawal():
     # Pehle eligibility check karo
-    print("[CHECK] Searching for fresh eligible candidates (> 7 days and unprocessed)...")
+    print("[CHECK] Searching for fresh eligible candidates (> 7 days and unprocessed)...", flush=True)
     target_index = get_eligible_index()
 
     if target_index is None:
-        print("[FINISH] No fresh eligible connections found. Browser session skipped.")
+        print("[FINISH] No fresh eligible connections found. Browser session skipped.", flush=True)
         return
 
     # Agar mil gaya, tabhi Login call hoga
-    print(f"[INFO] Found fresh candidate at index {target_index}. Starting Browser...")
+    print(f"[INFO] Found fresh candidate at index {target_index}. Starting Browser...", flush=True)
     pw, browser, context, page = login_and_get_context()
 
     try:
@@ -61,8 +61,8 @@ def run_withdrawal():
         profile_link = person.get('link')
         profile_name = person.get('name', 'User')
 
-        print(f"\n[PROCESS] Target: {profile_name}")
-        print(f"[NAVIGATE] Visiting: {profile_link}")
+        print(f"\n[PROCESS] Target: {profile_name}", flush=True)
+        print(f"[NAVIGATE] Visiting: {profile_link}", flush=True)
         
         page.goto(profile_link)
         # Random wait for profile load
@@ -72,7 +72,7 @@ def run_withdrawal():
         withdraw_trigger = page.get_by_test_id('lazy-column').get_by_role('link', name=re.compile(r"Pending.*", re.IGNORECASE))
 
         if withdraw_trigger.count() > 0 and withdraw_trigger.first.is_visible():
-            print(f"[ACTION] Pending button found. Opening popup...")
+            print(f"[ACTION] Pending button found. Opening popup...", flush=True)
             withdraw_trigger.first.click()
             
             time.sleep(random.uniform(6, 12))
@@ -84,26 +84,26 @@ def run_withdrawal():
             try:
                 # Click and finalize
                 withdraw_confirm_btn.click()
-                print(f"[SUCCESS] Withdrawn successfully for {profile_name}!")
+                print(f"[SUCCESS] Withdrawn successfully for {profile_name}!", flush=True)
                 
                 time.sleep(random.uniform(5, 10))
                 connections[target_index]['withdraw'] = True
             except Exception as e:
-                print(f"[WARNING] Popup button click failed: {e}")
+                print(f"[WARNING] Popup button click failed: {e}", flush=True)
                 sys.exit(1)
                 # Button nahi mila par attempt ho gaya, isliye true/false mark karna zaroori hai
                 connections[target_index]['withdraw'] = False
         else:
-            print(f"[SKIP] Pending button not found (Maybe already withdrawn or accepted).")
+            print(f"[SKIP] Pending button not found (Maybe already withdrawn or accepted).", flush=True)
             connections[target_index]['withdraw'] = False
 
         # Save result and exit
         with open('scraped_connections.json', 'w', encoding='utf-8') as f:
             json.dump(connections, f, indent=4)
-        print("[SAVE] JSON updated. Closing program.")
+        print("[SAVE] JSON updated. Closing program.", flush=True)
 
     except Exception as e:
-        print(f"[CRITICAL ERROR] Execution failed: {e}")
+        print(f"[CRITICAL ERROR] Execution failed: {e}", flush=True)
         sys.exit(1)
     finally:
         browser.close()

@@ -15,11 +15,11 @@ def scrape_connections():
     all_scraped_data = []
 
     try:
-        print(f"Navigating to: {TARGET_URL}")
+        print(f"Navigating to: {TARGET_URL}", flush=True)
         page.goto(TARGET_URL, wait_until="load")
         
         while True:
-            print("Waiting for page to settle.")
+            print("Waiting for page to settle.", flush=True)
             time.sleep(random.uniform(15, 30)) 
 
             # --- 1. SET CONTEXT ---
@@ -32,7 +32,7 @@ def scrape_connections():
                 main_context = page.get_by_role('main')
 
             # --- 2. MULTI-METHOD SCROLL (Fix for Lazy Loading) ---
-            print("Scrolling to the bottom using multiple methods...")
+            print("Scrolling to the bottom using multiple methods...", flush=True)
             time.sleep(random.uniform(15, 30)) 
             
             # Method A: Mouse Scroll (Mimics human behavior)
@@ -61,7 +61,7 @@ def scrape_connections():
             if not profile_links:
                 profile_links = main_context.locator(f"a:has-text('View ')").all()
 
-            print(f"Status: Found {len(profile_links)} profiles on this page.")
+            print(f"Status: Found {len(profile_links)} profiles on this page.", flush=True)
 
             for link_locator in profile_links:
                 try:
@@ -96,35 +96,35 @@ def scrape_connections():
                 if page_match:
                     current_page = int(page_match.group(1))
                     total_pages = int(page_match.group(2))
-                    print(f"Status: Page {current_page} of {total_pages} processed.")
+                    print(f"Status: Page {current_page} of {total_pages} processed.", flush=True)
 
                     if current_page < total_pages:
                         next_button = main_context.get_by_role('button', name='Next')
                         
                         if next_button.count() > 0:
-                            print("Next button found. Clicking...")
+                            print("Next button found. Clicking...", flush=True)
                             next_button.scroll_into_view_if_needed() # Final check
                             next_button.click()
                             page.wait_for_load_state("load")
                         else:
-                            print("Next button not found physically. Ending.")
+                            print("Next button not found physically. Ending.", flush=True)
                             break
                     else:
-                        print("Reached final page.")
+                        print("Reached final page.", flush=True)
                         break
                 else: break
             else:
-                print("Pagination text not found. Ending.")
+                print("Pagination text not found. Ending.", flush=True)
                 break
 
         # 5. Final Save
         with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
             json.dump(all_scraped_data, f, indent=4)
         
-        print(f"Process Finished. Total {len(all_scraped_data)} profiles saved to {OUTPUT_FILE}")
+        print(f"Process Finished. Total {len(all_scraped_data)} profiles saved to {OUTPUT_FILE}", flush=True)
 
     except Exception as e:
-        print(f"Scraping Error: {e}")
+        print(f"Scraping Error: {e}", flush=True)
         sys.exit(1)
     finally:
         try:

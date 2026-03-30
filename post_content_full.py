@@ -17,14 +17,14 @@ MAX_CHAR_LIMIT = 2800 # LinkedIn safely allows up to 3000, 2800 is a safe buffer
 
 def random_delay(step_name, min_s=5, max_s=15):
     delay = random.uniform(min_s, max_s)
-    print(f"[STEP] {step_name} | Waiting for {delay:.2f} seconds...")
+    print(f"[STEP] {step_name} | Waiting for {delay:.2f} seconds...", flush=True)
     time.sleep(delay)
 
 def clean_temp():
     if os.path.exists(TEMP_FOLDER):
         shutil.rmtree(TEMP_FOLDER)
     os.makedirs(TEMP_FOLDER)
-    print("[INFO] Temp folder cleared.")
+    print("[INFO] Temp folder cleared.", flush=True)
 
 def clean_html(raw_html):
     # 1. Pehle <p> aur </p> tags ko completely remove karein (bina extra \n add kiye)
@@ -37,7 +37,7 @@ def clean_html(raw_html):
     return clean_text.strip()
 
 def download_image(url):
-    print(f"[INFO] Downloading image: {url}")
+    print(f"[INFO] Downloading image: {url}", flush=True)
     local_filename = os.path.join(TEMP_FOLDER, "post_image.jpg")
     try:
         with requests.get(url, stream=True, timeout=20) as r:
@@ -47,21 +47,21 @@ def download_image(url):
                     f.write(chunk)
         return os.path.abspath(local_filename)
     except Exception as e:
-        print(f"[ERROR] Image download failed: {e}")
+        print(f"[ERROR] Image download failed: {e}", flush=True)
         return None
 
 def run_post_automation():
     clean_temp()
     
     # 1. Fetch GitHub Content
-    print("[INFO] Fetching content from GitHub...")
+    print("[INFO] Fetching content from GitHub...", flush=True)
     try:
         response = requests.get(GITHUB_RAW_URL, timeout=20)
         new_content = response.json()
         with open(CONTENT_FILE, "w", encoding="utf-8") as f:
             json.dump(new_content, f, indent=4)
     except Exception as e:
-        print(f"[ERROR] Failed to fetch content: {e}")
+        print(f"[ERROR] Failed to fetch content: {e}", flush=True)
         sys.exit(1)
 
     # 2. Check posted history
@@ -87,13 +87,13 @@ def run_post_automation():
                 clean_description = processed_text
                 break
             else:
-                print(f"[SKIP] '{item['title']}' is too long ({len(processed_text)} chars).")
+                print(f"[SKIP] '{item['title']}' is too long ({len(processed_text)} chars).", flush=True)
 
     if not target_item:
-        print("[INFO] No suitable new content found (either posted or too long).")
+        print("[INFO] No suitable new content found (either posted or too long).", flush=True)
         return
 
-    print(f"[TARGET] Found post: {target_item['title']} ({len(clean_description)} chars)")
+    print(f"[TARGET] Found post: {target_item['title']} ({len(clean_description)} chars)", flush=True)
 
     # 4. Prepare Media
     image_path = download_image(target_item['image'])
@@ -106,17 +106,17 @@ def run_post_automation():
     try:
         random_delay("Preparing LinkedIn Homepage", 15, 30)
         
-        print("[ACTION] Opening Post Editor...")
+        print("[ACTION] Opening Post Editor...", flush=True)
         page.get_by_role("button", name="Start a post").click()
         random_delay("Wait after Start a Post click")
 
-        print("[ACTION] Filling description...")
+        print("[ACTION] Filling description...", flush=True)
         editor = page.get_by_role("textbox", name="Text editor for creating")
         editor.wait_for(state="visible")
         editor.fill(clean_description)
         random_delay("Wait after typing")
         
-        print("[ACTION] Uploading Media...")
+        print("[ACTION] Uploading Media...", flush=True)
         page.get_by_role("button", name="Add media").click()
         random_delay("Wait for Media Dialog")
         
@@ -127,25 +127,25 @@ def run_post_automation():
         page.get_by_role("button", name="Next").click()
         random_delay("Wait after Next click")
         
-        print("[ACTION] Finalizing Post...")
+        print("[ACTION] Finalizing Post...", flush=True)
         post_btn = page.get_by_role("button", name="Post", exact=True)
         post_btn.wait_for(state="visible")
         post_btn.click()
         
-        print("[INFO] Uploading to LinkedIn servers...")
+        print("[INFO] Uploading to LinkedIn servers...", flush=True)
         random_delay("Final Processing Buffer", 15, 30)
 
         # 6. Update Posted File (Top Append)
         posted_data.insert(0, target_item)
         with open(POSTED_FILE, "w", encoding="utf-8") as f:
             json.dump(posted_data, f, indent=4)
-        print(f"[SUCCESS] Posted: {target_item['title']}")
+        print(f"[SUCCESS] Posted: {target_item['title']}", flush=True)
 
     except Exception as e:
-        print(f"[ERROR] Automation failed: {e}")
+        print(f"[ERROR] Automation failed: {e}", flush=True)
         sys.exit(1)
     finally:
-        print("[INFO] Shutting down and cleaning temp...")
+        print("[INFO] Shutting down and cleaning temp...", flush=True)
         browser.close()
         pw.stop()
         clean_temp()

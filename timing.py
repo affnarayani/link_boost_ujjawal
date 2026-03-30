@@ -44,7 +44,7 @@ def update_cron_times(file_path, n):
     with open(file_path, 'w') as f:
         f.writelines(new_lines)
 
-    print(f"Updated {file_path} with {n} cron times")
+    print(f"Updated {file_path} with {n} cron times", flush=True)
 
 if __name__ == "__main__":
     update_cron_times('.github/workflows/post_content.yml', 1)

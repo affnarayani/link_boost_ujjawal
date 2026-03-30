@@ -10,10 +10,10 @@ from login import login_and_get_context
 
 # G4F update requirement
 try:
-    print("[INFO] Updating g4f...")
+    print("[INFO] Updating g4f...", flush=True)
     subprocess.run(["pip", "install", "-U", "g4f"], check=True)
 except Exception as e:
-    print(f"[WARNING] G4F update failed: {e}")
+    print(f"[WARNING] G4F update failed: {e}", flush=True)
 
 import g4f
 
@@ -27,7 +27,7 @@ def get_posted_links():
             data = json.load(f)
             return [item['post_link'] for item in data if 'post_link' in item]
     except Exception as e:
-        print(f"[ERROR] JSON read failed: {e}")
+        print(f"[ERROR] JSON read failed: {e}", flush=True)
         return []
 
 def save_to_json_top(new_link):
@@ -45,7 +45,7 @@ def save_to_json_top(new_link):
     
     with open(file_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4)
-    print(f"[SUCCESS] Saved to JSON: {new_link}")
+    print(f"[SUCCESS] Saved to JSON: {new_link}", flush=True)
 
 def generate_ai_comment(content):
     """GPT4Free ka use karke comment generate karna"""
@@ -58,7 +58,7 @@ def generate_ai_comment(content):
         clean_comment = response.replace('*', '').replace('"', '').strip()
         return clean_comment
     except Exception as e:
-        print(f"[ERROR] G4F Generation failed: {e}")
+        print(f"[ERROR] G4F Generation failed: {e}", flush=True)
         return "Insightful post with great perspective on this topic, thanks for sharing these valuable details."
 
 def extract_single_new_share_link():
@@ -66,9 +66,9 @@ def extract_single_new_share_link():
 
     try:
         already_posted = get_posted_links()
-        print(f"[INFO] Loaded {len(already_posted)} links from JSON.")
+        print(f"[INFO] Loaded {len(already_posted)} links from JSON.", flush=True)
 
-        print("[INFO] Waiting for LinkedIn Feed to settle...")
+        print("[INFO] Waiting for LinkedIn Feed to settle...", flush=True)
         time.sleep(random.uniform(8, 12))
 
         workspace = page.locator('#workspace')
@@ -83,7 +83,7 @@ def extract_single_new_share_link():
             workspace.focus()
             page.keyboard.press("PageDown")
             page.evaluate("document.querySelector('#workspace').scrollBy(0, 1000)")
-            print(f"[ACTION] Scroll {i+1}/6...")
+            print(f"[ACTION] Scroll {i+1}/6...", flush=True)
             time.sleep(5)
 
             menus = control_menu_locator.all()
@@ -124,7 +124,7 @@ def extract_single_new_share_link():
                                     
                                     if "urn:li:share:" in final_link:
                                         if final_link not in already_posted:
-                                            print(f"\n[NEW POST FOUND]: {final_link}")
+                                            print(f"\n[NEW POST FOUND]: {final_link}", flush=True)
                                             
                                             page.get_by_text('Embed full post').click()
                                             time.sleep(15)
@@ -134,7 +134,7 @@ def extract_single_new_share_link():
                                             content = commentary_loc.inner_text() if commentary_loc.count() > 0 else ""
                                             
                                             if len(content) < 30:
-                                                print("[SKIP] Content too short. Closing modal...")
+                                                print("[SKIP] Content too short. Closing modal...", flush=True)
                                                 page.keyboard.press("Escape")
                                                 time.sleep(2)
                                                 continue
@@ -144,7 +144,7 @@ def extract_single_new_share_link():
                                                 expect(more_btn).to_be_hidden(timeout=30000)
 
                                             ai_comment = generate_ai_comment(content)
-                                            print(f"[AI COMMENT]: {ai_comment}")
+                                            print(f"[AI COMMENT]: {ai_comment}", flush=True)
 
                                             # Open New Tab
                                             with context.expect_page() as new_page_info:
@@ -153,19 +153,19 @@ def extract_single_new_share_link():
                                             new_tab.bring_to_front()
                                             
                                             # Wait for page to load completely
-                                            print("[ACTION] Waiting for page load...")
+                                            print("[ACTION] Waiting for page load...", flush=True)
                                             new_tab.wait_for_load_state("networkidle")
                                             time.sleep(15)
 
                                             # --- LIKE ACTION ---
-                                            print("[ACTION] Attempting to Like...")
+                                            print("[ACTION] Attempting to Like...", flush=True)
                                             like_btn = new_tab.get_by_role('button', name='React Like', exact=True)
                                             if like_btn.is_visible():
                                                 like_btn.click()
-                                                print("[SUCCESS] Post Liked.")
+                                                print("[SUCCESS] Post Liked.", flush=True)
                                                 time.sleep(5)
                                             else:
-                                                print("[WARNING] Like button not found or already liked.")
+                                                print("[WARNING] Like button not found or already liked.", flush=True)
 
                                             # --- COMMENT ACTION ---
                                             comment_box = new_tab.get_by_role('textbox', name='Text editor for creating').get_by_role('paragraph')
@@ -186,9 +186,9 @@ def extract_single_new_share_link():
                                             page.keyboard.press("Escape")
                                             break 
                                         else:
-                                            print(f"[SKIP] Already posted: {final_link[-20:]}")
+                                            print(f"[SKIP] Already posted: {final_link[-20:]}", flush=True)
                                     else:
-                                        print(f"[IGNORE] Not a 'share' link.")
+                                        print(f"[IGNORE] Not a 'share' link.", flush=True)
                             
                             if not target_link:
                                 page.keyboard.press("Escape")
@@ -200,16 +200,16 @@ def extract_single_new_share_link():
                     page.keyboard.press("Escape")
                     continue
 
-        print("\n" + "="*70)
+        print("\n" + "="*70, flush=True)
         if target_link:
-            print(f"RESULT: {target_link}")
+            print(f"RESULT: {target_link}", flush=True)
         else:
-            print("RESULT: No new eligible share links found in 6 scrolls.")
+            print("RESULT: No new eligible share links found in 6 scrolls.", flush=True)
             sys.exit(1)
-        print("="*70)
+        print("="*70, flush=True)
 
     except Exception as e:
-        print(f"[ERROR] Logic failed: {e}")
+        print(f"[ERROR] Logic failed: {e}", flush=True)
         sys.exit(1)
     finally:
         browser.close()

@@ -15,7 +15,7 @@ def make_connections():
     json_file = 'scraped_connections.json'
     
     if not os.path.exists(json_file):
-        print(f"[ERROR] {json_file} file nahi mili!")
+        print(f"[ERROR] {json_file} file nahi mili!", flush=True)
         pw.stop()
         sys.exit(1)
 
@@ -34,12 +34,12 @@ def make_connections():
             profile_link = person.get('link')
             profile_name = person.get('name', 'User')
             
-            print(f"\n[PROCESS] Target: {profile_name}")
-            print(f"[NAVIGATE] Visiting: {profile_link}")
+            print(f"\n[PROCESS] Target: {profile_name}", flush=True)
+            print(f"[NAVIGATE] Visiting: {profile_link}", flush=True)
             
             # Profile page par navigate karein aur random wait karein
             page.goto(profile_link)
-            print(f"[WAIT] Waiting for profile to load...")
+            print(f"[WAIT] Waiting for profile to load...", flush=True)
             time.sleep(random.uniform(8, 15)) 
 
             # 3. Regex Locators for 'Invite'
@@ -58,7 +58,7 @@ def make_connections():
 
             # 4. Action Logic
             if target_invite_btn:
-                print(f"[ACTION] Invite button mil gaya. Clicking in a moment...")
+                print(f"[ACTION] Invite button mil gaya. Clicking in a moment...", flush=True)
                 time.sleep(random.uniform(5, 10)) # Click se pehle human-like pause
                 target_invite_btn.click()
                 
@@ -68,14 +68,14 @@ def make_connections():
                 try:
                     # Check if popup appeared
                     expect(popup_header).to_be_visible(timeout=12000)
-                    print("[INFO] Invitation popup verified. Waiting before sending...")
+                    print("[INFO] Invitation popup verified. Waiting before sending...", flush=True)
                     time.sleep(random.uniform(6, 12)) 
                     
                     # 'Send' button click karein
                     send_btn = page.get_by_role('button', name='Send', exact=False)
                     send_btn.click()
                     
-                    print("[SUCCESS] Invitation sent!")
+                    print("[SUCCESS] Invitation sent!", flush=True)
                     # Send ke baad update aur 5-10 second ka wait
                     connections[index]['invited'] = True
                     connections[index]['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -87,13 +87,13 @@ def make_connections():
                     break 
 
                 except Exception as e:
-                    print(f"[WARNING] Popup load nahi hua: {e}")
+                    print(f"[WARNING] Popup load nahi hua: {e}", flush=True)
                     sys.exit(1)
                     connections[index]['invited'] = True
                     connections[index]['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             else:
                 # Agar locator nahi mila (Invite button missing)
-                print(f"[SKIP] Invite button missing for {profile_name}. Updating JSON...")
+                print(f"[SKIP] Invite button missing for {profile_name}. Updating JSON...", flush=True)
                 connections[index]['invited'] = True
                 connections[index]['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 
@@ -109,17 +109,17 @@ def make_connections():
             json.dump(connections, f, indent=4)
 
         if invitation_sent_successfully:
-            print("\n" + "="*50)
-            print(f"RESULT: 1 Invitation sent to {profile_name}")
-            print("="*50)
+            print("\n" + "="*50, flush=True)
+            print(f"RESULT: 1 Invitation sent to {profile_name}", flush=True)
+            print("="*50, flush=True)
         else:
-            print("\n[FINISH] No new invitations were sent.")
+            print("\n[FINISH] No new invitations were sent.", flush=True)
 
     except Exception as e:
-        print(f"[CRITICAL ERROR] Logic failed: {e}")
+        print(f"[CRITICAL ERROR] Logic failed: {e}", flush=True)
         sys.exit(1)
     finally:
-        print("[INFO] Closing browser session...")
+        print("[INFO] Closing browser session...", flush=True)
         browser.close()
         pw.stop()
 

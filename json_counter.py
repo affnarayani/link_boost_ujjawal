@@ -6,7 +6,7 @@ def process_scraped_data(file_path):
         with open(file_path, 'r') as f:
             data = json.load(f)
     except FileNotFoundError:
-        print("Error: scraped_connections.json file nahi mili.")
+        print("Error: scraped_connections.json file nahi mili.", flush=True)
         return
 
     # 1. Total number of items
@@ -36,13 +36,13 @@ def process_scraped_data(file_path):
             date_status = "PROCEED"
 
     # Printing Results
-    print(f"Total number of items: {total_items}")
-    print(f"Total number of items with invited = false: {invited_false_count}")
-    print(f"Total elements without 'withdraw' key: {no_withdraw_count}")
+    print(f"Total number of items: {total_items}", flush=True)
+    print(f"Total number of items with invited = false: {invited_false_count}", flush=True)
+    print(f"Total elements without 'withdraw' key: {no_withdraw_count}", flush=True)
     
     if latest_timestamp:
-        print(f"Latest timestamp: {latest_timestamp}")
-        print(f"Status: {date_status}")
+        print(f"Latest timestamp: {latest_timestamp}", flush=True)
+        print(f"Status: {date_status}", flush=True)
 
 # Script run karein
 process_scraped_data('scraped_connections.json')
