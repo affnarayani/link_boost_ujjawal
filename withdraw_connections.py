@@ -4,7 +4,7 @@ import os
 import re
 import random
 from datetime import datetime, timedelta
-# Login session from login.py
+import sys
 from login import login_and_get_context 
 
 def get_eligible_index():
@@ -17,7 +17,7 @@ def get_eligible_index():
     json_file = 'scraped_connections.json'
     if not os.path.exists(json_file):
         print(f"[ERROR] {json_file} nahi mili!")
-        return None
+        sys.exit(1)
 
     with open(json_file, 'r', encoding='utf-8') as f:
         connections = json.load(f)
@@ -90,6 +90,7 @@ def run_withdrawal():
                 connections[target_index]['withdraw'] = True
             except Exception as e:
                 print(f"[WARNING] Popup button click failed: {e}")
+                sys.exit(1)
                 # Button nahi mila par attempt ho gaya, isliye true/false mark karna zaroori hai
                 connections[target_index]['withdraw'] = False
         else:
@@ -103,6 +104,7 @@ def run_withdrawal():
 
     except Exception as e:
         print(f"[CRITICAL ERROR] Execution failed: {e}")
+        sys.exit(1)
     finally:
         browser.close()
         pw.stop()

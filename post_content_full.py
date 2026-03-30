@@ -5,6 +5,7 @@ import requests
 import time
 import random
 import shutil
+import sys
 from login import login_and_get_context
 
 # --- Configuration ---
@@ -61,7 +62,7 @@ def run_post_automation():
             json.dump(new_content, f, indent=4)
     except Exception as e:
         print(f"[ERROR] Failed to fetch content: {e}")
-        return
+        sys.exit(1)
 
     # 2. Check posted history
     posted_data = []
@@ -96,7 +97,8 @@ def run_post_automation():
 
     # 4. Prepare Media
     image_path = download_image(target_item['image'])
-    if not image_path: return
+    if not image_path:
+        sys.exit(1)
 
     # 5. LinkedIn Activity
     pw, browser, context, page = login_and_get_context()
@@ -141,6 +143,7 @@ def run_post_automation():
 
     except Exception as e:
         print(f"[ERROR] Automation failed: {e}")
+        sys.exit(1)
     finally:
         print("[INFO] Shutting down and cleaning temp...")
         browser.close()

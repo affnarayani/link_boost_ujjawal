@@ -3,6 +3,7 @@ import json
 import re
 from datetime import datetime
 from login import login_and_get_context 
+import sys
 
 # --- Configuration ---
 GROW_URL = "https://www.linkedin.com/mynetwork/grow/"
@@ -60,11 +61,14 @@ def perform_activity():
                 print("Status: Information updated successfully in JSON.")
             else:
                 print("Status: Failed to find numeric data.")
+                sys.exit(1)
         else:
             print("Status: Target element not visible.")
+            sys.exit(1)
 
     except Exception as e:
         print(f"Status: Activity Error occurred.")
+        sys.exit(1)
     finally:
         # Silent Cleanup
         try:

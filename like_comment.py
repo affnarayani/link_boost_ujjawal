@@ -4,6 +4,7 @@ import re
 import json
 import os
 import subprocess
+import sys
 from playwright.sync_api import expect
 from login import login_and_get_context
 
@@ -204,10 +205,12 @@ def extract_single_new_share_link():
             print(f"RESULT: {target_link}")
         else:
             print("RESULT: No new eligible share links found in 6 scrolls.")
+            sys.exit(1)
         print("="*70)
 
     except Exception as e:
         print(f"[ERROR] Logic failed: {e}")
+        sys.exit(1)
     finally:
         browser.close()
         pw.stop()

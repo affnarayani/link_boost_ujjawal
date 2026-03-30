@@ -2,7 +2,8 @@ import time
 import json
 import os
 import re
-import random  # <--- Ab import ho gaya
+import random
+import sys
 from datetime import datetime
 from playwright.sync_api import expect
 from login import login_and_get_context
@@ -16,7 +17,7 @@ def make_connections():
     if not os.path.exists(json_file):
         print(f"[ERROR] {json_file} file nahi mili!")
         pw.stop()
-        return
+        sys.exit(1)
 
     # 2. JSON Data load karo
     with open(json_file, 'r', encoding='utf-8') as f:
@@ -87,6 +88,7 @@ def make_connections():
 
                 except Exception as e:
                     print(f"[WARNING] Popup load nahi hua: {e}")
+                    sys.exit(1)
                     connections[index]['invited'] = True
                     connections[index]['timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             else:
@@ -115,6 +117,7 @@ def make_connections():
 
     except Exception as e:
         print(f"[CRITICAL ERROR] Logic failed: {e}")
+        sys.exit(1)
     finally:
         print("[INFO] Closing browser session...")
         browser.close()

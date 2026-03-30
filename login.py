@@ -11,9 +11,10 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright, Page
+from playwright_stealth import Stealth
 
 # --- Configuration ---
-HEADLESS = True
+HEADLESS = False
 LOGIN_URL = "https://www.linkedin.com/login"
 HOME_URL = "https://www.linkedin.com/feed/"
 BASE_URL = "https://www.linkedin.com/"
@@ -85,9 +86,14 @@ def _handle_challenge_if_present(page: Page):
         print("[Captcha] Challenge completed.")
 
 def login_and_get_context(is_headless: bool = HEADLESS):
-    pw = sync_playwright().start()
+    stealth = Stealth()
+    pw_cm = stealth.use_sync(sync_playwright())
+    pw = pw_cm.__enter__()
+
+    # Stealth remove karne ke liye upar ke 3 line hata ke neeche ke 1 line ko activate karna hoga
+    # pw = sync_playwright().start()
     
-    browser = pw.chromium.launch(headless=is_headless, args=["--start-maximized"])
+    browser = pw.chromium.launch(headless=is_headless, args=["--start-maximized", "--disable-blink-features=AutomationControlled"])
     context = browser.new_context(
         no_viewport=True,
         user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
