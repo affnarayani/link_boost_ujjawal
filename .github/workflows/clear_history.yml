@@ -1,7 +1,12 @@
 name: Clear Workflow History
 
 on:
+  schedule:
+    - cron: '0 0 1 * *'
   workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
   actions: write  # Needed to delete workflow runs
