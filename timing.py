@@ -51,3 +51,4 @@ if __name__ == "__main__":
     update_cron_times('.github/workflows/like_comment.yml', 6)
     update_cron_times('.github/workflows/make_connections.yml', 18)
     update_cron_times('.github/workflows/withdraw_connections.yml', 18)
+    update_cron_times('.github/workflows/withdraw_all.yml', 1)
