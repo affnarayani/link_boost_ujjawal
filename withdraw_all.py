@@ -15,7 +15,6 @@ def withdraw_all():
         print(f"[ERROR] {json_file} nahi mili!", flush=True)
         sys.exit(1)
 
-    # 1. JSON Load aur Validation
     with open(json_file, 'r', encoding='utf-8') as f:
         connections = json.load(f)
 
@@ -24,7 +23,6 @@ def withdraw_all():
         return
 
     # --- CONDITION 1: Latest Timestamp + 7 Days Check ---
-    # Saare timestamps nikaal kar latest dhoondho
     timestamps = [datetime.strptime(c['timestamp'], "%Y-%m-%d %H:%M:%S") for c in connections if 'timestamp' in c]
     
     if not timestamps:
@@ -45,7 +43,6 @@ def withdraw_all():
         status_1 = "PROCEED"
 
     # --- CONDITION 2: Check if 'withdraw' key exists in ALL elements ---
-    # Saare elements mein 'withdraw' key honi chahiye (True/False doesn't matter)
     all_have_withdraw = all('withdraw' in c for c in connections)
     
     if all_have_withdraw:
@@ -55,7 +52,6 @@ def withdraw_all():
         print("[WAIT] Some elements are missing the 'withdraw' key.", flush=True)
         status_2 = "WAIT"
 
-    # --- FINAL TRIGGER ---
     if status_1 == "PROCEED" and status_2 == "PROCEED":
         print("\n[START] Both conditions met. Navigating to LinkedIn Manager...", flush=True)
     else:
@@ -66,27 +62,42 @@ def withdraw_all():
     pw, browser, context, page = login_and_get_context()
 
     try:
-        # Invitation Manager Page par jao
         page.goto("https://www.linkedin.com/mynetwork/invitation-manager/sent/")
         print("[NAVIGATE] Sent invitations page loaded.", flush=True)
         time.sleep(random.uniform(8, 15))
 
+        retry_count = 0
+        max_retries = 3
+
         while True:
-            # 3. Locate: Withdraw Link (nth(2) inside listitem)
-            # Regex used for hasText to match any person/title
-            withdraw_target = page.get_by_role('listitem').filter(has_text=re.compile(r".*", re.IGNORECASE)).get_by_role('link', name="Withdraw").nth(0) 
-            # Note: nth(2) usually LinkedIn structure mein 'Withdraw' text wala link hota hai.
-            # Agar nth(2) exact element hai, toh hum usko target karenge:
+            # Locate: Withdraw Link
             target_link = page.get_by_role('listitem').get_by_role('link', name="Withdraw").first
 
             if target_link.count() == 0 or not target_link.is_visible():
-                print("[FINISH] No more withdraw buttons found. All done.", flush=True)
-                break
+                if retry_count < max_retries:
+                    retry_count += 1
+                    print(f"[SCROLL] No buttons visible. Attempting scroll {retry_count}/{max_retries}...", flush=True)
+                    
+                    # Workspace locator ko scroll down karna
+                    workspace = page.locator('#workspace')
+                    if workspace.count() > 0:
+                        workspace.evaluate("el => el.scrollTop = el.scrollHeight")
+                    else:
+                        # Fallback: Agar workspace na mile toh window scroll
+                        page.mouse.wheel(0, 1000)
+                    
+                    time.sleep(random.uniform(5, 15))
+                    continue # Firse check karega loop ke shuru mein
+                else:
+                    print("[FINISH] No more withdraw buttons found after 3 scrolls. All done.", flush=True)
+                    break
+
+            # Reset retry_count agar button mil gaya
+            retry_count = 0
 
             print(f"[ACTION] Found a pending invitation. Clicking Withdraw...", flush=True)
             target_link.click()
             
-            # Pop-up wait and verify
             time.sleep(random.uniform(5, 15))
             popup_heading = page.get_by_role('heading', name='Withdraw invitation')
             
@@ -94,7 +105,6 @@ def withdraw_all():
                 print("[VERIFIED] Withdraw popup opened.", flush=True)
                 time.sleep(random.uniform(5, 15))
                 
-                # Final Confirm Button
                 confirm_btn = page.get_by_role('button', name=re.compile(r"Withdraw", re.IGNORECASE))
                 
                 if confirm_btn.is_visible():
@@ -108,7 +118,6 @@ def withdraw_all():
                 print("[ERROR] Popup heading not found!", flush=True)
                 sys.exit(1)
 
-            # Page ko thoda settle hone do next loop se pehle
             time.sleep(random.uniform(2, 5))
 
     except Exception as e:
