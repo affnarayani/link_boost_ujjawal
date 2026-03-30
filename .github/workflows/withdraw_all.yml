@@ -1,4 +1,4 @@
-name: Withdraw Connections
+name: Withdraw All
 
 on:
   schedule:
