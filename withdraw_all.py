@@ -15,6 +15,7 @@ def withdraw_all():
         print(f"[ERROR] {json_file} nahi mili!", flush=True)
         sys.exit(1)
 
+    # 1. JSON Load aur Validation
     with open(json_file, 'r', encoding='utf-8') as f:
         connections = json.load(f)
 
@@ -52,6 +53,7 @@ def withdraw_all():
         print("[WAIT] Some elements are missing the 'withdraw' key.", flush=True)
         status_2 = "WAIT"
 
+    # --- FINAL TRIGGER ---
     if status_1 == "PROCEED" and status_2 == "PROCEED":
         print("\n[START] Both conditions met. Navigating to LinkedIn Manager...", flush=True)
     else:
@@ -62,39 +64,36 @@ def withdraw_all():
     pw, browser, context, page = login_and_get_context()
 
     try:
+        # Invitation Manager Page
         page.goto("https://www.linkedin.com/mynetwork/invitation-manager/sent/")
         print("[NAVIGATE] Sent invitations page loaded.", flush=True)
         time.sleep(random.uniform(8, 15))
 
-        retry_count = 0
-        max_retries = 3
+        load_more_attempted = False
 
         while True:
-            # Locate: Withdraw Link
+            # 3. Locate: Withdraw Link
             target_link = page.get_by_role('listitem').get_by_role('link', name="Withdraw").first
 
             if target_link.count() == 0 or not target_link.is_visible():
-                if retry_count < max_retries:
-                    retry_count += 1
-                    print(f"[SCROLL] No buttons visible. Attempting scroll {retry_count}/{max_retries}...", flush=True)
+                # Agar button nahi mila aur abhi tak "Load more" try nahi kiya hai
+                if not load_more_attempted:
+                    load_more_btn = page.get_by_role('button', name='Load more')
                     
-                    # Workspace locator ko scroll down karna
-                    workspace = page.locator('#workspace')
-                    if workspace.count() > 0:
-                        workspace.evaluate("el => el.scrollTop = el.scrollHeight")
+                    if load_more_btn.is_visible():
+                        print("[ACTION] No buttons visible. Clicking 'Load more' to fetch more data...", flush=True)
+                        load_more_btn.click()
+                        load_more_attempted = True # Mark as done
+                        time.sleep(random.uniform(5, 15))
+                        continue # Loop ke start par jao aur phir se check karo
                     else:
-                        # Fallback: Agar workspace na mile toh window scroll
-                        page.mouse.wheel(0, 1000)
-                    
-                    time.sleep(random.uniform(5, 15))
-                    continue # Firse check karega loop ke shuru mein
+                        print("[FINISH] 'Load more' button not found. All visible invitations processed.", flush=True)
+                        break
                 else:
-                    print("[FINISH] No more withdraw buttons found after 3 scrolls. All done.", flush=True)
+                    print("[FINISH] No more withdraw buttons found after loading more data. All done.", flush=True)
                     break
 
-            # Reset retry_count agar button mil gaya
-            retry_count = 0
-
+            # 4. Perform Withdrawal
             print(f"[ACTION] Found a pending invitation. Clicking Withdraw...", flush=True)
             target_link.click()
             
@@ -105,6 +104,7 @@ def withdraw_all():
                 print("[VERIFIED] Withdraw popup opened.", flush=True)
                 time.sleep(random.uniform(5, 15))
                 
+                # Confirm Button
                 confirm_btn = page.get_by_role('button', name=re.compile(r"Withdraw", re.IGNORECASE))
                 
                 if confirm_btn.is_visible():
@@ -118,6 +118,8 @@ def withdraw_all():
                 print("[ERROR] Popup heading not found!", flush=True)
                 sys.exit(1)
 
+            # Reset load_more_attempted agar humein beech mein naye buttons milte rahein
+            # load_more_attempted = False 
             time.sleep(random.uniform(2, 5))
 
     except Exception as e:
