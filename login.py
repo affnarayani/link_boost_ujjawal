@@ -14,7 +14,7 @@ from playwright.sync_api import sync_playwright, Page
 from playwright_stealth import Stealth
 
 # --- Configuration ---
-HEADLESS = False
+HEADLESS = True
 LOGIN_URL = "https://www.linkedin.com/login"
 HOME_URL = "https://www.linkedin.com/feed/"
 BASE_URL = "https://www.linkedin.com/"
