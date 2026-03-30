@@ -1,6 +1,7 @@
 # --- Web Automation ---
 playwright==1.42.0
 pytest-playwright==0.4.4
+playwright-stealth
 
 # --- AI & Text Processing (g4f) ---
 g4f
