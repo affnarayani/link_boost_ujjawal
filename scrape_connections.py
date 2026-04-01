@@ -6,7 +6,7 @@ import sys
 from login import login_and_get_context
 
 # --- Configuration ---
-TARGET_URL = f"https://www.linkedin.com/search/results/people/?geoUrn=%5B%22115908247%22%2C%22102913253%22%5D&keywords=advocate&origin=FACETED_SEARCH&sid=gwv"
+TARGET_URL = f"https://www.linkedin.com/search/results/people/?geoUrn=%5B%22113536609%22%5D&keywords=advocate&origin=FACETED_SEARCH"
 OUTPUT_FILE = "scraped_connections.json"
 # ---------------------
 
