@@ -140,7 +140,8 @@
     {
         "name": "Sachina Singh",
         "link": "https://www.linkedin.com/in/sachina-singh-5ba4a7256?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD8TrJ4Bi0CxEioZ75dv8-vzdC24uR9i1AQ",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-02 19:35:28"
     },
     {
         "name": "Adv Himanshu Shekhar",
