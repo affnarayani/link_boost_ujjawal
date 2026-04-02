@@ -128,12 +128,14 @@
     {
         "name": "Dinesh Srivastav",
         "link": "https://www.linkedin.com/in/dinesh-srivastav-9b42803a3?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGLRVZgBK-4WUaxoJqhfsavObHvvrtDkhp0",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-02 19:10:19"
     },
     {
         "name": "Adv. Sanjeet Kumar",
         "link": "https://www.linkedin.com/in/adv-sanjeet-kumar-1841a3265?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAED9WzQBZdQ1GdZuadCA7dbFrBJsVlzvRSo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-02 19:11:01"
     },
     {
         "name": "Sachina Singh",
