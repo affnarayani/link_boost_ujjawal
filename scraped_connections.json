@@ -50,12 +50,14 @@
     {
         "name": "Parishmita Bora Choudhary",
         "link": "https://www.linkedin.com/in/parishmita-bora-choudhary-13a5b5379?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF2G6X4BSrT8MQQ2HZ43HBh65SjmNbzE5No",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-02 05:00:20"
     },
     {
         "name": "rajiv kumar",
         "link": "https://www.linkedin.com/in/rajiv-kumar-321854205?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADRF4ckBC0V5TFG0tbBeiWQkVa_iRJElD9Q",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-02 05:00:57"
     },
     {
         "name": "Advocate Saumya P.",
