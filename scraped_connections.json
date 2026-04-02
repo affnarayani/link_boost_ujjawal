@@ -68,12 +68,14 @@
     {
         "name": "Pulkit Thakur",
         "link": "https://www.linkedin.com/in/pulkit-thakur-b3097924a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD25RhQBiWaZ1dKQGTS7x75Q-KgHCky9_So",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-02 07:45:14"
     },
     {
         "name": "Rishi Raj Raman",
         "link": "https://www.linkedin.com/in/rishi-raj-raman-b3a100221?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADe44l4B4DYSVQEtBFyAzY_Bhf_r3kelPFs",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-02 07:45:57"
     },
     {
         "name": "Atul Kumar singh",
