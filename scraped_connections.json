@@ -122,7 +122,8 @@
     {
         "name": "Anuj Shrivastav",
         "link": "https://www.linkedin.com/in/anuj-shrivastav-83a897200?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADNjbO4BKzqo0ChJ0Pc64Eh0oUeaz5n6QCE",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-02 17:41:46"
     },
     {
         "name": "Dinesh Srivastav",
