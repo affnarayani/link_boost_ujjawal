@@ -92,7 +92,8 @@
     {
         "name": "I A ANSARI",
         "link": "https://www.linkedin.com/in/i-a-ansari-8b3b3a3a6?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGN634cBwEyifusEp_-QYpqYg7WpMIN3RiU",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-02 11:15:15"
     },
     {
         "name": "Ranvir Pratap Singh",
