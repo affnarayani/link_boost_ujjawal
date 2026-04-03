@@ -164,7 +164,8 @@
     {
         "name": "Shifa Khan",
         "link": "https://www.linkedin.com/in/shifa-khan-32326422b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADmGSssBCk-MqTZJ77esJXLfWQiq-lNOGro",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-03 05:20:13"
     },
     {
         "name": "Aryan Mani",
