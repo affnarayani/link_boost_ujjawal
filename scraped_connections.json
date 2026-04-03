@@ -182,7 +182,8 @@
     {
         "name": "Advocate Amit Kumar Singh",
         "link": "https://www.linkedin.com/in/advocate-amit-kumar-singh-b62052396?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGEuyPoB3if7lqU_G2fFwBHGa_cCFWzsxMU",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-03 06:18:55"
     },
     {
         "name": "Adv Himanshu Praveer",
