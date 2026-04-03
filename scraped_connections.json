@@ -200,7 +200,8 @@
     {
         "name": "Rajan Kumar",
         "link": "https://www.linkedin.com/in/rajan-kumar-794026394?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGDSzuABimly_4RABQTzjYR0RREPdPdcOIw",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-03 09:12:44"
     },
     {
         "name": "Sarvesh Kashyap",
