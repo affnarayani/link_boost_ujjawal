@@ -326,7 +326,8 @@
     {
         "name": "Abhinav Anand",
         "link": "https://www.linkedin.com/in/abhinav-anand-6185553a8?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGO_tjQBwBPeZKNNoxHeu1-JGRGxyOGm5LI",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-04 13:40:11"
     },
     {
         "name": "Jivitesh Sisodia",
