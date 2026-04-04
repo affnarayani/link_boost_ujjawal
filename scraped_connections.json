@@ -374,7 +374,8 @@
     {
         "name": "Sanjeev Shahi",
         "link": "https://www.linkedin.com/in/sanjeevshahi?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGQ6NCcBG-FtkdXN7W1IENXVaR46E8IRwSA",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-04 22:50:08"
     },
     {
         "name": "Rajesh Kumar",
