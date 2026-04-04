@@ -284,7 +284,8 @@
     {
         "name": "Rubasha Perween",
         "link": "https://www.linkedin.com/in/rubasha-perween-28b48021a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADc-GYsBL5SPOZ6GE6ZCIw8rLzy3eUsyoic",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-04 06:15:03"
     },
     {
         "name": "Kuldeep Kumar",
