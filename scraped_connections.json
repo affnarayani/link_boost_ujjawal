@@ -278,7 +278,8 @@
     {
         "name": "Adv Shahzeb Khan",
         "link": "https://www.linkedin.com/in/adv-shahzeb-khan-71a711249?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD2B_8YBNEQ29ptxU49TIsik83H-yrolqJU",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-04 06:11:17"
     },
     {
         "name": "Rubasha Perween",
