@@ -464,7 +464,8 @@
     {
         "name": "Adv Priya Kumari",
         "link": "https://www.linkedin.com/in/adv-priya-kumari-8972b8372?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFw8rfMBCXlLSaVe2ci23IWsuNSao7hOFYM",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-05 21:17:12"
     },
     {
         "name": "Kaushiki Ranjan",
