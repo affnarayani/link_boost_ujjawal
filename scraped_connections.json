@@ -416,7 +416,8 @@
     {
         "name": "Adya Rao",
         "link": "https://www.linkedin.com/in/adya-rao-1881a721b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADdhFjgBA_BSkJekVY7We23yMlQKsc3cnFM",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-05 10:58:31"
     },
     {
         "name": "Adv ATUL Sinha",
