@@ -404,7 +404,8 @@
     {
         "name": "Advocate Krishna chandra",
         "link": "https://www.linkedin.com/in/advocate-krishna-chandra-08015820b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADU8x2ABAzpoz1yxs_EEh5PeJaoR5ku0ZCo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-05 08:27:07"
     },
     {
         "name": "Vishal Kumar Chauhan",
