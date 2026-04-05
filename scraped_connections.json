@@ -440,7 +440,8 @@
     {
         "name": "Shashank Shekhar",
         "link": "https://www.linkedin.com/in/shashank-shekhar-21b307331?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFOEZHcBiIrzLVvJH--2Bgv1O7WgYuGVwHk",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-05 14:08:38"
     },
     {
         "name": "Saroj Kumar Upadhyay",
