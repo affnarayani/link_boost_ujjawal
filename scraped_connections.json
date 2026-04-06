@@ -500,7 +500,8 @@
     {
         "name": "sristy patel",
         "link": "https://www.linkedin.com/in/sristy-patel-8138771b9?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADLaGs8BAD0iaBlojHvHZRyvcPZoWJf4BU4",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-06 07:10:31"
     },
     {
         "name": "chitragupta sahay",
