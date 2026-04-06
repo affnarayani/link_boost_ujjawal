@@ -566,7 +566,8 @@
     {
         "name": "Suraj Kumar",
         "link": "https://www.linkedin.com/in/suraj-kr-b1784434a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFdVZUMB8claRzwFU5qZc9n5iLP_XiYL89Y",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-06 18:12:31"
     },
     {
         "name": "Mallika Kumari",
