@@ -638,12 +638,14 @@
     {
         "name": "Shekhar Singh",
         "link": "https://www.linkedin.com/in/shekhar-singh-6b2651377?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF0tl6YBDBjQY8vECB8w7kBkhZnVUzzlPBo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-07 09:39:15"
     },
     {
         "name": "Jagriti Choubey",
         "link": "https://www.linkedin.com/in/jagriti-choubey-a07809367?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFsREmcB7-qNPGefKuqtvMkn6cNfKFYAmyo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-07 09:39:49"
     },
     {
         "name": "Adv. Zeeshan Khan",
