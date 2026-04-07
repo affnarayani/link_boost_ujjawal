@@ -650,7 +650,8 @@
     {
         "name": "Adv. Zeeshan Khan",
         "link": "https://www.linkedin.com/in/adv-zeeshan-khan-4099a23b2?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGThxckBffUfMAuzry_oFjO_7S1AReipw7Q",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-07 10:35:52"
     },
     {
         "name": "Singh Dharmesh Anand",
