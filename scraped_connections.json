@@ -692,7 +692,8 @@
     {
         "name": "Shianjany Pradhan",
         "link": "https://www.linkedin.com/in/shianjany-p?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADQbCpgBrfZ1mWynl1RO4mlMdxhK-AcHE4w",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-07 21:15:11"
     },
     {
         "name": "Nisha Singh",
