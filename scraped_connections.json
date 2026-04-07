@@ -686,7 +686,8 @@
     {
         "name": "Masoom Alam",
         "link": "https://www.linkedin.com/in/masoom-alam-846b411b5?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADIuI3YBiWqiWiH-eNp2H5V8s8SLIaShhOo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-07 19:50:07"
     },
     {
         "name": "Shianjany Pradhan",
