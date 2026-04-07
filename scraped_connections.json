@@ -662,7 +662,8 @@
     {
         "name": "Deepak Kumar",
         "link": "https://www.linkedin.com/in/deepak-kumar-a43482202?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADOu61MBh8vS_smKfbl48ZWwf6PqsMZZrQY",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-07 12:03:09"
     },
     {
         "name": "rambabu yadav",
