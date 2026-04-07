@@ -614,7 +614,8 @@
     {
         "name": "Srishti .",
         "link": "https://www.linkedin.com/in/srishti-b8b554371?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFwYgpsBV1xNo56d6X4KI5kw5aZJDp-hTU4",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-07 07:53:06"
     },
     {
         "name": "Adv.Arsh Kumar",
