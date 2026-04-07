@@ -680,7 +680,8 @@
     {
         "name": "Ashish Kumar",
         "link": "https://www.linkedin.com/in/ashish-kumar-9a51bb1a5?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC_n5s0Bdra5l-QXsNgGH0wI09qxrc3N5VQ",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-07 17:46:23"
     },
     {
         "name": "Masoom Alam",
