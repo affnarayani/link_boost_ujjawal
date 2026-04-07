@@ -674,7 +674,8 @@
     {
         "name": "Advocate Parvind Kumar",
         "link": "https://www.linkedin.com/in/advocate-parvind-kumar-4493b3203?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADPZpbkB1XHhtZ1T6vrSrHwKfYALFm4vNNc",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-07 17:43:56"
     },
     {
         "name": "Ashish Kumar",
