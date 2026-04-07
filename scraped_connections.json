@@ -698,7 +698,8 @@
     {
         "name": "Nisha Singh",
         "link": "https://www.linkedin.com/in/nisha-singh-658b171a4?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC_dB-QBYu4toIjzvL1lyOXTLaTU8xM8lww",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-07 22:36:58"
     },
     {
         "name": "AKSHARA Sinha",
