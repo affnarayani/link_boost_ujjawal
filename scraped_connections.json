@@ -656,7 +656,8 @@
     {
         "name": "Singh Dharmesh Anand",
         "link": "https://www.linkedin.com/in/singh-dharmesh-anand-5359ba201?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADOVfXkBfmlJR9822N1ENbFg6PmhUblzy_w",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-07 11:42:11"
     },
     {
         "name": "Deepak Kumar",
