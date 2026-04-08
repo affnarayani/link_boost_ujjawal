@@ -24,7 +24,8 @@
         "name": "Aditya Tiwary",
         "link": "https://www.linkedin.com/in/aditya-tiwary-297228219?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADcHQZMBhtwJASAoy-tLxcVZORqCrAZ2jj4",
         "invited": true,
-        "timestamp": "2026-04-01 19:36:57"
+        "timestamp": "2026-04-01 19:36:57",
+        "withdraw": false
     },
     {
         "name": "Rakesh Pratap",
