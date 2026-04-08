@@ -764,7 +764,8 @@
     {
         "name": "Ansh Prasad",
         "link": "https://www.linkedin.com/in/ansh-prasad-9259231a7?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADBeV20BhrVaqVjFuVaC5FS1u1nXtqICKmo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-08 14:06:02"
     },
     {
         "name": "Aman Kumar",
