@@ -734,7 +734,8 @@
     {
         "name": "Rishi Pal",
         "link": "https://www.linkedin.com/in/rishi-pal-800b17264?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEDzCMABy86ENdmrwXsJYkupvxp9qI5wAZo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-08 09:56:25"
     },
     {
         "name": "Adv Shubham Raj",
