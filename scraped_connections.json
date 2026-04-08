@@ -779,7 +779,8 @@
     {
         "name": "Swati Prakash",
         "link": "https://www.linkedin.com/in/swati-prakash-b675a7245?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADzHK78BN_73SY9-IHCM8rsSHlZstbxR2pw",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-08 19:51:03"
     },
     {
         "name": "KUMARI ANPAM",
