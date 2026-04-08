@@ -728,7 +728,8 @@
     {
         "name": "Sakshi Suman",
         "link": "https://www.linkedin.com/in/sakshi-suman-99b726294?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEdMZAcBTJWWrpYDa_s77P_M077hwF4qVqs",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-08 09:38:04"
     },
     {
         "name": "Rishi Pal",
