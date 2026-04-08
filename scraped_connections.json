@@ -786,7 +786,8 @@
     {
         "name": "KUMARI ANPAM",
         "link": "https://www.linkedin.com/in/kumari-anpam-361a34256?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD8oJ_kBcDDYYT5Ct5E0XXzeA8aGnlDu2No",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-08 20:58:56"
     },
     {
         "name": "RAVISH VARMA",
