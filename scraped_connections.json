@@ -740,7 +740,8 @@
     {
         "name": "Adv Shubham Raj",
         "link": "https://www.linkedin.com/in/adv-shubham-raj-5a2a04375?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFzgJkoBwFarygVwsn7-P_1ur3149UaC4JI",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-08 11:33:21"
     },
     {
         "name": "Kriti Roy",
