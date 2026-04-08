@@ -704,7 +704,8 @@
     {
         "name": "AKSHARA Sinha",
         "link": "https://www.linkedin.com/in/akshara-sinha-b60297218?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADbb5rgBGTZ8sgFUShkzkUp1Z2FridHzXZI",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-08 05:22:47"
     },
     {
         "name": "Satyam Thakur",
