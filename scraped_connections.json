@@ -813,7 +813,8 @@
     {
         "name": "Parth Kumar",
         "link": "https://www.linkedin.com/in/parth-kumar-12b6a31ba?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADMA5vMBI3rgZ7b_oGK0aFzvFqWh1od8iqc",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-08 23:02:39"
     },
     {
         "name": "Amisha Kumari",
