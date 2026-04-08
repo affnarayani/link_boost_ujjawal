@@ -722,7 +722,8 @@
     {
         "name": "Saumya Kaushik",
         "link": "https://www.linkedin.com/in/saumya-kaushik-712401288?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEXTur4Boj7ACZZxQMVILxk1YBRbGbUmopE",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-08 07:56:04"
     },
     {
         "name": "Sakshi Suman",
