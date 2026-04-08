@@ -710,7 +710,8 @@
     {
         "name": "Satyam Thakur",
         "link": "https://www.linkedin.com/in/satyam-thakur-2758a31b6?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADJSP7kBP_DVFHXWsc6KXZd2W1DQo4UDknY",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-08 05:25:59"
     },
     {
         "name": "Prashant Kashyap",
