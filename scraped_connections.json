@@ -752,7 +752,8 @@
     {
         "name": "Anant Gautam",
         "link": "https://www.linkedin.com/in/anant-gautam-835261168?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAACfniWkBq3-sBGB_yALHnvs7OiFx7sRYbv4",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-08 11:54:08"
     },
     {
         "name": "Priya Singh",
