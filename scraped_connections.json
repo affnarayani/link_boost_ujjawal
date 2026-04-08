@@ -799,7 +799,8 @@
     {
         "name": "Aman Raj",
         "link": "https://www.linkedin.com/in/aman-raj-526243205?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADQuwy4BMar_61COx0Ox0LRi8bsKZDO5we0",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-08 21:30:59"
     },
     {
         "name": "Adv. Krishna Pratap Yadav",
