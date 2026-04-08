@@ -746,7 +746,8 @@
     {
         "name": "Kriti Roy",
         "link": "https://www.linkedin.com/in/kriti-roy-529b1031b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFElB_EBo4G_PB5Q2ajsNVdxGWcytzUXwbs",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-08 11:40:17"
     },
     {
         "name": "Anant Gautam",
