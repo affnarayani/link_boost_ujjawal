@@ -758,7 +758,8 @@
     {
         "name": "Priya Singh",
         "link": "https://www.linkedin.com/in/priya-singh-72b9201b3?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADHKwhMB25FU_LX_q5CIYzyotOWTO4vrNlo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-08 11:57:54"
     },
     {
         "name": "Ansh Prasad",
