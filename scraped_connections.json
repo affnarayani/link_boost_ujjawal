@@ -905,7 +905,8 @@
     {
         "name": "Raushan Kumar",
         "link": "https://www.linkedin.com/in/raushan-kumar-860732278?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEO9WUgBmqZaJl9-BzJ97TDpCXD5rlNbAxo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-09 19:49:21"
     },
     {
         "name": "Vijay Kumar Sinha",
