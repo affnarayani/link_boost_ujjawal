@@ -136,7 +136,8 @@
         "name": "Adv. Satyam Nandan",
         "link": "https://www.linkedin.com/in/adv-satyam-nandan-603214214?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADYjB2MB_AKakHtpI-lZnyap9f9OdD0IuEU",
         "invited": true,
-        "timestamp": "2026-04-02 17:15:19"
+        "timestamp": "2026-04-02 17:15:19",
+        "withdraw": false
     },
     {
         "name": "Anuj Shrivastav",
