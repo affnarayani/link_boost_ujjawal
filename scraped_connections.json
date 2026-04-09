@@ -863,7 +863,8 @@
     {
         "name": "Nikhil Kumar Singh",
         "link": "https://www.linkedin.com/in/nikhil-singh-adv?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADqx_esB21MdyV4UogKxm21inTDbCU3Ix3g",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-09 14:25:06"
     },
     {
         "name": "Isshan Siingh",
