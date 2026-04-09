@@ -857,7 +857,8 @@
     {
         "name": "Advocate Sandhya sinha",
         "link": "https://www.linkedin.com/in/advocate-sandhya-sinha-80255a373?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFxzyQIBYrE7T03AQVsuRi18-sdlRUePCl0",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-09 14:19:03"
     },
     {
         "name": "Nikhil Kumar Singh",
