@@ -157,7 +157,8 @@
         "name": "Adv. Sanjeet Kumar",
         "link": "https://www.linkedin.com/in/adv-sanjeet-kumar-1841a3265?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAED9WzQBZdQ1GdZuadCA7dbFrBJsVlzvRSo",
         "invited": true,
-        "timestamp": "2026-04-02 19:11:01"
+        "timestamp": "2026-04-02 19:11:01",
+        "withdraw": false
     },
     {
         "name": "Sachina Singh",
