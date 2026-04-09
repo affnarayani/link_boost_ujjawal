@@ -896,7 +896,8 @@
     {
         "name": "Yashwant Sagar",
         "link": "https://www.linkedin.com/in/yashwant-sagar-6a2b52303?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE2XGloBRLku6IRZnLqDRCokCTRQ8f06Jwc",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-09 17:37:09"
     },
     {
         "name": "Raushan Kumar",
