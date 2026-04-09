@@ -911,7 +911,8 @@
     {
         "name": "Vijay Kumar Sinha",
         "link": "https://www.linkedin.com/in/vijay-kumar-sinha-1751411b2?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADF_d6kBdgE55WWenDZYVbx75dyx0zPtbfE",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-09 20:08:24"
     },
     {
         "name": "Harsh Kumar",
