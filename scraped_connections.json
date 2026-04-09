@@ -917,7 +917,8 @@
     {
         "name": "Harsh Kumar",
         "link": "https://www.linkedin.com/in/harsh-kumar-hk4458?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADWgSOgBq6GN8XzzWt1cnWTvzw_wgOhxZf0",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-09 21:06:22"
     },
     {
         "name": "vivek kumar",
