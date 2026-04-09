@@ -150,7 +150,8 @@
         "name": "Dinesh Srivastav",
         "link": "https://www.linkedin.com/in/dinesh-srivastav-9b42803a3?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGLRVZgBK-4WUaxoJqhfsavObHvvrtDkhp0",
         "invited": true,
-        "timestamp": "2026-04-02 19:10:19"
+        "timestamp": "2026-04-02 19:10:19",
+        "withdraw": false
     },
     {
         "name": "Adv. Sanjeet Kumar",
