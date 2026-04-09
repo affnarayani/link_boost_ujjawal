@@ -937,7 +937,8 @@
     {
         "name": "Kanchan Lata",
         "link": "https://www.linkedin.com/in/kanchan-lata-8b6a6421a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADdUXgoBuxVqm38nlrPYlLQKLYL8M8nylhs",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-09 23:29:20"
     },
     {
         "name": "Aditi Singh",
