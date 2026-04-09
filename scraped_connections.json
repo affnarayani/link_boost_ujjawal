@@ -876,7 +876,8 @@
     {
         "name": "Prity Kumari",
         "link": "https://www.linkedin.com/in/prity-kumari-a763331b6?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADI9EToBxYu42J0TxqFifYxU84VxwF5GvX4",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-09 15:57:58"
     },
     {
         "name": "Best Advocate Directory",
