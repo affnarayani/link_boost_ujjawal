@@ -870,7 +870,8 @@
     {
         "name": "Isshan Siingh",
         "link": "https://www.linkedin.com/in/isshan-siingh-a26276135?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAACD3DT4B9YJ3IzAarj9H1ZZhvHB7Ed0lHn0",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-09 15:00:59"
     },
     {
         "name": "Prity Kumari",
