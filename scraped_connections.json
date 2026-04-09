@@ -924,7 +924,8 @@
     {
         "name": "vivek kumar",
         "link": "https://www.linkedin.com/in/vivek-kumar-63606a387?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF86HQoBLkAfivI7izQbVZkbDB17yVuJ5rc",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-09 21:25:31"
     },
     {
         "name": "Dikshaa Raj",
