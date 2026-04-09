@@ -849,7 +849,8 @@
     {
         "name": "Ashish Ranjan",
         "link": "https://www.linkedin.com/in/ashish-ranjan-835abb1a9?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADDAUekBRFilx2EySQZaSCuKX3b-LNuWfkU",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-09 10:04:24"
     },
     {
         "name": "Advocate Sandhya sinha",
