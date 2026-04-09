@@ -820,7 +820,8 @@
     {
         "name": "Amisha Kumari",
         "link": "https://www.linkedin.com/in/amisha-kumari-b688701a9?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADC3LYABcHB84-h_8q7ymgqzH7nenbE2-f4",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-09 05:21:36"
     },
     {
         "name": "Vikash Yadav",
