@@ -80,7 +80,8 @@
         "name": "Pulkit Thakur",
         "link": "https://www.linkedin.com/in/pulkit-thakur-b3097924a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD25RhQBiWaZ1dKQGTS7x75Q-KgHCky9_So",
         "invited": true,
-        "timestamp": "2026-04-02 07:45:14"
+        "timestamp": "2026-04-02 07:45:14",
+        "withdraw": false
     },
     {
         "name": "Rishi Raj Raman",
