@@ -949,7 +949,8 @@
     {
         "name": "Adv. Raj Kumar",
         "link": "https://www.linkedin.com/in/adv-raj-kumar-164a33269?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEHTkBwB9AJBtjii2RmH34z1uuJbLsZKPlk",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-10 05:16:34"
     },
     {
         "name": "Rishav Agarwal",
