@@ -199,7 +199,8 @@
         "name": "Aryan Mani",
         "link": "https://www.linkedin.com/in/aryan-mani-0a764a253?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD6Qv_8Ba31So47jA0gtRMucOu41kY_w28E",
         "invited": true,
-        "timestamp": "2026-04-03 05:52:21"
+        "timestamp": "2026-04-03 05:52:21",
+        "withdraw": false
     },
     {
         "name": "Shraddha Shivangi",
