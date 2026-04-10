@@ -997,7 +997,8 @@
     {
         "name": "Shwetabh Singh",
         "link": "https://www.linkedin.com/in/shwetabh-singh?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAABqf1TYB7J8XLKbSXA8DEOeOTvyHUbA6xdI",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-10 08:58:19"
     },
     {
         "name": "Vinay Kriti",
