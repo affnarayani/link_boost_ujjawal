@@ -977,7 +977,8 @@
     {
         "name": "Sanjiv Kumar",
         "link": "https://www.linkedin.com/in/sanjiv-kumar-9032b0223?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADgbSBMBOJ5ReVthOOp-PbBd-sd7LwDRZhs",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-10 07:11:08"
     },
     {
         "name": "Hans Raj",
