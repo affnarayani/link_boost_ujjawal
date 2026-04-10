@@ -955,7 +955,8 @@
     {
         "name": "Rishav Agarwal",
         "link": "https://www.linkedin.com/in/rishav-agarwal-5637a5221?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADfS8tsB5k2H7V9dnOIdGvLg4VngU6j_FjE",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-10 05:36:18"
     },
     {
         "name": "Deepak Kumar",
