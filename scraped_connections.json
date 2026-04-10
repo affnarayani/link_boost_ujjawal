@@ -1039,7 +1039,8 @@
     {
         "name": "Harsh Raj",
         "link": "https://www.linkedin.com/in/harsh-raj-?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADQCgb8B57rUL-rGQdmKGM5GCQN5083eTxc",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-10 16:42:04"
     },
     {
         "name": "Abhishek Shandilya",
