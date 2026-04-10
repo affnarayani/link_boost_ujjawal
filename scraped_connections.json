@@ -1057,7 +1057,8 @@
     {
         "name": "Anmol Ratan",
         "link": "https://www.linkedin.com/in/anmol-ratan-41164a30a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE7C8c0BRAuHvnNm5EaWsEw9EX924wBZwHg",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-10 23:04:27"
     },
     {
         "name": "Riya Kumari",
