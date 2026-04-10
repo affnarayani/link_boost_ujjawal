@@ -1033,7 +1033,8 @@
     {
         "name": "Niraj Kumar Singh",
         "link": "https://www.linkedin.com/in/niraj-kumar-singh-861989287?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEW75YkB-1x9j3EExIFaKmL81dvIiArLO2A",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-10 15:40:35"
     },
     {
         "name": "Harsh Raj",
