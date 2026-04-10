@@ -1051,7 +1051,8 @@
     {
         "name": "Kunwar Ajit Singh",
         "link": "https://www.linkedin.com/in/kunwar-ajit-singh-a7b4b0286?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEV8EP8B_BLliaBAAtlSJ2OwH7zkvBPwgBk",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-10 21:58:44"
     },
     {
         "name": "Anmol Ratan",
