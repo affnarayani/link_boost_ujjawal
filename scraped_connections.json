@@ -1045,7 +1045,8 @@
     {
         "name": "Abhishek Shandilya",
         "link": "https://www.linkedin.com/in/abhishek-shandilya-120a76354?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFhvWCgBJibYzZ7GZnbBeacso5yvJ0UEPtg",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-10 19:59:42"
     },
     {
         "name": "Kunwar Ajit Singh",
