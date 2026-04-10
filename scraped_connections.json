@@ -1019,7 +1019,8 @@
     {
         "name": "puja singh",
         "link": "https://www.linkedin.com/in/puja-singh-911a84399?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGHecB0ByNrGBSVpxkC2yVQD3diOV0cH474",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-10 11:59:05"
     },
     {
         "name": "Arvind Kumar",
