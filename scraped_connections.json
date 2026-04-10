@@ -1012,7 +1012,8 @@
     {
         "name": "Abhinav Parashar",
         "link": "https://www.linkedin.com/in/abhinav-parashar-471919106?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAABrVHFUBm253lCETEakn28r_oGwGBQwI8O4",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-10 10:48:17"
     },
     {
         "name": "puja singh",
