@@ -1113,7 +1113,8 @@
     {
         "name": "Deep Sikha Patel",
         "link": "https://www.linkedin.com/in/deep-sikha-patel-40a1263b5?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGVJqMoB0Y5M7wiJXZUOwy6qNYmHOwnkmaM",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-11 13:43:30"
     },
     {
         "name": "Praveen Tiwari",
