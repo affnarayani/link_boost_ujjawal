@@ -1085,7 +1085,8 @@
     {
         "name": "Avantika Singh",
         "link": "https://www.linkedin.com/in/avantika-singh-538b58201?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADObIfwB8OtLpg8RITBoNfWRq3CvQK6Msqs",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-11 07:41:59"
     },
     {
         "name": "Advocate Neha Kumari",
