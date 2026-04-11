@@ -1095,7 +1095,8 @@
     {
         "name": "Advocate Neha Kumari",
         "link": "https://www.linkedin.com/in/advocate-neha-kumari-b4854133b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFVUvSgBPSFQWc4FVD5_1vqVb2jC0z76dHg",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-11 11:45:06"
     },
     {
         "name": "Jahangir Ali",
