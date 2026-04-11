@@ -276,7 +276,8 @@
         "name": "Saurav Kumar",
         "link": "https://www.linkedin.com/in/saurav-kumar-0b9a04211?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADW4Y40BXoF2Bw46VRxKqHMxZfj2Q5NPzA8",
         "invited": true,
-        "timestamp": "2026-04-03 19:45:59"
+        "timestamp": "2026-04-03 19:45:59",
+        "withdraw": true
     },
     {
         "name": "Anshu Priya",
