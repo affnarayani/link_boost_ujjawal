@@ -283,7 +283,8 @@
         "name": "Anshu Priya",
         "link": "https://www.linkedin.com/in/anshu-priya-8658b2318?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFCULU0BV3rmDKTjwK6-ynlZwP0QYzbfWw0",
         "invited": true,
-        "timestamp": "2026-04-03 20:56:08"
+        "timestamp": "2026-04-03 20:56:08",
+        "withdraw": false
     },
     {
         "name": "Adv Bikram Kumar Jha",
