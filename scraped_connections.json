@@ -1072,7 +1072,8 @@
     {
         "name": "SHAMBHU NATH SAH",
         "link": "https://www.linkedin.com/in/shambhu-nath-sah-3511753aa?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGQMRq0Bumdejx1zbn1CoKgZQHpAFgHnjDQ",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-11 05:17:14"
     },
     {
         "name": "Adv Sujeet Mishra",
