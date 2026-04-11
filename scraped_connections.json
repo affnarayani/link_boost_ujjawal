@@ -1149,7 +1149,8 @@
     {
         "name": "Jitendra Yadav Bhartiya",
         "link": "https://www.linkedin.com/in/jitendra-yadav-bhartiya-0414611b8?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADKc3PEBmYQHz_ek1S1boG8UTjVZEANJQAg",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-11 18:01:06"
     },
     {
         "name": "Harshita -",
