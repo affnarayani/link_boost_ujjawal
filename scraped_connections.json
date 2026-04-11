@@ -255,7 +255,8 @@
         "name": "Vicky Verma",
         "link": "https://www.linkedin.com/in/vicky-verma-232663256?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD8Z44YBBhxpVjq4EAJeEoW0HBQIeOL4y4g",
         "invited": true,
-        "timestamp": "2026-04-03 16:07:46"
+        "timestamp": "2026-04-03 16:07:46",
+        "withdraw": false
     },
     {
         "name": "Abhay Kumar Pandey",
