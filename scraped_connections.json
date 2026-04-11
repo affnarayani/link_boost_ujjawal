@@ -1143,7 +1143,8 @@
     {
         "name": "Pawas Singh",
         "link": "https://www.linkedin.com/in/pawassingh?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAC_ak3MB3wwPhe5QctsoTi0AWnvU1Qx3amM",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-11 17:49:31"
     },
     {
         "name": "Jitendra Yadav Bhartiya",
