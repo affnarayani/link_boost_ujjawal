@@ -1167,7 +1167,8 @@
     {
         "name": "Shivam Thakur",
         "link": "https://www.linkedin.com/in/shivam-thakur-8522403a2?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGKigL4BZbEU83AovoD5dTHvjO8WIHifEZQ",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-11 20:03:51"
     },
     {
         "name": "Krinjal Bhartiya",
