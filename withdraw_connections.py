@@ -78,7 +78,7 @@ def run_withdrawal():
             time.sleep(random.uniform(6, 12))
             
             # Confirm Withdraw Button
-            confirm_regex = re.compile(r"Withdrawn invitation sent to.*", re.IGNORECASE)
+            confirm_regex = re.compile(r"Withdraw invitation sent to.*", re.IGNORECASE)
             withdraw_confirm_btn = page.get_by_role('button', name=confirm_regex)
             
             try:
