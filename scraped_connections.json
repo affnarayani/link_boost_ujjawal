@@ -1201,7 +1201,8 @@
     {
         "name": "Ravi Nandan",
         "link": "https://www.linkedin.com/in/ravi-nandan-612b583a2?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGLFMm4BU_thRX99D4ICNOW46wwICa4QXaY",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-16 18:47:01"
     },
     {
         "name": "Binay Kumar Jha",
