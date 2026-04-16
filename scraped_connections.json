@@ -339,7 +339,8 @@
         "name": "Kuldeep Kumar",
         "link": "https://www.linkedin.com/in/kuldeep-kumar-034967392?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGCbIWgBzos1WxipKoJeueTp4WMu2HPtVmI",
         "invited": true,
-        "timestamp": "2026-04-04 06:38:45"
+        "timestamp": "2026-04-04 06:38:45",
+        "withdraw": true
     },
     {
         "name": "Priti Kumari",
