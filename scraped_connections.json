@@ -311,7 +311,8 @@
         "name": "MRITUNJAY KUMAR",
         "link": "https://www.linkedin.com/in/mritunjay-kumar-937020268?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEF_pzsBAOhUkcS3R7RR24DGQRqhjbxnZik",
         "invited": true,
-        "timestamp": "2026-04-03 22:57:43"
+        "timestamp": "2026-04-03 22:57:43",
+        "withdraw": false
     },
     {
         "name": "Ajit Dubey",
