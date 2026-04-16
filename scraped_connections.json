@@ -1209,7 +1209,8 @@
     {
         "name": "Binay Kumar Jha",
         "link": "https://www.linkedin.com/in/binay-kumar-jha?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF_TzgwBOhZjx9u8zKNGEeIYKru9IdoTdf0",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-16 19:45:34"
     },
     {
         "name": "Pushpanjali TTiwari",
