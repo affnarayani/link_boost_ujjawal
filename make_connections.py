@@ -72,7 +72,7 @@ def make_connections():
                     time.sleep(random.uniform(6, 12)) 
                     
                     # 'Send' button click karein
-                    send_btn = page.get_by_role('button', name='Send', exact=False)
+                    send_btn = page.get_by_role('button', name=re.compile(r"^Send.*", re.IGNORECASE))
                     send_btn.click()
                     
                     print("[SUCCESS] Invitation sent!", flush=True)
