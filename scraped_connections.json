@@ -395,7 +395,8 @@
         "name": "Abhimanyu kumar",
         "link": "https://www.linkedin.com/in/abhimanyu-kumar-aba0b5213?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADXxEu4BvmApv4fw8WBco6c6_zfKGJRH7TI",
         "invited": true,
-        "timestamp": "2026-04-04 17:48:01"
+        "timestamp": "2026-04-04 17:48:01",
+        "withdraw": true
     },
     {
         "name": "Raja Raushan Kumar",
