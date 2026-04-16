@@ -69,7 +69,7 @@ def run_withdrawal():
         time.sleep(random.uniform(8, 15))
 
         # Withdraw Trigger (Pending button)
-        withdraw_trigger = page.get_by_test_id('lazy-column').get_by_role('link', name=re.compile(r"Pending.*", re.IGNORECASE))
+        withdraw_trigger = page.get_by_test_id('lazy-column').get_by_role('link', name='Pending, click to withdraw')
 
         if withdraw_trigger.count() > 0 and withdraw_trigger.first.is_visible():
             print(f"[ACTION] Pending button found. Opening popup...", flush=True)
