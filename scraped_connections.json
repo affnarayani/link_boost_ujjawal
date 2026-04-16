@@ -1190,7 +1190,8 @@
     {
         "name": "ADVOCATE NiRAJ KUMAR",
         "link": "https://www.linkedin.com/in/advocate-niraj-kumar-6523742a7?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEnqKZ4BGMKFjzYLmyW9HaS44GgHdrFe9OE",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-16 15:16:14"
     },
     {
         "name": "Ravi Nandan",
