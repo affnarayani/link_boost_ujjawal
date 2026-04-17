@@ -444,7 +444,8 @@
         "name": "Rajesh Kumar",
         "link": "https://www.linkedin.com/in/rajesh-kumar-243943379?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF2T1ZMBL40EEKqZUSC2x3_i6-ZEJJ-oWcg",
         "invited": true,
-        "timestamp": "2026-04-05 06:41:55"
+        "timestamp": "2026-04-05 06:41:55",
+        "withdraw": true
     },
     {
         "name": "Shubham Sinha",
