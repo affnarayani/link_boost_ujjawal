@@ -416,7 +416,8 @@
         "name": "Adya Pandey",
         "link": "https://www.linkedin.com/in/adya-pandey-534236322?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFGMVngBNRQLPNOqOYZv-CjyNGKecvG6f24",
         "invited": true,
-        "timestamp": "2026-04-04 19:49:38"
+        "timestamp": "2026-04-04 19:49:38",
+        "withdraw": true
     },
     {
         "name": "Rajeev Kumar",
