@@ -1268,7 +1268,8 @@
     {
         "name": "Simran Bhargav",
         "link": "https://www.linkedin.com/in/simran-bhargav-a5773a200?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADNd0GMBTmhtS1Fo1vEqg5n3GZmtSx7BCok",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-17 13:25:38"
     },
     {
         "name": "Rashmi Sinha",
