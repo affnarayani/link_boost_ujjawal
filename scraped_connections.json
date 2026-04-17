@@ -1262,7 +1262,8 @@
     {
         "name": "Rajesh K Sinha",
         "link": "https://www.linkedin.com/in/rajesh-k-sinha-3b9512286?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEV8vL0Bs8GEl5doZeAvnm6eAXALsrXxbDo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-17 11:42:33"
     },
     {
         "name": "Simran Bhargav",
