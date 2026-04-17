@@ -1310,7 +1310,8 @@
     {
         "name": "Nadim Akram",
         "link": "https://www.linkedin.com/in/nadim-akram-8015b4349?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFcepoEBD1bBGywcw__PYiZ03iYr94MUw8o",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-17 17:56:52"
     },
     {
         "name": "Varsha Rani",
