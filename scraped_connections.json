@@ -1237,7 +1237,8 @@
     {
         "name": "Subodh Kumar",
         "link": "https://www.linkedin.com/in/subodh-kumar-7a7132112?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAABwjsO8BGZAjazLL2uQQlNH0SKR_JJEZh40",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-17 05:38:46"
     },
     {
         "name": "Akshay Mahavira",
