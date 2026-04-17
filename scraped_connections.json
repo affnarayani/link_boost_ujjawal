@@ -1295,7 +1295,8 @@
     {
         "name": "Deepti Pandey",
         "link": "https://www.linkedin.com/in/deepti-pandey-857a7223b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADvHsUMB43G6hjKgr3JrvXsAJcJIZPW7VsA",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-17 15:36:15"
     },
     {
         "name": "Adv. Rahul Chaturvedi",
