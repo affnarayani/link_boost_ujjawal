@@ -1302,7 +1302,8 @@
     {
         "name": "Adv. Rahul Chaturvedi",
         "link": "https://www.linkedin.com/in/adv-rahul-chaturvedi-995868295?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEd_EYEBukTaTSdZ63301kropb39e1xpKTE",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-17 16:33:57"
     },
     {
         "name": "Nadim Akram",
