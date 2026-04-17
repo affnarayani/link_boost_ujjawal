@@ -507,7 +507,8 @@
         "name": "Ayushi K",
         "link": "https://www.linkedin.com/in/ayushi-k-348a7b1bb?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADM86ygBZ-EY0MlZNwflm4QUX2dgwljkEqM",
         "invited": true,
-        "timestamp": "2026-04-05 13:19:20"
+        "timestamp": "2026-04-05 13:19:20",
+        "withdraw": true
     },
     {
         "name": "Shashank Shekhar",
