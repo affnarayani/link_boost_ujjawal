@@ -1342,7 +1342,8 @@
     {
         "name": "Lovish Loona",
         "link": "https://www.linkedin.com/in/lovish-loona-091245262?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEB2ni0BWFH3ejeXCb91WBQMPlJX6XgjGCQ",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-17 21:11:05"
     },
     {
         "name": "Shivansh Singh",
