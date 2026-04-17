@@ -451,7 +451,8 @@
         "name": "Shubham Sinha",
         "link": "https://www.linkedin.com/in/shubham-sinha-712916171?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAACjkeX4B-JLMm0iBS_nvZWJIEmYWlgqGuXY",
         "invited": true,
-        "timestamp": "2026-04-05 07:36:57"
+        "timestamp": "2026-04-05 07:36:57",
+        "withdraw": false
     },
     {
         "name": "Divya Prakash",
