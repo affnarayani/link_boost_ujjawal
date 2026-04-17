@@ -1329,7 +1329,8 @@
     {
         "name": "Anshu Raj",
         "link": "https://www.linkedin.com/in/vikodeans?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF5pe7cBXDNVvNXH8F4G7pOFZpho2UMpxso",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-17 19:19:24"
     },
     {
         "name": "ANISH KUMAR",
