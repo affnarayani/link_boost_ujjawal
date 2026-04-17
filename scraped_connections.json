@@ -458,7 +458,8 @@
         "name": "Divya Prakash",
         "link": "https://www.linkedin.com/in/divya-prakash-b0438925b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD_zHvQBihrel7QLsx57rIHCiX5QyaNCs3w",
         "invited": true,
-        "timestamp": "2026-04-05 07:50:39"
+        "timestamp": "2026-04-05 07:50:39",
+        "withdraw": false
     },
     {
         "name": "Aman Vishal",
