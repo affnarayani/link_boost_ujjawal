@@ -1275,7 +1275,8 @@
     {
         "name": "Rashmi Sinha",
         "link": "https://www.linkedin.com/in/rashmi-sinha-09292638?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAAf3tu4BDEY1PdYZ_FLdOZhO84tyY-iSjHU",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-17 14:14:29"
     },
     {
         "name": "Rushali Ranjan",
