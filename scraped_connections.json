@@ -1288,7 +1288,8 @@
     {
         "name": "Advocate Mallika Rani",
         "link": "https://www.linkedin.com/in/advocate-mallika-rani-501051365?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFqY7pEBQdtndA-xCLv5PYrE29eMZBJ6_1I",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-17 14:46:45"
     },
     {
         "name": "Deepti Pandey",
