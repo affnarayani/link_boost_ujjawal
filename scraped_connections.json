@@ -1349,7 +1349,8 @@
     {
         "name": "Shivansh Singh",
         "link": "https://www.linkedin.com/in/shivansh-singh-ab39481b8?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADKvbCcBtBZZsITfZqqxt7QMzdPsA9rvyjg",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-17 23:27:03"
     },
     {
         "name": "Jay Karn",
