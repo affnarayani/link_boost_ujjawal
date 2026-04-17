@@ -1249,12 +1249,14 @@
     {
         "name": "Akshay Mahavira",
         "link": "https://www.linkedin.com/in/akshay-mahavira-42a344260?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEAfRWIB01CMoIsiOHnoIavxGm59L7AVBPo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-17 10:37:19"
     },
     {
         "name": "SHAILJA SINGH",
         "link": "https://www.linkedin.com/in/shailja-singh-449169294?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEc28TkBCYADJZ90SCXAe3NH3w8hPZkiK30",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-17 10:37:55"
     },
     {
         "name": "Rajesh K Sinha",
