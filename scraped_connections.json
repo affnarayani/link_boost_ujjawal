@@ -1435,7 +1435,8 @@
     {
         "name": "Shyam Kumar",
         "link": "https://www.linkedin.com/in/shyam-kumar-1704523a7?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGOOQ2QB3xh2dCli5n27SZOBx7O6SXMasdA",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-18 17:52:36"
     },
     {
         "name": "Indradev Singh",
