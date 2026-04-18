@@ -535,7 +535,8 @@
         "name": "Harsh Vardhan",
         "link": "https://www.linkedin.com/in/harsh-vardhan-7a6164219?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADcEoW4BU1Z8KMWPCNaQN5ruO6fz3CuSXk0",
         "invited": true,
-        "timestamp": "2026-04-05 20:55:05"
+        "timestamp": "2026-04-05 20:55:05",
+        "withdraw": false
     },
     {
         "name": "Adv Priya Kumari",
