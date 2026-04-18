@@ -1369,12 +1369,14 @@
     {
         "name": "SAMEER VERMA \u2600\ufe0f",
         "link": "https://www.linkedin.com/in/sameer-verma-%E2%98%80%EF%B8%8F-a81322317?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFBQyYEBYLDbc-GXI5geozsrLKTxwJGNN0U",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-18 05:48:54"
     },
     {
         "name": "Atul Kumar",
         "link": "https://www.linkedin.com/in/atul-kumar-60035a245?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADy-D-ABE31M1bQbYxaOlOuvhofAMfJ1E8U",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-18 05:49:32"
     },
     {
         "name": "Aditya Srijan",
