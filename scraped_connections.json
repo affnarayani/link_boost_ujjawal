@@ -1462,7 +1462,8 @@
     {
         "name": "Abhijeet kumar pandey",
         "link": "https://www.linkedin.com/in/abhijeet-kumar-pandey-b953a3376?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFz2SOEBeCDm1ZEnpujlFZQZ6co4Hpe8C_8",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-18 22:05:41"
     },
     {
         "name": "Rudra Pratap Lal",
