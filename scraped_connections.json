@@ -1356,7 +1356,8 @@
     {
         "name": "Jay Karn",
         "link": "https://www.linkedin.com/in/jay-karn-85533b238?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADsjZgEBq8Q0AK1_0RITdPBr1YldvtfLF9g",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-18 04:44:06"
     },
     {
         "name": "Abhijeet Gautam",
