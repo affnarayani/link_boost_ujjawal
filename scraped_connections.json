@@ -563,7 +563,8 @@
         "name": "Lavanya Singh",
         "link": "https://www.linkedin.com/in/lavanya-singh-5a6623365?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFqu0Y4B5Fs8q0QqdNWFNAmC1HXRKBtDei8",
         "invited": true,
-        "timestamp": "2026-04-05 23:24:06"
+        "timestamp": "2026-04-05 23:24:06",
+        "withdraw": false
     },
     {
         "name": "shiw Kumar Prabhakar",
