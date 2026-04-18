@@ -612,7 +612,8 @@
         "name": "Amrita Yadav",
         "link": "https://www.linkedin.com/in/amrita-yadav-16866739a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGH8PiABPXapFw_bhY07Dexx56rsjAKeI9Y",
         "invited": true,
-        "timestamp": "2026-04-06 11:16:30"
+        "timestamp": "2026-04-06 11:16:30",
+        "withdraw": true
     },
     {
         "name": "Akash Deep",
