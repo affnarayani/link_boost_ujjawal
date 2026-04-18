@@ -556,7 +556,8 @@
         "name": "Vasant Anand",
         "link": "https://www.linkedin.com/in/vasant-anand-9b0529303?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE1_kFQBwXsBWJlcL6l02kLnYWHJJVilF4U",
         "invited": true,
-        "timestamp": "2026-04-05 23:03:14"
+        "timestamp": "2026-04-05 23:03:14",
+        "withdraw": false
     },
     {
         "name": "Lavanya Singh",
