@@ -528,7 +528,8 @@
         "name": "Rakesh Sharma",
         "link": "https://www.linkedin.com/in/rakesh767741?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD6RsbgBz_q3z1t6zeXPXNgI4IqBOB5RMYM",
         "invited": true,
-        "timestamp": "2026-04-05 20:54:27"
+        "timestamp": "2026-04-05 20:54:27",
+        "withdraw": true
     },
     {
         "name": "Harsh Vardhan",
