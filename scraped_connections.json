@@ -1381,7 +1381,8 @@
     {
         "name": "Aditya Srijan",
         "link": "https://www.linkedin.com/in/aditya-srijan-86a461206?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADRkgZIBe6LbdE3b_RuAuNgmTbfZjSBjN4Q",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-18 05:52:08"
     },
     {
         "name": "Shashwat Tiwari",
