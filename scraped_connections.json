@@ -1505,7 +1505,8 @@
     {
         "name": "Saatvika Singh",
         "link": "https://www.linkedin.com/in/saatvika-singh-2277a51aa?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADDiAP8BoUtmI5LhxHg8t14V5ThaDAlKyBA",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-19 09:28:53"
     },
     {
         "name": "Anshita Sidhanta",
