@@ -1497,7 +1497,8 @@
     {
         "name": "Ashish Kumar",
         "link": "https://www.linkedin.com/in/ashish-kumar-1a3b3225b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEAPtYsB_KplKD_CY9tAiFBWPnKHjaQLkv8",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-19 08:06:19"
     },
     {
         "name": "Saatvika Singh",
