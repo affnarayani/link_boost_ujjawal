@@ -1526,7 +1526,8 @@
     {
         "name": "Ravi Kant",
         "link": "https://www.linkedin.com/in/ravi-kant-59569025b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD_-lEEB9FO1RHCEJpTXV8swHKLrpCn33u0",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-19 13:54:52"
     },
     {
         "name": "Karuna K",
