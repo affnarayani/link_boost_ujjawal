@@ -647,7 +647,8 @@
         "name": "Saurav Kumar",
         "link": "https://www.linkedin.com/in/saurav-kumar-b63a251b8?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADKygjsBVdwyDeOf1xX8xnp29tvNrFykKLU",
         "invited": true,
-        "timestamp": "2026-04-06 17:53:45"
+        "timestamp": "2026-04-06 17:53:45",
+        "withdraw": false
     },
     {
         "name": "Adv Vikash Yadav",
