@@ -703,7 +703,8 @@
         "name": "VISHVJEET KUMAR",
         "link": "https://www.linkedin.com/in/vishvjeet-kumar-792049291?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEap1R4BKHeKxfX6nw5to6TSLJX8KSXScZM",
         "invited": true,
-        "timestamp": "2026-04-07 05:22:45"
+        "timestamp": "2026-04-07 05:22:45",
+        "withdraw": true
     },
     {
         "name": "Advocate Rajesh Kumar",
