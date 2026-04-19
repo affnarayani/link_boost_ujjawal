@@ -1511,7 +1511,8 @@
     {
         "name": "Anshita Sidhanta",
         "link": "https://www.linkedin.com/in/anshita-sidhanta-552b90240?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADv5oA4Bq5JqPJ3anqlHq34diGXqrsUazE8",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-19 09:45:48"
     },
     {
         "name": "KRISHNKANT KUMAR",
