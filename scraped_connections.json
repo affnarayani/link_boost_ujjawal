@@ -738,7 +738,8 @@
         "name": "ABHISHEK SINGH VISHEN",
         "link": "https://www.linkedin.com/in/abhishek-singh-vishen-03377320b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADVUD2cBT2IYmfB5MRoGX351GcwNRLvvf0A",
         "invited": true,
-        "timestamp": "2026-04-07 08:46:49"
+        "timestamp": "2026-04-07 08:46:49",
+        "withdraw": true
     },
     {
         "name": "Shekhar Singh",
