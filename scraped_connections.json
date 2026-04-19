@@ -1532,7 +1532,8 @@
     {
         "name": "Karuna K",
         "link": "https://www.linkedin.com/in/advkarunak?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADJuiAEBMUMkPQh6C2_buY8EQkLq8nsqxzw",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-19 14:30:20"
     },
     {
         "name": "PRIYA SHRIVASTAVA",
