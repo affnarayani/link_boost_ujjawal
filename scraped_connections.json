@@ -745,7 +745,8 @@
         "name": "Shekhar Singh",
         "link": "https://www.linkedin.com/in/shekhar-singh-6b2651377?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF0tl6YBDBjQY8vECB8w7kBkhZnVUzzlPBo",
         "invited": true,
-        "timestamp": "2026-04-07 09:39:15"
+        "timestamp": "2026-04-07 09:39:15",
+        "withdraw": false
     },
     {
         "name": "Jagriti Choubey",
