@@ -724,7 +724,8 @@
         "name": "Adv.Arsh Kumar",
         "link": "https://www.linkedin.com/in/adv-arsh-kumar-b5ba00235?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADq0DncBxdAarBe1qwQDm6__V-MjpGgv9aI",
         "invited": true,
-        "timestamp": "2026-04-07 08:02:13"
+        "timestamp": "2026-04-07 08:02:13",
+        "withdraw": false
     },
     {
         "name": "Simant Priyadarshi",
