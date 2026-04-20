@@ -836,7 +836,8 @@
         "name": "Prashant Kashyap",
         "link": "https://www.linkedin.com/in/prashant-kashyap-461634317?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFBciIkBHmDIzxOoheKe13EHuUDCsrXC7LQ",
         "invited": true,
-        "timestamp": "2026-04-08 06:56:54"
+        "timestamp": "2026-04-08 06:56:54",
+        "withdraw": true
     },
     {
         "name": "Saumya Kaushik",
