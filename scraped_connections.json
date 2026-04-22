@@ -1116,7 +1116,8 @@
         "name": "Hans Raj",
         "link": "https://www.linkedin.com/in/hans-raj-443665258?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD91EjMBA2cSd8QQ1qU9eOwsHYC4u4PWAow",
         "invited": true,
-        "timestamp": "2026-04-10 08:11:27"
+        "timestamp": "2026-04-10 08:11:27",
+        "withdraw": false
     },
     {
         "name": "Rajeev Sah",
