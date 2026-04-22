@@ -1095,7 +1095,8 @@
         "name": "Deepak Kumar",
         "link": "https://www.linkedin.com/in/deepak-kumar-0b3601290?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEaRj0cBAefFEIPieDr45HnzXNki_gIwIao",
         "invited": true,
-        "timestamp": "2026-04-10 05:51:43"
+        "timestamp": "2026-04-10 05:51:43",
+        "withdraw": false
     },
     {
         "name": "Adv. Kishore Saurabh",
