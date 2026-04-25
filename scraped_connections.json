@@ -1473,7 +1473,8 @@
         "name": "ANISH KUMAR",
         "link": "https://www.linkedin.com/in/anish-kumar-3b4a61221?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADfc9vgB5Hgk1Gve1rC2FvLvhjbZOUArLbU",
         "invited": true,
-        "timestamp": "2026-04-17 20:30:12"
+        "timestamp": "2026-04-17 20:30:12",
+        "withdraw": true
     },
     {
         "name": "Lovish Loona",
