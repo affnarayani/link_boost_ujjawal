@@ -1515,7 +1515,8 @@
         "name": "Atul Kumar",
         "link": "https://www.linkedin.com/in/atul-kumar-60035a245?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADy-D-ABE31M1bQbYxaOlOuvhofAMfJ1E8U",
         "invited": true,
-        "timestamp": "2026-04-18 05:49:32"
+        "timestamp": "2026-04-18 05:49:32",
+        "withdraw": true
     },
     {
         "name": "Aditya Srijan",
