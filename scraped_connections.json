@@ -1789,7 +1789,8 @@
     {
         "name": "Sanjay Srivastava",
         "link": "https://www.linkedin.com/in/sanjay-srivastava-a029792a6?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEnThWIBM4_7QdzalTak4kIzqsEJr96mhbc",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-27 20:00:27"
     },
     {
         "name": "Mrigendra Kumar Singh",
