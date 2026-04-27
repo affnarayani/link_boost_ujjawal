@@ -1777,7 +1777,8 @@
     {
         "name": "MANJEET BISHEN",
         "link": "https://www.linkedin.com/in/manjeet-bishen-209330277?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEOAiCkBWoIdry5MjxYq2DN6gnmRaumUK8c",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-27 16:15:00"
     },
     {
         "name": "Pankaj Kumar Pandey",
