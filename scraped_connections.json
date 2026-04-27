@@ -1825,7 +1825,8 @@
     {
         "name": "Shiv Pratap",
         "link": "https://www.linkedin.com/in/shiv-pratap-b0651b252?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD5efXYBWaYDqIrBcpvNYApJlF9iikj7nK0",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-27 23:30:43"
     },
     {
         "name": "Raushan Kumar",
