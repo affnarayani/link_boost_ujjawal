@@ -1750,7 +1750,8 @@
     {
         "name": "Vijay Kumar Singh",
         "link": "https://www.linkedin.com/in/vijay-kumar-singh-157222230?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADmyiFMBS3tCNnepFuCWwaIGP8LIqB_jUgw",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-27 12:55:20"
     },
     {
         "name": "Aneemesh .",
