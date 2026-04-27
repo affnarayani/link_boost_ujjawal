@@ -1801,12 +1801,14 @@
     {
         "name": "Mrigendra Kumar Singh",
         "link": "https://www.linkedin.com/in/mrigendra-kumar-singh-a4158b24?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAAURlBEBLBYMdS4VzCWgKzzFXcBRmwuLPfA",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-27 20:45:01"
     },
     {
         "name": "Natraj Verma",
         "link": "https://www.linkedin.com/in/natraj-verma-1554b41b4?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADHoRtEB4ZmRkInVsoHUhv2drnv-Xy7cXhc",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-27 20:45:38"
     },
     {
         "name": "AMAR KUMAR",
