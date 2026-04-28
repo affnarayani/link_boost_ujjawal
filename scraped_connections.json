@@ -1927,7 +1927,8 @@
     {
         "name": "Sahil Kumar",
         "link": "https://www.linkedin.com/in/sahil-kumar-015bb8301?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE0-BREBM4nghPMRDruv78vNfIEZ4p9Lk-Y",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-28 22:12:46"
     },
     {
         "name": "Sona Kaushiki",
