@@ -1903,7 +1903,8 @@
     {
         "name": "Sakshi Anand",
         "link": "https://www.linkedin.com/in/sakshi-anand-40983a1b0?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADE-2MkBWdD-7GKm9fT2QgllKVNlxSZuOG4",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-28 19:11:53"
     },
     {
         "name": "Kumar Yuvraj",
