@@ -1897,7 +1897,8 @@
     {
         "name": "Jyoti Singh",
         "link": "https://www.linkedin.com/in/jyoti-singh-214b18219?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADcpHDABymzaMJ6Jw5K089MHrdIlCTgi8OI",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-28 17:59:17"
     },
     {
         "name": "Sakshi Anand",
