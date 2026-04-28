@@ -1915,7 +1915,8 @@
     {
         "name": "Lokesh Kumar Advocate",
         "link": "https://www.linkedin.com/in/lokesh-kumar-advocate-b42a571a9?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADC-UqIBdEIL6oq_6YS74l8DMi0GyUMrd-E",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-28 21:12:17"
     },
     {
         "name": "Shashwat Kumar",
