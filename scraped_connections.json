@@ -1921,7 +1921,8 @@
     {
         "name": "Shashwat Kumar",
         "link": "https://www.linkedin.com/in/shashwat-kumar-24a49b349?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFcaZJoB_67MDv7R_igAMO4gZeuBbfcgHow",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-28 21:42:25"
     },
     {
         "name": "Sahil Kumar",
