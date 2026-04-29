@@ -2029,12 +2029,14 @@
     {
         "name": "Law Point",
         "link": "https://www.linkedin.com/in/law-point-7ab27a262?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEB3tvMBgu0xoZCU9lCeWsyD56im3eQKdE4",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-29 20:39:04"
     },
     {
         "name": "Dipti Sinha",
         "link": "https://www.linkedin.com/in/dipti-sinha-7ab9431aa?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADDnqLMBoJxirlfbwB8A_iF69YsXluY10iw",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-29 20:39:36"
     },
     {
         "name": "Priyanjali Singh",
