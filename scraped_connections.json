@@ -1969,7 +1969,8 @@
     {
         "name": "Satyam Kumari",
         "link": "https://www.linkedin.com/in/satyam-kumari-6991bb223?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADgXxRUBzUIT8CXCb1vR473MCA4W8_pUwKQ",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-29 09:53:45"
     },
     {
         "name": "Suhani Singh",
