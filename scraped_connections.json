@@ -1993,7 +1993,8 @@
     {
         "name": "vishal kumar sharma",
         "link": "https://www.linkedin.com/in/vishal-kumar-sharma-6b7806376?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF0GLGsBBBNFzCdhFxcYBkVBJCFvYkH6ZAk",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-29 12:22:38"
     },
     {
         "name": "Ajay Kumar",
