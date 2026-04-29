@@ -2,7 +2,7 @@ name: Withdraw All
 
 on:
   schedule:
-    - cron: '48 22 * * *'
+    - cron: '9 5 * * *'
   workflow_dispatch: {}
 
 env:
