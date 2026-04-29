@@ -1975,7 +1975,8 @@
     {
         "name": "Suhani Singh",
         "link": "https://www.linkedin.com/in/suhani-singh-134b86203?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADP3JTgBz2qIT5O0untyS5L-SHrR0NEa9AY",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-29 09:56:47"
     },
     {
         "name": "Adv. Kuldeep Kumar",
