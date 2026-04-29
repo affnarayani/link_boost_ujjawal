@@ -2041,7 +2041,8 @@
     {
         "name": "Priyanjali Singh",
         "link": "https://www.linkedin.com/in/priyanjali-singh-a466a5375?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFzUKZYBNU78w7KlJmiuO8Rxjqy1obb5BPA",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-29 20:54:48"
     },
     {
         "name": "Barkha Singh",
