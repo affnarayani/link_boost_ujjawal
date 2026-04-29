@@ -1951,7 +1951,8 @@
     {
         "name": "Srishti Kumari",
         "link": "https://www.linkedin.com/in/srishti-kumari-16b7ba216?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADaUc2MB7-PkSq7f8dhLOMoIeYIuRddcO-Y",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-29 06:38:00"
     },
     {
         "name": "Adv. Vaibhav Kumar",
