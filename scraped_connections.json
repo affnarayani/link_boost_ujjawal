@@ -2077,7 +2077,8 @@
     {
         "name": "Shahrukh Iraqi",
         "link": "https://www.linkedin.com/in/shahrukh-iraqi-77772b314?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE_XhIsBRf9A2vrVzYQOyAKiqWicIAM9cMo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-30 11:22:27"
     },
     {
         "name": "Shailja .",
