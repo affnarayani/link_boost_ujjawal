@@ -2065,7 +2065,8 @@
     {
         "name": "Pallavi Lala",
         "link": "https://www.linkedin.com/in/pallavi-lala-aa904a1b5?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADIEnaEBLmuTlxpDroWR3wviMO7LcPNe6LI",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-30 08:38:01"
     },
     {
         "name": "Akhya Anand",
