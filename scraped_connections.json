@@ -2071,7 +2071,8 @@
     {
         "name": "Akhya Anand",
         "link": "https://www.linkedin.com/in/akhya-anand?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADJESygB4lt_-PJlG8Lyl6h5_A5oRnAoUw0",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-04-30 09:54:52"
     },
     {
         "name": "Shahrukh Iraqi",
