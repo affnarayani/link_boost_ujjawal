@@ -6,6 +6,8 @@ playwright-stealth
 # --- AI & Text Processing (g4f) ---
 g4f
 curl_cffi==0.6.2
+huggingface_hub
+requests
 
 # --- Security & Encryption ---
 cryptography==42.0.5
