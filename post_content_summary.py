@@ -153,7 +153,7 @@ def run_post_automation():
         page.set_input_files("input[type='file']", image_path)
         random_delay("Upload delay")
         
-        page.get_by_role("button", name="Next").click()
+        page.get_by_test_id("interop-shadowdom").get_by_role("button", name="Next").click()
         random_delay("Next click")
         
         page.get_by_role("button", name="Post", exact=True).click()
