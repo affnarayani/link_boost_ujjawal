@@ -7,18 +7,22 @@ import subprocess
 import sys
 from playwright.sync_api import expect
 from login import login_and_get_context
+from huggingface_hub import InferenceClient
 
-# G4F update requirement
-try:
-    print("[INFO] Updating g4f...", flush=True)
-    subprocess.run(["pip", "install", "-U", "g4f"], check=True)
-except Exception as e:
-    print(f"[WARNING] G4F update failed: {e}", flush=True)
+# --- HF Client Setup (NO HARDCODE TOKEN) ---
+HF_TOKEN = os.getenv("HF_TOKEN")
 
-import g4f
+if not HF_TOKEN:
+    raise ValueError("HF_TOKEN not found in environment variables")
+
+client = InferenceClient(
+    model="meta-llama/Meta-Llama-3-8B-Instruct",
+    token=HF_TOKEN
+)
+
+MAX_RETRIES = 3
 
 def get_posted_links():
-    """JSON file se already posted links load karne ke liye"""
     file_path = 'liked_commented.json'
     if not os.path.exists(file_path):
         return []
@@ -31,7 +35,6 @@ def get_posted_links():
         return []
 
 def save_to_json_top(new_link):
-    """Result ko JSON ke top (start) mein append karne ke liye"""
     file_path = 'liked_commented.json'
     data = []
     if os.path.exists(file_path):
@@ -47,19 +50,46 @@ def save_to_json_top(new_link):
         json.dump(data, f, indent=4)
     print(f"[SUCCESS] Saved to JSON: {new_link}", flush=True)
 
+# --- HF COMMENT GENERATION ---
 def generate_ai_comment(content):
-    """GPT4Free ka use karke comment generate karna"""
     try:
-        prompt = f"Analyze this content and write a 30-word insightful comment showing I understood it. Comment only, no quotes, no asterisks, no prefix: {content}"
-        response = g4f.ChatCompletion.create(
-            model=g4f.models.gpt_4,
-            messages=[{"role": "user", "content": prompt}],
+        prompt = (
+            f"Analyze this content and write a 30-word insightful comment that reflects understanding and also adds a thoughtful opinion or perspective."
+            f"Comment only, no quotes, no asterisks, no prefix.\nContent: {content}"
         )
-        clean_comment = response.replace('*', '').replace('"', '').strip()
-        return clean_comment
+
+        for attempt in range(1, MAX_RETRIES + 1):
+            try:
+                response = client.chat.completions.create(
+                    messages=[{"role": "user", "content": prompt}],
+                    max_tokens=80,
+                    temperature=0.7
+                )
+
+                result = response.choices[0].message.content
+                clean_comment = result.replace('*', '').replace('"', '').strip()
+                return clean_comment
+
+            except Exception as e:
+                err = str(e)
+                print("[ERROR]", err, flush=True)
+
+                if "429" in err.lower():
+                    print("[WAIT] 10 sec...", flush=True)
+                    time.sleep(10)
+                    continue
+
+                if attempt < MAX_RETRIES:
+                    time.sleep(5)
+                else:
+                    break
+
+        raise Exception("HF comment generation failed")
+
     except Exception as e:
-        print(f"[ERROR] G4F Generation failed: {e}", flush=True)
-        return "Insightful post with great perspective on this topic, thanks for sharing these valuable details."
+        print(f"[ERROR] HF Generation failed: {e}", flush=True)
+        raise Exception("HF comment generation failed")
+
 
 def extract_single_new_share_link():
     pw, browser, context, page = login_and_get_context()
@@ -133,7 +163,7 @@ def extract_single_new_share_link():
                                             commentary_loc = embed_iframe.locator('[data-test-id="main-feed-activity-embed-card__commentary"]')
                                             content = commentary_loc.inner_text() if commentary_loc.count() > 0 else ""
                                             
-                                            if len(content) < 30:
+                                            if len(re.findall(r'[A-Za-z]', content)) < 30:
                                                 print("[SKIP] Content too short. Closing modal...", flush=True)
                                                 page.keyboard.press("Escape")
                                                 time.sleep(2)
@@ -146,18 +176,15 @@ def extract_single_new_share_link():
                                             ai_comment = generate_ai_comment(content)
                                             print(f"[AI COMMENT]: {ai_comment}", flush=True)
 
-                                            # Open New Tab
                                             with context.expect_page() as new_page_info:
                                                 embed_iframe.get_by_role('link', name='Comment', exact=True).click()
                                             new_tab = new_page_info.value
                                             new_tab.bring_to_front()
                                             
-                                            # Wait for page to load completely
                                             print("[ACTION] Waiting for page load...", flush=True)
                                             new_tab.wait_for_load_state("networkidle")
                                             time.sleep(15)
 
-                                            # --- LIKE ACTION ---
                                             print("[ACTION] Attempting to Like...", flush=True)
                                             like_btn = new_tab.get_by_role('button', name='React Like', exact=True)
                                             if like_btn.is_visible():
@@ -167,7 +194,6 @@ def extract_single_new_share_link():
                                             else:
                                                 print("[WARNING] Like button not found or already liked.", flush=True)
 
-                                            # --- COMMENT ACTION ---
                                             comment_box = new_tab.get_by_role('textbox', name='Text editor for creating').get_by_role('paragraph')
                                             comment_box.click()
                                             comment_box.fill(ai_comment)

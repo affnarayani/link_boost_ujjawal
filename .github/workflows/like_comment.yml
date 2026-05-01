@@ -78,6 +78,7 @@ jobs:
       - name: Run like_comment.py (headless)
         env:
           HEADLESS: '1'
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           python like_comment.py
 
