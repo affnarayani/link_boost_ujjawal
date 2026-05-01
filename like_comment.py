@@ -54,7 +54,7 @@ def save_to_json_top(new_link):
 def generate_ai_comment(content):
     try:
         prompt = (
-            f"Analyze this content and write a 30-word insightful comment that reflects understanding and also adds a thoughtful opinion or perspective."
+            f"Read and analyze the content, then write a 30-word viral LinkedIn-style comment that reflects deep understanding and adds a sharp, thought-provoking opinion that encourages engagement."
             f"Comment only, no quotes, no asterisks, no prefix.\nContent: {content}"
         )
 
@@ -163,7 +163,7 @@ def extract_single_new_share_link():
                                             commentary_loc = embed_iframe.locator('[data-test-id="main-feed-activity-embed-card__commentary"]')
                                             content = commentary_loc.inner_text() if commentary_loc.count() > 0 else ""
                                             
-                                            if len(re.findall(r'[A-Za-z]', content)) < 30:
+                                            if len(re.findall(r'[A-Za-z]', content)) < 60:
                                                 print("[SKIP] Content too short. Closing modal...", flush=True)
                                                 page.keyboard.press("Escape")
                                                 time.sleep(2)
