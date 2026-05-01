@@ -2197,7 +2197,8 @@
     {
         "name": "Aditya Kumar",
         "link": "https://www.linkedin.com/in/aditya-kumar-9a9012256?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD8BhBEBeRKRYSx9U5G0E4_R2-DVv_iCoH0",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-01 14:42:33"
     },
     {
         "name": "Anubhav Kumar Verma",
