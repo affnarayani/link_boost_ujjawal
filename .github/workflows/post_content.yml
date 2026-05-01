@@ -70,6 +70,7 @@ jobs:
       - name: Run post_content_summary.py (headless)
         env:
           HEADLESS: '1'
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           python post_content_summary.py
 
