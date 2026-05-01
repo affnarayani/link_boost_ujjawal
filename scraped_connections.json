@@ -2245,7 +2245,8 @@
     {
         "name": "Ravi Kumar",
         "link": "https://www.linkedin.com/in/ravi-kumar-514934314?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE_fPOAB2wEr8g-bXtuKje5m-gppFKbSfWs",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-01 22:11:14"
     },
     {
         "name": "Adv. Prabhakar Jha",
