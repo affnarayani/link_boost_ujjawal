@@ -46,7 +46,7 @@ def rewrite_with_hf(text):
         f"4. No intro/outro.\n"
         f"5. No special symbols like * or **.\n"
         f"6. Use one blank line between paragraphs.\n"
-        f"7. At the end of the post, include 3 to 5 relevant and professional hashtags for SEO. Place them on a new line after the content. Do not include any extra explanation.\n"
+        f"7. IMPORTANT: At the end of the post, include 3 to 5 relevant and professional hashtags for SEO. Place them on a new line after the content. Do not include any extra explanation.\n"
         f"Content: {text}"
     )
 
