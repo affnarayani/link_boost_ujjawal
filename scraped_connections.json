@@ -2173,7 +2173,8 @@
     {
         "name": "Amar Anand",
         "link": "https://www.linkedin.com/in/amar-anand-a8a1ba112?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAABwmcIoBuSmXhybIN3Z-Gev3bHYaQGpKzY0",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-01 07:17:45"
     },
     {
         "name": "Deepak Gupta",
