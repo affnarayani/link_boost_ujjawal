@@ -2209,12 +2209,14 @@
     {
         "name": "Shabina Talat",
         "link": "https://www.linkedin.com/in/shabina-talat-b97027311?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE80J-MBTZXCNLSv9xvyvPxkimSPZ2ocLPk",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-01 18:17:36"
     },
     {
         "name": "Subhash Patel",
         "link": "https://www.linkedin.com/in/subhash-patel-9aa619239?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADtbq1IB7NHli9Wl7bkbGto2QMpC19ppowE",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-01 18:18:14"
     },
     {
         "name": "vandana sinha",
