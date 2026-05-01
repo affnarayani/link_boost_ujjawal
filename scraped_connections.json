@@ -2257,7 +2257,8 @@
     {
         "name": "Asit kumar",
         "link": "https://www.linkedin.com/in/asit-kumar-3b3b601a6?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADA5jDcBf1sXjxEdAn30YHh2q1sOkBZsbtQ",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-01 23:11:59"
     },
     {
         "name": "Aaditya Dutta",
