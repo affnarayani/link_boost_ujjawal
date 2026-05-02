@@ -2281,12 +2281,14 @@
     {
         "name": "Rupeysh Tiwary",
         "link": "https://www.linkedin.com/in/rupeysh-tiwary-1aa167291?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEauMlIB0rItpnWc7Z44CHl4lJiDEAO0i8Y",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-02 09:19:16"
     },
     {
         "name": "Adv. Aishwarya Sudhir",
         "link": "https://www.linkedin.com/in/adv-aishwarya-sudhir-a710291b2?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADF7RLUBgXEU3j-44D5wY1iLheWQtmN0PjE",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-02 09:19:49"
     },
     {
         "name": "Sunil Kumar",
