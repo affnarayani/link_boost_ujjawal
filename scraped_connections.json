@@ -2383,7 +2383,8 @@
     {
         "name": "Rajnish Singh",
         "link": "https://www.linkedin.com/in/rajnish-singh-817480245?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADzCjJMB4VBaQBOzRngCdqjfIoklicl9BU4",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-03 09:58:49"
     },
     {
         "name": "Adv. Sadhna Parasher",
