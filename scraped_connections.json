@@ -2347,7 +2347,8 @@
     {
         "name": "siddharth shankar pandey",
         "link": "https://www.linkedin.com/in/siddharth-shankar-pandey-b55b14b9?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAABlChnEBIKJ_5cQ3ryzduQQysRILwNs5TmE",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-03 07:33:05"
     },
     {
         "name": "Aarti Raj",
