@@ -2422,7 +2422,8 @@
     {
         "name": "Aditi Raj",
         "link": "https://www.linkedin.com/in/aditi-raj-law?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD-jtxIBblt45kxX9G343aixZNtOT68ckAg",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-03 21:07:31"
     },
     {
         "name": "Adv. Misha Bharti",
