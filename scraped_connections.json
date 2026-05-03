@@ -2413,7 +2413,8 @@
     {
         "name": "Tannu Shree",
         "link": "https://www.linkedin.com/in/tannu-shree-14b158266?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEEpd8sB3uaR7WamEagNwN85j8fVhPYD-Ok",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-03 17:07:10"
     },
     {
         "name": "Aditi Raj",
