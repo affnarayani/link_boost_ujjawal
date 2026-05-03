@@ -2395,7 +2395,8 @@
     {
         "name": "Shashi Ranjan Kumar",
         "link": "https://www.linkedin.com/in/shashi-ranjan-kumar-aa76a4110?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAABvd0x8B9_At6jMVaO4chPdHjESZpc5KqxA",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-03 12:07:00"
     },
     {
         "name": "Nidhi Anand",
