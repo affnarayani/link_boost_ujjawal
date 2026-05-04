@@ -98,145 +98,194 @@ def extract_single_new_share_link():
         already_posted = get_posted_links()
         print(f"[INFO] Loaded {len(already_posted)} links from JSON.", flush=True)
 
-        print("[INFO] Waiting for LinkedIn Feed to settle...", flush=True)
         time.sleep(random.uniform(8, 12))
 
         workspace = page.locator('#workspace')
         menu_pattern = re.compile(r"Open control menu for post by .*", re.IGNORECASE)
         control_menu_locator = page.get_by_role('button', name=menu_pattern)
 
-        target_link = None 
+        # SINGLE SCROLL
+        workspace.focus()
+        page.keyboard.press("PageDown")
+        page.evaluate("document.querySelector('#workspace').scrollBy(0, 1000)")
+        print("[ACTION] Scroll 1/1...", flush=True)
+        time.sleep(5)
 
-        for i in range(6):
-            if target_link: break 
+        menus = control_menu_locator.all()
 
-            workspace.focus()
-            page.keyboard.press("PageDown")
-            page.evaluate("document.querySelector('#workspace').scrollBy(0, 1000)")
-            print(f"[ACTION] Scroll {i+1}/6...", flush=True)
-            time.sleep(5)
+        for menu in menus:
+            try:
+                if not menu.is_visible():
+                    continue
 
-            menus = control_menu_locator.all()
-            for menu in menus:
-                if target_link: break 
-                
-                try:
-                    if menu.is_visible():
-                        menu.scroll_into_view_if_needed()
-                        menu.click()
-                        time.sleep(2)
+                menu.scroll_into_view_if_needed()
+                menu.click()
+                time.sleep(2)
 
-                        embed_item = page.get_by_role('menuitem', name='Embed this post')
-                        
-                        if embed_item.count() > 0:
-                            embed_item.click()
-
-                            modal_heading = page.get_by_role('heading', name='Embed this post')
-                            expect(modal_heading).to_be_visible(timeout=15000)
-                            
-                            embed_textbox = page.locator("#feed-components-shared-embed-modal__snippet")
-                            expect(embed_textbox).to_be_visible(timeout=10000)
-                            
-                            raw_embed = None
-                            for _ in range(20):
-                                val = embed_textbox.input_value()
-                                if val and "iframe" in val.lower():
-                                    raw_embed = val
-                                    break
-                                time.sleep(0.5)
-
-                            if raw_embed:
-                                match = re.search(r'src="([^"]+)"', raw_embed)
-                                if match:
-                                    full_url = match.group(1)
-                                    base_url = full_url.split('?')[0]
-                                    final_link = base_url.replace('/embed/', '/')
-                                    
-                                    if "urn:li:share:" in final_link:
-                                        if final_link not in already_posted:
-                                            print(f"\n[NEW POST FOUND]: {final_link}", flush=True)
-                                            
-                                            page.get_by_text('Embed full post').click()
-                                            time.sleep(15)
-
-                                            embed_iframe = page.frame_locator('iframe[title="Embed a post iframe"]')
-                                            commentary_loc = embed_iframe.locator('[data-test-id="main-feed-activity-embed-card__commentary"]')
-                                            content = commentary_loc.inner_text() if commentary_loc.count() > 0 else ""
-                                            
-                                            if len(re.findall(r'[A-Za-z]', content)) < 60:
-                                                print("[SKIP] Content too short. Closing modal...", flush=True)
-                                                page.keyboard.press("Escape")
-                                                time.sleep(2)
-                                                continue
-
-                                            more_btn = embed_iframe.get_by_text('…more')
-                                            if more_btn.count() > 0:
-                                                expect(more_btn).to_be_hidden(timeout=30000)
-
-                                            ai_comment = generate_ai_comment(content)
-                                            print(f"[AI COMMENT]: {ai_comment}", flush=True)
-
-                                            with context.expect_page() as new_page_info:
-                                                embed_iframe.get_by_role('link', name='Comment', exact=True).click()
-                                            new_tab = new_page_info.value
-                                            new_tab.bring_to_front()
-                                            
-                                            print("[ACTION] Waiting for page load...", flush=True)
-                                            new_tab.wait_for_load_state("networkidle")
-                                            time.sleep(15)
-
-                                            print("[ACTION] Attempting to Like...", flush=True)
-                                            like_btn = new_tab.get_by_role('button', name='React Like', exact=True)
-                                            if like_btn.is_visible():
-                                                like_btn.click()
-                                                print("[SUCCESS] Post Liked.", flush=True)
-                                                time.sleep(5)
-                                            else:
-                                                print("[WARNING] Like button not found or already liked.", flush=True)
-
-                                            comment_box = new_tab.get_by_role('textbox', name='Text editor for creating').get_by_role('paragraph')
-                                            comment_box.click()
-                                            comment_box.fill(ai_comment)
-                                            time.sleep(2)
-
-                                            for _ in range(3):
-                                                new_tab.keyboard.press("Tab")
-                                                time.sleep(2)
-
-                                            new_tab.keyboard.press("Enter")
-                                            time.sleep(15)
-                                            new_tab.close()
-
-                                            save_to_json_top(final_link)
-                                            target_link = final_link
-                                            page.keyboard.press("Escape")
-                                            break 
-                                        else:
-                                            print(f"[SKIP] Already posted: {final_link[-20:]}", flush=True)
-                                    else:
-                                        print(f"[IGNORE] Not a 'share' link.", flush=True)
-                            
-                            if not target_link:
-                                page.keyboard.press("Escape")
-                                time.sleep(2)
-                        else:
-                            page.keyboard.press("Escape")
-                
-                except Exception as e:
+                embed_item = page.get_by_role('menuitem', name='Embed this post')
+                if embed_item.count() == 0:
                     page.keyboard.press("Escape")
                     continue
 
-        print("\n" + "="*70, flush=True)
-        if target_link:
-            print(f"RESULT: {target_link}", flush=True)
-        else:
-            print("RESULT: No new eligible share links found in 6 scrolls.", flush=True)
-            sys.exit(1)
-        print("="*70, flush=True)
+                embed_item.click()
+                time.sleep(3)
 
-    except Exception as e:
-        print(f"[ERROR] Logic failed: {e}", flush=True)
+                embed_textbox = page.locator("#feed-components-shared-embed-modal__snippet")
+                if not embed_textbox.is_visible():
+                    sys.exit(1)
+
+                raw_embed = None
+                for _ in range(20):
+                    try:
+                        val = embed_textbox.input_value()
+                        if val and "iframe" in val.lower():
+                            raw_embed = val
+                            break
+                    except:
+                        pass
+                    time.sleep(0.5)
+
+                if not raw_embed:
+                    sys.exit(1)
+
+                match = re.search(r'src="([^"]+)"', raw_embed)
+                if not match:
+                    sys.exit(1)
+
+                full_url = match.group(1)
+                base_url = full_url.split('?')[0]
+                final_link = base_url.replace('/embed/', '/').strip()
+
+                print(f"[DEBUG] Extracted link: {final_link}", flush=True)
+
+                if "urn:li:share:" not in final_link:
+                    sys.exit(1)
+
+                if final_link in already_posted:
+                    sys.exit(1)
+
+                print(f"[NEW POST FOUND]: {final_link}", flush=True)
+
+                page.get_by_text('Embed full post').click()
+                time.sleep(8)
+
+                iframe = page.frame_locator('iframe[title="Embed a post iframe"]')
+                content_loc = iframe.locator('[data-test-id="main-feed-activity-embed-card__commentary"]')
+
+                if content_loc.count() == 0:
+                    sys.exit(1)
+
+                content = content_loc.inner_text()
+
+                if len(re.findall(r'[A-Za-z]', content)) < 60:
+                    sys.exit(1)
+
+                more_btn = iframe.get_by_text('…more')
+                if more_btn.count() > 0:
+                    try:
+                        if more_btn.is_visible():
+                            more_btn.click()
+                            time.sleep(1)
+                    except:
+                        pass
+
+                ai_comment = generate_ai_comment(content)
+                print(f"[AI COMMENT]: {ai_comment}", flush=True)
+
+                with context.expect_page() as new_page_info:
+                    iframe.get_by_role('link', name='Comment', exact=True).click()
+
+                new_tab = new_page_info.value
+                new_tab.bring_to_front()
+
+                new_tab.wait_for_load_state("domcontentloaded")
+                time.sleep(5)
+
+                # =========================
+                # LIKE (UPDATED LOCATORS)
+                # =========================
+                print("[ACTION] Checking Like state...", flush=True)
+
+                not_liked_btn = new_tab.get_by_role('button', name='React Like', exact=True)
+                liked_btn = new_tab.get_by_role('button', name='Unreact Like')
+
+                if not_liked_btn.count() > 0 and not_liked_btn.first.is_visible():
+                    print("[INFO] Not liked → liking", flush=True)
+                    not_liked_btn.first.click()
+                    time.sleep(3)
+
+                elif liked_btn.count() > 0 and liked_btn.first.is_visible():
+                    print("[INFO] Already liked → skip", flush=True)
+
+                else:
+                    print("[FAIL] Like button not found", flush=True)
+                    sys.exit(1)
+
+                # =========================
+                # COMMENT (UPDATED FLOW)
+                # =========================
+                try:
+                    print("[ACTION] Opening comment box...", flush=True)
+
+                    comment_btn = new_tab.get_by_role('button', name='Comment', exact=True)
+
+                    if comment_btn.count() == 0 or not comment_btn.first.is_visible():
+                        print("[FAIL] Comment button not found", flush=True)
+                        sys.exit(1)
+
+                    comment_btn.first.click()
+                    time.sleep(5)
+
+                    comment_box = new_tab.get_by_role(
+                        'textbox', name='Text editor for creating'
+                    ).get_by_role('paragraph')
+
+                    if not comment_box.is_visible():
+                        print("[FAIL] Comment box not visible", flush=True)
+                        sys.exit(1)
+
+                    comment_box.click()
+                    time.sleep(5)
+
+                    print("[ACTION] Typing comment...", flush=True)
+                    for char in ai_comment:
+                        new_tab.keyboard.type(char)
+                        time.sleep(random.uniform(0.02, 0.08))
+
+                    time.sleep(5)
+
+                    # ✅ TAB x3 → ENTER
+                    for _ in range(3):
+                        new_tab.keyboard.press("Tab")
+                        time.sleep(3)
+
+                    new_tab.keyboard.press("Enter")
+                    print("[SUCCESS] Comment posted.", flush=True)
+
+                    time.sleep(5)
+
+                except Exception as e:
+                    print(f"[FAIL] Comment failed: {e}", flush=True)
+                    sys.exit(1)
+
+                new_tab.close()
+
+                save_to_json_top(final_link)
+
+                print("\n[SUCCESS] DONE", flush=True)
+                print("="*60, flush=True)
+                print(f"RESULT: {final_link}", flush=True)
+                print("="*60, flush=True)
+
+                return
+
+            except Exception as e:
+                print(f"[FAIL] Exception: {e}", flush=True)
+                sys.exit(1)
+
+        print("[FAIL] No valid post found", flush=True)
         sys.exit(1)
+
     finally:
         browser.close()
         pw.stop()
