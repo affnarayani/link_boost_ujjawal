@@ -2519,7 +2519,8 @@
     {
         "name": "Arwaz Afroz",
         "link": "https://www.linkedin.com/in/arwaz-afroz-573b4835b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFmxMScBI69HH7o0fZhv0jCoUvQdFJDSjW4",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-04 20:08:01"
     },
     {
         "name": "Vishwas Kumar",
