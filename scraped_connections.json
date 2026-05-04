@@ -2506,7 +2506,8 @@
     {
         "name": "Rishek Kumar",
         "link": "https://www.linkedin.com/in/rishek-kumar-65861330b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE7vYOQBe1cgnwE9Pwy-XQBSolEStgaP2zw",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-04 17:18:34"
     },
     {
         "name": "Pranavi Divya",
