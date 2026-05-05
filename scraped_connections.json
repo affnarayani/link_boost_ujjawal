@@ -2567,12 +2567,14 @@
     {
         "name": "Arshique Rizvi",
         "link": "https://www.linkedin.com/in/arshique-rizvi-562a32262?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAECUm5oBXjG9JHRZOrBOWr-ReLBZ9Q276xI",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-05 06:01:28"
     },
     {
         "name": "Adv. Rajrani Choudhary",
         "link": "https://www.linkedin.com/in/adv-rajrani-choudhary-419714299?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEgv0lUBIAG1Jsym3q0r8J0cQ_55h6Nk3z4",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-05 06:02:07"
     },
     {
         "name": "Rajiv Nayan Singh",
