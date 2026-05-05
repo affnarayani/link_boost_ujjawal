@@ -2618,12 +2618,14 @@
     {
         "name": "Adv. Rahul Gandhi",
         "link": "https://www.linkedin.com/in/adv-rahul-gandhi-107752240?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADvpNxcBcjnrMOuJ3KQBv5cIZQBzlScJqos",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-05 12:13:51"
     },
     {
         "name": "Waquar Ahmad",
         "link": "https://www.linkedin.com/in/waquar-ahmad-0a78381a9?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADC2GX8BTLVf0uXvTRNxU0nn9VPMloNasmg",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-05 12:14:32"
     },
     {
         "name": "Manoj K Singh",
