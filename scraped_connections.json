@@ -2593,7 +2593,8 @@
     {
         "name": "trivikram sharma",
         "link": "https://www.linkedin.com/in/trivikram-sharma-a71b59322?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFGvO7UBcZnpJwzbsDh7G7au_oCGwDnMDus",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-05 10:55:51"
     },
     {
         "name": "Juli Kumari",
