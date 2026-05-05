@@ -1844,7 +1844,8 @@
         "name": "Shristi Shikha",
         "link": "https://www.linkedin.com/in/shristishikha?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADhGICsBuopC_JF-H_87VXNXXtULn2k0vgk",
         "invited": true,
-        "timestamp": "2026-04-27 21:35:55"
+        "timestamp": "2026-04-27 21:35:55",
+        "withdraw": true
     },
     {
         "name": "Shiv Pratap",
