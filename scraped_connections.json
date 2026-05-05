@@ -2581,7 +2581,8 @@
     {
         "name": "Rajiv Nayan Singh",
         "link": "https://www.linkedin.com/in/rajiv-nayan-singh-a68188213?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADXz__AB4WXfH8P7TJGS-mp2f1TaNdjLilc",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-05 08:35:14"
     },
     {
         "name": "Shivani .",
