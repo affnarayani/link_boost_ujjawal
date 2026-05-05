@@ -1823,7 +1823,8 @@
         "name": "Mrigendra Kumar Singh",
         "link": "https://www.linkedin.com/in/mrigendra-kumar-singh-a4158b24?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAAURlBEBLBYMdS4VzCWgKzzFXcBRmwuLPfA",
         "invited": true,
-        "timestamp": "2026-04-27 20:45:01"
+        "timestamp": "2026-04-27 20:45:01",
+        "withdraw": false
     },
     {
         "name": "Natraj Verma",
