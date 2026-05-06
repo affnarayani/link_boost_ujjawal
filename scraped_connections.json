@@ -1928,7 +1928,8 @@
         "name": "Aniket Singh",
         "link": "https://www.linkedin.com/in/aniket-singh-808752b7?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAABjZawgByiR2jUmZUe4KxrZgYtt6beQxAYo",
         "invited": true,
-        "timestamp": "2026-04-28 17:26:36"
+        "timestamp": "2026-04-28 17:26:36",
+        "withdraw": false
     },
     {
         "name": "Jyoti Singh",
