@@ -2721,7 +2721,8 @@
     {
         "name": "Sana Kauser",
         "link": "https://www.linkedin.com/in/sana-kauser-77a1a2220?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADeOh84BKbvDkwtztT7PeNUIDCOXMO7tixo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-06 14:43:54"
     },
     {
         "name": "Sanya Kumari",
