@@ -2742,7 +2742,8 @@
     {
         "name": "Ujjawal Raj",
         "link": "https://www.linkedin.com/in/ujjawal-raj-854a19203?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADPxOoABnUvsK-kn6ZpaiIJXmicBXkYZSpI",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-06 18:07:06"
     },
     {
         "name": "RASHI CHANDRA",
