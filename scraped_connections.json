@@ -2677,7 +2677,8 @@
     {
         "name": "AVINASH RAJ",
         "link": "https://www.linkedin.com/in/avinash-raj-b08980235?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADqyyjgBqO_EqE3yRFllryR7ZrSk--JNT0k",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-06 01:58:04"
     },
     {
         "name": "Advocate Mayank Raj",
