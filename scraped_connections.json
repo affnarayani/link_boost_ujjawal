@@ -2843,7 +2843,8 @@
     {
         "name": "Nitish Kumar",
         "link": "https://www.linkedin.com/in/nitish-kumar-989305393?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGCv-zkBKvnGXHdeNRYSqUA-dlBFDRxHR9I",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-07 16:00:56"
     },
     {
         "name": "Sanjay Kumar",
