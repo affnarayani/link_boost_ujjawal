@@ -2082,7 +2082,8 @@
         "name": "Atul Kuwar",
         "link": "https://www.linkedin.com/in/atul-kuwar-1a88b1211?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADW0MtAB-k6eE2NMcDdkL1p4oZO7SzRUMl4",
         "invited": true,
-        "timestamp": "2026-04-29 20:03:26"
+        "timestamp": "2026-04-29 20:03:26",
+        "withdraw": true
     },
     {
         "name": "Law Point",
