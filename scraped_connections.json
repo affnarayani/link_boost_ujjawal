@@ -2836,7 +2836,8 @@
     {
         "name": "Rishu Kumar",
         "link": "https://www.linkedin.com/in/rishu-kumar-4b3751363?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFpYYocBsMvMshwQO11fyo0lQeI3TlOZd_Q",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-07 13:21:06"
     },
     {
         "name": "Nitish Kumar",
