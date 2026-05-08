@@ -2976,7 +2976,8 @@
     {
         "name": "Laila Kazmi",
         "link": "https://www.linkedin.com/in/laila-kazmi-?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADZ56jYBQkOZYyF8W-puipXluLpVMQcC0i0",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-08 17:06:49"
     },
     {
         "name": "Adv. Pallavi Sharma",
