@@ -2970,7 +2970,8 @@
     {
         "name": "Aman Kumar Singh",
         "link": "https://www.linkedin.com/in/aman-kumar-singh-21572a208?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADTJ-rEBjgBsdxLsA26yNpzYN7QXDBIKMvo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-08 16:16:40"
     },
     {
         "name": "Laila Kazmi",
