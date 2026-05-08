@@ -2922,12 +2922,14 @@
     {
         "name": "Adv. Deepak Bhardwaj",
         "link": "https://www.linkedin.com/in/adv-deepak-bhardwaj-a053b32b4?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEuFeOUB0vUp040TNUU1D_IpO0R21-GObcM",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-08 08:06:02"
     },
     {
         "name": "Keshab Raj",
         "link": "https://www.linkedin.com/in/keshab-raj-56172930a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE7GFdkBQW0cGyEErtVodI6ETqV6F_G3NFU",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-08 08:06:41"
     },
     {
         "name": "Jay Prakash Akela",
