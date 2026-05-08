@@ -2208,7 +2208,8 @@
         "name": "Abhishek Raj",
         "link": "https://www.linkedin.com/in/abhishek-raj-4897a7274?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEMJb-kBzf6CBrCOAMCz6VM-P04VjmrCclc",
         "invited": true,
-        "timestamp": "2026-04-30 20:03:49"
+        "timestamp": "2026-04-30 20:03:49",
+        "withdraw": true
     },
     {
         "name": "Bhagwan Kumar",
