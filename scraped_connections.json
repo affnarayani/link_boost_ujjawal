@@ -2243,7 +2243,8 @@
         "name": "Shivam Sharma",
         "link": "https://www.linkedin.com/in/shivam-sharma-60b414263?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAECqz2sB6eV_tcwQ_GbAK_hOfVF_V2pF_vg",
         "invited": true,
-        "timestamp": "2026-05-01 06:22:54"
+        "timestamp": "2026-05-01 06:22:54",
+        "withdraw": false
     },
     {
         "name": "S.Jamil Akhter",
