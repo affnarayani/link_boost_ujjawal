@@ -3123,7 +3123,8 @@
     {
         "name": "Rajnish Kumar Pathak",
         "link": "https://www.linkedin.com/in/rajnish-kumar-pathak-b93565221?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADfKGl8BVlPIK_XgZLKlyVv6f-YY9V3Xq7Y",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-09 21:31:19"
     },
     {
         "name": "Venkatesh Kirti",
