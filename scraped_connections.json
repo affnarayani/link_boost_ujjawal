@@ -3087,7 +3087,8 @@
     {
         "name": "Anshu Rani",
         "link": "https://www.linkedin.com/in/anshu-rani-44158a1bb?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADMqOfEB-fsc8UQ3B0RYuQpIhG0dQ7kQGII",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-09 15:36:04"
     },
     {
         "name": "shalini karn",
