@@ -3080,7 +3080,8 @@
     {
         "name": "Rajesh Kumar Yadav",
         "link": "https://www.linkedin.com/in/rajesh-kumar-yadav-237b291a7?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADBmFAsBERU7-PuVfGgPOJYWbGc5QDbNJdM",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-09 15:14:39"
     },
     {
         "name": "Anshu Rani",
