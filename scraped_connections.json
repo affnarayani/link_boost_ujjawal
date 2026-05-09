@@ -3063,7 +3063,8 @@
     {
         "name": "Ankit Kumar Singh",
         "link": "https://www.linkedin.com/in/ankit-kumar-singh-482b6a282?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAETfECIBI8hG9Oqk4-RMc6c6c7TfAWn1qBo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-09 11:11:42"
     },
     {
         "name": "Ritik Raj",
