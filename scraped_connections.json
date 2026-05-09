@@ -3093,7 +3093,8 @@
     {
         "name": "shalini karn",
         "link": "https://www.linkedin.com/in/shalini-karn-784460292?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEbm-lQBV8ruCX8YwE5MG-EbShttXduJlxo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-09 16:38:18"
     },
     {
         "name": "Aman Prateek",
