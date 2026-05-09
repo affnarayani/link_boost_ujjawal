@@ -2299,7 +2299,8 @@
         "name": "Shabina Talat",
         "link": "https://www.linkedin.com/in/shabina-talat-b97027311?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE80J-MBTZXCNLSv9xvyvPxkimSPZ2ocLPk",
         "invited": true,
-        "timestamp": "2026-05-01 18:17:36"
+        "timestamp": "2026-05-01 18:17:36",
+        "withdraw": true
     },
     {
         "name": "Subhash Patel",
