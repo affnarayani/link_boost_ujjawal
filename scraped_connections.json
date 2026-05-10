@@ -3147,7 +3147,8 @@
     {
         "name": "Shriya Srivastava",
         "link": "https://www.linkedin.com/in/shriya-srivastava-13ba22205?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADRMeD8BfZoMEPk2vWQJ5NJZc26r4iJX-X4",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-10 09:56:55"
     },
     {
         "name": "Ravi Ranjan Mallick",
