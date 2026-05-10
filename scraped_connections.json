@@ -3242,7 +3242,8 @@
     {
         "name": "Jai Prakash Singh",
         "link": "https://www.linkedin.com/in/jai-prakash-singh-b15759248?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD1V7AEB6o45Xl2LeFCJ7XOOdjsnafnkOkI",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-10 23:37:47"
     },
     {
         "name": "ashok mishra",
