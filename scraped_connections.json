@@ -2411,7 +2411,8 @@
         "name": "Raja Kumar",
         "link": "https://www.linkedin.com/in/raja-kumar-53b49a341?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFWt338B6znLrkTdtGuYi5Nd_arh2wUAcyE",
         "invited": true,
-        "timestamp": "2026-05-02 16:45:05"
+        "timestamp": "2026-05-02 16:45:05",
+        "withdraw": true
     },
     {
         "name": "Sunit Kumar Srivastava",
