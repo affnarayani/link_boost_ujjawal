@@ -3214,7 +3214,8 @@
     {
         "name": "Raj Kumar singh",
         "link": "https://www.linkedin.com/in/raj-kumar-singh-1b68a8317?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFBmcRoBT_jiVbL0aWTdYPiiwNUJ9V1Z6Tk",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-10 18:48:18"
     },
     {
         "name": "Rama Kant Jha",
