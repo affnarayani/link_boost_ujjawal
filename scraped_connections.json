@@ -3137,7 +3137,8 @@
     {
         "name": "Shashi Ranjan Dayal",
         "link": "https://www.linkedin.com/in/shashi-ranjan-dayal-12ba0b253?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD6esvMBZEVuAcJuBTeYVvbZBdsIcdzQlVE",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-10 07:41:17"
     },
     {
         "name": "Shriya Srivastava",
