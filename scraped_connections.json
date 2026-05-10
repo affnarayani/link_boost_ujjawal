@@ -3193,7 +3193,8 @@
     {
         "name": "Rishav Kumar",
         "link": "https://www.linkedin.com/in/rishav-kumar-412a0a35a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFl-nc4BTcpLonBCEvaCfKGpJ5qXwnpowEk",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-10 15:12:12"
     },
     {
         "name": "Santosh Kumar",
