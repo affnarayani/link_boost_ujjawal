@@ -3208,7 +3208,8 @@
     {
         "name": "Rohit Kumar",
         "link": "https://www.linkedin.com/in/rohit-kumar-29032a24b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD3OewwBglpHeUi4K_lP2zIvkaLLYQ-JcG4",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-10 18:38:08"
     },
     {
         "name": "Raj Kumar singh",
