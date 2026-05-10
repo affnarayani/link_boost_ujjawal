@@ -2495,7 +2495,8 @@
         "name": "Lalan Kumar",
         "link": "https://www.linkedin.com/in/lalankumar1992?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADiStOYBRAUk4hs_FbECnl5jCW0G47pe9qU",
         "invited": true,
-        "timestamp": "2026-05-03 09:00:58"
+        "timestamp": "2026-05-03 09:00:58",
+        "withdraw": false
     },
     {
         "name": "Rajnish Singh",
