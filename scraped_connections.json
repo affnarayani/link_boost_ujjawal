@@ -3168,7 +3168,8 @@
     {
         "name": "Adv.Anurag Patel",
         "link": "https://www.linkedin.com/in/adv-anurag-patel-838248239?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADtNZqwBXN5UDL29PtXLCGcvcC-pYJP89eg",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-10 13:51:59"
     },
     {
         "name": "Ashish Kumar Agrawal",
