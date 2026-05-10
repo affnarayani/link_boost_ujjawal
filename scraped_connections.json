@@ -3129,7 +3129,8 @@
     {
         "name": "Venkatesh Kirti",
         "link": "https://www.linkedin.com/in/venkatesh-kirti-91974922b?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADmYyeUBoH1EkMm3O1l5-e1b-PG3XIMXiBo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-10 06:19:17"
     },
     {
         "name": "Shashi Ranjan Dayal",
