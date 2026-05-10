@@ -3153,7 +3153,8 @@
     {
         "name": "Ravi Ranjan Mallick",
         "link": "https://www.linkedin.com/in/ravi-ranjan-mallick-b8755b276?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAENbgdcBcp8egyiEvYy-wVGh8wxOvf0mhKc",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-10 10:44:52"
     },
     {
         "name": "Anuj Kumar Thakur",
