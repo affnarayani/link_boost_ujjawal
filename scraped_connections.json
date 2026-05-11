@@ -3262,7 +3262,8 @@
     {
         "name": "Adv Shyam Sundar",
         "link": "https://www.linkedin.com/in/adv-shyam-sundar-82915b1b8?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADKRb-EBotitQQlIJbjyp0U1rv7H7fHI5V0",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-11 14:04:01"
     },
     {
         "name": "Raushan Ojha",
