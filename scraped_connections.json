@@ -2586,7 +2586,8 @@
         "name": "Navin Maurya",
         "link": "https://www.linkedin.com/in/navin-maurya-2a4463238?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADsn69wB_4aiIBn7j5dx9rW4wcnIHPtV27Y",
         "invited": true,
-        "timestamp": "2026-05-04 10:35:06"
+        "timestamp": "2026-05-04 10:35:06",
+        "withdraw": false
     },
     {
         "name": "Anshu Kumar (Pandey)",
