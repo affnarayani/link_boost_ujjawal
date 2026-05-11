@@ -2572,7 +2572,8 @@
         "name": "Ishan Sharan",
         "link": "https://www.linkedin.com/in/ishan-sharan12052005?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADodRVgBVYIwz0Zcmx4WgqRG45Mm3egjXvk",
         "invited": true,
-        "timestamp": "2026-05-04 08:07:14"
+        "timestamp": "2026-05-04 08:07:14",
+        "withdraw": true
     },
     {
         "name": "Vanshika Pandey",
