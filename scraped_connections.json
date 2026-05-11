@@ -3301,7 +3301,8 @@
     {
         "name": "Nitish Mishra",
         "link": "https://www.linkedin.com/in/nitishmishra9693002183?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADPW90UBhvfdi0Vq_fcoDHb7-FrgbHVhcJw",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-11 19:08:51"
     },
     {
         "name": "Subhash Kumar Jha",
