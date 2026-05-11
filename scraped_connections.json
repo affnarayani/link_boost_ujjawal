@@ -3354,7 +3354,8 @@
     {
         "name": "RAJIB RANJAN",
         "link": "https://www.linkedin.com/in/rajib-ranjan-9728a1219?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADcgZiYBmbJqESrlSQrUUa6fJw37Z7jmwPE",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-11 23:05:55"
     },
     {
         "name": "Sonu Kumar",
