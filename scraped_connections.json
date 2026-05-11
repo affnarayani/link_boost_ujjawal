@@ -2530,7 +2530,8 @@
         "name": "MOHIT KUMAR",
         "link": "https://www.linkedin.com/in/mohit-kumar-8727661b3?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADHEl1YBYMGXTIyGFqYH1x-OWNTiMvCOPXY",
         "invited": true,
-        "timestamp": "2026-05-03 16:31:50"
+        "timestamp": "2026-05-03 16:31:50",
+        "withdraw": true
     },
     {
         "name": "Tannu Shree",
