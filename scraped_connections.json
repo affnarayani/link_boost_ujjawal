@@ -2551,7 +2551,8 @@
         "name": "Adv. Misha Bharti",
         "link": "https://www.linkedin.com/in/adv-misha-bharti-1776b21a7?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADBVwWsBUNUJFSWxsF9pcWIxCV_gOwFDzjk",
         "invited": true,
-        "timestamp": "2026-05-03 22:57:37"
+        "timestamp": "2026-05-03 22:57:37",
+        "withdraw": true
     },
     {
         "name": "Kaushal Kumar",
