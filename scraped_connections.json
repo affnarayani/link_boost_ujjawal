@@ -2523,7 +2523,8 @@
         "name": "Nidhi Anand",
         "link": "https://www.linkedin.com/in/imnidhianand?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEQ3ThYBqUcS0rr6SCxO06cMYQiPDTx7d8Q",
         "invited": true,
-        "timestamp": "2026-05-03 13:53:36"
+        "timestamp": "2026-05-03 13:53:36",
+        "withdraw": false
     },
     {
         "name": "MOHIT KUMAR",
