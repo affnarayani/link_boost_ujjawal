@@ -3465,7 +3465,8 @@
     {
         "name": "Amrit Kumar",
         "link": "https://www.linkedin.com/in/amrit-kumar-558365259?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD-XPtQBYxXgV3W7sBYtapKfCiYu_1-HNg8",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-12 20:17:03"
     },
     {
         "name": "Aishwarya Shankar",
