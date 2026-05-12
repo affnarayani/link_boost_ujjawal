@@ -3403,7 +3403,8 @@
     {
         "name": "Ankita Sharma",
         "link": "https://www.linkedin.com/in/ankita-sharma-9a16671b4?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADHuYskB5O2keXiTJL1El-XFH2LpwJcgNjk",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-12 11:14:20"
     },
     {
         "name": "Sukesh Ranjan",
