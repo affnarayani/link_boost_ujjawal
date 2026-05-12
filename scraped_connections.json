@@ -2691,7 +2691,8 @@
         "name": "Arshique Rizvi",
         "link": "https://www.linkedin.com/in/arshique-rizvi-562a32262?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAECUm5oBXjG9JHRZOrBOWr-ReLBZ9Q276xI",
         "invited": true,
-        "timestamp": "2026-05-05 06:01:28"
+        "timestamp": "2026-05-05 06:01:28",
+        "withdraw": false
     },
     {
         "name": "Adv. Rajrani Choudhary",
