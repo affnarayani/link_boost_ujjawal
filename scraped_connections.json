@@ -3409,12 +3409,14 @@
     {
         "name": "Sukesh Ranjan",
         "link": "https://www.linkedin.com/in/sukeshranjan?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEHC39ABb7uDJFk_OIr-sucuRtvbkeFbS_c",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-12 12:18:15"
     },
     {
         "name": "Swastika Kumari",
         "link": "https://www.linkedin.com/in/swastikadubey?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFBB2pEBe1hHPumOsF8Nfm1Tf29_ND975u0",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-12 12:18:52"
     },
     {
         "name": "Janvi Mehta",
