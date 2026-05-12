@@ -3445,12 +3445,14 @@
     {
         "name": "Kritika Kumari",
         "link": "https://www.linkedin.com/in/kritika-kumari-21b681224?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADhXF_cB0BqBmwZBvYa_KvUPraV3VAFhBD4",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-12 18:52:10"
     },
     {
         "name": "Sanjeev Kumar",
         "link": "https://www.linkedin.com/in/sanjeev-kumar-a75692264?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEDidHkBg_v6xXfZiT5howRXfc6dhFbcx6c",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-12 18:52:49"
     },
     {
         "name": "Sudhanshu Ranjan",
