@@ -2649,7 +2649,8 @@
         "name": "Vishwas Kumar",
         "link": "https://www.linkedin.com/in/vishwas-kumar-355615300?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEz6PLEBPZlFF2M-v_Dff348gKFn3hhB5bo",
         "invited": true,
-        "timestamp": "2026-05-04 20:40:22"
+        "timestamp": "2026-05-04 20:40:22",
+        "withdraw": false
     },
     {
         "name": "Ajay Dutt Mishra",
