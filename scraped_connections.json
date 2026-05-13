@@ -3521,7 +3521,8 @@
     {
         "name": "Dr. Vishwa Prakash kumar",
         "link": "https://www.linkedin.com/in/dr-vishwa-prakash-kumar-551b981b7?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADKLBg0BqtBra_2cVqa2lFHoWTdVaAmUyi0",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-13 16:32:17"
     },
     {
         "name": "BINDHYACHAL RAI",
