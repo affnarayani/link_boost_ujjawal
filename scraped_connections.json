@@ -3563,7 +3563,8 @@
     {
         "name": "Ekta Agarwal",
         "link": "https://www.linkedin.com/in/ekta-agarwal-4447a71b8?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADKpr7QBu_F32KnIucDBEpM8Ew8cborFUI0",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-13 23:37:40"
     },
     {
         "name": "Advocate S K singh",
