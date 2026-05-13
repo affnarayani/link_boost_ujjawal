@@ -3534,12 +3534,14 @@
     {
         "name": "Shruti Ranjan",
         "link": "https://www.linkedin.com/in/shruti-ranjan-a91466276?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAENX5I0BaFF_ChFforZ8BgrCrqQIusNjOr4",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-13 17:13:22"
     },
     {
         "name": "Piyush Parasar",
         "link": "https://www.linkedin.com/in/piyush-parasar-aa541437a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF2tgh0Bjfj6Tf0kkN9gAZ72N15AyCR7OrY",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-13 17:14:02"
     },
     {
         "name": "abhimanyu pratap",
