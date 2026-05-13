@@ -2747,7 +2747,8 @@
         "name": "Adv. Rahul Gandhi",
         "link": "https://www.linkedin.com/in/adv-rahul-gandhi-107752240?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADvpNxcBcjnrMOuJ3KQBv5cIZQBzlScJqos",
         "invited": true,
-        "timestamp": "2026-05-05 12:13:51"
+        "timestamp": "2026-05-05 12:13:51",
+        "withdraw": false
     },
     {
         "name": "Waquar Ahmad",
