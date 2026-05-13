@@ -3553,7 +3553,8 @@
     {
         "name": "Md Jafar Ekbal",
         "link": "https://www.linkedin.com/in/md-jafar-ekbal-9b5823271?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEKB69kBnhRoQJb_k7WkYgwW3QB_CGjxQ5k",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-13 18:58:02"
     },
     {
         "name": "Ekta Agarwal",
