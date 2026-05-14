@@ -3609,7 +3609,8 @@
     {
         "name": "Shashi Kumar",
         "link": "https://www.linkedin.com/in/shashi-kumar-952242213?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADX2Xs4BAskqJTjILDwen_wGuYQOVJfn4w8",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-14 08:21:13"
     },
     {
         "name": "Mayashankar Mishra",
