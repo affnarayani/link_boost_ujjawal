@@ -3664,7 +3664,8 @@
     {
         "name": "Keerti Kumari",
         "link": "https://www.linkedin.com/in/keerti-kumari-b641943a5?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGMpFnwBbSD9fhjlni6AiG8ZEgCrPHr5mjA",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-14 16:24:03"
     },
     {
         "name": "Jigyasha Singh",
