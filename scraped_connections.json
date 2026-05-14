@@ -3624,7 +3624,8 @@
     {
         "name": "Deepak Kaushik",
         "link": "https://www.linkedin.com/in/deepak-kaushik-4317b7284?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEUsgKUBnlCOcrzAtrIo7qTHVWVLmjqdlHo",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-14 12:16:02"
     },
     {
         "name": "ASHUTOSH PRASAD JOSHI",
