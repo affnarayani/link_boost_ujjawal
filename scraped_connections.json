@@ -3603,7 +3603,8 @@
     {
         "name": "Niharika Tripathi",
         "link": "https://www.linkedin.com/in/tripathiniharika?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEcYeA0B-3z0XTPADBOoqUGMjv5kZ6oxXx4",
-        "invited": false
+        "invited": true,
+        "timestamp": "2026-05-14 08:19:20"
     },
     {
         "name": "Shashi Kumar",
