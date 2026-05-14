@@ -2817,7 +2817,8 @@
         "name": "ABHISHEK Anand",
         "link": "https://www.linkedin.com/in/abhishek-anand-083b79382?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF6AWCMBJmrzCMWUz94yJ1pdZWwzPfk41Zs",
         "invited": true,
-        "timestamp": "2026-05-06 06:39:40"
+        "timestamp": "2026-05-06 06:39:40",
+        "withdraw": true
     },
     {
         "name": "Archit R.",
