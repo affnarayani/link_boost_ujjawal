@@ -2950,7 +2950,8 @@
         "name": "Parwez Ansari",
         "link": "https://www.linkedin.com/in/parwez-ansari-2933871ba?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADL0_M8ByWC11Mpzw0JyLHTbZS_RzAi74jg",
         "invited": true,
-        "timestamp": "2026-05-07 11:29:29"
+        "timestamp": "2026-05-07 11:29:29",
+        "withdraw": true
     },
     {
         "name": "Rishu Kumar",
