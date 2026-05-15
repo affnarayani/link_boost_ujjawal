@@ -2971,7 +2971,8 @@
         "name": "Sanjay Kumar",
         "link": "https://www.linkedin.com/in/sanjay-kumar-991756244?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADyflv0Bh6n_4mrA2MmCRMFa4rx38ROUMCA",
         "invited": true,
-        "timestamp": "2026-05-07 16:08:36"
+        "timestamp": "2026-05-07 16:08:36",
+        "withdraw": true
     },
     {
         "name": "Ankul Singh",
