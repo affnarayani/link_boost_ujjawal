@@ -3118,7 +3118,8 @@
         "name": "Raveena Nidhi Karn",
         "link": "https://www.linkedin.com/in/raveena-nidhi-karn-46944b1bb?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADMlMNEBHDRsM7jK5yJ0DNSwohcRMOp2llY",
         "invited": true,
-        "timestamp": "2026-05-08 20:20:26"
+        "timestamp": "2026-05-08 20:20:26",
+        "withdraw": false
     },
     {
         "name": "Mohit shriwastava",
