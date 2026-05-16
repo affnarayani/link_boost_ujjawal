@@ -3083,7 +3083,8 @@
         "name": "ANMOL KUMAR",
         "link": "https://www.linkedin.com/in/anmol-kumar-67388b202?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADO-VfcB4av2GkDGjXr5ASpWapCKLa90zFE",
         "invited": true,
-        "timestamp": "2026-05-08 15:22:32"
+        "timestamp": "2026-05-08 15:22:32",
+        "withdraw": false
     },
     {
         "name": "Aman Kumar Singh",
