@@ -3048,7 +3048,8 @@
         "name": "Keshab Raj",
         "link": "https://www.linkedin.com/in/keshab-raj-56172930a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAE7GFdkBQW0cGyEErtVodI6ETqV6F_G3NFU",
         "invited": true,
-        "timestamp": "2026-05-08 08:06:41"
+        "timestamp": "2026-05-08 08:06:41",
+        "withdraw": false
     },
     {
         "name": "Jay Prakash Akela",
