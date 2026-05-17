@@ -3153,7 +3153,8 @@
         "name": "Rahul Singh",
         "link": "https://www.linkedin.com/in/rahul-singh-969303324?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAFHqPaEBu_EBsUOdVkCFVPGhiVZe835yNQ8",
         "invited": true,
-        "timestamp": "2026-05-09 06:25:26"
+        "timestamp": "2026-05-09 06:25:26",
+        "withdraw": true
     },
     {
         "name": "Shivam Kumar Singh",
