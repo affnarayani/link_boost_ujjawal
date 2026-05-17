@@ -3195,7 +3195,8 @@
         "name": "Ritik Raj",
         "link": "https://www.linkedin.com/in/ritik-raj-a6b20b204?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADQAKDMBMUM_UuA5BpJJn07aTi3H4L16o0I",
         "invited": true,
-        "timestamp": "2026-05-09 12:36:09"
+        "timestamp": "2026-05-09 12:36:09",
+        "withdraw": false
     },
     {
         "name": "Rajesh Kumar Yadav",
