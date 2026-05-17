@@ -3230,7 +3230,8 @@
         "name": "Rahul Raj",
         "link": "https://www.linkedin.com/in/rahul-raj-5a09bb226?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADi-1IgBx7pJK2Yh43WK1yrHhTfTU1TBjYc",
         "invited": true,
-        "timestamp": "2026-05-09 19:38:35"
+        "timestamp": "2026-05-09 19:38:35",
+        "withdraw": true
     },
     {
         "name": "Piyush Kumar Singh",
