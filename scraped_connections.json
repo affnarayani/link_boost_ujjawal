@@ -3293,7 +3293,8 @@
         "name": "Ashish Kumar Agrawal",
         "link": "https://www.linkedin.com/in/ashish-kumar-agrawal-7436bb18?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAAOp0WMBdaKKIOG0rkTq5f5ZviGD-LBMm6A",
         "invited": true,
-        "timestamp": "2026-05-10 14:19:07"
+        "timestamp": "2026-05-10 14:19:07",
+        "withdraw": false
     },
     {
         "name": "Shobhit Rai",
