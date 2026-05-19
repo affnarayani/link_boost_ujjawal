@@ -3461,7 +3461,8 @@
         "name": "Dinesh Prasad",
         "link": "https://www.linkedin.com/in/dinesh-prasad-a2936b388?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAF9zGgEBGlZCa1FuSmsCN81hcK45dCWX6m4",
         "invited": true,
-        "timestamp": "2026-05-11 21:26:34"
+        "timestamp": "2026-05-11 21:26:34",
+        "withdraw": false
     },
     {
         "name": "Niraj Kumar",
