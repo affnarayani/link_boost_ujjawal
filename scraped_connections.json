@@ -3412,7 +3412,8 @@
         "name": "Raju Singh",
         "link": "https://www.linkedin.com/in/raju-singh-b20630244?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADybAUgBQqiTC5Q0t3qyL9pGjqPVng6bH2Y",
         "invited": true,
-        "timestamp": "2026-05-11 17:37:28"
+        "timestamp": "2026-05-11 17:37:28",
+        "withdraw": true
     },
     {
         "name": "Nitish Mishra",
