@@ -3524,7 +3524,8 @@
         "name": "Baidyanath Sharan",
         "link": "https://www.linkedin.com/in/baidyanath-sharan-848305211?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADWd2ngBMTZzuN_VtVJXsPQwr-SF7SIp_5M",
         "invited": true,
-        "timestamp": "2026-05-12 11:07:11"
+        "timestamp": "2026-05-12 11:07:11",
+        "withdraw": false
     },
     {
         "name": "Ankita Sharma",
