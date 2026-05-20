@@ -3517,7 +3517,8 @@
         "name": "Shweta Anand",
         "link": "https://www.linkedin.com/in/shweta-anand-774721264?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEDkAQgBTQLnozmsFb91DeBgLLD9sVNC7DY",
         "invited": true,
-        "timestamp": "2026-05-12 08:37:34"
+        "timestamp": "2026-05-12 08:37:34",
+        "withdraw": false
     },
     {
         "name": "Baidyanath Sharan",
