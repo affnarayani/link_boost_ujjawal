@@ -3496,7 +3496,8 @@
         "name": "Ankit Kumar",
         "link": "https://www.linkedin.com/in/ankit-kumar-42b7082aa?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEp_7GMB3GCkIR2oIBhygRcwWwQW7Na9qoY",
         "invited": true,
-        "timestamp": "2026-05-12 07:33:29"
+        "timestamp": "2026-05-12 07:33:29",
+        "withdraw": true
     },
     {
         "name": "Advocate Mohammad Fahim",
