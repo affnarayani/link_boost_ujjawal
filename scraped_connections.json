@@ -3580,7 +3580,8 @@
         "name": "Sanjeev Kumar",
         "link": "https://www.linkedin.com/in/sanjeev-kumar-a75692264?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEDidHkBg_v6xXfZiT5howRXfc6dhFbcx6c",
         "invited": true,
-        "timestamp": "2026-05-12 18:52:49"
+        "timestamp": "2026-05-12 18:52:49",
+        "withdraw": false
     },
     {
         "name": "Sudhanshu Ranjan",
