@@ -3552,7 +3552,8 @@
         "name": "Janvi Mehta",
         "link": "https://www.linkedin.com/in/janvi-mehta-34744a25a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAD_IGWcB1lCWLvzmwDOmkz_D0mJqG9QS77s",
         "invited": true,
-        "timestamp": "2026-05-12 14:49:31"
+        "timestamp": "2026-05-12 14:49:31",
+        "withdraw": false
     },
     {
         "name": "ASHISH Singh",
