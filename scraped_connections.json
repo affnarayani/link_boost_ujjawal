@@ -3629,7 +3629,8 @@
         "name": "Divya Abhay",
         "link": "https://www.linkedin.com/in/divya-abhay-25418722a?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADlVpKABHwloBQVWvEl4EEIPUHveduFBfSQ",
         "invited": true,
-        "timestamp": "2026-05-13 07:41:49"
+        "timestamp": "2026-05-13 07:41:49",
+        "withdraw": true
     },
     {
         "name": "Nishant Choudhary",
