@@ -3615,7 +3615,8 @@
         "name": "Anushka Patel",
         "link": "https://www.linkedin.com/in/anushka-patel-a923012b1?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEr5QM4BC_tevfHUyTcLbFmRnx8ARXJ21Ik",
         "invited": true,
-        "timestamp": "2026-05-12 21:19:33"
+        "timestamp": "2026-05-12 21:19:33",
+        "withdraw": false
     },
     {
         "name": "Vishwjeet Raj",
