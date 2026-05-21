@@ -3601,7 +3601,8 @@
         "name": "Aishwarya Shankar",
         "link": "https://www.linkedin.com/in/aishwarya-shankar-38a0351b2?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAADF7dtoBaLfcVX_tOkN4T9-KByXsWWrADKg",
         "invited": true,
-        "timestamp": "2026-05-12 20:57:02"
+        "timestamp": "2026-05-12 20:57:02",
+        "withdraw": true
     },
     {
         "name": "Panchdeo Pandey",
