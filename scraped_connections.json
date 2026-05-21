@@ -3622,7 +3622,8 @@
         "name": "Vishwjeet Raj",
         "link": "https://www.linkedin.com/in/vishwjeet-raj-0a7a66271?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAEKK1v8Bdp-K2eQy4bkoSoDvpw-O7TmB6Ik",
         "invited": true,
-        "timestamp": "2026-05-12 23:55:19"
+        "timestamp": "2026-05-12 23:55:19",
+        "withdraw": false
     },
     {
         "name": "Divya Abhay",
