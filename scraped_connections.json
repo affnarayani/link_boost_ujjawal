@@ -3713,7 +3713,8 @@
         "name": "Saurabh Sager",
         "link": "https://www.linkedin.com/in/saurabh-sager-0873253a6?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGNcCCcB9qxG0FcNC1MCQfPh8wyhB0iO_wE",
         "invited": true,
-        "timestamp": "2026-05-13 23:56:16"
+        "timestamp": "2026-05-13 23:56:16",
+        "withdraw": false
     },
     {
         "name": "Shramistha Ojha",
