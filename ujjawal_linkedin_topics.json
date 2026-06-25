@@ -6,7 +6,10 @@
         "posted": true
     },
     {
-        "topic": "Online identity theft - distinguishing it from regular fraud"
+        "topic": "Online identity theft - distinguishing it from regular fraud",
+        "content_generated": true,
+        "image_generated": false,
+        "posted": false
     },
     {
         "topic": "Withdrawing a resignation - when can an employee actually take it back"
