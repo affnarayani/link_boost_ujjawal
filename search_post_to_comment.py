@@ -52,6 +52,7 @@ def run():
     print("[STEP] Initializing session via login.py...", flush=True)
     try:
         pw, browser, context, page = login_and_get_context(is_headless=HEADLESS)
+        context.grant_permissions(["clipboard-read", "clipboard-write"])
     except Exception as e:
         print(f"[ERROR] Login failed: {e}", flush=True)
         sys.exit(1)

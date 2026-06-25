@@ -119,7 +119,7 @@ def login_and_get_context(is_headless: bool = HEADLESS):
         page.goto(HOME_URL)
         
         try:
-            page.get_by_role("button", name="Me", exact=True).wait_for(state="visible", timeout=10000)
+            page.get_by_role("button", name="Me", exact=True).wait_for(state="visible", timeout=60000)
             print("[Cookie] Login successful.", flush=True)
             return pw, browser, context, page
         except:
