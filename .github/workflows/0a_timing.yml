@@ -8,23 +8,18 @@ on:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-concurrency:
-  group: ci-${{ github.workflow }}
-  cancel-in-progress: false
-
 permissions:
-  contents: read
+  contents: write  # 🔥 Yahan 'read' ki jagah 'write' karein
 
 jobs:
   update-timings:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
-          persist-credentials: false   # 🔥 THIS IS THE KEY FIX
+          # persist-credentials: true (Yeh default hota hai)
 
       - name: Set up Python
         uses: actions/setup-python@v6
@@ -35,27 +30,21 @@ jobs:
         run: python update_timing.py
 
       - name: Commit and push changes
-        shell: bash
-        env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN_ALL }}
         run: |
           set -e
-
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git add -A
-
+          
+          # Check changes
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
 
-          git commit -m "chore: update workflow cron times from timing.py [skip ci]"
-
-          # Use PAT explicitly
-          git remote set-url origin \
-            https://x-access-token:${PAT_TOKEN}@github.com/${{ github.repository }}.git
-
+          git commit -m "chore: update workflow cron times [skip ci]"
+          
+          # GITHUB_TOKEN automatic use hoga
           git pull --rebase --no-edit
           git push
