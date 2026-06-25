@@ -134,6 +134,13 @@ def run():
 
     except Exception as e:
         print("[ERROR] Script crashed:", e, flush=True)
+        if page:
+            try:
+                screenshot_path = "failure_screenshot.png"
+                page.screenshot(path=screenshot_path, full_page=True)
+                print(f"[SCREENSHOT] Failure screenshot saved at: {screenshot_path}", flush=True)
+            except Exception as s_e:
+                print(f"[ERROR] Could not capture screenshot: {s_e}", flush=True)
         sys.exit(1)
     finally:
         if browser: browser.close()
