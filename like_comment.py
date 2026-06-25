@@ -1,245 +1,324 @@
+import os
+import sys
+import json
 import time
 import random
-import re
-import json
-import os
-import subprocess
-import sys
-from playwright.sync_api import expect
-from login import login_and_get_context
-from huggingface_hub import InferenceClient
+import base64
+from pathlib import Path
+from typing import List, Dict, Any
 
-# --- HF Client Setup (NO HARDCODE TOKEN) ---
-HF_TOKEN = os.getenv("HF_TOKEN")
+from dotenv import load_dotenv
 
-if not HF_TOKEN:
-    raise ValueError("HF_TOKEN not found in environment variables")
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+from cryptography.exceptions import InvalidTag
 
-client = InferenceClient(
-    model="meta-llama/Meta-Llama-3-8B-Instruct",
-    token=HF_TOKEN
-)
+from playwright.sync_api import sync_playwright
+from playwright_stealth import Stealth
 
-MAX_RETRIES = 3
 
-def get_posted_links():
-    file_path = 'liked_commented.json'
-    if not os.path.exists(file_path):
-        return []
+# =========================
+# CONFIG
+# =========================
+HEADLESS = True
+
+LINKEDIN_COOKIES_FILE = "linkedin_cookies.json.encrypted"
+STATUS_FILE = Path("comment_status.json")
+POST_DATA_FILE = Path("post_to_comment.json")
+COMMENTED_FILE = Path("commented.json")
+
+PBKDF2_ITERATIONS = 200_000
+
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+
+
+# =========================
+# DYNAMIC WAITS
+# =========================
+def custom_random_wait(min_sec, max_sec):
+    seconds = random.uniform(min_sec, max_sec)
+    print(f"[WAIT] Sleeping for {seconds:.2f} seconds...", flush=True)
+    time.sleep(seconds)
+
+
+# =========================
+# CRYPTO (COOKIES DECRYPTION)
+# =========================
+def _derive_key(password: bytes, salt: bytes) -> bytes:
+    kdf = PBKDF2HMAC(
+        algorithm=hashes.SHA256(),
+        length=32,
+        salt=salt,
+        iterations=PBKDF2_ITERATIONS,
+    )
+    return kdf.derive(password)
+
+
+def _decrypt_payload(payload: Dict[str, Any], password: str) -> bytes:
+    salt = base64.b64decode(payload["s"])
+    nonce = base64.b64decode(payload["n"])
+    ciphertext = base64.b64decode(payload["ct"])
+
+    key = _derive_key(password.encode("utf-8"), salt)
+    aesgcm = AESGCM(key)
+
     try:
-        with open(file_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-            return [item['post_link'] for item in data if 'post_link' in item]
+        return aesgcm.decrypt(nonce, ciphertext, None)
+    except InvalidTag:
+        raise RuntimeError("❌ Decryption failed (InvalidTag)")
+
+
+def load_cookies(file_path: Path, decrypt_key: str) -> List[Dict[str, Any]]:
+    print("[STEP] Loading and decrypting cookies...", flush=True)
+
+    with file_path.open("r", encoding="utf-8") as f:
+        payload = json.load(f)
+
+    plaintext = _decrypt_payload(payload, decrypt_key)
+    cookies = json.loads(plaintext.decode("utf-8"))
+
+    if isinstance(cookies, dict):
+        if "cookies" in cookies and isinstance(cookies["cookies"], list):
+            cookies = cookies["cookies"]
+        else:
+            cookies = [cookies]
+
+    for c in cookies:
+        if "partitionKey" in c and isinstance(c["partitionKey"], dict):
+            if "topLevelSite" in c["partitionKey"]:
+                c["partitionKey"] = str(c["partitionKey"]["topLevelSite"])
+            else:
+                del c["partitionKey"]
+
+        if "sameSite" in c:
+            val = str(c["sameSite"]).lower()
+            if val in ["no_restriction", "none", "unspecified", "null"]:
+                c["sameSite"] = "None"
+            elif val == "lax":
+                c["sameSite"] = "Lax"
+            elif val == "strict":
+                c["sameSite"] = "Strict"
+            else:
+                c["sameSite"] = "Lax"
+
+    print("[OK] Cookies loaded successfully", flush=True)
+    return cookies
+
+
+# =========================
+# MAIN
+# =========================
+def run(decrypt_key: str):
+    print("[START] Script started", flush=True)
+
+    # ---------------------------------------------------------
+    # 1. CONDITION CHECK: comment_status.json
+    # ---------------------------------------------------------
+    if not STATUS_FILE.exists():
+        print(f"[ERROR] {STATUS_FILE.name} nahi mili! Execution stopped.", flush=True)
+        sys.exit(0)
+
+    try:
+        with STATUS_FILE.open("r", encoding="utf-8") as f:
+            status_data = json.load(f)
     except Exception as e:
-        print(f"[ERROR] JSON read failed: {e}", flush=True)
-        return []
+        print(f"[ERROR] {STATUS_FILE.name} parse karne me issue: {e}", flush=True)
+        sys.exit(0)
 
-def save_to_json_top(new_link):
-    file_path = 'liked_commented.json'
-    data = []
-    if os.path.exists(file_path):
-        try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                data = json.load(f)
-        except:
-            data = []
-    
-    data.insert(0, {"post_link": new_link})
-    
-    with open(file_path, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=4)
-    print(f"[SUCCESS] Saved to JSON: {new_link}", flush=True)
+    # Status validation logic
+    if (status_data.get("post_to_comment_found") is True and 
+        status_data.get("comment_generated") is True and 
+        status_data.get("comment_posted") is False):
+        print("[OK] Target status matched. Proceeding with browser setup...", flush=True)
+    else:
+        print(f"[INFO] Status requirements match nahi hui. Status mila: {status_data}. Exiting...", flush=True)
+        sys.exit(0)
 
-# --- HF COMMENT GENERATION ---
-def generate_ai_comment(content):
+    # ---------------------------------------------------------
+    # 2. READ DATA FROM post_to_comment.json
+    # ---------------------------------------------------------
+    if not POST_DATA_FILE.exists():
+        print(f"[ERROR] {POST_DATA_FILE.name} nahi mili! Content aur URL extraction missing.", flush=True)
+        sys.exit(0)
+
     try:
-        prompt = (
-            f"Read and analyze the content, then write a 30-word viral LinkedIn-style comment that reflects deep understanding and adds a sharp, thought-provoking opinion that encourages engagement."
-            f"Comment only, no quotes, no asterisks, no prefix.\nContent: {content}"
+        with POST_DATA_FILE.open("r", encoding="utf-8") as f:
+            post_data = json.load(f)
+        target_url = post_data.get("url", "").strip()
+        comment_text = post_data.get("comment", "").strip()
+    except Exception as e:
+        print(f"[ERROR] {POST_DATA_FILE.name} read karne me error: {e}", flush=True)
+        sys.exit(0)
+
+    if not target_url or not comment_text:
+        print(f"[ERROR] URL ya Comment Text dono me se koi ek data missing hai file me. Exiting...", flush=True)
+        sys.exit(0)
+
+    cookies = load_cookies(Path(LINKEDIN_COOKIES_FILE), decrypt_key)
+
+    stealth = Stealth()
+    pw_cm = stealth.use_sync(sync_playwright())
+    pw = pw_cm.__enter__()
+
+    browser = None
+    try:
+        browser = pw.chromium.launch(
+            headless=HEADLESS,
+            args=[
+                "--start-maximized",
+                "--disable-blink-features=AutomationControlled"
+            ]
         )
 
-        for attempt in range(1, MAX_RETRIES + 1):
-            try:
-                response = client.chat.completions.create(
-                    messages=[{"role": "user", "content": prompt}],
-                    max_tokens=80,
-                    temperature=0.7
-                )
+        context = browser.new_context(
+            no_viewport=True,
+            user_agent=USER_AGENT
+        )
 
-                result = response.choices[0].message.content
-                clean_comment = result.replace('*', '').replace('"', '').strip()
-                return clean_comment
+        context.grant_permissions(["clipboard-read", "clipboard-write"])
+        context.add_cookies(cookies)
 
-            except Exception as e:
-                err = str(e)
-                print("[ERROR]", err, flush=True)
+        page = context.new_page()
 
-                if "429" in err.lower():
-                    print("[WAIT] 10 sec...", flush=True)
-                    time.sleep(10)
-                    continue
+        # Feed page par jaana aur login verify karna
+        linkedin_url = "https://www.linkedin.com/feed/"
+        print(f"[STEP] Opening LinkedIn Feed: {linkedin_url}", flush=True)
+        page.goto(linkedin_url, wait_until="load")
+        
+        print("[STEP] Verifying login status via 'Me' button...", flush=True)
+        me_button = page.get_by_role('button', name='Me', exact=True)
+        me_button.wait_for(state="visible", timeout=120000)
+        print("[SUCCESS] Login success! 'Me' button detected.", flush=True)
 
-                if attempt < MAX_RETRIES:
-                    time.sleep(5)
-                else:
-                    break
+        custom_random_wait(5, 10)
 
-        raise Exception("HF comment generation failed")
+        # ---------------------------------------------------------
+        # 3. NAVIGATE TO TARGET POST URL
+        # ---------------------------------------------------------
+        print(f"[STEP] Navigating to target post URL: {target_url}", flush=True)
+        page.goto(target_url, wait_until="load")
+        custom_random_wait(6, 12)
 
-    except Exception as e:
-        print(f"[ERROR] HF Generation failed: {e}", flush=True)
-        raise Exception("HF comment generation failed")
+        # ---------------------------------------------------------
+        # 4. LOCATE TEXTBOX AND TYPE LIKE HUMAN
+        # ---------------------------------------------------------
+        print("[STEP] Locating comment text editor input...", flush=True)
+        
+        # CSS class locator
+        comment_box = page.locator('.comments-comment-box-comment__text-editor')
+        
+        comment_box.wait_for(state="visible", timeout=60000)
+        comment_box.click()
+        
+        custom_random_wait(2, 4)
+        
+        print("[STEP] Typing comment with human simulation delay...", flush=True)
+        # FIX: timeout=0 add kiya hai taaki lamba comment type hote waqt Playwright crash na kare
+        comment_box.press_sequentially(comment_text, delay=random.uniform(60, 140), timeout=0)
+        
+        # Type karne ke baad wait for 3, 6 sec
+        custom_random_wait(3, 6)
 
+        # ---------------------------------------------------------
+        # 5. KEYBOARD NAVIGATION: 3x TAB THEN ENTER WITH INTERVALS
+        # ---------------------------------------------------------
+        print("[STEP] Executing Keyboard Flow: 3 Times TAB then 1 Time ENTER...", flush=True)
+        for i in range(1, 4):
+            print(f"[ACTION] Pressing TAB key ({i}/3)...", flush=True)
+            page.keyboard.press("Tab")
+            custom_random_wait(3, 6)
+            
+        print("[ACTION] Pressing ENTER key to post comment...", flush=True)
+        page.keyboard.press("Enter")
+        
+        # Post submission ke baad wait for 6, 12 seconds
+        custom_random_wait(6, 12)
 
-def extract_single_new_share_link():
-    pw, browser, context, page = login_and_get_context()
-
-    try:
-        already_posted = get_posted_links()
-        print(f"[INFO] Loaded {len(already_posted)} links from JSON.", flush=True)
-
-        print("[INFO] Waiting for LinkedIn Feed to settle...", flush=True)
-        time.sleep(random.uniform(8, 12))
-
-        workspace = page.locator('#workspace')
-        menu_pattern = re.compile(r"Open control menu for post by .*", re.IGNORECASE)
-        control_menu_locator = page.get_by_role('button', name=menu_pattern)
-
-        target_link = None 
-
-        for i in range(6):
-            if target_link: break 
-
-            workspace.focus()
-            page.keyboard.press("PageDown")
-            page.evaluate("document.querySelector('#workspace').scrollBy(0, 1000)")
-            print(f"[ACTION] Scroll {i+1}/6...", flush=True)
-            time.sleep(5)
-
-            menus = control_menu_locator.all()
-            for menu in menus:
-                if target_link: break 
-                
-                try:
-                    if menu.is_visible():
-                        menu.scroll_into_view_if_needed()
-                        menu.click()
-                        time.sleep(2)
-
-                        embed_item = page.get_by_role('menuitem', name='Embed this post')
-                        
-                        if embed_item.count() > 0:
-                            embed_item.click()
-
-                            modal_heading = page.get_by_role('heading', name='Embed this post')
-                            expect(modal_heading).to_be_visible(timeout=15000)
-                            
-                            embed_textbox = page.locator("#feed-components-shared-embed-modal__snippet")
-                            expect(embed_textbox).to_be_visible(timeout=10000)
-                            
-                            raw_embed = None
-                            for _ in range(20):
-                                val = embed_textbox.input_value()
-                                if val and "iframe" in val.lower():
-                                    raw_embed = val
-                                    break
-                                time.sleep(0.5)
-
-                            if raw_embed:
-                                match = re.search(r'src="([^"]+)"', raw_embed)
-                                if match:
-                                    full_url = match.group(1)
-                                    base_url = full_url.split('?')[0]
-                                    final_link = base_url.replace('/embed/', '/')
-                                    
-                                    if "urn:li:share:" in final_link:
-                                        if final_link not in already_posted:
-                                            print(f"\n[NEW POST FOUND]: {final_link}", flush=True)
-                                            
-                                            page.get_by_text('Embed full post').click()
-                                            time.sleep(15)
-
-                                            embed_iframe = page.frame_locator('iframe[title="Embed a post iframe"]')
-                                            commentary_loc = embed_iframe.locator('[data-test-id="main-feed-activity-embed-card__commentary"]')
-                                            content = commentary_loc.inner_text() if commentary_loc.count() > 0 else ""
-                                            
-                                            if len(re.findall(r'[A-Za-z]', content)) < 60:
-                                                print("[SKIP] Content too short. Closing modal...", flush=True)
-                                                page.keyboard.press("Escape")
-                                                time.sleep(2)
-                                                continue
-
-                                            more_btn = embed_iframe.get_by_text('…more')
-                                            if more_btn.count() > 0:
-                                                expect(more_btn).to_be_hidden(timeout=30000)
-
-                                            ai_comment = generate_ai_comment(content)
-                                            print(f"[AI COMMENT]: {ai_comment}", flush=True)
-
-                                            with context.expect_page() as new_page_info:
-                                                embed_iframe.get_by_role('link', name='Comment', exact=True).click()
-                                            new_tab = new_page_info.value
-                                            new_tab.bring_to_front()
-                                            
-                                            print("[ACTION] Waiting for page load...", flush=True)
-                                            new_tab.wait_for_load_state("networkidle")
-                                            time.sleep(15)
-
-                                            print("[ACTION] Attempting to Like...", flush=True)
-                                            like_btn = new_tab.get_by_role('button', name='React Like', exact=True)
-                                            if like_btn.is_visible():
-                                                like_btn.click()
-                                                print("[SUCCESS] Post Liked.", flush=True)
-                                                time.sleep(5)
-                                            else:
-                                                print("[WARNING] Like button not found or already liked.", flush=True)
-
-                                            comment_box = new_tab.get_by_role('textbox', name='Text editor for creating').get_by_role('paragraph')
-                                            comment_box.click()
-                                            comment_box.fill(ai_comment)
-                                            time.sleep(2)
-
-                                            for _ in range(3):
-                                                new_tab.keyboard.press("Tab")
-                                                time.sleep(2)
-
-                                            new_tab.keyboard.press("Enter")
-                                            time.sleep(15)
-                                            new_tab.close()
-
-                                            save_to_json_top(final_link)
-                                            target_link = final_link
-                                            page.keyboard.press("Escape")
-                                            break 
-                                        else:
-                                            print(f"[SKIP] Already posted: {final_link[-20:]}", flush=True)
-                                    else:
-                                        print(f"[IGNORE] Not a 'share' link.", flush=True)
-                            
-                            if not target_link:
-                                page.keyboard.press("Escape")
-                                time.sleep(2)
-                        else:
-                            page.keyboard.press("Escape")
-                
-                except Exception as e:
-                    page.keyboard.press("Escape")
-                    continue
-
-        print("\n" + "="*70, flush=True)
-        if target_link:
-            print(f"RESULT: {target_link}", flush=True)
+        # ---------------------------------------------------------
+        # 6. REACT LIKE ON THE POST
+        # ---------------------------------------------------------
+        print("[STEP] Locating and clicking 'React Like' button...", flush=True)
+        like_btn = page.get_by_role('button', name='React Like', exact=True)
+        if like_btn.count() > 0:
+            like_btn.first.click()
+            print("[SUCCESS] Post liked successfully.", flush=True)
         else:
-            print("RESULT: No new eligible share links found in 6 scrolls.", flush=True)
-            sys.exit(1)
-        print("="*70, flush=True)
+            print("[WARNING] 'React Like' button screen par locate nahi ho paya.", flush=True)
 
+        # ---------------------------------------------------------
+        # 7. APPEND URL TO commented.json
+        # ---------------------------------------------------------
+        print(f"[STEP] Sourcing and appending URL to {COMMENTED_FILE.name}...", flush=True)
+        commented_urls = []
+        
+        if COMMENTED_FILE.exists():
+            try:
+                with COMMENTED_FILE.open("r", encoding="utf-8") as f:
+                    commented_urls = json.load(f)
+                if not isinstance(commented_urls, list):
+                    commented_urls = [commented_urls]
+            except Exception:
+                commented_urls = []
+
+        commented_urls.append(target_url)
+
+        with COMMENTED_FILE.open("w", encoding="utf-8") as f:
+            json.dump(commented_urls, f, indent=4, ensure_ascii=False)
+        print(f"[SUCCESS] URL safely appended to history in {COMMENTED_FILE.name}.", flush=True)
+
+        # =========================================================
+        # SUCCESS-ONLY STEPS (Skipped entirely if program fails)
+        # =========================================================
+        
+        # Step 1: comment_status.json mein comment_posted true kar do
+        print(f"[STEP] Updating {STATUS_FILE.name} -> comment_posted = true", flush=True)
+        status_data["comment_posted"] = True
+        with STATUS_FILE.open("w", encoding="utf-8") as f:
+            json.dump(status_data, f, indent=4, ensure_ascii=False)
+        print("[SUCCESS] Comment status updated to posted.", flush=True)
+
+        # Step 2: 15, 30 sec ke wait ke baad browser close (Wait yahan hoga, close finally me hoga)
+        print("[STEP] Execution successful. Waiting 15-30 seconds before environment teardown...", flush=True)
+        custom_random_wait(15, 30)
+
+        # Step 3: comment_status.json mein sab ko false kar do
+        print(f"[STEP] Resetting all flags to false inside {STATUS_FILE.name}...", flush=True)
+        reset_status = {
+            "post_to_comment_found": False,
+            "comment_generated": False,
+            "comment_posted": False
+        }
+        with STATUS_FILE.open("w", encoding="utf-8") as f:
+            json.dump(reset_status, f, indent=4, ensure_ascii=False)
+        print("[SUCCESS] All status flags reset to false after full completion.", flush=True)
+
+    except SystemExit:
+        raise
     except Exception as e:
-        print(f"[ERROR] Logic failed: {e}", flush=True)
+        print("[ERROR] Script crashed during active execution state:", e, flush=True)
         sys.exit(1)
+
     finally:
-        browser.close()
-        pw.stop()
+        # UNIVERSAL CLEANUP: Browser har haal me close hoga (Chahe Success ho ya Fail)
+        if browser:
+            try:
+                browser.close()
+                print("[INFO] Browser closed cleanly via finally block.", flush=True)
+            except:
+                pass
+
+        try:
+            pw_cm.__exit__(None, None, None)
+        except:
+            pass
+
+        print("[DONE] Script execution environment torn down cleanly.", flush=True)
+
 
 if __name__ == "__main__":
-    extract_single_new_share_link()
+    load_dotenv()
+    DECRYPT_KEY = os.getenv("DECRYPT_KEY")
+    if not DECRYPT_KEY:
+        raise RuntimeError("DECRYPT_KEY missing in environment variables")
+    run(DECRYPT_KEY)

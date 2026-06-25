@@ -47,8 +47,7 @@ def update_cron_times(file_path, n):
     print(f"Updated {file_path} with {n} cron times", flush=True)
 
 if __name__ == "__main__":
-    update_cron_times('.github/workflows/post_content.yml', 1)
-    update_cron_times('.github/workflows/like_comment.yml', 6)
-    update_cron_times('.github/workflows/make_connections.yml', 18)
-    update_cron_times('.github/workflows/withdraw_connections.yml', 18)
-    update_cron_times('.github/workflows/withdraw_all.yml', 1)
+    update_cron_times('.github/workflows/1a_search_post_to_comment.yml', 6)
+    update_cron_times('.github/workflows/2a_generate_content.yml', 1)
+    update_cron_times('.github/workflows/4a_send_connection.yml', 18)
+    update_cron_times('.github/workflows/5a_withdraw_connection.yml', 18)
