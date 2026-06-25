@@ -253,7 +253,14 @@ def run(decrypt_key: str):
     except SystemExit:
         raise
     except Exception as e:
-        print("[ERROR] Script execution broke down due to trace:", e, flush=True)
+        print(f"[ERROR] Script execution broke down due to trace: {e}", flush=True)
+        # Error aane par screenshot lein
+        if 'page' in locals():
+            try:
+                page.screenshot(path="error_screenshot.png")
+                print("[INFO] Screenshot saved as error_screenshot.png", flush=True)
+            except Exception as ss_err:
+                print(f"[WARNING] Screenshot lene mein error aaya: {ss_err}", flush=True)
         sys.exit(1)
 
     finally:
