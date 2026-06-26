@@ -379,7 +379,7 @@ def run():
         else:
             raise RuntimeError("❌ Textbox locator load nahi ho paya (All strategies failed).")
         
-        prompt_text = f"Create image : Generate a photorealistic or artistic editorial image with a size strictly of 1328x1184 px at a 1:1 aspect ratio. The image should serve as a compelling LinkedIn post visual — no text, no overlays, no logos. Depict the following scene in high detail and cinematic quality: {prompt}"
+        prompt_text = f"Generate a photorealistic or artistic editorial image with a size strictly of 1328x1184 px at a 1:1 aspect ratio. The image should serve as a compelling LinkedIn post visual — no text, no overlays, no logos. Depict the following scene in high detail and cinematic quality: {prompt}"
         print(f"[STEP] Filling prompt: '{prompt_text}'", flush=True)
         chat_box.first.fill(prompt_text)
         
