@@ -270,21 +270,24 @@ def run():
 
         # Optimized Image Prompt tailored for high-conversion LinkedIn feed visuals
         prompt = (
-            f"Topic: {post_title}\n"
-            f"Keywords: {', '.join(post_keywords)}\n\n"
-            f"Visual concept to depict: {post_title}. "
-            "The core idea is that identity theft and fraud are different in scope — "
-            "fraud is one unauthorized transaction, while identity theft is the silent, "
-            "ongoing impersonation of a person's entire digital identity, often happening "
-            "before any money is even taken. "
-            "Translate this contrast into a single visual metaphor — show the difference "
-            "between something small and visible being taken, versus something vast and "
-            "invisible being quietly duplicated or replicated, without making it literal "
-            "or symbolic with icons.\n\n"
+            f"Title: {post_title}\n"
+            f"Keywords: {', '.join(post_keywords)}\n"
+            f"Paragraph 1: {p1}\n"
+            f"Paragraph 2: {p2}\n"
+            f"Paragraph 3: {p3}\n"
+            f"Conclusion: {conclusion}\n\n"
+
+            "From the above post content, identify the single core idea or contrast being "
+            "made. Translate that core idea into one strong, original visual metaphor — "
+            "not literal, not symbolic with icons, not a collage. The metaphor should be "
+            "understandable within two seconds and should capture the emotional or "
+            "conceptual essence of the post, not its literal details.\n\n"
+
             "Style: editorial or cinematic photography, or premium conceptual digital "
-            "artwork — whichever best fits.\n"
+            "artwork — whichever best fits the topic.\n"
             "One strong central idea, one clear focal point, cinematic lighting, "
             "high contrast, natural color grading, premium realistic materials.\n\n"
+
             "Avoid: handshakes, people pointing at charts, courtroom imagery, floating "
             "icons, collages, split-screen layouts, generic stock-photo look."
         )
