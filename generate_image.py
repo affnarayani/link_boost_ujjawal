@@ -270,7 +270,7 @@ def run():
 
         # Optimized Image Prompt tailored for high-conversion LinkedIn feed visuals
         prompt = (f"""
-        Create image for a LinkedIn post with title: "{post_title}". Image must in the ratio 1:1. This will be a hero image to this LinkedIn post. Image must be engaging.
+        Create image for a LinkedIn post with title: "{post_title}". Image must in the ratio 1:1. This will be a hero image to this LinkedIn post. Image must be engaging. The core idea of the image must revolve around these keywords: {post_keywords}
         """)
 
         print("[STEP] Opening ChatGPT Main URL...", flush=True)
@@ -335,7 +335,7 @@ def run():
         else:
             raise RuntimeError("❌ Textbox locator load nahi ho paya (All strategies failed).")
         
-        prompt_text = ({prompt})
+        prompt_text = (f"{prompt}")
         print(f"[STEP] Filling prompt: '{prompt_text}'", flush=True)
         chat_box.first.fill(prompt_text)
         
