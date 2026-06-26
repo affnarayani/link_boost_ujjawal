@@ -342,7 +342,7 @@ def run():
 
         print("[STEP] Opening ChatGPT Main URL...", flush=True)
         page.goto(
-            "https://chatgpt.com/images",
+            "https://chatgpt.com/",
             wait_until="load"
         )
         print("[OK] URL opened", flush=True)
