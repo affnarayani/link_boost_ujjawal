@@ -165,7 +165,7 @@ def run():
         print("[ERROR] Script execution broke down due to trace:", e, flush=True)
         if page:
             try:
-                screenshot_path = "failure_screenshot.png"
+                screenshot_path = "error_screenshot.png"
                 page.screenshot(path=screenshot_path, full_page=True)
                 print(f"[SCREENSHOT] Failure screenshot saved at: {screenshot_path}", flush=True)
             except Exception as s_e:

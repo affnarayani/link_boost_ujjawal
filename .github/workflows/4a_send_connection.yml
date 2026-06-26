@@ -71,6 +71,14 @@ jobs:
         run: |
           python send_connection.py
 
+      - name: Upload Failure Screenshot
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: error-screenshot
+          path: error_screenshot.png
+          if-no-files-found: ignore
+
       - name: Commit and Push updated connections state
         if: success()
         run: |

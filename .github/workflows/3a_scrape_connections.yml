@@ -67,8 +67,8 @@ jobs:
       if: failure()
       uses: actions/upload-artifact@v4
       with:
-        name: scraper-failure-screenshot
-        path: failure_screenshot.png
+        name: error-screenshot
+        path: error_screenshot.png
         if-no-files-found: ignore
 
     - name: Commit and Push Scraped Data

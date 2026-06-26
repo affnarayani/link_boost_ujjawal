@@ -89,7 +89,7 @@ jobs:
       if: failure() 
       uses: actions/upload-artifact@v4
       with:
-        name: playwright-error-screenshot
+        name: error-screenshot
         path: error_screenshot.png
         if-no-files-found: ignore
         retention-days: 3
