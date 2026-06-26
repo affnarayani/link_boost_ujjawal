@@ -270,16 +270,15 @@ def run():
 
         # Optimized Image Prompt tailored for high-conversion LinkedIn feed visuals
         prompt = (
-            "You are an elite visual strategist and AI image prompt engineer specializing in high-performing LinkedIn content.\n\n"
+            "You are an elite visual strategist and AI image prompt engineer specializing in creating premium, high-performing LinkedIn visuals.\n\n"
 
-            "Your task is to create a premium image generation prompt based on the LinkedIn post below.\n\n"
+            "Your task is to produce ONE complete, ready-to-use AI image generation prompt based on the LinkedIn post provided below.\n\n"
 
-            "OBJECTIVE:\n"
-            "Generate a visual concept that communicates the post's core insight instantly, even if the viewer never reads the caption.\n"
-            "The image should increase curiosity, stop scrolling, and encourage engagement.\n\n"
+            "The final prompt should describe a single compelling visual that instantly communicates the post's core insight, even if the viewer never reads the caption. "
+            "The image should maximize curiosity, stop scrolling, and encourage engagement.\n\n"
 
             "VISUAL STYLE:\n"
-            "Choose the most appropriate style for the topic:\n"
+            "Choose the single most appropriate style for the topic:\n"
             "- Editorial photography\n"
             "- Cinematic photography\n"
             "- Minimalist concept art\n"
@@ -287,20 +286,20 @@ def run():
 
             "Avoid generic LinkedIn imagery, stock-photo aesthetics, corporate handshakes, people pointing at charts, judges holding gavels, courtroom clichés, floating icons, or obvious visual metaphors.\n\n"
 
-            "Focus on a single strong visual idea.\n"
+            "Focus on one original, memorable visual idea.\n"
             "Use symbolism only when it improves clarity.\n"
             "Prefer originality over literal representation.\n\n"
 
             "COMPOSITION:\n"
-            "- Square (1:1) LinkedIn feed image\n"
-            "- Strong focal point\n"
-            "- Visually understandable within 2 seconds\n"
-            "- Clean composition\n"
+            "- Square (1:1) composition\n"
+            "- Strong single focal point\n"
+            "- Instantly understandable within two seconds\n"
+            "- Clean composition with minimal distractions\n"
             "- Premium professional aesthetic\n"
             "- High visual contrast\n"
-            "- Natural lighting and realistic materials when applicable\n\n"
+            "- Natural lighting and realistic materials whenever appropriate\n\n"
 
-            "STRICT RULES:\n"
+            "STRICT REQUIREMENTS:\n"
             "- No text\n"
             "- No letters\n"
             "- No numbers\n"
@@ -308,9 +307,16 @@ def run():
             "- No watermarks\n"
             "- No UI elements\n"
             "- No infographics\n"
-            "- No social media style templates\n\n"
+            "- No social media templates\n\n"
 
-            "Respond ONLY with the final image generation prompt.\n\n"
+            "OUTPUT REQUIREMENTS:\n"
+            "- Output ONLY one complete image generation prompt.\n"
+            "- Do NOT explain your choices.\n"
+            "- Do NOT include headings.\n"
+            "- Do NOT use markdown.\n"
+            "- Do NOT use bullet points.\n"
+            "- Do NOT wrap the prompt in quotation marks.\n"
+            "- The output must be directly usable in an AI image generation model without any editing.\n\n"
 
             "POST DATA:\n"
             f"Title: {post_title}\n"
