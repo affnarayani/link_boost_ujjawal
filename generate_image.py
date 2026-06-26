@@ -318,7 +318,6 @@ def run():
             "- Split-screen layouts\n\n"
 
             "STRICT REQUIREMENTS:\n"
-            "- 1:1 image ratio\n"
             "- No text\n"
             "- No letters\n"
             "- No words\n"
@@ -378,8 +377,9 @@ def run():
         else:
             raise RuntimeError("❌ Textbox locator load nahi ho paya (All strategies failed).")
         
-        # page.get_by_role('button', name='Create an image').click()
-        # custom_random_wait(3, 6)
+        page.get_by_role('button', name='Create an image').click()
+        print("[OK] Create image selected.", flush=True)
+        custom_random_wait(3, 6)
 
         # Locate chat box again for the core prompt
         print("[STEP] Locating chat textbox...", flush=True)
@@ -399,7 +399,7 @@ def run():
         else:
             raise RuntimeError("❌ Textbox locator load nahi ho paya (All strategies failed).")
         
-        prompt_text = f"{prompt}"
+        prompt_text = f"Generate a photorealistic or artistic editorial image with a size strictly of 1328x1184 px at a 1:1 aspect ratio. The image should serve as a compelling LinkedIn post visual — no text, no overlays, no logos. Depict the following scene in high detail and cinematic quality: {prompt}"
         print(f"[STEP] Filling prompt: '{prompt_text}'", flush=True)
         chat_box.first.fill(prompt_text)
         
