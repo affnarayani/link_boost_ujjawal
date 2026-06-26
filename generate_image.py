@@ -342,7 +342,7 @@ def run():
 
         print("[STEP] Opening ChatGPT Main URL...", flush=True)
         page.goto(
-            "https://chatgpt.com/",
+            "https://chatgpt.com/images",
             wait_until="load"
         )
         print("[OK] URL opened", flush=True)
@@ -377,9 +377,12 @@ def run():
         else:
             raise RuntimeError("❌ Textbox locator load nahi ho paya (All strategies failed).")
         
-        page.get_by_role('button', name='Create an image').click()
-        print("[OK] Create image selected.", flush=True)
-        custom_random_wait(3, 6)
+        if page.get_by_role('button', name='Create an image').count() > 0:
+            page.get_by_role('button', name='Create an image').click()
+            print("[OK] Create image selected.", flush=True)
+            custom_random_wait(3, 6)
+        else:
+            print("[INFO] Create image button not found, skipping...", flush=True)
 
         # Locate chat box again for the core prompt
         print("[STEP] Locating chat textbox...", flush=True)
