@@ -269,28 +269,9 @@ def run():
         print("[OK] Cookies added successfully", flush=True)
 
         # Optimized Image Prompt tailored for high-conversion LinkedIn feed visuals
-        prompt = (
-            f"Title: {post_title}\n"
-            f"Keywords: {', '.join(post_keywords)}\n"
-            f"Paragraph 1: {p1}\n"
-            f"Paragraph 2: {p2}\n"
-            f"Paragraph 3: {p3}\n"
-            f"Conclusion: {conclusion}\n\n"
-
-            "From the above post content, identify the single core idea or contrast being "
-            "made. Translate that core idea into one strong, original visual metaphor — "
-            "not literal, not symbolic with icons, not a collage. The metaphor should be "
-            "understandable within two seconds and should capture the emotional or "
-            "conceptual essence of the post, not its literal details.\n\n"
-
-            "Style: editorial or cinematic photography, or premium conceptual digital "
-            "artwork — whichever best fits the topic.\n"
-            "One strong central idea, one clear focal point, cinematic lighting, "
-            "high contrast, natural color grading, premium realistic materials.\n\n"
-
-            "Avoid: handshakes, people pointing at charts, courtroom imagery, floating "
-            "icons, collages, split-screen layouts, generic stock-photo look."
-        )
+        prompt = (f"""
+        Create image for a LinkedIn post with title: "{post_title}". Image must in the ratio 1:1. This will be a hero image to this LinkedIn post. Image must be engaging.
+        """)
 
         print("[STEP] Opening ChatGPT Main URL...", flush=True)
         page.goto(
@@ -354,13 +335,7 @@ def run():
         else:
             raise RuntimeError("❌ Textbox locator load nahi ho paya (All strategies failed).")
         
-        prompt_text = (
-            "Generate a photorealistic or artistic editorial image, size 1328x1184px, "
-            "1:1 aspect ratio. The image should serve as a premium LinkedIn post visual — "
-            "no text, no letters, no numbers, no logos, no watermarks, no UI elements, "
-            "no infographics, no social media templates.\n\n"
-            f"{prompt}"
-        )
+        prompt_text = ({prompt})
         print(f"[STEP] Filling prompt: '{prompt_text}'", flush=True)
         chat_box.first.fill(prompt_text)
         
