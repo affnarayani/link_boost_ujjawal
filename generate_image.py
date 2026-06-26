@@ -270,74 +270,23 @@ def run():
 
         # Optimized Image Prompt tailored for high-conversion LinkedIn feed visuals
         prompt = (
-            "Create a completely new original image from scratch.\n\n"
-
-            "This is a pure text-to-image generation request.\n"
-            "There is NO existing image.\n"
-            "There is NO reference image.\n"
-            "Do NOT request or expect any uploaded image.\n"
-            "Do NOT edit, modify, recreate, enhance, extend, analyze, or transform any existing image.\n"
-            "Generate a brand-new image using ONLY the information provided below.\n\n"
-
-            "The output must be the final generated image itself.\n"
-            "Do not return text.\n"
-            "Do not return an image prompt.\n"
-            "Do not explain anything.\n"
-            "Do not ask questions.\n\n"
-
-            "IMAGE OBJECTIVE:\n"
-            "Create a premium LinkedIn editorial visual that immediately communicates the core message of the post.\n"
-            "The image should be understandable within two seconds, visually striking, memorable, and optimized to stop scrolling.\n\n"
-
-            "STYLE:\n"
-            "Select whichever style best communicates the topic:\n"
-            "- Editorial photography\n"
-            "- Cinematic photography\n"
-            "- Premium conceptual digital artwork\n"
-            "- Minimalist concept art\n\n"
-
-            "VISUAL GUIDELINES:\n"
-            "- One strong central idea\n"
-            "- One clear focal point\n"
-            "- Original concept\n"
-            "- Professional composition\n"
-            "- Cinematic lighting\n"
-            "- High visual contrast\n"
-            "- Premium realistic materials where appropriate\n"
-            "- Natural color grading\n\n"
-
-            "AVOID:\n"
-            "- Generic LinkedIn graphics\n"
-            "- Stock-photo appearance\n"
-            "- Corporate handshakes\n"
-            "- People pointing at charts\n"
-            "- Courtroom clichés\n"
-            "- Floating icons\n"
-            "- Obvious visual metaphors\n"
-            "- Collages\n"
-            "- Split-screen layouts\n\n"
-
-            "STRICT REQUIREMENTS:\n"
-            "- No text\n"
-            "- No letters\n"
-            "- No words\n"
-            "- No numbers\n"
-            "- No logos\n"
-            "- No branding\n"
-            "- No watermarks\n"
-            "- No UI elements\n"
-            "- No infographics\n"
-            "- No social media templates\n\n"
-
-            "Generate exactly one final image from scratch based on the following LinkedIn post.\n\n"
-
-            "POST DATA:\n"
-            f"Title: {post_title}\n"
-            f"Keywords: {', '.join(post_keywords)}\n"
-            f"Paragraph 1: {p1}\n"
-            f"Paragraph 2: {p2}\n"
-            f"Paragraph 3: {p3}\n"
-            f"Conclusion: {conclusion}\n"
+            f"Topic: {post_title}\n"
+            f"Keywords: {', '.join(post_keywords)}\n\n"
+            f"Visual concept to depict: {post_title}. "
+            "The core idea is that identity theft and fraud are different in scope — "
+            "fraud is one unauthorized transaction, while identity theft is the silent, "
+            "ongoing impersonation of a person's entire digital identity, often happening "
+            "before any money is even taken. "
+            "Translate this contrast into a single visual metaphor — show the difference "
+            "between something small and visible being taken, versus something vast and "
+            "invisible being quietly duplicated or replicated, without making it literal "
+            "or symbolic with icons.\n\n"
+            "Style: editorial or cinematic photography, or premium conceptual digital "
+            "artwork — whichever best fits.\n"
+            "One strong central idea, one clear focal point, cinematic lighting, "
+            "high contrast, natural color grading, premium realistic materials.\n\n"
+            "Avoid: handshakes, people pointing at charts, courtroom imagery, floating "
+            "icons, collages, split-screen layouts, generic stock-photo look."
         )
 
         print("[STEP] Opening ChatGPT Main URL...", flush=True)
@@ -402,7 +351,13 @@ def run():
         else:
             raise RuntimeError("❌ Textbox locator load nahi ho paya (All strategies failed).")
         
-        prompt_text = f"Generate a photorealistic or artistic editorial image with a size strictly of 1328x1184 px at a 1:1 aspect ratio. The image should serve as a compelling LinkedIn post visual — no text, no overlays, no logos. Depict the following scene in high detail and cinematic quality: {prompt}"
+        prompt_text = (
+            "Generate a photorealistic or artistic editorial image, size 1328x1184px, "
+            "1:1 aspect ratio. The image should serve as a premium LinkedIn post visual — "
+            "no text, no letters, no numbers, no logos, no watermarks, no UI elements, "
+            "no infographics, no social media templates.\n\n"
+            f"{prompt}"
+        )
         print(f"[STEP] Filling prompt: '{prompt_text}'", flush=True)
         chat_box.first.fill(prompt_text)
         
