@@ -270,11 +270,10 @@ def run():
 
         # Optimized Image Prompt tailored for high-conversion LinkedIn feed visuals
         prompt = (
-            "You are an elite visual strategist and AI image prompt engineer specializing in creating premium, high-performing LinkedIn visuals.\n\n"
+            "Create a premium, high-performing LinkedIn image based on the post below.\n\n"
 
-            "Your task is to produce ONE complete, ready-to-use AI image generation prompt based on the LinkedIn post provided below.\n\n"
-
-            "The final prompt should describe a single compelling visual that instantly communicates the post's core insight, even if the viewer never reads the caption. "
+            "OBJECTIVE:\n"
+            "Generate a single visual that instantly communicates the post's core insight, even if the viewer never reads the caption.\n"
             "The image should maximize curiosity, stop scrolling, and encourage engagement.\n\n"
 
             "VISUAL STYLE:\n"
@@ -291,10 +290,10 @@ def run():
             "Prefer originality over literal representation.\n\n"
 
             "COMPOSITION:\n"
-            "- Square (1:1) composition\n"
+            "- Square (1:1)\n"
             "- Strong single focal point\n"
             "- Instantly understandable within two seconds\n"
-            "- Clean composition with minimal distractions\n"
+            "- Clean composition\n"
             "- Premium professional aesthetic\n"
             "- High visual contrast\n"
             "- Natural lighting and realistic materials whenever appropriate\n\n"
@@ -309,14 +308,10 @@ def run():
             "- No infographics\n"
             "- No social media templates\n\n"
 
-            "OUTPUT REQUIREMENTS:\n"
-            "- Output ONLY one complete image generation prompt.\n"
-            "- Do NOT explain your choices.\n"
-            "- Do NOT include headings.\n"
-            "- Do NOT use markdown.\n"
-            "- Do NOT use bullet points.\n"
-            "- Do NOT wrap the prompt in quotation marks.\n"
-            "- The output must be directly usable in an AI image generation model without any editing.\n\n"
+            "Generate the image directly.\n"
+            "Do not generate or describe an image prompt.\n"
+            "Do not explain your choices.\n"
+            "Return only the final image.\n\n"
 
             "POST DATA:\n"
             f"Title: {post_title}\n"
