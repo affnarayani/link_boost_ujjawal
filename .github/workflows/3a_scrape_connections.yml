@@ -77,9 +77,9 @@ jobs:
         git add scraped_connections.json
         # Check agar file change hui hai ya nahi
         if git diff --staged --quiet; then
-          echo "[INFO] No new data scraped. Skipping commit."
+          echo "[INFO] No changes detected in pipeline state files. Skipping push."
         else
-          git commit -m "Automated: Update scraped connection list [skip ci]"
-          git pull origin ${GITHUB_REF_NAME} --rebase
+          echo "[OK] Changes detected. Committing dynamic state..."
+          git commit -m "Automated: Fresh target post state updated [skip ci]"
           git push origin ${GITHUB_REF_NAME}
         fi
