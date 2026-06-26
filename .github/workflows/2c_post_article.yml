@@ -103,7 +103,7 @@ jobs:
           # Aapke project file name ke mutabik state track karna
           git add ujjawal_linkedin_topics.json
           git diff-index --quiet HEAD || git commit -m "chore: mark linkedin topic as posted [skip ci]"
-          
+          git checkout -- .
           # Push karne se thik pehle last rebase taaki continuous cycle safe chale
           git pull origin ${GITHUB_REF_NAME} --rebase
           git push origin ${GITHUB_REF_NAME}
