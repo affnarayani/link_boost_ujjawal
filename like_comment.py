@@ -127,11 +127,8 @@ def run():
                 json.dump(reset_status, f, indent=4, ensure_ascii=False)
                 
             print("[SUCCESS] Exiting safely with code 0.", flush=True)
+            return
             
-            # Browser close karke exit karein
-            if browser: browser.close()
-            if pw: pw.stop()
-            sys.exit(0)
 
         # Agar restriction nahi mili, toh normal text box flow chalega
         print("[STEP] Comment box found. Proceeding to type...", flush=True)
