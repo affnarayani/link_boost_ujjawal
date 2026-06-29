@@ -1,14 +1,14 @@
 {
-    "title": "The moratorium during insolvency - what it actually protects",
-    "p1": "Most people think insolvency moratorium is a legal shield for the company. It isn’t.\nIt protects something very different—and often misunderstood.",
-    "p2": "Once a company enters insolvency, many assume everything freezes—business operations, debts, and all legal action against everyone involved. That’s only half true.\nBut the moratorium is far narrower: it mainly stops recovery actions against the corporate debtor’s assets, not every related claim.",
-    "p3": "It means creditors cannot enforce recovery, attach assets, or continue suits that affect the debtor’s estate once the process begins.\nBut not every proceeding disappears, some claims move in parallel through the insolvency framework.\nFor founders and professionals, this changes how you view protection, it is about preserving value for collective resolution, not shielding directors or stopping all legal accountability.",
-    "conclusion": "What do you think the moratorium protects more in practice: the business from creditors, or the collective value of the company from being broken apart too early?",
+    "title": "What the electoral bonds ruling actually changed",
+    "p1": "Most people think the electoral bonds ruling was about banning political donations.\n\nIt wasn't.\n\nWhat changed was something far more fundamental: secrecy.",
+    "p2": "A common misconception is that the Supreme Court stopped companies and individuals from funding political parties.\n\nPolitical donations are still allowed.\n\nThe major shift was that the electoral bonds system, which allowed donations to remain hidden from the public, was struck down. The Court said voters have a right to know who is funding political parties because that information can influence how people evaluate political decisions.",
+    "p3": "The practical lesson goes beyond politics.\n\nThe ruling highlights the difference between allowing an activity and allowing it to happen without transparency.\n\nMany debates are framed as \"Should this be permitted?\" But an equally important question is \"Who gets to see what's happening?\"\n\nOne of the biggest outcomes was the disclosure of donor and recipient data that had previously been shielded from public view.\n\nThat's the part many people missed.\n\nThe ruling was less about stopping money and more about increasing visibility around it.",
+    "conclusion": "Do you think transparency about political funding changes how citizens evaluate parties and public policy decisions?",
     "keywords": [
-        "insolvency",
-        "ibc",
-        "moratorium",
-        "bankruptcy",
-        "corporate-law"
+        "ElectoralBonds",
+        "SupremeCourt",
+        "PoliticalFunding",
+        "Transparency",
+        "PublicPolicy"
     ]
 }
