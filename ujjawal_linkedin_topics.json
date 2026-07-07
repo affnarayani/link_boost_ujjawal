@@ -60,7 +60,10 @@
         "posted": true
     },
     {
-        "topic": "Summary suit procedure - faster recovery for liquidated claims"
+        "topic": "Summary suit procedure - faster recovery for liquidated claims",
+        "content_generated": true,
+        "image_generated": false,
+        "posted": false
     },
     {
         "topic": "Stop payment vs insufficient funds - does it change the case"
