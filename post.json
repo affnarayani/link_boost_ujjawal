@@ -1,14 +1,14 @@
 {
-    "title": "Summary suit procedure - faster recovery for liquidated claims",
-    "p1": "Many businesses lose valuable time chasing debts that are already clearly established.\n\nBut what if the law provides a faster route when there is little left to prove?",
-    "p2": "A common misconception is that every recovery claim must go through a lengthy regular civil suit. That is not always true.\n\nFor certain claims involving fixed amounts, written contracts, bills of exchange, or acknowledged debts, a summary suit can offer a quicker recovery process.",
-    "p3": "The key difference is that the defendant cannot automatically delay the matter by raising a vague defence. They must first obtain the court’s permission to defend the case.\n\nThis makes summary suits especially useful for businesses dealing with unpaid invoices or clear contractual dues.\n\nThe practical takeaway: before starting a long recovery battle, check whether your claim qualifies for a summary procedure. Choosing the right legal route can save months of time and resources.",
-    "conclusion": "Have you seen businesses spend years recovering dues that could potentially be addressed through a faster legal process? What has been your experience with recovery claims?",
+    "title": "Stop payment vs insufficient funds - does it change the case",
+    "p1": "A cheque bounced. But does the reason behind it actually change the legal consequences?\n\nMany people assume that stopping payment is different from having insufficient funds. The reality is more nuanced than most expect.",
+    "p2": "A common misconception is that a stop payment instruction automatically protects the person who issued the cheque. It does not.\n\nIn many situations, a cheque returned due to stop payment can still lead to legal action, just like a cheque returned because the account did not have enough money.",
+    "p3": "The key question is not only why the cheque failed, but whether the cheque was issued towards a genuine legally enforceable payment obligation.\n\nA stop payment request may become a relevant defence in certain circumstances, but it is not a guaranteed escape from liability. The facts behind the transaction matter.\n\nThe small detail most people miss: the bank’s return reason alone does not decide the entire case.",
+    "conclusion": "Have you seen a situation where a cheque was stopped and assumed the matter was closed? Do you think stop payment should be treated differently from insufficient funds?",
     "keywords": [
-        "CivilProcedure",
-        "SummarySuit",
-        "DebtRecovery",
-        "BusinessLaw",
-        "LegalAwareness"
+        "ChequeBounce",
+        "BankingLaw",
+        "LegalAwareness",
+        "FinancialLiteracy",
+        "BusinessLaw"
     ]
 }
