@@ -68,9 +68,8 @@ def run():
             # 'Sort by: Top' button par click karein
             page.get_by_role("button", name=re.compile(r"Sort by: Top", re.IGNORECASE)).click()
             custom_random_wait(6, 12)
-            
-            # Dropdown se 'Recent' option select karein
             page.get_by_text("Recent", exact=True).click()
+            print("[INFO] Feed sorted to Recent...", flush=True)
             custom_random_wait(6, 12)
         except Exception as sort_e:
             # Agar button nahi milta ya already Recent par hai, toh error print karke aage badhein
