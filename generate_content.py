@@ -211,16 +211,16 @@ def update_topic_status_in_json(topic_text: str):
 def run():
     print("[START] Script started", flush=True)
 
-    # Har baar new run par post.json ke content ko clear kar dena
-    post_file = Path("post.json")
-    with post_file.open("w", encoding="utf-8") as f:
-        f.write("")
-    print("[OK] 'post.json' cleared/initialized at the start of the run.", flush=True)
-
-    # Last post check condition validation
+    # 1. Last post check condition validation (Pehle status check hoga)
     if not can_run_script():
         print("[INFO] Conditions match nahi hui. Exiting script gracefully...", flush=True)
         sys.exit(0)
+
+    # 2. Agar conditions fulfill ho gayi, tabhi post.json clear aur initialize hoga
+    post_file = Path("post.json")
+    with post_file.open("w", encoding="utf-8") as f:
+        f.write("")
+    print("[OK] 'post.json' cleared/initialized after condition validation.", flush=True)
 
     # Get next unprocessed topic
     try:
