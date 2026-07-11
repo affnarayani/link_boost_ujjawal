@@ -1,0 +1,14 @@
+{
+    "title": "Stop payment vs insufficient funds - does it change the case",
+    "p1": "A cheque bounces. The first question many people ask is: \"Was payment stopped, or was there no money in the account?\" Surprisingly, the answer can change how people view the situation.",
+    "p2": "A common misconception is that both situations are treated exactly the same. They may both result in non-payment, but the reason behind the failure can matter. A stop payment means the account holder instructed the bank not to release funds. Insufficient funds means the payment could not happen because the account did not have enough money.",
+    "p3": "The key takeaway: the outcome is not judged only by the failed payment, but also by the facts behind it. The timing, intent, communication between parties, and applicable rules can all influence what happens next. A simple difference in the reason for non-payment can become a significant detail in a dispute.",
+    "conclusion": "Have you ever assumed a stopped payment and insufficient funds were the same thing? What difference do you think should matter most?",
+    "keywords": [
+        "ChequeBounce",
+        "BankingBasics",
+        "FinancialAwareness",
+        "BusinessLaw",
+        "PersonalFinance"
+    ]
+}
