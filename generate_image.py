@@ -425,7 +425,7 @@ def run():
 
                     if chat_box.count() > 0:
                         chat_box.first.click()
-                        chat_box.first.type("?")
+                        chat_box.first.type("Please continue generating the image")
                         custom_random_wait(3, 5)
                         page.keyboard.press("Enter")
                         print("[OK] '?' bhej diya gaya hai. Agle 5 retries ka wait kar rahe hain...", flush=True)
