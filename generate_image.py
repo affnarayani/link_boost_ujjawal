@@ -428,9 +428,9 @@ def run():
                         chat_box.first.type("Please continue generating the image")
                         custom_random_wait(3, 5)
                         page.keyboard.press("Enter")
-                        print("[OK] '?' bhej diya gaya hai. Agle 5 retries ka wait kar rahe hain...", flush=True)
+                        print("[OK] 'Continue Generating Prompt' bhej diya gaya hai. Agle 5 retries ka wait kar rahe hain...", flush=True)
                 except Exception as q_err:
-                    print(f"[WARNING] '?' bhejte waqt error aaya: {q_err}", flush=True)
+                    print(f"[WARNING] 'Continue Generating Prompt' bhejte waqt error aaya: {q_err}", flush=True)
 
         if not found_share or not share_button:
             print("❌ Error: 'Share this image' button not found after 5 retries. Exiting program.", flush=True)
