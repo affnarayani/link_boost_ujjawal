@@ -1,7 +1,7 @@
 name: 3A. Scrape Connections
 
 on:
-  workflow_dispatch: # Sirf manual execution ke liye
+  workflow_dispatch:
   
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
