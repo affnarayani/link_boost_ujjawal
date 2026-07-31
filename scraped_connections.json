@@ -134,7 +134,10 @@
     },
     {
         "name": "Shalini Jha",
-        "profile_link": "https://www.linkedin.com/in/shalini-jha-323309354/"
+        "profile_link": "https://www.linkedin.com/in/shalini-jha-323309354/",
+        "sent": true,
+        "timestamp": "2026-07-31 12:12:49",
+        "withdrawn": false
     },
     {
         "name": "mithlesh kumar",
