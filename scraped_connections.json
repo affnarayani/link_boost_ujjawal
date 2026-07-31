@@ -162,7 +162,10 @@
     },
     {
         "name": "MINU SINHA",
-        "profile_link": "https://www.linkedin.com/in/minu-sinha-91525b120/"
+        "profile_link": "https://www.linkedin.com/in/minu-sinha-91525b120/",
+        "sent": true,
+        "timestamp": "2026-07-31 17:14:19",
+        "withdrawn": false
     },
     {
         "name": "Tej Pratap Singh",
