@@ -246,7 +246,10 @@
     },
     {
         "name": "Bhagwan Kumar",
-        "profile_link": "https://www.linkedin.com/in/bhagwan-kumar-455291382/"
+        "profile_link": "https://www.linkedin.com/in/bhagwan-kumar-455291382/",
+        "sent": true,
+        "timestamp": "2026-08-01 10:55:42",
+        "withdrawn": false
     },
     {
         "name": "Ranvir Pratap Singh",
