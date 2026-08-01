@@ -295,7 +295,10 @@
     },
     {
         "name": "Srishti Kumari",
-        "profile_link": "https://www.linkedin.com/in/srishti-kumari-16b7ba216/"
+        "profile_link": "https://www.linkedin.com/in/srishti-kumari-16b7ba216/",
+        "sent": true,
+        "timestamp": "2026-08-01 15:44:59",
+        "withdrawn": false
     },
     {
         "name": "KRISHNKANT KUMAR",
