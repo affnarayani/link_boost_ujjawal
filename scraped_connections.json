@@ -267,7 +267,10 @@
     },
     {
         "name": "Priya Singhania",
-        "profile_link": "https://www.linkedin.com/in/priya-singhania-706171259/"
+        "profile_link": "https://www.linkedin.com/in/priya-singhania-706171259/",
+        "sent": true,
+        "timestamp": "2026-08-01 11:48:57",
+        "withdrawn": false
     },
     {
         "name": "Anushka Sinha",
