@@ -239,7 +239,10 @@
     },
     {
         "name": "Jai Prakash Singh",
-        "profile_link": "https://www.linkedin.com/in/jai-prakash-singh-b15759248/"
+        "profile_link": "https://www.linkedin.com/in/jai-prakash-singh-b15759248/",
+        "sent": true,
+        "timestamp": "2026-08-01 09:48:34",
+        "withdrawn": false
     },
     {
         "name": "Bhagwan Kumar",
