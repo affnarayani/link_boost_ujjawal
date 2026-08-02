@@ -344,7 +344,10 @@
     },
     {
         "name": "Rakesh Thakur",
-        "profile_link": "https://www.linkedin.com/in/rakesh-thakur-abb9293a7/"
+        "profile_link": "https://www.linkedin.com/in/rakesh-thakur-abb9293a7/",
+        "sent": true,
+        "timestamp": "2026-08-02 09:05:07",
+        "withdrawn": false
     },
     {
         "name": "Satya Prakash",
