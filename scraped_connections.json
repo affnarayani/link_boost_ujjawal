@@ -330,7 +330,10 @@
     },
     {
         "name": "Saumya shankar",
-        "profile_link": "https://www.linkedin.com/in/saumya-shankar-a68a19409/"
+        "profile_link": "https://www.linkedin.com/in/saumya-shankar-a68a19409/",
+        "sent": true,
+        "timestamp": "2026-08-02 06:24:56",
+        "withdrawn": false
     },
     {
         "name": "Anmol Ratan",
