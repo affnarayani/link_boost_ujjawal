@@ -421,7 +421,10 @@
     },
     {
         "name": "Siddhi Rupa",
-        "profile_link": "https://www.linkedin.com/in/siddhirupa/"
+        "profile_link": "https://www.linkedin.com/in/siddhirupa/",
+        "sent": true,
+        "timestamp": "2026-08-02 20:19:28",
+        "withdrawn": false
     },
     {
         "name": "Sarvesh Kashyap",
