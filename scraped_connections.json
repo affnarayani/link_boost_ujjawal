@@ -470,7 +470,10 @@
     },
     {
         "name": "Gyan Ranjan",
-        "profile_link": "https://www.linkedin.com/in/gyan-ranjan-a0359b321/"
+        "profile_link": "https://www.linkedin.com/in/gyan-ranjan-a0359b321/",
+        "sent": true,
+        "timestamp": "2026-08-03 08:22:00",
+        "withdrawn": false
     },
     {
         "name": "Akash Deep",
