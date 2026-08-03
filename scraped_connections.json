@@ -512,7 +512,10 @@
     },
     {
         "name": "Puja Gupta",
-        "profile_link": "https://www.linkedin.com/in/puja-gupta-9ab055370/"
+        "profile_link": "https://www.linkedin.com/in/puja-gupta-9ab055370/",
+        "sent": true,
+        "timestamp": "2026-08-03 15:34:16",
+        "withdrawn": false
     },
     {
         "name": "Vishal Kumar Chauhan",
