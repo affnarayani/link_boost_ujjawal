@@ -638,7 +638,10 @@
     },
     {
         "name": "Swarna Yati",
-        "profile_link": "https://www.linkedin.com/in/swarna-yati/"
+        "profile_link": "https://www.linkedin.com/in/swarna-yati/",
+        "sent": true,
+        "timestamp": "2026-08-04 16:42:55",
+        "withdrawn": false
     },
     {
         "name": "Nisha Singh",
