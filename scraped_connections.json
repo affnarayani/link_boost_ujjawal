@@ -736,7 +736,10 @@
     },
     {
         "name": "KUMAR HARSHVARDHAN",
-        "profile_link": "https://www.linkedin.com/in/kumar-harshvardhan-6a66903b8/"
+        "profile_link": "https://www.linkedin.com/in/kumar-harshvardhan-6a66903b8/",
+        "sent": true,
+        "timestamp": "2026-08-05 10:16:59",
+        "withdrawn": false
     },
     {
         "name": "Kriti Roy",
