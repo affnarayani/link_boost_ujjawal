@@ -701,7 +701,10 @@
     },
     {
         "name": "Kaushiki Ranjan",
-        "profile_link": "https://www.linkedin.com/in/kaushiki-ranjan-81339431a/"
+        "profile_link": "https://www.linkedin.com/in/kaushiki-ranjan-81339431a/",
+        "sent": true,
+        "timestamp": "2026-08-05 06:12:52",
+        "withdrawn": false
     },
     {
         "name": "Anubhav Kumar Verma",
