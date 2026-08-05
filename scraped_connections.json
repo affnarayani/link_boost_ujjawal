@@ -799,7 +799,10 @@
     },
     {
         "name": "ANISH KUMAR",
-        "profile_link": "https://www.linkedin.com/in/anish-kumar-3b4a61221/"
+        "profile_link": "https://www.linkedin.com/in/anish-kumar-3b4a61221/",
+        "sent": true,
+        "timestamp": "2026-08-05 19:07:06",
+        "withdrawn": false
     },
     {
         "name": "Nivedita Sinha",
