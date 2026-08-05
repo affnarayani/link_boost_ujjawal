@@ -743,7 +743,10 @@
     },
     {
         "name": "Kriti Roy",
-        "profile_link": "https://www.linkedin.com/in/kriti-roy-529b1031b/"
+        "profile_link": "https://www.linkedin.com/in/kriti-roy-529b1031b/",
+        "sent": true,
+        "timestamp": "2026-08-05 11:31:08",
+        "withdrawn": false
     },
     {
         "name": "Sankat Mochan Shiv",
