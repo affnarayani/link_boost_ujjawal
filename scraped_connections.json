@@ -792,7 +792,10 @@
     },
     {
         "name": "Deepak Gupta",
-        "profile_link": "https://www.linkedin.com/in/deepguptalaw/"
+        "profile_link": "https://www.linkedin.com/in/deepguptalaw/",
+        "sent": true,
+        "timestamp": "2026-08-05 18:18:19",
+        "withdrawn": false
     },
     {
         "name": "ANISH KUMAR",
