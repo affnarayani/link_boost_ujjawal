@@ -834,7 +834,10 @@
     },
     {
         "name": "Rishabh Rao",
-        "profile_link": "https://www.linkedin.com/in/rishabh-rao-a3829b292/"
+        "profile_link": "https://www.linkedin.com/in/rishabh-rao-a3829b292/",
+        "sent": true,
+        "timestamp": "2026-08-06 08:30:26",
+        "withdrawn": false
     },
     {
         "name": "Abhiraj Pujan",
