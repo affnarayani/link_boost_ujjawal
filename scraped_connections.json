@@ -1030,7 +1030,10 @@
     },
     {
         "name": "Satyam Kumari",
-        "profile_link": "https://www.linkedin.com/in/satyam-kumari-6991bb223/"
+        "profile_link": "https://www.linkedin.com/in/satyam-kumari-6991bb223/",
+        "sent": true,
+        "timestamp": "2026-08-07 18:29:17",
+        "withdrawn": false
     },
     {
         "name": "RAJESH YADAV",
