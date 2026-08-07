@@ -1051,7 +1051,10 @@
     },
     {
         "name": "Manoj K Singh",
-        "profile_link": "https://www.linkedin.com/in/manoj-k-singh-592660362/"
+        "profile_link": "https://www.linkedin.com/in/manoj-k-singh-592660362/",
+        "sent": true,
+        "timestamp": "2026-08-07 22:20:29",
+        "withdrawn": false
     },
     {
         "name": "Adv. Vaibhav Kumar",
