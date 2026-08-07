@@ -918,7 +918,10 @@
     },
     {
         "name": "Anant Gautam",
-        "profile_link": "https://www.linkedin.com/in/anant-gautam-835261168/"
+        "profile_link": "https://www.linkedin.com/in/anant-gautam-835261168/",
+        "sent": true,
+        "timestamp": "2026-08-07 01:29:39",
+        "withdrawn": false
     },
     {
         "name": "Ajeet Pal",
