@@ -1177,7 +1177,10 @@
     },
     {
         "name": "Sakshi Anand",
-        "profile_link": "https://www.linkedin.com/in/sakshi-anand-40983a1b0/"
+        "profile_link": "https://www.linkedin.com/in/sakshi-anand-40983a1b0/",
+        "sent": true,
+        "timestamp": "2026-08-08 21:44:01",
+        "withdrawn": false
     },
     {
         "name": "Prashant Kashyap",
