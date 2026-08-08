@@ -1107,7 +1107,10 @@
     },
     {
         "name": "Riya Raj",
-        "profile_link": "https://www.linkedin.com/in/riya-raj-129275425/"
+        "profile_link": "https://www.linkedin.com/in/riya-raj-129275425/",
+        "sent": true,
+        "timestamp": "2026-08-08 10:06:44",
+        "withdrawn": false
     },
     {
         "name": "AKASH KUMAR",
