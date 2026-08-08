@@ -126,7 +126,10 @@
         "posted": true
     },
     {
-        "topic": "The legal fallout of the commercial surrogacy ban"
+        "topic": "The legal fallout of the commercial surrogacy ban",
+        "content_generated": true,
+        "image_generated": false,
+        "posted": false
     },
     {
         "topic": "Inheritance distribution rules explained simply for Muslim families"
