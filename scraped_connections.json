@@ -1086,7 +1086,10 @@
     },
     {
         "name": "Raghvendra Kumar Pratik",
-        "profile_link": "https://www.linkedin.com/in/raghvendra-kumar-pratik-80937440b/"
+        "profile_link": "https://www.linkedin.com/in/raghvendra-kumar-pratik-80937440b/",
+        "sent": true,
+        "timestamp": "2026-08-08 07:26:59",
+        "withdrawn": false
     },
     {
         "name": "Adv Priya Kumari",
