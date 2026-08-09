@@ -1261,7 +1261,10 @@
     },
     {
         "name": "Aman Vishal",
-        "profile_link": "https://www.linkedin.com/in/aman-vishal-719aa2102/"
+        "profile_link": "https://www.linkedin.com/in/aman-vishal-719aa2102/",
+        "sent": true,
+        "timestamp": "2026-08-09 15:47:25",
+        "withdrawn": false
     },
     {
         "name": "Vijay Kumar Singh",
