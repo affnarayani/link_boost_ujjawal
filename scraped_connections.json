@@ -1268,7 +1268,10 @@
     },
     {
         "name": "Vijay Kumar Singh",
-        "profile_link": "https://www.linkedin.com/in/vijay-kumar-singh-157222230/"
+        "profile_link": "https://www.linkedin.com/in/vijay-kumar-singh-157222230/",
+        "sent": true,
+        "timestamp": "2026-08-09 16:02:31",
+        "withdrawn": false
     },
     {
         "name": "KUMARI ANPAM",
