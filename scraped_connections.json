@@ -1422,7 +1422,10 @@
     },
     {
         "name": "RP Kashyap",
-        "profile_link": "https://www.linkedin.com/in/rp-kashyap-00129236a/"
+        "profile_link": "https://www.linkedin.com/in/rp-kashyap-00129236a/",
+        "sent": true,
+        "timestamp": "2026-08-10 21:42:20",
+        "withdrawn": false
     },
     {
         "name": "Indradev Singh",
