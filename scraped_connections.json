@@ -1310,7 +1310,10 @@
     },
     {
         "name": "Deepti Pandey",
-        "profile_link": "https://www.linkedin.com/in/deepti-pandey-857a7223b/"
+        "profile_link": "https://www.linkedin.com/in/deepti-pandey-857a7223b/",
+        "sent": true,
+        "timestamp": "2026-08-10 04:20:51",
+        "withdrawn": false
     },
     {
         "name": "Atul Kumar",
