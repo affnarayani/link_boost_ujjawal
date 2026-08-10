@@ -1352,7 +1352,10 @@
     },
     {
         "name": "Kumar Yuvraj",
-        "profile_link": "https://www.linkedin.com/in/kumar-yuvraj-0a0772276/"
+        "profile_link": "https://www.linkedin.com/in/kumar-yuvraj-0a0772276/",
+        "sent": true,
+        "timestamp": "2026-08-10 08:17:15",
+        "withdrawn": false
     },
     {
         "name": "Rishi Pal",
