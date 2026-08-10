@@ -1359,7 +1359,10 @@
     },
     {
         "name": "Rishi Pal",
-        "profile_link": "https://www.linkedin.com/in/rishi-pal-800b17264/"
+        "profile_link": "https://www.linkedin.com/in/rishi-pal-800b17264/",
+        "sent": true,
+        "timestamp": "2026-08-10 08:52:32",
+        "withdrawn": false
     },
     {
         "name": "Shyam Kumar",
