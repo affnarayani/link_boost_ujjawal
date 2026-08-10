@@ -1338,7 +1338,10 @@
     },
     {
         "name": "Tabish Ahmad",
-        "profile_link": "https://www.linkedin.com/in/tabish-ahmad-aa200834b/"
+        "profile_link": "https://www.linkedin.com/in/tabish-ahmad-aa200834b/",
+        "sent": true,
+        "timestamp": "2026-08-10 06:59:55",
+        "withdrawn": false
     },
     {
         "name": "Rajesh K Sinha",
