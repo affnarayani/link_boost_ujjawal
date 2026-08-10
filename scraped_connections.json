@@ -1387,7 +1387,10 @@
     },
     {
         "name": "Raju Singh",
-        "profile_link": "https://www.linkedin.com/in/raju-singh-b20630244/"
+        "profile_link": "https://www.linkedin.com/in/raju-singh-b20630244/",
+        "sent": true,
+        "timestamp": "2026-08-10 16:08:43",
+        "withdrawn": false
     },
     {
         "name": "SHAMBHU NATH SAH",
