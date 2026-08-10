@@ -1345,7 +1345,10 @@
     },
     {
         "name": "Rajesh K Sinha",
-        "profile_link": "https://www.linkedin.com/in/rajesh-k-sinha-3b9512286/"
+        "profile_link": "https://www.linkedin.com/in/rajesh-k-sinha-3b9512286/",
+        "sent": true,
+        "timestamp": "2026-08-10 07:59:48",
+        "withdrawn": false
     },
     {
         "name": "Kumar Yuvraj",
