@@ -1555,7 +1555,10 @@
     },
     {
         "name": "AMAN RANJAN",
-        "profile_link": "https://www.linkedin.com/in/aman-ranjan-5b915224b/"
+        "profile_link": "https://www.linkedin.com/in/aman-ranjan-5b915224b/",
+        "sent": true,
+        "timestamp": "2026-08-11 22:59:16",
+        "withdrawn": false
     },
     {
         "name": "Satyam Jha",
