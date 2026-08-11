@@ -1471,7 +1471,10 @@
     },
     {
         "name": "Priya Singh",
-        "profile_link": "https://www.linkedin.com/in/priya-singh-72b9201b3/"
+        "profile_link": "https://www.linkedin.com/in/priya-singh-72b9201b3/",
+        "sent": true,
+        "timestamp": "2026-08-11 16:14:22",
+        "withdrawn": false
     },
     {
         "name": "Sunny Kumar",
