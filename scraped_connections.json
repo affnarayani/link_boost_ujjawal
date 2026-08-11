@@ -1506,7 +1506,10 @@
     },
     {
         "name": "RASHI CHANDRA",
-        "profile_link": "https://www.linkedin.com/in/rashi-chandra-a48860359/"
+        "profile_link": "https://www.linkedin.com/in/rashi-chandra-a48860359/",
+        "sent": true,
+        "timestamp": "2026-08-11 19:17:34",
+        "withdrawn": false
     },
     {
         "name": "Karuna K",
