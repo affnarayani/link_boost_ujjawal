@@ -1513,7 +1513,10 @@
     },
     {
         "name": "Karuna K",
-        "profile_link": "https://www.linkedin.com/in/advkarunak/"
+        "profile_link": "https://www.linkedin.com/in/advkarunak/",
+        "sent": true,
+        "timestamp": "2026-08-11 19:41:50",
+        "withdrawn": false
     },
     {
         "name": "Jahangir Ali",
