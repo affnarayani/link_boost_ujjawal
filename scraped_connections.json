@@ -1457,7 +1457,10 @@
     },
     {
         "name": "Rajan Kumar",
-        "profile_link": "https://www.linkedin.com/in/rajan-kumar-794026394/"
+        "profile_link": "https://www.linkedin.com/in/rajan-kumar-794026394/",
+        "sent": true,
+        "timestamp": "2026-08-11 15:10:10",
+        "withdrawn": false
     },
     {
         "name": "Sanjeet Kumar",
