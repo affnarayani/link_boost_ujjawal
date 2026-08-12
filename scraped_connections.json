@@ -1562,7 +1562,10 @@
     },
     {
         "name": "Satyam Jha",
-        "profile_link": "https://www.linkedin.com/in/satyam-jha-11a945335/"
+        "profile_link": "https://www.linkedin.com/in/satyam-jha-11a945335/",
+        "sent": true,
+        "timestamp": "2026-08-12 04:18:00",
+        "withdrawn": false
     },
     {
         "name": "Amisha Kumari",
