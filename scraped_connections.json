@@ -1569,7 +1569,10 @@
     },
     {
         "name": "Amisha Kumari",
-        "profile_link": "https://www.linkedin.com/in/amisha-kumari-b688701a9/"
+        "profile_link": "https://www.linkedin.com/in/amisha-kumari-b688701a9/",
+        "sent": true,
+        "timestamp": "2026-08-12 04:28:54",
+        "withdrawn": false
     },
     {
         "name": "Adv. pooja Kumari",
