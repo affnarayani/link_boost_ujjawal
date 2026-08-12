@@ -1604,7 +1604,10 @@
     },
     {
         "name": "Ravi Ranjan Mallick",
-        "profile_link": "https://www.linkedin.com/in/ravi-ranjan-mallick-b8755b276/"
+        "profile_link": "https://www.linkedin.com/in/ravi-ranjan-mallick-b8755b276/",
+        "sent": true,
+        "timestamp": "2026-08-12 09:23:40",
+        "withdrawn": false
     },
     {
         "name": "advocate Shashi Priya Pathak",
