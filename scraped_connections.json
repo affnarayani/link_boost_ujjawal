@@ -1660,7 +1660,10 @@
     },
     {
         "name": "Poonam Singh",
-        "profile_link": "https://www.linkedin.com/in/poonam-singh-b10798313/"
+        "profile_link": "https://www.linkedin.com/in/poonam-singh-b10798313/",
+        "sent": true,
+        "timestamp": "2026-08-12 18:39:09",
+        "withdrawn": false
     },
     {
         "name": "Mrigendra Kumar Singh",
