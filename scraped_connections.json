@@ -1793,7 +1793,10 @@
     },
     {
         "name": "Anushka Roy",
-        "profile_link": "https://www.linkedin.com/in/anushka-roy-54988b215/"
+        "profile_link": "https://www.linkedin.com/in/anushka-roy-54988b215/",
+        "sent": true,
+        "timestamp": "2026-08-13 16:30:06",
+        "withdrawn": false
     },
     {
         "name": "Padma Rajnandani",
