@@ -1702,7 +1702,10 @@
     },
     {
         "name": "Aisha Raj",
-        "profile_link": "https://www.linkedin.com/in/aisha-raj-1049413a2/"
+        "profile_link": "https://www.linkedin.com/in/aisha-raj-1049413a2/",
+        "sent": true,
+        "timestamp": "2026-08-13 05:28:42",
+        "withdrawn": false
     },
     {
         "name": "Vijay Kumar Sinha",
