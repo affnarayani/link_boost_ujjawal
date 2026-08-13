@@ -1800,7 +1800,10 @@
     },
     {
         "name": "Padma Rajnandani",
-        "profile_link": "https://www.linkedin.com/in/padma-rajnandani-407743212/"
+        "profile_link": "https://www.linkedin.com/in/padma-rajnandani-407743212/",
+        "sent": true,
+        "timestamp": "2026-08-13 18:11:26",
+        "withdrawn": false
     },
     {
         "name": "Aditi Raj",
