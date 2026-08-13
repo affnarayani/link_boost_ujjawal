@@ -1786,7 +1786,10 @@
     },
     {
         "name": "Anupriya Sahay",
-        "profile_link": "https://www.linkedin.com/in/anupriya-sahay-aa19a9240/"
+        "profile_link": "https://www.linkedin.com/in/anupriya-sahay-aa19a9240/",
+        "sent": true,
+        "timestamp": "2026-08-13 15:33:03",
+        "withdrawn": false
     },
     {
         "name": "Anushka Roy",
