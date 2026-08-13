@@ -1807,7 +1807,10 @@
     },
     {
         "name": "Aditi Raj",
-        "profile_link": "https://www.linkedin.com/in/aditi-raj-law/"
+        "profile_link": "https://www.linkedin.com/in/aditi-raj-law/",
+        "sent": true,
+        "timestamp": "2026-08-13 19:56:17",
+        "withdrawn": false
     },
     {
         "name": "Suruchi Anand",
