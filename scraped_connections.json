@@ -1877,7 +1877,10 @@
     },
     {
         "name": "Sameer Kumar Rajak",
-        "profile_link": "https://www.linkedin.com/in/sameerkumarrajak/"
+        "profile_link": "https://www.linkedin.com/in/sameerkumarrajak/",
+        "sent": true,
+        "timestamp": "2026-08-14 15:35:56",
+        "withdrawn": false
     },
     {
         "name": "Rishek Kumar",
