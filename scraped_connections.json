@@ -1912,7 +1912,10 @@
     },
     {
         "name": "Varsha Kumari",
-        "profile_link": "https://www.linkedin.com/in/varsha-kumari-267842211/"
+        "profile_link": "https://www.linkedin.com/in/varsha-kumari-267842211/",
+        "sent": true,
+        "timestamp": "2026-08-14 18:30:31",
+        "withdrawn": false
     },
     {
         "name": "Chirag .",
