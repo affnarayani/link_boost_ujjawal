@@ -1898,7 +1898,10 @@
     },
     {
         "name": "Adv Amit Kr Roy",
-        "profile_link": "https://www.linkedin.com/in/adv-amit-kr-roy-73b6083a7/"
+        "profile_link": "https://www.linkedin.com/in/adv-amit-kr-roy-73b6083a7/",
+        "sent": true,
+        "timestamp": "2026-08-14 17:04:01",
+        "withdrawn": false
     },
     {
         "name": "Adv. Padmanabh .",
