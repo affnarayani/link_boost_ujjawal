@@ -2045,7 +2045,10 @@
     },
     {
         "name": "Ritika Roy",
-        "profile_link": "https://www.linkedin.com/in/ritika-roy-61ba00241/"
+        "profile_link": "https://www.linkedin.com/in/ritika-roy-61ba00241/",
+        "sent": true,
+        "timestamp": "2026-08-15 19:30:03",
+        "withdrawn": false
     },
     {
         "name": "Pallavi Lala",
