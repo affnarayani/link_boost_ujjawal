@@ -1961,7 +1961,10 @@
     },
     {
         "name": "Abhinandan Raj",
-        "profile_link": "https://www.linkedin.com/in/abhinandan-raj-a32315308/"
+        "profile_link": "https://www.linkedin.com/in/abhinandan-raj-a32315308/",
+        "sent": true,
+        "timestamp": "2026-08-15 07:13:25",
+        "withdrawn": false
     },
     {
         "name": "Shivam Singh",
