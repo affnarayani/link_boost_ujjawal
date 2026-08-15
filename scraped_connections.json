@@ -2038,7 +2038,10 @@
     },
     {
         "name": "Adv. Kuldeep Kumar",
-        "profile_link": "https://www.linkedin.com/in/adv-kuldeep-kumar-8b4b91203/"
+        "profile_link": "https://www.linkedin.com/in/adv-kuldeep-kumar-8b4b91203/",
+        "sent": true,
+        "timestamp": "2026-08-15 17:40:24",
+        "withdrawn": false
     },
     {
         "name": "Ritika Roy",
