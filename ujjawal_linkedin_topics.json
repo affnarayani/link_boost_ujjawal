@@ -156,7 +156,10 @@
         "posted": true
     },
     {
-        "topic": "Identifying trademark infringement before it's too late"
+        "topic": "Identifying trademark infringement before it's too late",
+        "content_generated": true,
+        "image_generated": false,
+        "posted": false
     },
     {
         "topic": "Data fiduciary obligations - a checklist every business needs"
