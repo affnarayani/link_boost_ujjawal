@@ -235,6 +235,37 @@ def run():
             
             return
 
+        # CHECK IF COMMENTS ARE TURNED OFF
+        print("[STEP] Checking if comments are turned off...", flush=True)
+        comments_off_locator = page.get_by_text("Comments have been turned off")
+        if comments_off_locator.count() > 0 and comments_off_locator.first.is_visible():
+            print("[INFO] 'Comments have been turned off' text found. Treating as SUCCESS.", flush=True)
+            
+            commented_urls = []
+            if COMMENTED_FILE.exists():
+                with COMMENTED_FILE.open("r", encoding="utf-8") as f:
+                    try: commented_urls = json.load(f)
+                    except: commented_urls = []
+            
+            if target_url not in commented_urls:
+                commented_urls.append(target_url)
+                with COMMENTED_FILE.open("w", encoding="utf-8") as f:
+                    json.dump(commented_urls, f, indent=4, ensure_ascii=False)
+
+            status_data["comment_posted"] = True
+            with STATUS_FILE.open("w", encoding="utf-8") as f:
+                json.dump(status_data, f, indent=4, ensure_ascii=False)
+
+            print("[STEP] Finalizing comments-off post flow...", flush=True)
+            custom_random_wait(5, 10)
+            
+            reset_status = {"post_to_comment_found": False, "comment_generated": False, "comment_posted": False}
+            with STATUS_FILE.open("w", encoding="utf-8") as f:
+                json.dump(reset_status, f, indent=4, ensure_ascii=False)
+                
+            print("[SUCCESS] Comments disabled on post. Exiting safely with code 0.", flush=True)
+            return
+
         # 4. CHECK GROUP RESTRICTION
         print("[STEP] Checking for restriction text...", flush=True)
         restricted_text = page.get_by_text("Only group members can")
