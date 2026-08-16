@@ -2185,7 +2185,10 @@
     },
     {
         "name": "Abhiyuday Anand",
-        "profile_link": "https://www.linkedin.com/in/abhiyuday-anand-ab1881228/"
+        "profile_link": "https://www.linkedin.com/in/abhiyuday-anand-ab1881228/",
+        "sent": true,
+        "timestamp": "2026-08-16 23:02:14",
+        "withdrawn": false
     },
     {
         "name": "Adv. Prabhakar Jha",
