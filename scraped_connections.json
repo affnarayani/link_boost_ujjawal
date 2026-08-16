@@ -2122,7 +2122,10 @@
     },
     {
         "name": "Shristi Shikha",
-        "profile_link": "https://www.linkedin.com/in/shristishikha/"
+        "profile_link": "https://www.linkedin.com/in/shristishikha/",
+        "sent": true,
+        "timestamp": "2026-08-16 14:45:38",
+        "withdrawn": false
     },
     {
         "name": "Rudra Pratap Lal",
