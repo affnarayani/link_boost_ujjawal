@@ -2164,7 +2164,10 @@
     },
     {
         "name": "GBS Law Chambers",
-        "profile_link": "https://www.linkedin.com/in/gbs-law-chambers-594671232/"
+        "profile_link": "https://www.linkedin.com/in/gbs-law-chambers-594671232/",
+        "sent": true,
+        "timestamp": "2026-08-16 16:46:18",
+        "withdrawn": false
     },
     {
         "name": "Nishant Choudhary",
