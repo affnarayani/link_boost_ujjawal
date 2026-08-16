@@ -2087,7 +2087,10 @@
     },
     {
         "name": "Varsha Rani",
-        "profile_link": "https://www.linkedin.com/in/varsha-rani-563b65257/"
+        "profile_link": "https://www.linkedin.com/in/varsha-rani-563b65257/",
+        "sent": true,
+        "timestamp": "2026-08-16 10:44:58",
+        "withdrawn": false
     },
     {
         "name": "Shailja .",
