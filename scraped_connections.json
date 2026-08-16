@@ -2136,7 +2136,10 @@
     },
     {
         "name": "trivikram sharma",
-        "profile_link": "https://www.linkedin.com/in/trivikram-sharma-a71b59322/"
+        "profile_link": "https://www.linkedin.com/in/trivikram-sharma-a71b59322/",
+        "sent": true,
+        "timestamp": "2026-08-16 14:58:30",
+        "withdrawn": false
     },
     {
         "name": "AISHA SINGH",
