@@ -2241,7 +2241,10 @@
     },
     {
         "name": "Kumar Kishan",
-        "profile_link": "https://www.linkedin.com/in/kumar-kishan-172b52285/"
+        "profile_link": "https://www.linkedin.com/in/kumar-kishan-172b52285/",
+        "sent": true,
+        "timestamp": "2026-08-17 13:30:29",
+        "withdrawn": false
     },
     {
         "name": "Sanjay Srivastava",
