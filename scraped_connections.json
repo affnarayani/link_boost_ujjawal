@@ -2360,7 +2360,10 @@
     },
     {
         "name": "Jyoti Singh",
-        "profile_link": "https://www.linkedin.com/in/jyoti-singh-214b18219/"
+        "profile_link": "https://www.linkedin.com/in/jyoti-singh-214b18219/",
+        "sent": true,
+        "timestamp": "2026-08-18 11:01:17",
+        "withdrawn": false
     },
     {
         "name": "Srishti Sinha",
