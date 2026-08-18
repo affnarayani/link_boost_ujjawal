@@ -2374,7 +2374,10 @@
     },
     {
         "name": "Rahul Singh",
-        "profile_link": "https://www.linkedin.com/in/rahul-singh-969303324/"
+        "profile_link": "https://www.linkedin.com/in/rahul-singh-969303324/",
+        "sent": true,
+        "timestamp": "2026-08-18 13:11:46",
+        "withdrawn": false
     },
     {
         "name": "Savita Ali",
