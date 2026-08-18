@@ -2332,7 +2332,10 @@
     },
     {
         "name": "Simran Kumari",
-        "profile_link": "https://www.linkedin.com/in/simran-kumari-0644a0422/"
+        "profile_link": "https://www.linkedin.com/in/simran-kumari-0644a0422/",
+        "sent": true,
+        "timestamp": "2026-08-18 04:23:19",
+        "withdrawn": false
     },
     {
         "name": "Anshu Kumar (Pandey)",
