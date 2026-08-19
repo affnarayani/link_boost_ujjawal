@@ -2444,7 +2444,10 @@
     },
     {
         "name": "Indrajeet Kumar",
-        "profile_link": "https://www.linkedin.com/in/indrajeet-kumar-9527041b9/"
+        "profile_link": "https://www.linkedin.com/in/indrajeet-kumar-9527041b9/",
+        "sent": true,
+        "timestamp": "2026-08-19 17:06:55",
+        "withdrawn": false
     },
     {
         "name": "Motorola Ocean",
