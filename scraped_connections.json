@@ -2416,7 +2416,10 @@
     },
     {
         "name": "Vidushi Sanganeria",
-        "profile_link": "https://www.linkedin.com/in/vidushi-sanganeria/"
+        "profile_link": "https://www.linkedin.com/in/vidushi-sanganeria/",
+        "sent": true,
+        "timestamp": "2026-08-19 04:51:33",
+        "withdrawn": false
     },
     {
         "name": "Nitish Kumar",
