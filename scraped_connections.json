@@ -2472,7 +2472,10 @@
     },
     {
         "name": "Shivam Thakur",
-        "profile_link": "https://www.linkedin.com/in/shivam-thakur-8522403a2/"
+        "profile_link": "https://www.linkedin.com/in/shivam-thakur-8522403a2/",
+        "sent": true,
+        "timestamp": "2026-08-19 22:00:53",
+        "withdrawn": false
     },
     {
         "name": "Adv. Vishwaranjan Choudhary",
