@@ -2563,7 +2563,10 @@
     },
     {
         "name": "Juned Azam",
-        "profile_link": "https://www.linkedin.com/in/juned-azam-25964021b/"
+        "profile_link": "https://www.linkedin.com/in/juned-azam-25964021b/",
+        "sent": true,
+        "timestamp": "2026-08-20 19:33:31",
+        "withdrawn": false
     },
     {
         "name": "RAJESH KUMAR",
