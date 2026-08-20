@@ -2598,7 +2598,10 @@
     },
     {
         "name": "Rani Vintee",
-        "profile_link": "https://www.linkedin.com/in/rani-vintee-9a1172376/"
+        "profile_link": "https://www.linkedin.com/in/rani-vintee-9a1172376/",
+        "sent": true,
+        "timestamp": "2026-08-20 23:03:27",
+        "withdrawn": false
     },
     {
         "name": "Dinesh Prasad Ranjan advocate",
