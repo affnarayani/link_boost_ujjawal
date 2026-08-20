@@ -2584,7 +2584,10 @@
     },
     {
         "name": "Madhav Rai",
-        "profile_link": "https://www.linkedin.com/in/madhav-rai-8a49a2370/"
+        "profile_link": "https://www.linkedin.com/in/madhav-rai-8a49a2370/",
+        "sent": true,
+        "timestamp": "2026-08-20 21:50:47",
+        "withdrawn": false
     },
     {
         "name": "CHANDAN KUMAR",
