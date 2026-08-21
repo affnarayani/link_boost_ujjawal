@@ -2668,7 +2668,10 @@
     },
     {
         "name": "Anill Chandra",
-        "profile_link": "https://www.linkedin.com/in/anill-chandra-84bb5b282/"
+        "profile_link": "https://www.linkedin.com/in/anill-chandra-84bb5b282/",
+        "sent": true,
+        "timestamp": "2026-08-21 17:20:34",
+        "withdrawn": false
     },
     {
         "name": "Adv Rahul Raj",
