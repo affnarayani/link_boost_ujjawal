@@ -2724,7 +2724,10 @@
     },
     {
         "name": "Govinda kumar",
-        "profile_link": "https://www.linkedin.com/in/govinda-kumar-1298881ba/"
+        "profile_link": "https://www.linkedin.com/in/govinda-kumar-1298881ba/",
+        "sent": true,
+        "timestamp": "2026-08-21 22:15:30",
+        "withdrawn": false
     },
     {
         "name": "Mukku MALLICK 8",
