@@ -2640,7 +2640,10 @@
     },
     {
         "name": "SHAKTI GAURAV",
-        "profile_link": "https://www.linkedin.com/in/shakti-gaurav-939594206/"
+        "profile_link": "https://www.linkedin.com/in/shakti-gaurav-939594206/",
+        "sent": true,
+        "timestamp": "2026-08-21 13:09:04",
+        "withdrawn": false
     },
     {
         "name": "Saurabh Bishwambhar",
