@@ -192,7 +192,10 @@
         "posted": true
     },
     {
-        "topic": "Defamation as a criminal offence - is it still relevant in India"
+        "topic": "Defamation as a criminal offence - is it still relevant in India",
+        "content_generated": true,
+        "image_generated": false,
+        "posted": false
     },
     {
         "topic": "Transfer of criminal cases - grounds courts accept"
