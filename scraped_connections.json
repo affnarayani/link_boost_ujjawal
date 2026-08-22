@@ -2787,7 +2787,10 @@
     },
     {
         "name": "Amarnath Kumar",
-        "profile_link": "https://www.linkedin.com/in/amarnath-kumar-102518143/"
+        "profile_link": "https://www.linkedin.com/in/amarnath-kumar-102518143/",
+        "sent": true,
+        "timestamp": "2026-08-22 12:25:09",
+        "withdrawn": false
     },
     {
         "name": "MOHIT KUMAR",
