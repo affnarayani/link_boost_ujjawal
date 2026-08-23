@@ -2920,7 +2920,10 @@
     },
     {
         "name": "Akanksha Kumari",
-        "profile_link": "https://www.linkedin.com/in/akanksha-kumari-aaa369248/"
+        "profile_link": "https://www.linkedin.com/in/akanksha-kumari-aaa369248/",
+        "sent": true,
+        "timestamp": "2026-08-23 13:08:57",
+        "withdrawn": false
     },
     {
         "name": "Adv. Rahul Anand",
