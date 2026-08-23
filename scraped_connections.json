@@ -2906,7 +2906,10 @@
     },
     {
         "name": "Kalyan Kishor",
-        "profile_link": "https://www.linkedin.com/in/kalyan-kishor-a24111216/"
+        "profile_link": "https://www.linkedin.com/in/kalyan-kishor-a24111216/",
+        "sent": true,
+        "timestamp": "2026-08-23 11:32:54",
+        "withdrawn": false
     },
     {
         "name": "Pragya Kumari",
