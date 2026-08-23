@@ -2948,7 +2948,10 @@
     },
     {
         "name": "vishal kumar sharma",
-        "profile_link": "https://www.linkedin.com/in/vishal-kumar-sharma-6b7806376/"
+        "profile_link": "https://www.linkedin.com/in/vishal-kumar-sharma-6b7806376/",
+        "sent": true,
+        "timestamp": "2026-08-23 15:32:40",
+        "withdrawn": false
     },
     {
         "name": "Astha Singh",
