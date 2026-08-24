@@ -3025,7 +3025,10 @@
     },
     {
         "name": "Rohit Kumar",
-        "profile_link": "https://www.linkedin.com/in/rohit-kumar-29032a24b/"
+        "profile_link": "https://www.linkedin.com/in/rohit-kumar-29032a24b/",
+        "sent": true,
+        "timestamp": "2026-08-24 11:14:26",
+        "withdrawn": false
     },
     {
         "name": "Diptesh Sinha",
