@@ -3095,7 +3095,10 @@
     },
     {
         "name": "Viveka Nand",
-        "profile_link": "https://www.linkedin.com/in/viveka-nand-83a0aa325/"
+        "profile_link": "https://www.linkedin.com/in/viveka-nand-83a0aa325/",
+        "sent": true,
+        "timestamp": "2026-08-24 21:59:11",
+        "withdrawn": false
     },
     {
         "name": "Raj Kumar singh",
