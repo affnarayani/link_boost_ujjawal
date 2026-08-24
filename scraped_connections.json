@@ -3032,7 +3032,10 @@
     },
     {
         "name": "Diptesh Sinha",
-        "profile_link": "https://www.linkedin.com/in/diptesh-sinha-919b12203/"
+        "profile_link": "https://www.linkedin.com/in/diptesh-sinha-919b12203/",
+        "sent": true,
+        "timestamp": "2026-08-24 11:42:19",
+        "withdrawn": false
     },
     {
         "name": "Rama Kant Jha",
