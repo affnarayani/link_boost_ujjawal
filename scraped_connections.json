@@ -3053,7 +3053,10 @@
     },
     {
         "name": "Rahul Raj",
-        "profile_link": "https://www.linkedin.com/in/rahul-raj-5a09bb226/"
+        "profile_link": "https://www.linkedin.com/in/rahul-raj-5a09bb226/",
+        "sent": true,
+        "timestamp": "2026-08-24 16:53:47",
+        "withdrawn": false
     },
     {
         "name": "Santosh Kumar",
