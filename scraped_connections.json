@@ -3193,7 +3193,10 @@
     },
     {
         "name": "Akankshit Jha",
-        "profile_link": "https://www.linkedin.com/in/akankshit-jha-3101a8ab/"
+        "profile_link": "https://www.linkedin.com/in/akankshit-jha-3101a8ab/",
+        "sent": true,
+        "timestamp": "2026-08-25 17:47:12",
+        "withdrawn": false
     },
     {
         "name": "Pramod Rajpati",
