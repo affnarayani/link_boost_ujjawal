@@ -3256,7 +3256,10 @@
     },
     {
         "name": "Arvind Kumar",
-        "profile_link": "https://www.linkedin.com/in/arvind-kumar-038041224/"
+        "profile_link": "https://www.linkedin.com/in/arvind-kumar-038041224/",
+        "sent": true,
+        "timestamp": "2026-08-26 06:19:55",
+        "withdrawn": false
     },
     {
         "name": "Rahul Kumar",
