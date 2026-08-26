@@ -3249,7 +3249,10 @@
     },
     {
         "name": "Pratibha Kumari",
-        "profile_link": "https://www.linkedin.com/in/pratibha-kumari-173584273/"
+        "profile_link": "https://www.linkedin.com/in/pratibha-kumari-173584273/",
+        "sent": true,
+        "timestamp": "2026-08-26 05:09:55",
+        "withdrawn": false
     },
     {
         "name": "Arvind Kumar",
