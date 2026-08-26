@@ -3242,7 +3242,10 @@
     },
     {
         "name": "Amrit Kumar",
-        "profile_link": "https://www.linkedin.com/in/amrit-kumar-558365259/"
+        "profile_link": "https://www.linkedin.com/in/amrit-kumar-558365259/",
+        "sent": true,
+        "timestamp": "2026-08-26 03:43:52",
+        "withdrawn": false
     },
     {
         "name": "Pratibha Kumari",
