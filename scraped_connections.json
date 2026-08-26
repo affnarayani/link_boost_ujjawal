@@ -3263,7 +3263,10 @@
     },
     {
         "name": "Rahul Kumar",
-        "profile_link": "https://www.linkedin.com/in/rahul-kumar-197225147/"
+        "profile_link": "https://www.linkedin.com/in/rahul-kumar-197225147/",
+        "sent": true,
+        "timestamp": "2026-08-26 10:07:38",
+        "withdrawn": false
     },
     {
         "name": "Ravindra Kumar",
