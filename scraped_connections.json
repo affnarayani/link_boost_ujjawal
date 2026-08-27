@@ -3375,7 +3375,10 @@
     },
     {
         "name": "Rohit Kant Singh",
-        "profile_link": "https://www.linkedin.com/in/rohit-kant-singh-5776b0214/"
+        "profile_link": "https://www.linkedin.com/in/rohit-kant-singh-5776b0214/",
+        "sent": true,
+        "timestamp": "2026-08-27 20:48:28",
+        "withdrawn": false
     },
     {
         "name": "Rahul Raj",
