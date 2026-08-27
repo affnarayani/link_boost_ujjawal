@@ -3361,7 +3361,10 @@
     },
     {
         "name": "BINDHYACHAL RAI",
-        "profile_link": "https://www.linkedin.com/in/bindhyachal-rai-2a138a3b1/"
+        "profile_link": "https://www.linkedin.com/in/bindhyachal-rai-2a138a3b1/",
+        "sent": true,
+        "timestamp": "2026-08-27 19:52:10",
+        "withdrawn": false
     },
     {
         "name": "Rohit Kumar",
