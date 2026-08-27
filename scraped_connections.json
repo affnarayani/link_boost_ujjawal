@@ -3340,7 +3340,10 @@
     },
     {
         "name": "Anshita Sidhanta",
-        "profile_link": "https://www.linkedin.com/in/anshita-sidhanta-552b90240/"
+        "profile_link": "https://www.linkedin.com/in/anshita-sidhanta-552b90240/",
+        "sent": true,
+        "timestamp": "2026-08-27 03:24:07",
+        "withdrawn": false
     },
     {
         "name": "Abhishek Kumar",
