@@ -3403,7 +3403,10 @@
     },
     {
         "name": "Shashi Kumar",
-        "profile_link": "https://www.linkedin.com/in/shashi-kumar-952242213/"
+        "profile_link": "https://www.linkedin.com/in/shashi-kumar-952242213/",
+        "sent": true,
+        "timestamp": "2026-08-27 23:50:40",
+        "withdrawn": false
     },
     {
         "name": "Navin Kumar",
