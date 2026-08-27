@@ -3326,7 +3326,10 @@
     },
     {
         "name": "Keshav Narayan Shandilya",
-        "profile_link": "https://www.linkedin.com/in/kn-for-you/"
+        "profile_link": "https://www.linkedin.com/in/kn-for-you/",
+        "sent": true,
+        "timestamp": "2026-08-27 00:16:28",
+        "withdrawn": false
     },
     {
         "name": "Aishwarya Shankar",
