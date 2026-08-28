@@ -3431,7 +3431,10 @@
     },
     {
         "name": "Viveka Nand",
-        "profile_link": "https://www.linkedin.com/in/viveka-nand-83a0aa325/"
+        "profile_link": "https://www.linkedin.com/in/viveka-nand-83a0aa325/",
+        "sent": true,
+        "timestamp": "2026-08-28 00:53:28",
+        "withdrawn": false
     },
     {
         "name": "Deepak Kaushik",
