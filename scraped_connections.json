@@ -3466,7 +3466,10 @@
     },
     {
         "name": "Atiqul Bari",
-        "profile_link": "https://www.linkedin.com/in/atiqul-bari-14419b21a/"
+        "profile_link": "https://www.linkedin.com/in/atiqul-bari-14419b21a/",
+        "sent": true,
+        "timestamp": "2026-08-28 21:11:43",
+        "withdrawn": false
     },
     {
         "name": "RAMRATAN kumar",
