@@ -3438,7 +3438,10 @@
     },
     {
         "name": "Deepak Kaushik",
-        "profile_link": "https://www.linkedin.com/in/deepak-kaushik-4317b7284/"
+        "profile_link": "https://www.linkedin.com/in/deepak-kaushik-4317b7284/",
+        "sent": true,
+        "timestamp": "2026-08-28 01:53:51",
+        "withdrawn": false
     },
     {
         "name": "ASHUTOSH PRASAD JOSHI",
