@@ -3424,7 +3424,10 @@
     },
     {
         "name": "Raushan Ojha",
-        "profile_link": "https://www.linkedin.com/in/raushan-ojha-451b8a287/"
+        "profile_link": "https://www.linkedin.com/in/raushan-ojha-451b8a287/",
+        "sent": true,
+        "timestamp": "2026-08-28 00:38:58",
+        "withdrawn": false
     },
     {
         "name": "Viveka Nand",
