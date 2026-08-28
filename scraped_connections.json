@@ -3480,7 +3480,10 @@
     },
     {
         "name": "Chakravarti Singh",
-        "profile_link": "https://www.linkedin.com/in/chakravarti-singh-747205200/"
+        "profile_link": "https://www.linkedin.com/in/chakravarti-singh-747205200/",
+        "sent": true,
+        "timestamp": "2026-08-28 23:43:24",
+        "withdrawn": false
     },
     {
         "name": "Adv. Dilkash Khan",
