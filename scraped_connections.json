@@ -3417,7 +3417,10 @@
     },
     {
         "name": "Ankit Raj",
-        "profile_link": "https://www.linkedin.com/in/ankit-raj-ba463740a/"
+        "profile_link": "https://www.linkedin.com/in/ankit-raj-ba463740a/",
+        "sent": true,
+        "timestamp": "2026-08-28 00:03:32",
+        "withdrawn": false
     },
     {
         "name": "Raushan Ojha",
