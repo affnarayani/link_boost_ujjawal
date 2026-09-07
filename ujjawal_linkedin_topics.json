@@ -288,7 +288,10 @@
         "posted": true
     },
     {
-        "topic": "Double jeopardy protection - how it actually works in practice"
+        "topic": "Double jeopardy protection - how it actually works in practice",
+        "content_generated": true,
+        "image_generated": false,
+        "posted": false
     },
     {
         "topic": "Drafting an effective reply to a GST show cause notice"
