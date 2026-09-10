@@ -5,10 +5,14 @@ from datetime import datetime, timedelta
 file_name = 'scraped_connections.json'
 
 try:
-    with open(file_name, 'r') as file:
+    # Fix: Added encoding='utf-8' here
+    with open(file_name, 'r', encoding='utf-8') as file:
         data = json.load(file)
 except FileNotFoundError:
     print(f"Error: '{file_name}' file nahi mili. Please check karein.")
+    exit()
+except json.JSONDecodeError:
+    print(f"Error: '{file_name}' valid JSON format me nahi hai.")
     exit()
 
 # 2. Total elements calculate karein
