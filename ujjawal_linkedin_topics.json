@@ -366,7 +366,10 @@
         "posted": true
     },
     {
-        "topic": "What makes a chain of circumstantial evidence conviction-worthy"
+        "topic": "What makes a chain of circumstantial evidence conviction-worthy",
+        "content_generated": true,
+        "image_generated": false,
+        "posted": false
     },
     {
         "topic": "Contract labour regularisation - the principal employer's liability"
