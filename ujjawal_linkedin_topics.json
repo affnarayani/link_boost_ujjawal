@@ -384,7 +384,10 @@
         "posted": true
     },
     {
-        "topic": "Workplace injury compensation - the employer's liability explained"
+        "topic": "Workplace injury compensation - the employer's liability explained",
+        "content_generated": true,
+        "image_generated": false,
+        "posted": false
     },
     {
         "topic": "Responding to a show cause notice - the drafting strategy that works"
