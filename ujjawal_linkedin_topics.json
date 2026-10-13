@@ -474,7 +474,10 @@
         "posted": true
     },
     {
-        "topic": "Refund claims for a delayed project - success rate and timelines"
+        "topic": "Refund claims for a delayed project - success rate and timelines",
+        "content_generated": true,
+        "image_generated": false,
+        "posted": false
     },
     {
         "topic": "Common intention vs common object - a frequently confused distinction"
