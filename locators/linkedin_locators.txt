@@ -16,57 +16,51 @@
 # - Use `||`-free syntax: a key holds exactly ONE expression. For alternative
 #   selectors, chain them with Playwright's own `.or_(...)`.
 #
-# Self-healing fallbacks: a key may also declare EXTRA lines directly beneath its
-# primary line. The first line for a key is the primary; each following line with
-# the same key is an ordered fallback tried only when the primary (and earlier
-# fallbacks) fail. Fallback lines do not need a `::` description. When a locator
-# breaks and Gemini suggests a fix, `locators/changed_locators.json` records it and
-# (when `locator_healing.auto_correct_locator` is true) the suggestion is appended
-# here as a new fallback line under the same key, e.g.:
-#
-#     login_email_input = page.get_by_role("textbox", name="Email or phone") :: ...
-#
-# Keep this file free of Python-side locators: scripts must only reference keys.
+# Self-healing fallbacks: when a locator breaks and Gemini suggests a fix,
+# `locators/changed_locators.json` records it and (when
+# `locator_healing.auto_correct_locator` is true) the suggestion is appended
+# to the key's existing `.or_(...)` chain as a new fallback. The primary line
+# is always a single expression with chained fallbacks.
 # ==========================================================================
 
 # --- Authentication and session -------------------------------------------
-me_account_button = page.get_by_role("button", name="Me", exact=True) :: "Me" account button in the top-right corner of the LinkedIn header, opens the account menu
-login_email_input = page.get_by_role("textbox", name="Email or phone") :: "Email or phone" input field on the LinkedIn sign-in form
-login_password_input = page.get_by_role("textbox", name="Password") :: "Password" input field on the LinkedIn sign-in form
-login_sign_in_button = page.get_by_role("button", name="Sign in", exact=True) :: "Sign in" submit button at the bottom of the LinkedIn sign-in form
+me_account_button = page.get_by_role("button", name="Me", exact=True).or_(page.get_by_role("button", name=re.compile(r"Me", re.IGNORECASE))).or_(page.locator("button[aria-label*='Me']")).or_(page.locator("button[data-test-id='me-menu-trigger']")) :: "Me" account button in the top-right corner of the LinkedIn header, opens the account menu
+login_email_input = page.get_by_role("textbox", name="Email or phone").or_(page.get_by_role("textbox", name=re.compile(r"Email", re.IGNORECASE))).or_(page.locator("input[type='email']")).or_(page.locator("input[name='session_key']")).or_(page.locator("#username")) :: "Email or phone" input field on the LinkedIn sign-in form
+login_password_input = page.get_by_role("textbox", name="Password").or_(page.get_by_role("textbox", name=re.compile(r"Password", re.IGNORECASE))).or_(page.locator("input[type='password']")).or_(page.locator("input[name='session_password']")).or_(page.locator("#password")) :: "Password" input field on the LinkedIn sign-in form
+login_sign_in_button = page.get_by_role("button", name="Sign in", exact=True).or_(page.get_by_role("button", name=re.compile(r"Sign in", re.IGNORECASE))).or_(page.locator("button[type='submit']")).or_(page.locator("button[data-litms-control-urn='login-submit']")).or_(page.locator("button:has-text('Sign in')")) :: "Sign in" submit button at the bottom of the LinkedIn sign-in form
 
 # --- Feed ------------------------------------------------------------------
-feed_workspace = page.locator("#workspace") :: the main scrollable LinkedIn feed workspace container that holds the entire feed, focus it before scrolling
-feed_sort_by_top_button = page.get_by_role("button", name=re.compile(r"Sort by: Top", re.IGNORECASE)) :: "Sort by: Top" button in the upper-left area of the LinkedIn feed, opens the sort menu
-feed_sort_recent_option = page.get_by_text("Recent", exact=True) :: "Recent" option inside the LinkedIn feed sort dropdown menu
+feed_workspace = page.locator("#workspace").or_(page.locator("[data-test-id='feed-workspace']")).or_(page.locator("main[role='main']")).or_(page.locator(".feed-shared-update-v2")).or_(page.locator(".scaffold-layout__main")) :: the main scrollable LinkedIn feed workspace container that holds the entire feed, focus it before scrolling
+feed_sort_by_top_button = page.get_by_role("button", name=re.compile(r"Sort by: Top", re.IGNORECASE)).or_(page.get_by_role("button", name=re.compile(r"Sort by", re.IGNORECASE))).or_(page.locator("button[aria-label*='Sort by']")).or_(page.locator("button.artdeco-dropdown__trigger:has-text('Sort')")) :: "Sort by: Top" button in the upper-left area of the LinkedIn feed, opens the sort menu
+feed_sort_recent_option = page.get_by_text("Recent", exact=True).or_(page.get_by_role("menuitem", name="Recent")).or_(page.locator("div[role='menuitem']:has-text('Recent')")).or_(page.locator(".artdeco-dropdown__item:has-text('Recent')")) :: "Recent" option inside the LinkedIn feed sort dropdown menu
 
 # --- Post discovery and content -------------------------------------------
-post_control_menu_button = page.get_by_role("button", name=re.compile(r"Open control menu for post by.*", re.IGNORECASE)).first :: three-dot "Open control menu for post by ..." button in the top-right corner of a feed post
-post_copy_link_menu_item = page.get_by_text("Copy link to post") :: "Copy link to post" menu item inside the post control menu popup
-post_content_text = page.locator(".update-components-text").or_(page.locator('[data-testid="expandable-text-box"]')).first :: main body text of a LinkedIn post
-post_unavailable_link = page.get_by_role("link", name="This post cannot be displayed") :: "This post cannot be displayed" link shown on a deleted or restricted LinkedIn post
-comments_turned_off_text = page.get_by_text("Comments have been turned off") :: "Comments have been turned off" notice shown under a LinkedIn post with comments disabled
-group_members_only_text = page.get_by_text("Only group members can") :: "Only group members can ..." restriction notice shown on a LinkedIn group post
+post_control_menu_button = page.get_by_role("button", name=re.compile(r"Open control menu for post by.*", re.IGNORECASE)).first.or_(page.locator("button[aria-label*='Open control menu']")).or_(page.locator("button[data-control-name='post_menu']")).or_(page.locator(".feed-shared-control-menu__trigger")).or_(page.locator(".feed-shared-actor__menu-trigger")) :: three-dot "Open control menu for post by ..." button in the top-right corner of a feed post
+post_copy_link_menu_item = page.get_by_text("Copy link to post").or_(page.get_by_role("menuitem", name="Copy link to post")).or_(page.locator("div[role='menuitem']:has-text('Copy link to post')")).or_(page.locator(".artdeco-dropdown__item:has-text('Copy link')")) :: "Copy link to post" menu item inside the post control menu popup
+post_content_text = page.locator(".update-components-text").or_(page.locator('[data-testid="expandable-text-box"]')).or_(page.locator(".feed-shared-update-v2__description")).or_(page.locator(".feed-shared-text")).or_(page.locator(".update-components-text.relative")).first :: main body text of a LinkedIn post
+post_unavailable_link = page.get_by_role("link", name="This post cannot be displayed").or_(page.get_by_text("This post cannot be displayed")).or_(page.locator("a:has-text('This post cannot be displayed')")) :: "This post cannot be displayed" link shown on a deleted or restricted LinkedIn post
+comments_turned_off_text = page.get_by_text("Comments have been turned off").or_(page.locator(":has-text('Comments have been turned off')")).or_(page.locator(".feed-shared-social-counts__comments-turned-off")) :: "Comments have been turned off" notice shown under a LinkedIn post with comments disabled
+group_members_only_text = page.get_by_text("Only group members can").or_(page.locator(":has-text('Only group members can')")).or_(page.locator(".feed-shared-social-counts__group-members-only")) :: "Only group members can ..." restriction notice shown on a LinkedIn group post
 
 # --- Commenting ------------------------------------------------------------
-comment_box_editor = page.locator("div.ql-editor[contenteditable='true']").or_(page.locator("div[contenteditable='true'][role='textbox']")).or_(page.locator("div[role='textbox']")).or_(page.locator("textarea.comments-comment-box__textarea")).or_(page.locator(".ql-editor")) :: rich-text comment input box at the bottom of a LinkedIn post, placeholder text starts with "Add a comment"
-post_like_button = page.locator("button[aria-label*='React Like']").or_(page.locator("button[aria-label*='Like']")).or_(page.locator("button.react-button__trigger")).or_(page.locator("button.artdeco-button:has-text('Like')")).or_(page.locator("button:has-text('Like')")) :: "Like" reaction button in the social-actions bar at the bottom-left of a LinkedIn post, thumbs-up icon
-post_comment_button = page.get_by_role("button", name="Comment", exact=True) :: "Comment" button in the social-actions bar of a LinkedIn post, speech-bubble icon; it renders disabled when commenting is turned off
+comment_box_editor = page.locator("div.ql-editor[contenteditable='true']").or_(page.locator("div[contenteditable='true'][role='textbox']")).or_(page.locator("div[role='textbox']")).or_(page.locator("textarea.comments-comment-box__textarea")).or_(page.locator(".ql-editor")).or_(page.locator("[data-test-id='comment-box-editor']")) :: rich-text comment input box at the bottom of a LinkedIn post, placeholder text starts with "Add a comment"
+post_like_button = page.locator("button[aria-label*='React Like']").or_(page.locator("button[aria-label*='Like']")).or_(page.locator("button.react-button__trigger")).or_(page.locator("button.artdeco-button:has-text('Like')")).or_(page.locator("button:has-text('Like')")).or_(page.locator("button[data-test-id='like-button']")) :: "Like" reaction button in the social-actions bar at the bottom-left of a LinkedIn post, thumbs-up icon
+post_comment_button = page.get_by_role("button", name="Comment", exact=True).or_(page.get_by_role("button", name=re.compile(r"Comment", re.IGNORECASE))).or_(page.locator("button[aria-label*='Comment']")).or_(page.locator("button.artdeco-button:has-text('Comment')")).or_(page.locator("button[data-test-id='comment-button']")) :: "Comment" button in the social-actions bar of a LinkedIn post, speech-bubble icon; it renders disabled when commenting is turned off
 
 # --- Composer --------------------------------------------------------------
-start_a_post_button = page.get_by_role("button", name="Start a post") :: "Start a post" button at the top of the LinkedIn feed composer card
-post_editor_input = page.get_by_role("textbox", name="Text editor for creating").or_(page.get_by_test_id("ui-core-tiptap-text-editor-wrapper").get_by_role("paragraph")).or_(page.locator('p[data-placeholder="Share your thoughts ..."]')) :: large text editor area inside the LinkedIn "Create a post" modal, placeholder starts with "Share your thoughts"
-post_media_button = page.get_by_role("button", name="Media") :: "Media" button in the bottom toolbar of the LinkedIn post composer, opens the file chooser
-post_next_button = page.get_by_test_id("interop-shadowdom").get_by_role("button", name="Next").or_(page.get_by_role("button", name="Next")).or_(page.get_by_role("button", name="Next", exact=True)) :: "Next" button in the bottom-right of the LinkedIn post composer or media preview dialog
-post_submit_button = page.get_by_role("button", name="Post", exact=True) :: "Post" button in the bottom-right corner of the LinkedIn post composer modal
+start_a_post_button = page.get_by_role("button", name="Start a post").or_(page.get_by_role("button", name=re.compile(r"Start a post", re.IGNORECASE))).or_(page.locator("button[data-control-name='share.post']")).or_(page.locator("button.artdeco-button:has-text('Start a post')")) :: "Start a post" button at the top of the LinkedIn feed composer card
+post_editor_input = page.get_by_role("textbox", name="Text editor for creating").or_(page.get_by_test_id("ui-core-tiptap-text-editor-wrapper").get_by_role("paragraph")).or_(page.locator('p[data-placeholder="Share your thoughts ..."]')).or_(page.locator("div.ql-editor[contenteditable='true']")).or_(page.locator("[data-test-id='post-editor-input']")) :: large text editor area inside the LinkedIn "Create a post" modal, placeholder starts with "Share your thoughts"
+post_media_button = page.get_by_role("button", name="Media").or_(page.get_by_role("button", name=re.compile(r"Media", re.IGNORECASE))).or_(page.locator("button[aria-label*='Media']")).or_(page.locator("button.artdeco-button:has-text('Media')")).or_(page.locator("button[data-test-id='media-button']")) :: "Media" button in the bottom toolbar of the LinkedIn post composer, opens the file chooser
+post_next_button = page.get_by_test_id("interop-shadowdom").get_by_role("button", name="Next").or_(page.get_by_role("button", name="Next")).or_(page.get_by_role("button", name="Next", exact=True)).or_(page.locator("button.artdeco-button:has-text('Next')")).or_(page.locator("button[data-test-id='next-button']")) :: "Next" button in the bottom-right of the LinkedIn post composer or media preview dialog
+post_submit_button = page.get_by_role("button", name="Post", exact=True).or_(page.get_by_role("button", name=re.compile(r"Post", re.IGNORECASE))).or_(page.locator("button[aria-label*='Post']")).or_(page.locator("button.artdeco-button:has-text('Post')")).or_(page.locator("button[data-test-id='post-button']")) :: "Post" button in the bottom-right corner of the LinkedIn post composer modal
 
 # --- Connection requests ---------------------------------------------------
-profile_invite_link = page.get_by_test_id("lazy-column").get_by_role("link", name=re.compile(f"Invite {name}", re.IGNORECASE)) :: "Invite <name> to connect" link in the profile action row near the top of a LinkedIn profile page
-connect_send_without_note_button = page.get_by_role("button", name="Send without a note", exact=True) :: "Send without a note" button in the bottom-left of the LinkedIn connection request dialog
-profile_pending_withdraw_link = page.get_by_test_id("lazy-column").get_by_role("link", name="Pending, click to withdraw") :: "Pending, click to withdraw" link in the profile action row of a LinkedIn profile with a pending invitation
-withdraw_confirmation_button = page.get_by_role("button", name=re.compile(r"Withdraw invitation sent to", re.IGNORECASE)) :: "Withdraw" confirmation button inside the withdraw-invitation dialog on LinkedIn
+profile_invite_link = page.get_by_test_id("lazy-column").get_by_role("link", name=re.compile(f"Invite {name}", re.IGNORECASE)).or_(page.get_by_role("link", name=re.compile(f"Invite {name}", re.IGNORECASE))).or_(page.locator(f"a:has-text('Invite {name}')")).or_(page.locator(f"a[aria-label*='Invite {name}']")) :: "Invite <name> to connect" link in the profile action row near the top of a LinkedIn profile page
+connect_send_without_note_button = page.get_by_role("button", name="Send without a note", exact=True).or_(page.get_by_role("button", name=re.compile(r"Send without a note", re.IGNORECASE))).or_(page.locator("button:has-text('Send without a note')")).or_(page.locator("button.artdeco-button:has-text('Send without a note')")) :: "Send without a note" button in the bottom-left of the LinkedIn connection request dialog
+profile_pending_withdraw_link = page.get_by_test_id("lazy-column").get_by_role("link", name="Pending, click to withdraw").or_(page.get_by_role("link", name="Pending, click to withdraw")).or_(page.locator("a:has-text('Pending, click to withdraw')")) :: "Pending, click to withdraw" link in the profile action row of a LinkedIn profile with a pending invitation
+withdraw_confirmation_button = page.get_by_role("button", name=re.compile(r"Withdraw invitation sent to", re.IGNORECASE)).or_(page.get_by_role("button", name=re.compile(r"Withdraw", re.IGNORECASE))).or_(page.locator("button:has-text('Withdraw')")).or_(page.locator("button.artdeco-button:has-text('Withdraw')")) :: "Withdraw" confirmation button inside the withdraw-invitation dialog on LinkedIn
 
 # --- People search ---------------------------------------------------------
-search_result_links = page.get_by_role("link") :: every hyperlink rendered on the LinkedIn people-search results page
-search_result_profile_link = page.get_by_role("link", name=re.compile(rf"^{name}(\s+Verified)?$"), exact=True) :: profile name hyperlink on a LinkedIn people-search result card
-search_result_invite_link = page.get_by_role("link", name=f"Invite {name} to connect", exact=True) :: "Invite <name> to connect" link on a LinkedIn people-search result card
+search_result_links = page.get_by_role("link").or_(page.locator("a[href]")) :: every hyperlink rendered on the LinkedIn people-search results page
+search_result_profile_link = page.get_by_role("link", name=re.compile(rf"^{name}(\s+Verified)?$"), exact=True).or_(page.get_by_role("link", name=re.compile(rf"^{name}", re.IGNORECASE))).or_(page.locator(f"a:has-text('{name}')")).or_(page.locator("a[data-test-id='search-result-profile-link']")) :: profile name hyperlink on a LinkedIn people-search result card
+search_result_invite_link = page.get_by_role("link", name=f"Invite {name} to connect", exact=True).or_(page.get_by_role("link", name=re.compile(f"Invite {name}", re.IGNORECASE))).or_(page.locator(f"a:has-text('Invite {name} to connect')")).or_(page.locator("a[data-test-id='search-result-invite-link']")) :: "Invite <name> to connect" link on a LinkedIn people-search result card

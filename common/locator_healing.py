@@ -13,9 +13,10 @@ Behaviour:
 * ``reconcile_startup`` runs once at process start (from
   :class:`common.interact.PageActions`):
 
-  - ``auto_correct_locator = true``: apply every pending ``suggested_locator`` to
-    the platform's ``locators/*.txt`` as an extra fallback line under the same
-    key (the primary line is preserved), then remove that JSON entry.
+  - ``auto_correct_locator = true``: apply every pending ``suggested_locator`` by
+    appending it to the key's existing ``.or_(...)`` chain in the platform's
+    ``locators/*.txt`` (the primary line is preserved as a single expression),
+    then remove that JSON entry.
   - ``auto_correct_locator = false``: only remove JSON entries whose
     ``suggested_locator`` already exists in the ``.txt``; keep the rest.
 
@@ -132,10 +133,14 @@ def remove(key: str, platform: str) -> None:
 # --------------------------------------------------------------------------
 # Locator-file editing
 # --------------------------------------------------------------------------
-def _append_fallback_line(path: Path, key: str, suggestion: str) -> bool:
-    """Append ``key = suggestion`` directly under the key's existing block.
+def _append_to_or_chain(path: Path, key: str, suggestion: str) -> bool:
+    """Append ``suggestion`` to the key's existing ``.or_(...)`` chain.
 
-    Returns True when a new line was written, False when the suggestion is
+    The locator file uses a single line per key with Playwright's ``.or_(...)``
+    for fallbacks. This function finds that line and inserts the new suggestion
+    into the chain.
+
+    Returns True when the chain was updated, False when the suggestion is
     already present or the key is not found.
     """
     text = path.read_text(encoding="utf-8")
@@ -156,31 +161,33 @@ def _append_fallback_line(path: Path, key: str, suggestion: str) -> bool:
     if primary_index < 0:
         return False
 
-    # If the suggestion is already present for this key, nothing to do.
-    for raw in lines:
-        stripped = raw.strip()
-        if not stripped or stripped.startswith("#"):
-            continue
-        body, _, _ = stripped.partition("::")
-        candidate, sep, expression = body.partition("=")
-        if sep and candidate.strip() == key and expression.strip() == suggestion.strip():
-            return False
+    line = lines[primary_index]
+    body, _, description = line.partition("::")
+    candidate, sep, expression = body.partition("=")
+    expression = expression.strip()
 
-    # Find the end of this key's block (last consecutive same-key line).
-    insert_at = primary_index + 1
-    for index in range(primary_index + 1, len(lines)):
-        stripped = lines[index].strip()
-        if not stripped or stripped.startswith("#"):
-            insert_at = index + 1
-            continue
-        body, _, _ = stripped.partition("::")
-        candidate, sep, _ = body.partition("=")
-        if sep and candidate.strip() == key:
-            insert_at = index + 1
-            continue
-        break
+    # Check if suggestion is already present in the chain
+    # Normalize both for comparison
+    if suggestion.strip() in expression:
+        return False
 
-    lines.insert(insert_at, f"{key} = {suggestion}")
+    # Append the suggestion to the .or_() chain.
+    # Handle expressions that end with .first or similar
+    # We want: expr.or_(suggestion)  (or expr.or_(suggestion).first if expr ends with .first)
+    if expression.endswith(".first"):
+        # Remove .first, add .or_(...), then add .first back
+        base = expression[:-6]  # remove .first
+        new_expression = f"{base}.or_({suggestion}).first"
+    else:
+        new_expression = f"{expression}.or_({suggestion})"
+
+    # Reconstruct the line
+    new_body = f"{candidate}{sep}{new_expression}"
+    if description:
+        lines[primary_index] = f"{new_body} ::{description}"
+    else:
+        lines[primary_index] = new_body
+
     path.write_text("\n".join(lines) + ("\n" if text.endswith("\n") else ""), encoding="utf-8")
     return True
 
@@ -224,7 +231,7 @@ def _apply_for_platform(platform: str, registry: LocatorRegistry, entries: List[
                 _log(f"[HEAL] Invalid suggested expression for {platform}:{key}; keeping entry")
                 survivors.append(entry)
                 continue
-            if _append_fallback_line(registry.path, key, suggestion):
+            if _append_to_or_chain(registry.path, key, suggestion):
                 _log(f"[HEAL] Applied fallback for {platform}:{key} -> {suggestion}")
                 changed = True
                 continue
