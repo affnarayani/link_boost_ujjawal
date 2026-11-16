@@ -107,6 +107,7 @@ comment_box_editor = page.locator("div[role='textbox']").first
 comment_box_editor = page.locator("textarea.comments-comment-box__textarea").first
 comment_box_editor = page.locator(".ql-editor").first
 comment_box_editor = page.locator("[data-test-id='comment-box-editor']").first
+comment_box_editor = page.get_by_test_id("ui-core-tiptap-text-editor-wrapper").get_by_role("paragraph")
 
 post_like_button = page.locator("button[aria-label*='React Like']") :: "Like" reaction button in the social-actions bar at the bottom-left of a LinkedIn post, thumbs-up icon
 post_like_button = page.locator("button[aria-label*='Like']")
