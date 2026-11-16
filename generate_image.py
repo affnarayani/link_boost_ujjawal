@@ -216,6 +216,7 @@ def run() -> None:
             capture_and_upload_error(page)
             sys.exit(1)
 
+        update_image_status_in_json(topic)
         custom_random_wait(30, 60)
         print("[DONE] Image download successfully processed.", flush=True)
 
