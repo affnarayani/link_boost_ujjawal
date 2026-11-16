@@ -114,6 +114,7 @@ post_like_button = page.locator("button.react-button__trigger")
 post_like_button = page.locator("button.artdeco-button:has-text('Like')")
 post_like_button = page.locator("button:has-text('Like')")
 post_like_button = page.locator("button[data-test-id='like-button']")
+post_like_button = page.get_by_role("button", name="Reaction button state: no")
 
 post_comment_button = page.get_by_role("button", name="Comment", exact=True) :: "Comment" button in the social-actions bar of a LinkedIn post, speech-bubble icon; it renders disabled when commenting is turned off
 post_comment_button = page.get_by_role("button", name=re.compile(r"Comment", re.IGNORECASE))
