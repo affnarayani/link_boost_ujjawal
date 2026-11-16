@@ -95,6 +95,7 @@ chatgpt_share_image_button = page.get_by_role("button", name="Share this image",
 chatgpt_share_image_button = page.get_by_role("button", name=re.compile(r"Share this image", re.IGNORECASE))
 chatgpt_share_image_button = page.locator("button:has-text('Share this image')")
 chatgpt_share_image_button = page.locator("[data-test-id='share-image-button']")
+chatgpt_share_image_button = page.get_by_role("button", name="Share generated image").first
 
 chatgpt_download_button = page.get_by_role("button", name="Download", exact=True) :: "Download" button in the ChatGPT image toolbar or share dialog
 chatgpt_download_button = page.get_by_role("button", name=re.compile(r"Download", re.IGNORECASE))
