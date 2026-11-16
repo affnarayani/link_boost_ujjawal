@@ -122,6 +122,7 @@ post_comment_button = page.get_by_role("button", name=re.compile(r"Comment", re.
 post_comment_button = page.locator("button[aria-label*='Comment']")
 post_comment_button = page.locator("button.artdeco-button:has-text('Comment')")
 post_comment_button = page.locator("button[data-test-id='comment-button']")
+post_comment_button = page.locator("button").filter(has_text="Comment")
 
 # --- Composer --------------------------------------------------------------
 start_a_post_button = page.get_by_role("button", name="Start a post") :: "Start a post" button at the top of the LinkedIn feed composer card
