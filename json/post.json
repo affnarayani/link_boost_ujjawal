@@ -1,14 +1,14 @@
 {
-    "title": "Common intention vs common object - a frequently confused distinction",
-    "p1": "Two people can participate in the same crime without having the same intention.\n\nSounds confusing? This is exactly where many people mix up common intention and common object.",
-    "p2": "The biggest misconception is that both terms mean the same thing. They don't.\n\nCommon intention means two or more people share a plan and act together to carry it out. There must be a shared intention, along with participation in furthering that plan.\n\nCommon object, on the other hand, relates to an unlawful assembly of five or more people sharing a common purpose. Every member need not have the same personal intention or actively participate in every act.",
-    "p3": "Here's a simple way to remember the difference:\n\nCommon intention = Shared plan and coordinated action.\n\nCommon object = Shared purpose of an unlawful assembly, with liability arising under specific legal conditions.\n\nHere's the surprising part: Under common object, a member may be held responsible for an offence committed by another member if the statutory requirements are satisfied, even without proof of an identical intention.\n\nThe distinction is not just about terminology. It can significantly affect criminal liability.\n\nNote: Under Indian law, these concepts are covered by Sections 3(5) and 190 of the Bharatiya Nyaya Sanhita, 2023, respectively.",
-    "conclusion": "What do you think is the most commonly misunderstood difference between common intention and common object? Share your understanding in the comments.",
+    "title": "The struck-down obscenity provision that's still being misused",
+    "p1": "Imagine being booked under a law that the Supreme Court declared unconstitutional years ago.\n\nSounds impossible? It has happened in India.\n\nAnd the provision at the centre of this controversy is Section 66A of the Information Technology Act, 2000.",
+    "p2": "Here's the surprising part: Section 66A was struck down by the Supreme Court on 24 March 2015 in Shreya Singhal v. Union of India.\n\nIt criminalised sending allegedly offensive or menacing messages online, with punishment of up to three years' imprisonment.\n\nThe problem? Terms like 'offensive' and 'annoying' were dangerously vague, giving authorities excessive power over online expression.\n\nOne important clarification: Section 66A was not technically an obscenity provision. It dealt with offensive online communications. Obscenity-related offences are separately addressed under provisions such as Section 67 of the IT Act.",
+    "p3": "Yet, striking down a law doesn't automatically erase every reference to it from official records.\n\nIn October 2022, the Supreme Court went further. It directed that no citizen could be prosecuted under Section 66A and that references to it in pending proceedings must be deleted.\n\nThe practical takeaway: If an FIR invokes Section 66A, remember that it has no legal force. A different, independently applicable offence may still be investigated, but Section 66A itself cannot be used.",
+    "conclusion": "How can a provision declared unconstitutional in 2015 continue appearing in criminal proceedings years later? Is the bigger problem outdated legal records, inadequate police training, or weak implementation of judicial decisions?",
     "keywords": [
-        "CriminalLaw",
         "IndianLaw",
-        "LegalEducation",
-        "CommonIntention",
-        "CommonObject"
+        "InformationTechnologyAct",
+        "FreedomOfSpeech",
+        "LegalAwareness",
+        "SupremeCourt"
     ]
 }

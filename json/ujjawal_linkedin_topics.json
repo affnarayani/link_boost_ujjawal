@@ -486,7 +486,10 @@
         "posted": true
     },
     {
-        "topic": "The struck-down obscenity provision that's still being misused"
+        "topic": "The struck-down obscenity provision that's still being misused",
+        "content_generated": true,
+        "image_generated": false,
+        "posted": false
     },
     {
         "topic": "Chargesheet delay in NDPS cases - effect on bail applications"
