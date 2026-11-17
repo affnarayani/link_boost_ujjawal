@@ -1,14 +1,14 @@
 {
-    "title": "The struck-down obscenity provision that's still being misused",
-    "p1": "Imagine being booked under a law that the Supreme Court declared unconstitutional years ago.\n\nSounds impossible? It has happened in India.\n\nAnd the provision at the centre of this controversy is Section 66A of the Information Technology Act, 2000.",
-    "p2": "Here's the surprising part: Section 66A was struck down by the Supreme Court on 24 March 2015 in Shreya Singhal v. Union of India.\n\nIt criminalised sending allegedly offensive or menacing messages online, with punishment of up to three years' imprisonment.\n\nThe problem? Terms like 'offensive' and 'annoying' were dangerously vague, giving authorities excessive power over online expression.\n\nOne important clarification: Section 66A was not technically an obscenity provision. It dealt with offensive online communications. Obscenity-related offences are separately addressed under provisions such as Section 67 of the IT Act.",
-    "p3": "Yet, striking down a law doesn't automatically erase every reference to it from official records.\n\nIn October 2022, the Supreme Court went further. It directed that no citizen could be prosecuted under Section 66A and that references to it in pending proceedings must be deleted.\n\nThe practical takeaway: If an FIR invokes Section 66A, remember that it has no legal force. A different, independently applicable offence may still be investigated, but Section 66A itself cannot be used.",
-    "conclusion": "How can a provision declared unconstitutional in 2015 continue appearing in criminal proceedings years later? Is the bigger problem outdated legal records, inadequate police training, or weak implementation of judicial decisions?",
+    "title": "Chargesheet delay in NDPS cases - effect on bail applications",
+    "p1": "Can a delayed chargesheet become a reason for bail in an NDPS case?\n\nSurprisingly, the answer can be yes. And the law provides a specific safeguard that many people overlook.",
+    "p2": "A common misconception is that bail in NDPS cases is almost impossible because the law imposes strict restrictions.\n\nHowever, Section 36A(4) of the NDPS Act provides a special timeline for investigating certain serious offences. The investigating agency generally gets 180 days to file its chargesheet. This period may be extended up to one year, but only through a valid judicial order based on the required report from the Public Prosecutor explaining the progress of the investigation and specific reasons for continued detention.\n\nIf the chargesheet is not filed within the applicable period and the accused applies for bail after the right has accrued, statutory or default bail may become available.",
+    "p3": "Here is the crucial takeaway: delay alone does not automatically guarantee release.\n\nThe timing of the bail application matters. The accused must apply for default bail and be prepared to furnish bail when the right becomes enforceable. If a valid chargesheet is filed before the accused exercises that right, the position may change.\n\nThis is why checking the arrest date, applicable investigation deadline, extension orders and filing date can make a decisive difference in an NDPS bail application.",
+    "conclusion": "Should courts take a stricter approach when investigating agencies exceed the statutory chargesheet deadline in NDPS cases, or should the seriousness of the alleged offence carry greater weight? What is your perspective?",
     "keywords": [
-        "IndianLaw",
-        "InformationTechnologyAct",
-        "FreedomOfSpeech",
-        "LegalAwareness",
-        "SupremeCourt"
+        "NDPSAct",
+        "DefaultBail",
+        "StatutoryBail",
+        "CriminalLaw",
+        "BailApplications"
     ]
 }
