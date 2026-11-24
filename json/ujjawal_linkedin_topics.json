@@ -522,7 +522,10 @@
         "posted": true
     },
     {
-        "topic": "Bail conditions that get violated most often"
+        "topic": "Bail conditions that get violated most often",
+        "content_generated": true,
+        "image_generated": false,
+        "posted": false
     },
     {
         "topic": "Grandparents' visitation rights - an emerging legal question"
