@@ -534,7 +534,10 @@
         "posted": true
     },
     {
-        "topic": "Crimes inside virtual worlds - is existing law even applicable"
+        "topic": "Crimes inside virtual worlds - is existing law even applicable",
+        "content_generated": true,
+        "image_generated": false,
+        "posted": false
     },
     {
         "topic": "Lump sum vs monthly alimony - which works better for clients"
